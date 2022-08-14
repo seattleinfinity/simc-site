@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta charset="utf-8"/>
+
+    <title>{{ title }}</title>
+    <link href={{"assets/css/tailwind.css" | url}} rel="stylesheet"/>
+    <link href={{"assets/images/simc-logo-round.png" | url}} rel="icon" type="image/png"/>
+  </head>
+
+  <body">
+    {% include 'partials/navbar.njk' %}
+
+    <main>
+      {{ content | safe }}
+    </main>
+  </body>
+</html>

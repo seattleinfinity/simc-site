@@ -1,0 +1,17 @@
+<nav>
+  <ul>
+    <li class="brand">
+      <img src="assets/images/simc-logo-square.png" width="30px">
+      <a href="/">SIMC</a>
+    </li>
+
+    <button class="navbar-toggle">Menu</button>
+    <div class="navbar-elements">
+      {% for item in site.data.navbar.links %}
+        <li>
+          <a href="{{ item.url }}">{{ item.title }}</a>
+        </li>
+      {% endfor %}
+    </div>
+  </ul>
+</nav>
