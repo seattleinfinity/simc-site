@@ -4,16 +4,18 @@
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta charset="utf-8"/>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
     <title>{{ title }}</title>
     <link href={{"assets/css/tailwind.css" | url}} rel="stylesheet"/>
     <link href={{"assets/images/simc-logo-round.png" | url}} rel="icon" type="image/png"/>
   </head>
 
-  <body">
+  <body class="flex flex-col items-center">
     {% include 'partials/navbar.njk' %}
 
-    <main>
-      {{ content | safe }}
-    </main>
+    {{ content | safe }}
   </body>
 </html>

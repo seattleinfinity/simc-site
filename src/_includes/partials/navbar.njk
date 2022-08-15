@@ -1,17 +1,40 @@
-<nav>
-  <ul>
-    <li class="brand">
-      <img src="assets/images/simc-logo-square.png" width="30px">
+<script src="assets/js/navbar.js" defer></script>
+
+<nav class="flex justify-center w-full bg-neutral-900">
+  <ul class="flex items-center justify-end px-6 py-4 w-full max-w-7xl">
+    {# Brand #}
+    <li class="flex items-center mr-auto text-white">
+      <img class="rounded-full mr-3" src="assets/images/simc-logo-square.png" width="30px">
       <a href="/">SIMC</a>
     </li>
 
-    <button class="navbar-toggle">Menu</button>
-    <div class="navbar-elements">
-      {% for item in site.data.navbar.links %}
-        <li>
+    {# Mobile menu #}
+    <div class="md:hidden flex items-center">
+      <button class="outline-none mobile-menu-button text-white">
+        <svg class="h-6 w-6" fill="none" stroke-width="2" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+
+    {# Main desktop menu #}
+    <div class="hidden md:flex items-center ml-10 text-neutral-400">
+      {% for item in navbar %}
+        <li class="ml-6 hover:text-white transition-all">
           <a href="{{ item.url }}">{{ item.title }}</a>
         </li>
       {% endfor %}
     </div>
   </ul>
+
+
+  {# Mobile menu needs to be separate #}
+  <div class="mobile-menu hidden md:hidden pb-2">
+    {% for item in navbar %}
+      <li class="block px-4 py-2 text-white">
+        <a href="{{ item.url }}">{{ item.title }}</a>
+      </li>
+    {% endfor %}
+  </div>
 </nav>

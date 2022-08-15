@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Magazine",
+    "url": "magazine.html"
+  },
+  {
+    "title": "Press Releases",
+    "url": "press-releases.html"
+  },
+  {
+    "title": "PoTM",
+    "url": "potm.html"
+  },
+  {
+    "title": "Events",
+    "url": "events.html"
+  },
+  {
+    "title": "SLG",
+    "url": "slg.html"
+  },
+  {
+    "title": "Contact",
+    "url": "contact.html"
+  }
+]

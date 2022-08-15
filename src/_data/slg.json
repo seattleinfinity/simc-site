@@ -1,0 +1,14 @@
+{
+  "people": [
+    {
+      "name": "Edward Yu",
+      "title": "President",
+      "description": "Edward is a senior at Lakeside School who loves mathematics for its elegance and rigor—to him, math is a language to understand the world. He was invited to the Math Olympiad Program (MOP) in both 2020 and 2021, has earned perfect scores on the USAJMO, AMC 10, and AMC 12, and is a five-time USA(J)MO qualifier. Besides math, he is a student journalist and an avid cellist. He enjoys taking random walks with friends or his DJI Mini, practicing foosball shots, and reading advertisement fine print. "
+    },
+    {
+      "name": "Alex Zhao",
+      "title": "Competitions Committee Director",
+      "description": "Alex is a junior at Lakeside School. He has qualified for the USAJMO four times, and qualified for the USAMO this past year. Alex is a USAJMO Winner and a USAMO Silver Medalist, and has qualified for MOP three times. When not doing math, he can be found programming, chatting online, and playing any of clarinet, a number of ball sports, and strategy video games."
+    }
+  ]
+}
