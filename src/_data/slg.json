@@ -1,14 +1,72 @@
-{
-  "people": [
-    {
-      "name": "Edward Yu",
-      "title": "President",
-      "description": "Edward is a senior at Lakeside School who loves mathematics for its elegance and rigor—to him, math is a language to understand the world. He was invited to the Math Olympiad Program (MOP) in both 2020 and 2021, has earned perfect scores on the USAJMO, AMC 10, and AMC 12, and is a five-time USA(J)MO qualifier. Besides math, he is a student journalist and an avid cellist. He enjoys taking random walks with friends or his DJI Mini, practicing foosball shots, and reading advertisement fine print. "
-    },
-    {
-      "name": "Alex Zhao",
-      "title": "Competitions Committee Director",
-      "description": "Alex is a junior at Lakeside School. He has qualified for the USAJMO four times, and qualified for the USAMO this past year. Alex is a USAJMO Winner and a USAMO Silver Medalist, and has qualified for MOP three times. When not doing math, he can be found programming, chatting online, and playing any of clarinet, a number of ball sports, and strategy video games."
-    }
-  ]
-}
+[
+  {
+    "name": "Edward Yu",
+    "title": "President",
+    "bio": "Edward is a senior at Lakeside School who loves mathematics for its elegance and rigor—to him, math is a language to understand the world. He was invited to the Math Olympiad Program (MOP) in both 2020 and 2021, has earned perfect scores on the USAJMO, AMC 10, and AMC 12, and is a five-time USA(J)MO qualifier. Besides math, he is a student journalist and an avid cellist. He enjoys taking random walks with friends or his DJI Mini, practicing foosball shots, and reading advertisement fine print."
+  },
+  {
+    "name": "Alex Zhao",
+    "title": "Competitions Committee Director",
+    "bio": "Alex is a junior at Lakeside School. He has qualified for the USAJMO four times, and qualified for the USAMO this past year. Alex is a USAJMO Winner and a USAMO Silver Medalist, and has qualified for MOP three times. When not doing math, he can be found programming, chatting online, and playing any of clarinet, a number of ball sports, and strategy video games."
+  },
+  {
+    "name": "Michael Yang",
+    "title": "Communications Committee Director",
+    "bio": "Michael is a junior at Lakeside School. An avid participant in math competitions since fifth grade, he has participated in both the MATHCOUNTS and AMC series throughout middle and high school, most recently being named a 2022 USAJMO Winner. Michael is passionate about making math more accessible to everyone through different forms of outreach, and is excited to be leading the Communications Committee this year! In his free time, Michael enjoys playing the cello, reading a good book, or catching up on the latest sports news (although the teams he follows are not exactly popular in the Seattle area)."
+  },
+  {
+    "name": "William Y. Feng",
+    "title": "Webmaster, Communications committee",
+    "bio": "William is a rising junior at Lakeside School. He has been involved in contest math since elementary school, earning several Distinguished Honor Rolls on the AMC 10 and qualifying for the AIME multiple times. William enjoys community math events in particular and has participated in the Washington ARML team since 2018, helping organize things for the team for the past two years. Aside from math, William participates in competitive programming and believes a good deal of computer science topics should be integrated into a good math curriculum. In his spare time, William enjoys playing violin, folding origami, playing badminton, creating YouTube videos, performing card magic, and listening to EDM."
+  },
+  {
+    "name": "Tristan Kay",
+    "title": "Competitions committee",
+    "bio": "Tristan is a senior at Interlake High School and has competed in competition math since 4th grade. He is also the current vice-president of Interlake Math Club and the Co-head Coach of Tyee Competition Math Club. He is one of the two Problem Writing Leads in Mustang Math. He qualified for USA(J)MO for 3 consecutive years. In 2021, he achieved USAJMO Honorable Mentions, hence qualifying for Red MOP in 2021. In 2022 he got USAMO Bronze. He has also participated in HMMT and PuMAC through SIMC for 2 years. Aside from math, he enjoys coding, physics, reading, and philosophy."
+  },
+  {
+    "name": "Yuuki Sawanoi",
+    "title": "Competitions committee",
+    "bio": "Yuuki is a senior at Interlake High School. Having competed in math competitions since 3rd grade, he has participated in various competitions including USA(J)MO and HMMT Invitational. Besides competing, he also enjoys coaching middle schoolers as the head at Tyee Competition Math Club as well as the coach for the Washington MATHCOUNTS National Team. In his free time, Yuuki oftentimes writes math problems of his own for various competitions. He especially loves number theory and combinatorics for their variety of elegant solutions. Outside of the world of mathematics, he actively participates in competitive programming and also likes reading Japanese novels."
+  },
+  {
+    "name": "Annabel Ge",
+    "title": "Competitions committee",
+    "bio": "Annabel is a junior at Lakeside school this year. She has participated in many math competitions since elementary school. She has gone through the AMC series for many years and has attended MOP two times. Her favorite olympiad subject is combo. In addition to math, she participates in her school’s crew team, and some of her other interests include drawing, playing card games, and music. Annabel also enjoys coding (casually) and has participated in USACO. She’s excited to be a part of SIMC leadership this year and help create engaging problems and tests!"
+  },
+  {
+    "name": "Owen Zhang",
+    "title": "Competitions committee",
+    "bio": "Owen is a junior at Interlake High School and has been passionate about mathematics since the 4th grade. He has qualified for the USAJMO, qualified for the AIME 4 times, and participated in competitions such as ARML and Mathcounts. Outside of math, Owen enjoys listening to music, programming, physics, running, or catching up with friends."
+  },
+  {
+    "name": "Cecilia Sun",
+    "title": "Communications committee",
+    "bio": "Cecilia is a junior at Lakeside School. Ever since attending her first math competition in third grade, Cecilia has grown to love complexities and connections within math. In addition to the subject itself, Cecilia also appreciates the communities that have been built around it and wants to continue to foster such communities while on SLG. Cecilia has qualified for the AIME four times, been on the distinguished honor roll for the AMC 10 three times, and earned a perfect score on the AMC 8. In addition to math, she enjoys playing the piano, learning physics, playing minesweeper, and spending time with her pets."
+  },
+  {
+    "name": "William Gvozdjak",
+    "title": "Communications committee",
+    "bio": "William is a junior at Bellevue High School. He began participating in math competitions in elementary school and has qualified for the AIME multiple times and the USAJMO once. His favorite subject is geometry, but he is also fascinated by algebra and advanced math, and he loves elegant and simple solutions to complex math problems. He is also an officer in his high school’s math and programming clubs. William is passionate about web development and loves spending time thinking about and creating new designs for webpages. Aside from math and programming, William enjoys following sports and soccer, listening to music, and exploring random facts online."
+  },
+  {
+    "name": "Hongning Wang",
+    "title": "Competitions committee",
+    "bio": "Hongning is a sophomore at Eastlake High School. His pronouns are he/him/his. He has participated in math contests for six years and was a 2022 USAJMO Honorable Mention. He took part in SIMC events since middle school and is super excited to be on the SLG this year. Hongning is committed to sharing his experience in math to the math community. He hopes to continue creating meaningful contests, opportunities and problem of the months for SIMC members and others in our community during his second year on the SLG. When not doing math, Hongning likes to read a good book, read about current events, and play chess card games with friends."
+  },
+  {
+    "name": "Joyce Huang",
+    "title": "Communications committee",
+    "bio": "Joyce Huang is a sophomore at Redmond High School. She has qualified for AIME and the 2022 Math Prize for Girls. Her favorite math competition is Math Kangaroo, in which she placed first nationally in 2021 and 2022. Joyce enjoys math because Joyce enjoys joy and math makes Joyce rejoice. Joyce also enjoys playing the oboe (which everyone knows is obviously the best instrument in the world), as well as the piano, cello, flute, alto saxophone, and hopefully the lituus someday. You could also find her playing word ladders with her friends, and more."
+  },
+  {
+    "name": "Rohan Dhillon",
+    "title": "Communications committee",
+    "bio": "Rohan is a sophomore at Lakeside School and has participated in math competitions like the AMC and Mathcounts since 6th grade, garnering distinctions multiple times on the AMC 10, DHR on the AMC 8, and what would have been the State countdown round in Mathcounts (were it not for COVID). When not doing math, you can find him attempting to ace his opponents at tennis tournaments, building science projects, coding, studying for physics competitions, or stirring up controversy at MUN debates."
+  },
+  {
+    "name": "Owen Xuan",
+    "title": "Communications committee",
+    "bio": "Owen is a rising ninth grader at Lakeside who frequently participates in competitive math events. He started math in 1st grade (doing Math Kangaroo), and has qualified for AIME twice and USAJMO once. He aspires to be invited to MOP next year. Aside from math, He enjoys LD debate, biking on park trails, and baking desserts. His favorite book series is Cradle by Will Wight; his eye color is brown; He loves a thought-provoking audiobook; He sucks at bowling."
+  }
+]
