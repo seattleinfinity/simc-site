@@ -1,26 +1,26 @@
 [
   {
     "title": "Magazine",
-    "url": "magazine.html"
+    "url": "/magazine"
   },
   {
     "title": "Press Releases",
-    "url": "press-releases.html"
+    "url": "/press-releases"
   },
   {
     "title": "PoTM",
-    "url": "potm.html"
+    "url": "/potm"
   },
   {
     "title": "Events",
-    "url": "events.html"
+    "url": "/events"
   },
   {
     "title": "SLG",
-    "url": "slg.html"
+    "url": "/slg"
   },
   {
     "title": "Contact",
-    "url": "contact.html"
+    "url": "/contact"
   }
 ]
