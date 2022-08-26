@@ -18,9 +18,9 @@ title: Student Leadership Group
   </div>
 
   {# Content #}
-  <div class="-z-10 w-full h-full p-5 pt-10 -mt-7 rounded-md bg-slate-100">
+  <div class="-z-10 w-full h-full p-5 pt-10 -mt-7 rounded-md bg-slate-100 dark:bg-neutral-700">
     <h3 class="text-center">{{ name }}</h3>
-    <p class="pb-4 text-center text-gray-500">{{ title }}</p>
+    <p class="pb-4 text-center text-gray-500 dark:text-gray-400">{{ title }}</p>
     <p class="text-sm">{{ bio }}</p>
   </div>
 
@@ -32,7 +32,7 @@ title: Student Leadership Group
 {% block main %}
 <h1 class="mb-8">Student Leadership Group</h1>
 
-<div class="grid md:grid-cols-3 grid-cols-1 gap-4 gap-y-12">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-12">
   {% for person in slg %}
     {{ personCard(person.name, person.title, person.bio, person.photoURL) }}
   {% endfor %}

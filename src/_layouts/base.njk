@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html class="h-full" lang="en-US">
   <head>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta charset="utf-8"/>
@@ -14,7 +14,7 @@
     <link href={{"/assets/images/simc-logo-round.png" | url}} rel="icon" type="image/png"/>
   </head>
 
-  <body class="flex flex-col items-center">
+  <body class="flex flex-col items-center h-full dark:text-white dark:bg-neutral-900">
     {% include 'partials/navbar.njk' %}
 
     {% block preMain %}
@@ -24,5 +24,7 @@
       {% block main %}
       {% endblock %}
     </main>
+
+    {% include 'partials/footer.njk' %}
   </body>
 </html>

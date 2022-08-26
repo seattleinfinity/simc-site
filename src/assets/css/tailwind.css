@@ -12,4 +12,8 @@
     @apply text-3xl;
     @apply font-bold;
   }
+
+  h5 {
+    @apply font-bold;
+  }
 }
