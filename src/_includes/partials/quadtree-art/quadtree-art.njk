@@ -1,0 +1,14 @@
+{% macro banner(title) %}
+
+<div class="w-full h-[600px] bg-black">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@timohausmann/quadtree-js/quadtree.min.js" defer></script>
+  <script type="module" src="assets/quadtree-art/js/sketch.js" defer></script>
+
+  <div class="relative flex items-center justify-center opacity-0" id="quadtree-content">
+    <div class="" id="sketch-container"></div>
+    <div class="absolute text-white" id="title-container"><h1 id="title">{{ title }}</h1></div>
+  </div>
+</div>
+
+{% endmacro %}

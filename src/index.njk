@@ -3,4 +3,8 @@ layout: base
 title: Home
 ---
 
-<iframe frameborder="0" height="500px" src="https://womogenes.github.io/point-network-art/?title=Seattle%20Infinity%20Math%20Circle&fontSize=max(4vw,50px)" width="100%"></iframe>
+{% from 'partials/quadtree-art/quadtree-art.njk' import banner %}
+
+{# <iframe frameborder="0" height="500px" src="https://womogenes.github.io/point-network-art/?title=Seattle%20Infinity%20Math%20Circle&fontSize=max(4vw,50px)" width="100%"></iframe> #}
+
+{{ banner('Seattle Infinity Math Circle') }}
