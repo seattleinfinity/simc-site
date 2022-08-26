@@ -1,7 +1,11 @@
 ---
-layout: base
 title: Home
 ---
 
+{% extends 'src/_layouts/base.njk' %}
+
 {% from 'partials/quadtree-art/quadtree-art.njk' import banner %}
+
+{% block preMain %}
 {{ banner('Seattle Infinity Math Circle') }}
+{% endblock %}

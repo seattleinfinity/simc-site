@@ -17,6 +17,12 @@
   <body class="flex flex-col items-center">
     {% include 'partials/navbar.njk' %}
 
-    {{ content | safe }}
+    {% block preMain %}
+    {% endblock %}
+
+    <main class="w-full max-w-7xl pt-8 pb-12 md:pt-24 px-6 lg:px-12">
+      {% block main %}
+      {% endblock %}
+    </main>
   </body>
 </html>
