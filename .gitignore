@@ -1,6 +1,7 @@
 node_modules/
 _site/
 .vscode/
+**.env
 
 # Local Netlify folder
 .netlify
