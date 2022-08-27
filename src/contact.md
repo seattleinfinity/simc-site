@@ -3,8 +3,6 @@ layout: main
 title: Contact
 ---
 
-# Contact
-
 Here's a contact form:
 
 <div class="w-full" style="height: 600px;">
