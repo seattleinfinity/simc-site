@@ -5,6 +5,7 @@ title: Press Releases
 
 {% from 'partials/article-preview.njk' import articlePreview %}
 
+<h1>{{ title }}</h1>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
   {% for article in collections.press_release | sort(false, true, 'date') %}
   {{ articlePreview(

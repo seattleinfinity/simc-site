@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  /* Headings */
   h1 {
     @apply text-6xl;
     @apply font-bold;
+    @apply mt-8;
     @apply mb-8;
   }
 
@@ -21,15 +23,36 @@
     @apply mb-2;
   }
 
+  h4 {
+    @apply text-2xl;
+    @apply text-neutral-500;
+  }
+
   h5 {
     @apply font-bold;
   }
 
+  /* Lists */
+  ul {
+    @apply pl-6;
+  }
+
+  main ul li {
+    @apply list-disc;
+    @apply list-outside;
+  }
+
+  main ul li p {
+    @apply inline;
+  }
+
+  /* Text content stuff */
   p {
     @apply pb-3;
   }
 
-  p a {
+  p a,
+  main a {
     @apply text-blue-500;
     @apply hover:text-blue-800;
     @apply transition-all;

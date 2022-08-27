@@ -1,13 +1,13 @@
 ---
 tags: press_release
-layout: main
+layout: article
 title: SIMC Summer Reading Challenge
 date: '2022-06-25'
-blurb: Join the Washington Gold teams competing at HMMT February 2023 and PUMaC 2022-2023!
+blurb: An event designed to help expand math education to a broader scope (beyond just math competitions!) while also helping combat summer learning loss.
 image: 'https://lh5.googleusercontent.com/UpPWjQsfw6Ex2MS8AH8aGSKDvjW6R51a8oFH-Dyj7HTl5oHbY5isagcYQys5ITeUbaTQqzfLhGvlSAss5dj-H5Wdl2td2K-TBHHOgVaqao7EM3Mq3VH55SV--AhqMpeuNA=w1280'
 ---
 
-### SIMC would like to announce the inaugural SIMC Summer Reading Challenge, an event designed to help expand math education to a broader scope (beyond just math competitions!) while also helping combat summer learning loss.
+#### SIMC would like to announce the inaugural SIMC Summer Reading Challenge, an event designed to help expand math education to a broader scope (beyond just math competitions!) while also helping combat summer learning loss.
 
 <br>
 

@@ -5,33 +5,29 @@ title: Student Leadership Group
 
 {# Person card component #}
 {% macro personCard(name, title, bio, photoURL) %}
-<div class="flex flex-col items-start">
+  <div
+    class="flex flex-col items-start" data-aos-once="true" data-aos="fade-up">
+    {# Photo #}
+    <div class="self-center">
+      <img src="{{ photoURL }}" alt="Photo of {{ name }}" class="object-cover rounded-full w-32 h-32 aspect-square shadow-lg bg-white dark:bg-black hover:scale-110 transition-all duration-500">
+    </div>
 
-  {# Photo #}
-  <div class="self-center">
-    <img
-      src="{{ photoURL }}"
-      alt="Photo of {{ name }}"
-      class="object-cover rounded-full w-32 h-32 aspect-square shadow-lg hover:scale-110 transition-all duration-500"
-    >
+    {# Content #}
+    <div class="-z-10 w-full h-full p-5 pt-10 -mt-7 rounded-md bg-slate-100 dark:bg-neutral-700">
+      <h3 class="text-center">{{ name }}</h3>
+      <p class="pb-4 text-center text-gray-500 dark:text-gray-400">{{ title }}</p>
+      <p class="text-sm">{{ bio }}</p>
+    </div>
   </div>
-
-  {# Content #}
-  <div class="-z-10 w-full h-full p-5 pt-10 -mt-7 rounded-md bg-slate-100 dark:bg-neutral-700">
-    <h3 class="text-center">{{ name }}</h3>
-    <p class="pb-4 text-center text-gray-500 dark:text-gray-400">{{ title }}</p>
-    <p class="text-sm">{{ bio }}</p>
-  </div>
-
-</div>
 {% endmacro %}
 
 
 {# Main content #}
 {% block main %}
-<div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-12">
-  {% for person in slg %}
-    {{ personCard(person.name, person.title, person.bio, person.photoURL) }}
-  {% endfor %}
-</div>
+  <h1>{{ title }}</h1>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-12">
+    {% for person in slg %}
+      {{ personCard(person.name, person.title, person.bio, person.photoURL) }}
+    {% endfor %}
+  </div>
 {% endblock %}
