@@ -1,0 +1,10 @@
+{# Not necessarily an article, but just has main content. #}
+
+{% extends 'layouts/base.njk' %}
+
+{% block content %}
+<main class="w-full max-w-7xl pt-8 pb-12 md:pt-24 px-6 lg:px-12">
+  <h1>{{ title }}</h1>
+  {{ content | safe }}
+</main>
+{% endblock %}

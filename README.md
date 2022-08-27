@@ -29,7 +29,7 @@ There are a lot of files and folders! Brief overview:
 3. `./src` contains all the source code:
    - `./_data` contains data that is better left out of source code.
    - `./_includes` contains reusable components for the site.
-   - `./_layouts` contains [layouts](https://www.11ty.dev/docs/layouts/), sort of the inverse of components.
+   - `./_layouts` contains [layouts](https://www.11ty.dev/docs/layouts/), sort of the inverse of components. There are already layouts in `./_includes/layouts`, but the ones in here are processed by Eleventy and are easier to use.
    - `./assets` includes static assets, including images, CSS source code and JS.
    - Miscellaneous files in here are probably pages.
 

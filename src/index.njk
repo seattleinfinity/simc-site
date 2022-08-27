@@ -2,10 +2,9 @@
 title: Home
 ---
 
-{% extends 'src/_layouts/base.njk' %}
+{% extends 'layouts/base.njk' %}
 
-{% from 'partials/quadtree-art/quadtree-art.njk' import banner %}
-
-{% block preMain %}
-{{ banner('Seattle Infinity Math Circle') }}
+{% block content %}
+  {% from 'partials/quadtree-art/quadtree-art.njk' import banner %}
+  {{ banner('Seattle Infinity Math Circle') }}
 {% endblock %}

@@ -6,6 +6,7 @@
   h1 {
     @apply text-6xl;
     @apply font-bold;
+    @apply mb-8;
   }
 
   h3 {

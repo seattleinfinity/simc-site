@@ -1,0 +1,13 @@
+---
+layout: main
+title: Press Releases
+---
+
+{% from 'partials/article-preview.njk' import articlePreview %}
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+  {{ articlePreview('Main article', 'Date', 'lorem ipsum etc.', '/404', true)}}
+  {% for i in range(0, 5) %}
+  {{ articlePreview('Title ' + i, 'Date', 'lorem ipsum etc.', '/404')}}
+  {% endfor %}
+</div>
