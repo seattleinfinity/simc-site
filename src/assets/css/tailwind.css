@@ -9,12 +9,29 @@
     @apply mb-8;
   }
 
+  h2 {
+    @apply text-4xl;
+    @apply font-bold;
+    @apply mb-4;
+  }
+
   h3 {
     @apply text-3xl;
     @apply font-bold;
+    @apply mb-2;
   }
 
   h5 {
     @apply font-bold;
+  }
+
+  p {
+    @apply pb-3;
+  }
+
+  p a {
+    @apply text-blue-500;
+    @apply hover:text-blue-800;
+    @apply transition-all;
   }
 }

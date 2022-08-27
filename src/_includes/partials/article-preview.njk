@@ -1,23 +1,20 @@
-{% macro articlePreview(title, date, blurb, link, isMain=false) %}
-<div class="flex flex-col items-start {{ 'sm:col-span-2 sm:row-span-2 h-full' if isMain }} col-span-1 row-span-1 h-full">
-
-  {# Photo #}
-  <div class="self-center w-full flex-grow">
-    <img
-      src="https://source.unsplash.com/random"
-      alt="Photo of {{ name }}"
-      class="object-cover aspect-video w-full h-full rounded-t-md"
-    >
-  </div>
-
-  {# Content #}
+{% macro articlePreview(title, date, blurb, image, link, isMain=false) %}
   <a href="{{ link }}" class="w-full">
-    <div class="w-full h-full p-5 shadow-lg rounded-b-md">
-      <h3>{{ title }}</h3>
-      <p class="pb-4 text-gray-500 dark:text-gray-400">{{ date }}</p>
-      <p class="text-sm">{{ blurb }}</p>
+    <div
+      class="flex flex-col items-start {{ 'sm:col-span-2 sm:row-span-2 h-full' if isMain }} col-span-1 row-span-1 h-full">
+
+      {# Photo #}
+      <div class="self-center w-full flex-grow">
+        <img src="{{ image }}" alt="Cover photo" class="object-cover aspect-video w-full h-full rounded-t-md">
+      </div>
+
+      {# Content #}
+      <div class="w-full h-full p-5 shadow-lg rounded-b-md">
+        <h3>{{ title }}</h3>
+        <p class="pb-4 text-gray-500 dark:text-gray-400">{{ date.toLocaleString() }}</p>
+        <p class="text-sm">{{ blurb }}</p>
+      </div>
+
     </div>
   </a>
-
-</div>
 {% endmacro %}

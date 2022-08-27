@@ -1,0 +1,18 @@
+---
+layout: main
+title: Press Releases
+---
+
+{% from 'partials/article-preview.njk' import articlePreview %}
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+  {% for article in collections.press_release | sort(false, true, 'date') %}
+  {{ articlePreview(
+      article.data.title,
+      article.data.date,
+      article.data.blurb,
+      article.data.image,
+      article.url
+    ) }}
+  {% endfor %}
+</div>
