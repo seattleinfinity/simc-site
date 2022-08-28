@@ -3,20 +3,5 @@ layout: standalone
 title: Press Releases
 ---
 
-{% from 'partials/article-preview.njk' import articlePreview %}
-
 <h1>{{ title }}</h1>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-7">
-  {% set articles = collections.press_release | sort(true, true, 'date') %}
-
-  {% for article in articles %}
-  {{ articlePreview(
-      article.data.title,
-      article.data.date,
-      article.data.blurb,
-      article.data.image,
-      article.url,
-      isMain=loop.first
-    ) }}
-  {% endfor %}
-</div>
+{% include './press-releases-component.njk' %}

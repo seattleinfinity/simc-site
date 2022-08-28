@@ -5,6 +5,36 @@ title: Home
 {% extends 'layouts/base.njk' %}
 
 {% block content %}
-  {% from 'partials/quadtree-art/quadtree-art.njk' import banner %}
-  {{ banner('Seattle Infinity Math Circle') }}
+  <div class="w-full min-h-[945px] bg-black">
+    <div class="relative flex flex-col items-center justify-center opacity-0" id="quadtree-content">
+      {% include 'partials/quadtree-art/quadtree-art.njk' %}
+      <div class="absolute px-6 text-white" id="title-container">
+        <h1 id="title">Seattle Infinity Math Circle</h1>
+        <div class="max-w-3xl">
+          <span data-aos-delay="1000" data-aos="fade-up" id="mission" class="text-xl text-neutral-200">Our goal is to inspire students to engage in mathematics and expand their mathematical interests and capabilities.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# Woooo fancy stuff #}
+  {% from 'partials/fancy-link.njk' import fancyLink %}
+  <div class="flex w-full min-h-[16rem]">
+    {# This could be componentized #}
+    {{ fancyLink('Join Us', 'Join our Discord server!', 'https://discord.com/invite/2Ma3dURhTt', 3, 'bg-green-800') }}    
+    {{ fancyLink(
+        'Feedback',
+        'Send us feedback through this form.',
+        'https://docs.google.com/forms/d/1m0mcgrzRxA0jzXNAOoBbPE4nsTKCqiEvof7t3b-de00/viewform?edit_requested=true',
+        1,
+        'bg-green-700'
+      ) }}
+  </div>
+
+  <div class="block w-full h-auto box-border max-w-7xl pb-12 px-6 lg:px-12">
+    <div class="pt-4">
+      <h1>Recent press releases</h1>
+      {% include 'src/press-releases/press-releases-component.njk' %}
+    </div>
+  </div>
 {% endblock %}

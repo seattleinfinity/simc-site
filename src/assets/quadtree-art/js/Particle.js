@@ -2,7 +2,7 @@ export class Particle {
   constructor(pos, vel) {
     this.pos = pos;
     this.vel = vel;
-    this.rad = 3;
+    this.rad = 5;
 
     this.width = this.rad * 2;
     this.height = this.rad * 2;
@@ -21,7 +21,6 @@ export class Particle {
   display() {
     let margin = 50;
 
-    fill(128);
     noStroke();
 
     ellipse(this.pos.x, this.pos.y, this.rad, this.rad);

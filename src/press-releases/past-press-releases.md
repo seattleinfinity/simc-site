@@ -1,14 +1,9 @@
 ---
 tags: press_release
-
 layout: article
-
 title: Past press releases
-
 date: '2019-01-01'
-
-blurb: An event designed to help expand math education to a broader scope (beyond just math competitions!) while also helping combat summer learning loss.
-
+blurb: Past press releases from 2019-2022.
 image: 'https://images.unsplash.com/photo-1574169208507-84376144848b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=879&q=80'
 ---
 

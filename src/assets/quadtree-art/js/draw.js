@@ -48,7 +48,7 @@ export const draw = () => {
 
       if (d > detectRadius + 5) continue;
 
-      let alpha = (detectRadius / d) * 10;
+      let alpha = (detectRadius / d) * 5;
       stroke(255, alpha);
       strokeWeight(min(6, (detectRadius / d) * 1.5));
       line(p.pos.x, p.pos.y, c.body.pos.x, c.body.pos.y);
@@ -56,6 +56,7 @@ export const draw = () => {
   }
 
   noStroke();
+  fill(96);
   for (let p of particles) {
     p.display();
   }
