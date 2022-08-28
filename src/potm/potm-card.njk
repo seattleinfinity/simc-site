@@ -1,5 +1,5 @@
 {% macro potmCard(month, blurb, url, index) %}
-<div class="w-full p-5" data-aos="fade-up" data-aos-delay="{{ (index % 3) * 50 }}">
+<div class="w-full" data-aos="fade-up" data-aos-delay="{{ (index % 3) * 50 }}">
   <div class="h-96 mb-3 bg-neutral-200 animate-pulse">
     <iframe src="{{ url | replace('view', 'preview') }}" onload="this.parentElement.classList.remove('animate-pulse')" class="w-full h-full"></iframe>
   </div>

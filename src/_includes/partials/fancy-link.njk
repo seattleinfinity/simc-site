@@ -1,9 +1,9 @@
 {% macro fancyLink(title, blurb, url, flexGrow, bgColor) %}
-<a href="{{ url }}" class="relative group grow-[{{ flexGrow }}] group" target="_blank">
+<a href="{{ url }}" class="relative group grow group" target="_blank">
   <div class="absolute w-full h-full -z-10 group-hover:brightness-90 transition-all {{ bgColor }}">    
   </div>
   
-  <div class="flex items-center justify-left h-full px-6 lg:px-12 text-white" data-aos="fade-up">
+  <div class="flex items-center justify-left h-full p-6 lg:px-12 text-white" data-aos="fade-up">
     <div class="shrink group-hover:scale-[105%] transition-all">
       <h3 class="flex align-bottom gap-3">
         <span>{{ title }}</span>

@@ -9,7 +9,7 @@ title: Problem of the Month
 
 <p>Every month, members of SIMC's Student Leadership Group write math problems for the community to enjoy.</p>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12">
   {% for problem in potm['2021-22'] %}
   {{ potmCard(problem.month, problem.blurb, problem.url, loop.index0) }}
   {% endfor %}
