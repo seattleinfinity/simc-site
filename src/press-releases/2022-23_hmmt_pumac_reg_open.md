@@ -1,10 +1,10 @@
 ---
 tags: press_release
-layout: main
+layout: article
 title: HMMT/PUMaC TST registration is open
 date: '2022-08-01'
 blurb: Join the Washington Gold teams competing at HMMT February 2023 and PUMaC 2022-2023.
-image: 'https://lh3.googleusercontent.com/sVHxuRClatr9g_SrdCBzPPG41plO62pzMVNUbZUwMv1OrX8TZecC6j-7USnsifSb9vWyQs3JUiEu_ycG8YlwcQg--xePreKki1BDwCRL7_LHRMxi-98nGjaNGBbzaYYRZQ=w1280'
+image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
 ---
 
 Registration for the 2022 WA Gold HMMT/PUMaC TST is open!

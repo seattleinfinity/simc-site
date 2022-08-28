@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  /* Custom components! */
+  .card {
+    @apply p-5;
+    @apply shadow-md;
+    @apply rounded-lg;
+    @apply border-2;
+  }
+
   /* Headings */
   h1 {
     @apply text-6xl;
@@ -33,8 +41,9 @@
   }
 
   /* Lists */
-  ul {
-    @apply pl-6;
+  main ul {
+    @apply pl-8;
+    @apply mb-3;
   }
 
   main ul li {
@@ -42,11 +51,24 @@
     @apply list-outside;
   }
 
+  main ol {
+    @apply pl-8;
+  }
+
+  main ol li {
+    @apply list-decimal;
+    @apply list-outside;
+  }
+
   main ul li p {
     @apply inline;
   }
 
-  /* Text content stuff */
+  /* Text content and miscellaneous stuff */
+  hr {
+    @apply my-3;
+  }
+
   p {
     @apply pb-3;
   }
@@ -56,5 +78,12 @@
     @apply text-blue-500;
     @apply hover:text-blue-800;
     @apply transition-all;
+  }
+}
+
+/* Dark mode and stuff */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
   }
 }

@@ -10,7 +10,7 @@ let quadtreeContent = document.querySelector('#quadtree-content');
 window.setup = () => {
   const canvas = createCanvas(windowWidth, 600);
   canvas.parent(sketchContainer);
-  pixelDensity(3);
+  pixelDensity(1);
   ellipseMode('center');
   ellipseMode('radius');
 
@@ -29,6 +29,7 @@ window.setup = () => {
 
     if (opacity >= 1.0) {
       window.clearInterval(handle);
+      console.log('yay');
     }
   }, 10);
 };

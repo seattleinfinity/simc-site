@@ -6,8 +6,8 @@ layout: main
 
 <p class="mt-8"><a href="/press-releases">Press releases</a> &gt; <a href="{{ url }}">{{ title }}</a></p>
 <div class="flex flex-col md:flex-row">
-  <main class="grow-[2] mr-6">
-    <img src="{{ image }}" alt="Cover image" class="mb-4"/>
+  <main class="grow-[2] mr-12">
+    <img src="{{ image }}" alt="Cover image" class="object-cover w-full max-h-[40rem] mb-4"/>
     <div class="mt-8 mb-3">
       <h1 class="mb-2">{{ title }}</h1>
       <p class="text-neutral-600">{{ date }}</p>
@@ -19,13 +19,16 @@ layout: main
   <div class="mt-12 sm:mt-0 max-w-xs">
     <h2>Other press releases</h2>
     {% for article in collections.press_release | sort(false, true, 'date') %}
-    {{ articlePreview(
-        article.data.title,
-        article.data.date,
-        article.data.blurb,
-        article.data.image,
-        article.url
-      ) }}
+      {# Don't render the same article on the sidebar #}
+      {% if article.url != page.url %}
+      {{ articlePreview(
+          article.data.title,
+          article.data.date,
+          article.data.blurb,
+          article.data.image,
+          article.url
+        ) }}
+      {% endif %}
     {% endfor %}
   </div>
 </div>

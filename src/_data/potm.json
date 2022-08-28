@@ -1,0 +1,44 @@
+{
+  "2021-22": [
+    {
+      "month": "October",
+      "url": "https://drive.google.com/file/d/1WhQ8DwMIAedU4UcEJ6UC6S8h6uAXJdIt/view",
+      "blurb": "This problem, written by Edward Yu, is roughly early-AIME level and is a good example of using similar triangles to compute area."
+    },
+    {
+      "month": "November",
+      "url": "https://drive.google.com/file/d/1i1PQNMhDkVjZ-GvvbNAoU4NzbqqWsWic/view",
+      "blurb": "By Gene Yang, this problem is also early-AIME level and is an excellent example of modular arithmetic."
+    },
+    {
+      "month": "December",
+      "url": "https://drive.google.com/file/d/1YazMmy6fezyTCP8s61h1dx45zTHAASXy/view",
+      "blurb": "This problem by Alex Zhao is roughly mid-AIME level and is a good example of 3-D geometry in regular tetrahedra."
+    },
+    {
+      "month": "January",
+      "url": "https://drive.google.com/file/d/1s6hVmDLyGNDnRn_8fYVRTrpl4zeLhZvL/view",
+      "blurb": "This mighty problem by Michael Yang deals with a square inscribed in a quadrilateral. The solution uses a detailed analysis in the complex plane."
+    },
+    {
+      "month": "February",
+      "url": "https://drive.google.com/file/d/17FtnwhhpBIsNd5MYsot5ZUNDQtHIN1EJ/view",
+      "blurb": "This is a geometry-flavored counting problem written by our awesome student leader Annabel Ge."
+    },
+    {
+      "month": "March",
+      "url": "https://drive.google.com/file/d/1yJ3cBDc7cs74Fy-M2qJzEL6lsCjjS7eP/view",
+      "blurb": "This problem by Jason Cheng is a probability puzzle featuring a strangely weighted coin."
+    },
+    {
+      "month": "April",
+      "url": "https://drive.google.com/file/d/1nU2Eh8DqJOWc2dfs0vNZL7fBwcwaT3Yb/view",
+      "blurb": "This problem, by Tristan Kay, is an intriguing probability dilemma involving an aimlessly wandering yak and a big bad wolf."
+    },
+    {
+      "month": "May",
+      "url": "https://drive.google.com/file/d/1QxKROeYdLDylEUdIU6zzpx38mRH4gmn_/view",
+      "blurb": "This is a very interesting algebra problem written by Hongning Wang involving a magic number, and some connections to not-just-algebra."
+    }
+  ]
+}

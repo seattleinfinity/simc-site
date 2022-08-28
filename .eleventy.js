@@ -1,4 +1,8 @@
+const { EleventyRenderPlugin } = require('@11ty/eleventy');
+
 module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(EleventyRenderPlugin);
+
   // There's gotta be a way to automate this later
   eleventyConfig.addPassthroughCopy('./src/assets/js');
   eleventyConfig.addPassthroughCopy('./src/assets/images');

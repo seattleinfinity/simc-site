@@ -1,0 +1,16 @@
+---
+layout: main
+title: Problem of the Month
+---
+
+{% from './potm-card.njk' import potmCard %}
+
+<h1>{{ title }}</h1>
+
+<p>Every month, members of SIMC's Student Leadership Group write math problems for yall to enjoy.</p>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+  {% for problem in potm['2021-22'] %}
+  {{ potmCard(problem.month, problem.blurb, problem.url, loop.index0) }}
+  {% endfor %}
+</div>

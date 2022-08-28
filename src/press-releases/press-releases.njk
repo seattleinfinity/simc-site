@@ -7,13 +7,16 @@ title: Press Releases
 
 <h1>{{ title }}</h1>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
-  {% for article in collections.press_release | sort(false, true, 'date') %}
+  {% set articles = collections.press_release | sort(true, true, 'date') %}
+
+  {% for article in articles %}
   {{ articlePreview(
       article.data.title,
       article.data.date,
       article.data.blurb,
       article.data.image,
-      article.url
+      article.url,
+      isMain=loop.first
     ) }}
   {% endfor %}
 </div>
