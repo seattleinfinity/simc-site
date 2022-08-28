@@ -5,7 +5,7 @@ title: Home
 {% extends 'layouts/base.njk' %}
 
 {% block content %}
-  <div class="w-full min-h-[782px] md:min-h-[328px] lg:min-h-[945px] overflow-clip bg-black">
+  <div class="w-full min-h-[calc(100vh-62px)] lg:min-h-[945px] overflow-clip bg-black">
     <div class="relative flex flex-col items-center justify-center h-full opacity-0" id="quadtree-content">
       {% include 'partials/quadtree-art/quadtree-art.njk' %}
       <div class="absolute px-6 text-white" id="title-container">
@@ -19,15 +19,21 @@ title: Home
 
   {# Woooo fancy stuff #}
   {% from 'partials/fancy-link.njk' import fancyLink %}
-  <div class="flex flex-col sm:flex-row w-full min-h-[8rem] lg:min-h-[16rem]">
+  <div class="flex flex-col sm:flex-row w-full min-h-[8rem] lg:min-h-[12rem]">
     {# This could be componentized #}
-    {{ fancyLink('Join Us', 'Join our Discord server!', 'https://discord.com/invite/2Ma3dURhTt', 3, 'bg-green-800') }}    
+    {{ fancyLink(
+      'Join Us',
+      'Join our Discord server!',
+      'https://discord.com/invite/2Ma3dURhTt', 
+      'grow-[3]',
+      'bg-gray-800'
+      ) }}
     {{ fancyLink(
         'Feedback',
         'Send us feedback through this form.',
         'https://docs.google.com/forms/d/1m0mcgrzRxA0jzXNAOoBbPE4nsTKCqiEvof7t3b-de00/viewform?edit_requested=true',
-        3,
-        'bg-green-700'
+        'grow-[1]',
+        'bg-gray-700'
       ) }}
   </div>
 
