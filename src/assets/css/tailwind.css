@@ -73,8 +73,7 @@
     @apply pb-3;
   }
 
-  p a,
-  main a {
+  p a {
     @apply text-blue-500;
     @apply hover:text-blue-800;
     @apply transition-all;
