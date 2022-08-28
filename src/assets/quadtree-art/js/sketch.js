@@ -8,7 +8,10 @@ let sketchContainer = document.querySelector('#sketch-container');
 let quadtreeContent = document.querySelector('#quadtree-content');
 
 window.setup = () => {
-  const canvas = createCanvas(document.body.clientWidth, 945);
+  const canvas = createCanvas(
+    document.body.clientWidth,
+    sketchContainer.parentElement.parentElement.offsetHeight
+  );
   canvas.parent(sketchContainer);
   pixelDensity(1);
   ellipseMode('center');
@@ -35,7 +38,10 @@ window.setup = () => {
 };
 
 window.windowResized = () => {
-  resizeCanvas(document.body.clientWidth, height);
+  resizeCanvas(
+    document.body.clientWidth,
+    sketchContainer.parentElement.parentElement.offsetHeight
+  );
 };
 
 window.draw = draw;
