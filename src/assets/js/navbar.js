@@ -6,5 +6,5 @@ btn.addEventListener('click', () => {
   menu.classList.toggle('max-h-0');
 
   // Hard-coded; should change
-  menu.classList.toggle('max-h-[288px]');
+  menu.classList.toggle('max-h-[264px]');
 });

@@ -33,10 +33,10 @@
   {# Mobile menu needs to be separate #}
   {# This can probably also be made less redundant #}
   <div class="mobile-menu max-h-0 overflow-hidden items-start absolute top-14 z-10 w-full md:hidden pb-2 bg-neutral-900 dark:bg-black transition-all duration-500">
-    <ul>
+    <ul class="flex flex-col mt-2">
     {% for item in navbar %}
-      <li class="block px-4 py-2 text-white">
-        <a href="{{ item.url }}" class="w-full">{{ item.title }}</a>
+      <li class="flex text-white">
+        <a href="{{ item.url }}" class="w-full px-4 py-2">{{ item.title }}</a>
       </li>
     {% endfor %}
     </ul>
