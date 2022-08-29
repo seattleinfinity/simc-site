@@ -18,6 +18,10 @@ This new site is built using the static site generator [Eleventy](https://www.11
    - Site should be live at `http://localhost:8080/`
 4. To build the site, use `npm run build`
 
+A developmental deployment is available at https://seattleinfinity.netlify.app.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f28627f3-d5d4-4111-98e2-b3e07c096672/deploy-status)](https://app.netlify.com/sites/seattleinfinity/deploys)
+
 ## Project structures
 
 There are a lot of files and folders! Brief overview:

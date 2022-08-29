@@ -1,6 +1,7 @@
 ---
 layout: standalone
 title: Resources
+blurb: A collection of math resources including a calendar for the 2022-23 school year, online classes, and books.
 ---
 
 # {{ title }}

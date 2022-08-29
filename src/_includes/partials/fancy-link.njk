@@ -1,11 +1,9 @@
-{# Maybe flexGrow and bgColor could be combined into a "css" parameter #}
-
-{% macro fancyLink(title, blurb, url, flexGrow, bgColor) %}
-<a href="{{ url }}" class="relative group {{ flexGrow }} group" target="_blank">
-  <div class="absolute w-full h-full -z-10 group-hover:brightness-90 transition-all {{ bgColor }}">    
+{% macro fancyLink(title, blurb, url, css, backgroundColor) %}
+<a href="{{ url }}" class="relative group {{ css }} group" target="_blank">
+  <div class="absolute w-full h-full -z-10 group-hover:brightness-90 transition-all {{ backgroundColor }}">    
   </div>
   
-  <div class="flex items-center justify-left h-full p-6 lg:px-12 text-white" data-aos="fade-up">
+  <div class="flex items-center justify-left h-full p-6 lg:px-12" data-aos="fade-up">
     <div class="shrink group-hover:scale-[105%] transition-all">
       <h3 class="flex align-bottom gap-3">
         <span>{{ title }}</span>

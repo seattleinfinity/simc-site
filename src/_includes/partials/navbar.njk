@@ -1,16 +1,16 @@
 <script src="/assets/js/navbar.js" defer></script>
 
-<nav class="flex flex-col items-center w-full bg-neutral-900 dark:bg-black">
+<nav class="flex flex-col items-center self-start fixed top-0 z-10 w-full min-h-[62px] bg-neutral-900 dark:bg-black">
   <ul class="flex items-center justify-end px-6 py-4 w-full max-w-7xl">
     {# Brand #}
     <li class="flex items-center mr-auto text-white">
-      <img class="rounded-lg mr-3" src="/assets/images/simc-logo-square.png" width="30px">
+      <img alt="SIMC logo" src="/assets/images/simc-logo-square.png" width="30px" class="rounded-lg mr-3">
       <a href="/">SIMC</a>
     </li>
 
     {# Mobile menu hamburger #}
     <div class="md:hidden flex items-center">
-      <button class="outline-none mobile-menu-button text-white">
+      <button name="Menu toggle" class="outline-none mobile-menu-button text-white">
         <svg class="h-6 w-6" fill="none" stroke-width="2" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>

@@ -21,7 +21,7 @@ export const draw = () => {
     4
   );
 
-  let detectRadius = 100;
+  let detectRadius = 200;
 
   for (let p of particles) {
     tree.insert({

@@ -15,16 +15,30 @@
 
     <link href={{"/assets/css/tailwind.css" | url}} rel="stylesheet"/>
     <link href={{"/assets/images/simc-logo-round.png" | url}} rel="icon" type="image/png"/>
+
+    {# Meta tags #}
+    {% include 'partials/og-meta.njk' %}
+
+    {% block head %}
+    {# Extra head content #}
+    {% endblock %}
   </head>
 
-  <body class="flex flex-col items-center relative h-full min-h-full dark:text-white dark:bg-neutral-900">
+  <body class="flex flex-col items-center relative min-h-full dark:text-white dark:bg-neutral-900">
     {% include 'partials/navbar.njk' %}
 
-    {% block content %}
+    {# Some stuff can bypass the navbar padding #}
+    {% block precontent %}
     {% endblock %}
 
-    {% include 'partials/footer.njk' %}
+    {# Padding for navbar #}
+    {# This is removed for index for the quadtree thing #}
+    <div class="w-full h-full pt-[62px]">
+    {% block content %}
+    {% endblock %}
+    </div>
 
+    {% include 'partials/footer.njk' %}
 
     {# Why do I have to put this at the bottom :( #}
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

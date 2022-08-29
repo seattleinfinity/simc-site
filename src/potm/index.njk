@@ -1,13 +1,14 @@
 ---
 layout: standalone
 title: Problem of the Month
+blurb: Every month, members of SIMC's Student Leadership Group write math problems.
 ---
 
 {% from './potm-card.njk' import potmCard %}
 
 <h1>{{ title }}</h1>
 
-<p>Every month, members of SIMC's Student Leadership Group write math problems for the community to enjoy.</p>
+<p>{{ blurb }}</p>
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12">
   {% for problem in potm['2021-22'] %}

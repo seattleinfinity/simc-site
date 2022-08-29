@@ -1,0 +1,19 @@
+{# OpenGraph meta tags to include in the head #}
+{# https://ahrefs.com/blog/open-graph-meta-tags/ #}
+
+<meta property="og:title" content="{{ title }}" />
+
+{% set canonURL = ['https://www.seattleinfinity.org', page.url ] | join %}
+<meta property="og:url" content="{{ canonURL }}" />
+
+{% set image = image or meta.site_banner %}
+<meta property="og:image" content="{{ image }}" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:src" content="{{ image }}">
+
+{% set type = 'article' if layout == 'article' else 'website' %}
+<meta property="og:type" content="{{ type }}" />
+
+{% set desc = blurb %}
+<meta property="og:description" content="{{ desc }}" />
+
