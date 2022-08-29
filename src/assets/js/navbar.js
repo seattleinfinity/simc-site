@@ -4,5 +4,7 @@ const menu = document.querySelector('.mobile-menu');
 // Add Event Listeners
 btn.addEventListener('click', () => {
   menu.classList.toggle('max-h-0');
-  menu.classList.toggle('max-h-96');
+
+  // Hard-coded; should change
+  menu.classList.toggle('max-h-[288px]');
 });
