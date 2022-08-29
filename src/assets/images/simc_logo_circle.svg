@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600"
+   height="600"
+   viewBox="0 0 158.75 158.75"
+   version="1.1"
+   id="svg1372"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="simc_logo_circle.svg">
+  <defs
+     id="defs1366" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.24748737"
+     inkscape:cx="688.63637"
+     inkscape:cy="268.82736"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     units="px"
+     showborder="true"
+     inkscape:showpageshadow="false" />
+  <metadata
+     id="metadata1369">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-138.24999)">
+    <circle
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:19.76785851;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       id="path838"
+       cx="79.375"
+       cy="217.62498"
+       r="79.375"
+       inkscape:export-filename="H:\.shortcut-targets-by-id\1kjbcA9ofjEee8GqJyZfJwrDkq-uHXoGM\Website\assets\simc logo.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
+    <path
+       style="opacity:1;fill:#000000;stroke-width:0.09312532"
+       d="m 51.668232,279.5895 c -3.0452,-0.57684 -6.07766,-2.79868 -6.83866,-5.01059 -1.08831,-3.16321 1.36102,-6.63088 5.53491,-7.83614 0.99279,-0.2867 1.91475,-0.3699 2.65835,-0.23992 2.51439,0.43948 4.88334,2.07219 5.88799,4.05807 0.46592,0.92097 0.56059,1.44686 0.50943,2.8296 -0.0548,1.4806 -0.26375,2.27377 -0.77571,2.94447 -0.38197,0.50041 -0.41886,0.50149 0.93935,-0.0274 2.46712,-0.9609 4.67753,-2.33419 6.31947,-3.92618 3.0249,-2.93286 4.99738,-7.26571 5.92252,-13.00971 0.15582,-0.96748 0.40949,-2.53433 0.56371,-3.48188 2.04867,-12.58795 3.0864,-20.3515 3.49158,-26.12166 0.44835,-6.38508 1.794,-19.49316 2.88713,-28.12384 2.05545,-16.22864 3.92036,-24.4236 6.99744,-30.74885 1.01887,-2.09439 2.28893,-3.85232 4.10113,-5.67657 2.44208,-2.4583 5.660034,-4.77804 8.445009,-6.08781 2.449869,-1.15216 5.234059,-1.62924 9.105709,-1.56024 1.97946,0.0352 2.11798,0.0497 2.82647,0.29379 3.42365,1.17961 5.68106,3.31742 6.01786,5.69904 0.34336,2.42797 -1.28179,4.88516 -4.15535,6.2828 -1.66421,0.80943 -3.24612,1.08714 -4.57653,0.80342 -2.53381,-0.54032 -4.93524,-2.39119 -5.77092,-4.44781 -0.31052,-0.76418 -0.39888,-1.54138 -0.30656,-2.69664 0.0959,-1.20069 0.35839,-2.08779 0.78173,-2.64239 l 0.31978,-0.41894 -0.81127,0.28541 c -2.511953,0.88371 -5.075397,2.44338 -6.850188,4.16786 -2.50172,2.43079 -4.45928,6.29647 -5.45134,10.76496 -0.23694,1.06722 -1.52849,10.02968 -2.28812,15.87787 -0.75314,5.79821 -1.09854,8.95571 -1.58916,14.52755 -0.1402,1.59217 -0.8421,8.06599 -1.11569,10.29035 -0.0756,0.61462 -0.3701,3.06616 -0.65443,5.44784 -0.91335,7.65039 -2.12346,17.18777 -2.61131,20.58068 -1.44155,10.02575 -2.93498,16.44093 -5.02068,21.56677 -1.49265,3.66834 -2.79282,5.67371 -5.30831,8.18746 -2.13044,2.12898 -4.96902,4.21961 -7.51652,5.53596 -2.48423,1.28366 -4.48375,1.77455 -7.99037,1.96166 -2.11001,0.11262 -2.88002,0.10239 -3.67845,-0.0489 z"
+       id="path834"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="H:\.shortcut-targets-by-id\1kjbcA9ofjEee8GqJyZfJwrDkq-uHXoGM\Website\assets\simc logo.png"
+       inkscape:export-xdpi="320"
+       inkscape:export-ydpi="320" />
+  </g>
+</svg>

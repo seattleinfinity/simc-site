@@ -13,8 +13,8 @@
     {# Animate on scroll #}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <link href={{"/assets/css/tailwind.css" | url}} rel="stylesheet"/>
-    <link href={{"/assets/images/simc-logo-round.png" | url}} rel="icon" type="image/png"/>
+    <link href="/assets/css/tailwind.css" rel="stylesheet"/>
+    <link href="/assets/images/simc_logo_circle.svg" rel="icon" type="image/svg"/>
 
     {# Meta tags #}
     {% include 'partials/og-meta.njk' %}
@@ -27,16 +27,8 @@
   <body class="flex flex-col items-center relative min-h-full dark:text-white dark:bg-neutral-900">
     {% include 'partials/navbar.njk' %}
 
-    {# Some stuff can bypass the navbar padding #}
-    {% block precontent %}
-    {% endblock %}
-
-    {# Padding for navbar #}
-    {# This is removed for index for the quadtree thing #}
-    <div class="w-full h-full pt-[62px]">
     {% block content %}
     {% endblock %}
-    </div>
 
     {% include 'partials/footer.njk' %}
 

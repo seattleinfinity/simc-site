@@ -9,7 +9,7 @@ blurb: Our goal is to inspire students to engage in mathematics and expand their
 <script src="/assets/js/index.js" defer></script>
 {% endblock %}
 
-{% block precontent %}
+{% block content %}
   <div class="w-full min-h-screen overflow-clip z-20 bg-black">
     <div class="relative flex flex-col items-center justify-center h-full" id="quadtree-content">
       {% include 'partials/quadtree-art/quadtree-art.njk' %}
@@ -33,9 +33,7 @@ blurb: Our goal is to inspire students to engage in mathematics and expand their
       </div>
     </div>
   </div>
-{% endblock %}
-
-{% block content %}
+  
   {# Woooo fancy stuff #}
   {% from 'partials/fancy-link.njk' import fancyLink %}
   <div class="flex flex-col sm:flex-row w-full lg:min-h-[12rem]">
