@@ -1,7 +1,6 @@
-{% macro articlePreview(title, date, blurb, image, link, isMain=false) %}
-<article class="{{ 'sm:col-span-2 sm:row-span-2 h-full' if isMain }} col-span-1 row-span-1 mb-6" data-aos="fade-up">
+{% macro articlePreview(title, date, blurb, image, link, index) %}
+<article class="{{ 'sm:col-span-2 sm:row-span-2 h-full' if index == 0 }} col-span-1 row-span-1 mb-6" data-aos="fade-up" data-aos-delay="{{ (index % 3) * 50 }}"">
   <a href="{{ link }}" class="flex flex-col items-start w-full h-full">
-
     {# Photo #}
     <div class="flex-grow self-center w-full">
       <img src="{{ image }}" alt="Cover photo" class="object-cover aspect-video w-full h-full">
