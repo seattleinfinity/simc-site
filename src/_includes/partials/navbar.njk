@@ -1,7 +1,8 @@
 <script src="/assets/js/navbar.js" defer></script>
 
 <nav class="flex flex-col items-center self-start fixed top-0 z-10 w-full min-h-[62px] bg-neutral-900 dark:bg-black">
-  <ul class="flex items-center justify-end px-6 py-4 w-full max-w-7xl">
+  {# This second layer is above the nav, which contains a background #}
+  <div class="flex items-center justify-end grow px-6 w-full max-w-7xl">
     {# Brand #}
     <li class="flex items-center mr-auto text-white">
       <img alt="SIMC logo" src="/assets/images/simc_logo_square.svg" width="30px" class="rounded-lg mr-3">
@@ -19,14 +20,14 @@
 
 
     {# Main desktop menu #}
-    <div class="hidden md:flex items-center ml-10">
+    <ul class="hidden md:flex items-center self-stretch">
       {% for item in navbar %}
-        <li class="ml-6 text-neutral-400 hover:text-white transition-all">
-          <a href="{{ item.url }}">{{ item.title }}</a>
-        </li>
+      <li class="flex items-center h-full px-4 {{ 'text-white' if item.url in page.url else 'text-neutral-400' }} hover:text-white hover:bg-neutral-800 transition-all">
+        <a href="{{ item.url }}">{{ item.title }}</a>
+      </li>
       {% endfor %}
-    </div>
-  </ul>
+    </ul>
+  </div>
 
 
   {# Mobile menu needs to be separate #}

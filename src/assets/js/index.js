@@ -1,20 +1,23 @@
 // Animations and stuff for the homepage
 
 // Extremely hacky; would not recomment
-let $ = document.querySelector.bind(document);
+const $ = document.querySelector.bind(document);
 
-let nav = $('nav');
+const downArrow = $('#down-arrow');
+const nav = $('nav');
 nav.classList.add('-translate-y-full', 'transition-all', 'duration-500');
 
-let minScroll = 20;
+const minScroll = 20;
 
-let scrollHandler = () => {
+const scrollHandler = () => {
   if (
     document.body.scrollTop > minScroll ||
     document.documentElement.scrollTop > minScroll
   ) {
     nav.classList.toggle('-translate-y-full');
     nav.classList.add('top-0', 'z-30');
+    downArrow.style.transitionDelay = '0s';
+    downArrow.style.opacity = 0;
     window.removeEventListener('scroll', scrollHandler, false);
   }
 };
