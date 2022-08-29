@@ -13,6 +13,6 @@ Would you like a chance to participate in the most prestigious college-student-r
 
 Sign up [here](https://docs.google.com/forms/d/e/1FAIpQLSftljb4tSfdD9Wcei0qPl10kishXp9AKSp7vyY8H4TWr_ZAeQ/viewform) if you'd like to take the TST to be a WA Gold team member. Last year, the WA Gold team placed 8th overall, 8th in the Team round, and 9th in the Guts round among all nationwide teams!
 
-Registration closes at **5PM on Thursday, September 1**. The Team Selection Test will take place **online** from **4pm to 5pm on Sunday, September 5**.
+Registration closes at **5PM on Thursday, September 1**. The Team Selection Test will take place **online** from **4pm to 5pm on Sunday, September 4**.
 
 Note that Washington Gold will only be participating in February HMMT, which will be in-person at MIT on February 18, 2023. According to HMMT regulations, students can only participate in one of HMMT November and February. The PUMaC date and format is currently unknown.

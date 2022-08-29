@@ -22,7 +22,8 @@
   h2 {
     @apply text-4xl;
     @apply font-bold;
-    @apply mb-4;
+    @apply mt-6;
+    @apply mb-2;
   }
 
   h3 {
@@ -73,10 +74,17 @@
     @apply pb-3;
   }
 
+  main p {
+    /* Line-height */
+    @apply leading-relaxed;
+  }
+
   main p a,
-  main li a {
+  main li a,
+  main > a {
     @apply text-blue-500;
     @apply hover:text-blue-800;
+    @apply dark:hover:text-blue-300;
     @apply transition-all;
   }
 }
