@@ -7,6 +7,9 @@ blurb: An event designed to help expand math education to a broader scope (beyon
 image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
 ---
 
+#### The Summer Reading Challenge has concluded!
+More details forthcoming!
+
 #### SIMC would like to announce the inaugural SIMC Summer Reading Challenge, an event designed to help expand math education to a broader scope (beyond just math competitions!) while also helping combat summer learning loss.
 
 <br>
