@@ -1,8 +1,8 @@
 <script src="/assets/js/navbar.js" defer></script>
 
-<nav class="flex flex-col items-center self-start fixed top-0 z-10 w-full min-h-[62px] bg-neutral-900 dark:bg-black">
+<nav class="flex flex-col items-center self-start fixed top-0 z-10 w-full min-h-[62px]">
   {# This second layer is above the nav, which contains a background #}
-  <div class="flex items-center justify-end grow px-6 w-full max-w-7xl">
+  <div class="flex items-center justify-end grow px-6 w-full max-w-7xl bg-neutral-900 dark:bg-black">
     {# Brand #}
     <li class="flex items-center mr-auto text-white">
       <img alt="SIMC logo" src="/assets/images/simc_logo_square.svg" width="30px" class="rounded-lg mr-3">
@@ -32,8 +32,8 @@
 
   {# Mobile menu needs to be separate #}
   {# This can probably also be made less redundant #}
-  <div class="mobile-menu max-h-0 overflow-hidden items-start absolute top-14 z-10 w-full md:hidden pb-2 bg-neutral-900 dark:bg-black transition-all duration-500">
-    <ul class="flex flex-col mt-2">
+  <div class="mobile-menu max-h-0 overflow-hidden items-start absolute top-14 z-10 w-full md:hidden bg-neutral-900 dark:bg-black transition-all duration-500">
+    <ul class="flex flex-col my-2">
     {% for item in navbar %}
       <li class="flex text-white">
         <a href="{{ item.url }}" class="w-full px-4 py-2">{{ item.title }}</a>

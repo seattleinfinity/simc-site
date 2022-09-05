@@ -10,7 +10,7 @@ blurb: Our goal is to inspire students to engage in mathematics and expand their
 {% endblock %}
 
 {% block content %}
-  <div class="w-full min-h-screen overflow-clip z-20 bg-black">
+  <div class="w-full min-h-screen overflow-hidden z-10 bg-neutral-900 dark:bg-black">
     <div class="relative flex flex-col items-center justify-center h-full" id="quadtree-content">
       {% include 'partials/quadtree-art/quadtree-art.njk' %}
 
@@ -25,7 +25,7 @@ blurb: Our goal is to inspire students to engage in mathematics and expand their
         </div>
       </div>
 
-      <div class="absolute bottom-24" data-aos="fade-down" data-aos-delay="1500" data-aos-anchor="#mission" id="down-arrow">
+      <div class="absolute bottom-36" data-aos="fade-down" data-aos-delay="1500" data-aos-anchor="#mission" id="down-arrow">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" class="w-12 12">
           <desc>Down arrow</desc>
           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
