@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full" lang="en-US">
+<html class="h-full bg-neutral-900 dark:bg-black" lang="en-US">
   <head>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta charset="utf-8"/>
@@ -24,7 +24,8 @@
     {% endblock %}
   </head>
 
-  <body class="flex flex-col items-center relative min-h-full dark:text-white dark:bg-neutral-900">
+  {# I'm not sure why z-0 is needed #}
+  <body class="flex flex-col items-center relative z-0 min-h-full text-black dark:text-white bg-white dark:bg-neutral-900">
     {% include 'partials/navbar.njk' %}
 
     {% block content %}
