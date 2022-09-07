@@ -5,13 +5,22 @@ blurb: Every month, members of SIMC's Student Leadership Group write math proble
 ---
 
 {% from './potm-card.njk' import potmCard %}
+{% macro potmCollection(year) %}
+<div class="card">
+  <h2>{{ year }} problems</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12">
+    {% for problem in potm[year] %}
+    {{ potmCard(problem.month, problem.blurb, problem.url, loop.index0) }}
+    {% endfor %}
+  </div>
+</div>
+{% endmacro %}
 
 <h1>{{ title }}</h1>
 
 <p>{{ blurb }}</p>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12">
-  {% for problem in potm['2021-22'] %}
-  {{ potmCard(problem.month, problem.blurb, problem.url, loop.index0) }}
-  {% endfor %}
+<div class="flex flex-col gap-6">
+  {{ potmCollection('2022-23') }}
+  {{ potmCollection('2021-22') }}
 </div>
