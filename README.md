@@ -37,14 +37,14 @@ git clone https://github.com/womogenes/simc-site.git
 
 ### About branches
 
-Changes made on the `main` branch are automatically reflected in Netlify. If you want to make lots of commits but would rather update the site in one big batch, make commits on a different branch and merge when you're ready to deploy.
+Changes made on the `main` branch are automatically deployed to Netlify. If you want to make lots of commits but would rather update the site in one big batch, make commits on a different branch and merge when you're ready to deploy. Read about branches [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches).
 
 
 ## Detailed documentation
 
 ### About this site
 
-This new site is built using the static site generator [Eleventy](https://www.11ty.dev/), the templating language [Nunjucks](https://mozilla.github.io/nunjucks/), and the CSS framework [Tailwind](https://tailwindcss.com/).
+This new site is built using the static site generator [Eleventy](https://www.11ty.dev/), the templating language [Nunjucks](https://mozilla.github.io/nunjucks/), and the CSS framework [Tailwind](https://tailwindcss.com/). I would recommend reading up how all these things work if you don't know already.
 
 
 A developmental deployment is available at [seattleinfinity.netlify.app](https://seattleinfinity.netlify.app).
@@ -53,7 +53,7 @@ A developmental deployment is available at [seattleinfinity.netlify.app](https:/
 
 ### Local development
 
-1. Install [Node](https://nodejs.org/en/) (comes with npm)
+1. Install [Node](https://nodejs.org/en/)
 2. Install all dependencies with `npm install` (or your package manager of choice)
 3. To run the development server, use `npm run dev` and follow the instructions in terminal
    - Site should be live at `http://localhost:8080/`
@@ -71,7 +71,7 @@ There are a lot of files and folders! Brief overview:
 3. `/src` contains all the source code:
    - `/_data` contains data that is better left out of source code.
    - `/_includes` contains reusable components for the site.
-   - `/_layouts` contains [layouts](https://www.11ty.dev/docs/layouts/), sort of the inverse of components. There are already layouts in `./_includes/layouts`, but the ones in here are processed by Eleventy and are easier to use.
+   - `/_layouts` contains [layouts](https://www.11ty.dev/docs/layouts/), sort of the inverse of components. There are already layouts in `./_includes/layouts`, but the ones in `/_layouts` are processed by Eleventy and are simpler to use.
    - `/assets` includes static assets, including images, CSS source code and JS.
    - Miscellaneous files in here are probably pages.
 
