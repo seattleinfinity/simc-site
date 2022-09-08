@@ -7,7 +7,7 @@ blurb: Every month, members of SIMC's Student Leadership Group write math proble
 {% from './potm-card.njk' import potmCard %}
 {% macro potmCollection(year) %}
 <div class="card">
-  <h2>{{ year }} problems</h2>
+  <h2 class="mb-3">{{ year }} problems</h2>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12">
     {% for problem in potm[year] %}
     {{ potmCard(problem.month, problem.blurb, problem.url, loop.index0) }}

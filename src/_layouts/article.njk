@@ -6,7 +6,7 @@ layout: main
 
 <p class="mt-8"><a href="/press-releases">Press releases</a> &gt; <a href="{{ url }}" class="font-bold">{{ title }}</a></p>
 <div class="flex flex-col md:flex-row">
-  <main class="grow-[10] m-0 sm:mr-6">
+  <main class="m-0 sm:mr-6">
     <img src="{{ image }}" alt="Cover image" class="object-cover w-full max-h-[40rem] mb-4"/>
     <div class="mt-8 mb-3">
       <h1 class="mb-2">{{ title }}</h1>
@@ -16,7 +16,7 @@ layout: main
   </main>
 
   {# Other articles #}
-  <div class="max-w-[15rem] mt-0">
+  <div class="max-w-[18rem] mt-0">
     <hr class="block sm:hidden mb-8">
     <h2 class="mt-0">Other press releases</h2>
     {% for article in collections.press_release | sort(false, true, 'date') %}

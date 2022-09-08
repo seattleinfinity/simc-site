@@ -4,7 +4,7 @@ layout: article
 title: 2022 Summer Reading Challenge Results
 date: '2022-09-01'
 blurb: Congratulations to Samarth Das and Jason Yao for winning our first-ever SIMC Summer Reading Challenge!
-image: 'https://lh4.googleusercontent.com/dAhGpZLaH4wgS38yk05WGV4TzzeFwrh9z0n_iaBGyk-2QQw3DyUqM5FL2iYgvU_E2tnH1ezHSBs37jEOS8lB1rqOsrqdoRXyHvJ588wFkTJKu8keFATSz4OkxTe2WVxM5Q=w1280'
+image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1373&q=80'
 ---
 
 We're pleased to announce the winners of our first-ever 2022 SIMC Summer Reading Challenge! It was a pleasure and an honor to read all of your mathematical and personal reflections; we hope you enjoyed the summer reading. And without further ado, our winners are:

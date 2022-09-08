@@ -60,6 +60,10 @@ A developmental deployment is available at [seattleinfinity.netlify.app](https:/
 4. To build the site, use `npm run build`
 
 
+### Writing content
+
+Content is written in Nunjucks or Markdown. Markdown is rendered with [markdown-it](https://github.com/markdown-it/markdown-it), and configuration options are in `/.eleventy.js`.
+
 ### Project structure
 
 There are a lot of files and folders! Brief overview:
@@ -77,5 +81,5 @@ There are a lot of files and folders! Brief overview:
 
 #### Files
 
-1. `/eleventy.js` contains configuration for Eleventy. Learn more [here](https://www.11ty.dev/docs/).
+1. `/eleventy.js` contains configuration for Eleventy. Learn more [here](https://www.11ty.dev/docs/).   
 2. `/tailwind.config.json` contains configuration for Tailwind.
