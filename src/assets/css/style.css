@@ -28,6 +28,7 @@
     @apply text-6xl;
     @apply font-bold;
     @apply mt-8;
+    @apply mb-4;
   }
 
   h2 {
