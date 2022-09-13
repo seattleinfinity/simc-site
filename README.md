@@ -1,8 +1,10 @@
 # Seattle Infinity Math Circle site
 
-Revamped website for the Seattle Infinity Math Circle. The current site is at [www.seattleinfinity.org](https://www.seattleinfinity.org).
+Revamped website for the Seattle Infinity Math Circle. The current site is at [www.seattleinfinity.org](https://www.seattleinfinity.org). This new site can be viewed at [seattleinfinity.netlify.app](https://seattleinfinity.netlify.app).
 
-This new site can be viewed at [seattleinfinity.netlify.app](https://seattleinfinity.netlify.app).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f28627f3-d5d4-4111-98e2-b3e07c096672/deploy-status)](https://app.netlify.com/sites/seattleinfinity/deploys)
+
+Since this documentation is pretty incomplete, **please bug William with questions** and eventually he will either explain and write documentation.
 
 
 ## tl;dr: How do I edit content and deploy it?
@@ -46,11 +48,6 @@ Changes made on the `main` branch are automatically deployed to Netlify. If you 
 
 This new site is built using the static site generator [Eleventy](https://www.11ty.dev/), the templating language [Nunjucks](https://mozilla.github.io/nunjucks/), and the CSS framework [Tailwind](https://tailwindcss.com/). I would recommend reading up how all these things work if you don't know already.
 
-
-A developmental deployment is available at [seattleinfinity.netlify.app](https://seattleinfinity.netlify.app).
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f28627f3-d5d4-4111-98e2-b3e07c096672/deploy-status)](https://app.netlify.com/sites/seattleinfinity/deploys)
-
 ### Local development
 
 1. Install [Node](https://nodejs.org/en/)
@@ -66,14 +63,14 @@ Content is written in Nunjucks or Markdown. Markdown is rendered with [markdown-
 
 ### Project structure
 
-There are a lot of files and folders! Brief overview:
+There are a lot of files and folders! I encourage you to dig around and explore, but here's a brief overview:
 
 #### Folders
 
 1. `/_site` contains the built site (once built) and should be ignored.
 2. `/.meta` contains some meta utility scripts. Check out `./meta/meta.md` for more documentation.
 3. `/src` contains all the source code:
-   - `/_data` contains data that is better left out of source code.
+   - `/_data` contains data like SLG bios, navbar links, and problem of the month.
    - `/_includes` contains reusable components for the site.
    - `/_layouts` contains [layouts](https://www.11ty.dev/docs/layouts/), sort of the inverse of components. There are already layouts in `./_includes/layouts`, but the ones in `/_layouts` are processed by Eleventy and are simpler to use.
    - `/assets` includes static assets, including images, CSS source code and JS.
