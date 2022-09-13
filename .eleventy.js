@@ -13,13 +13,14 @@ module.exports = function (eleventyConfig) {
   // We're doing this: https://github.com/11ty/eleventy/issues/464
   // Unstable, but works ¯\_(ツ)_/¯
   const md = MarkdownIt({
-    html: true
-  })
+    html: true,
+    typographer: true,
+  });
   eleventyConfig.setLibrary('md', {
     render: (source) => {
       return `<div class="markdown-content">${md.render(source)}</div>`;
-    }
-  })
+    },
+  });
 
   return {
     // Special folders in the config
