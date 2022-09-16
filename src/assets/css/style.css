@@ -17,6 +17,7 @@
     @apply font-bold;
     @apply mt-8;
     @apply mb-8;
+    @apply leading-6;
   }
 
   h2 {
@@ -88,7 +89,6 @@
     @apply transition-all;
   }
 }
-
 
 /* Dark mode and stuff */
 @media (prefers-color-scheme: dark) {
