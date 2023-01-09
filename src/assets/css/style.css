@@ -2,35 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  /* Custom components! */
+/* Markdown-specific styles (things in .md files) */
+.markdown-content h1 {
+  @apply mt-8;
+  @apply mb-4;
+}
+
+.markdown-content h2 {
+  @apply mt-4;
+  @apply mb-2;
+}
+
+@layer components {
   .card {
-    @apply p-5;
+    @apply p-8;
     @apply shadow-md;
     @apply rounded-lg;
     @apply border-2;
   }
+}
 
+@layer base {
   /* Headings */
   h1 {
     @apply text-6xl;
     @apply font-bold;
     @apply mt-8;
-    @apply mb-8;
-    @apply leading-6;
+    @apply mb-4;
   }
 
   h2 {
     @apply text-4xl;
     @apply font-bold;
-    @apply mt-6;
-    @apply mb-2;
   }
 
   h3 {
     @apply text-3xl;
     @apply font-bold;
-    @apply mb-2;
   }
 
   h4 {
@@ -45,25 +53,12 @@
   /* Lists */
   main ul {
     @apply pl-8;
-    @apply mb-3;
   }
 
+  /* Add bullets to unordered lists */
   main ul li {
     @apply list-disc;
     @apply list-outside;
-  }
-
-  main ol {
-    @apply pl-8;
-  }
-
-  main ol li {
-    @apply list-decimal;
-    @apply list-outside;
-  }
-
-  main ul li p {
-    @apply inline;
   }
 
   /* Text content and miscellaneous stuff */
@@ -80,6 +75,7 @@
     @apply leading-relaxed;
   }
 
+  /* Links! */
   main p a,
   main li a,
   main > a {
@@ -92,6 +88,7 @@
 
 /* Dark mode and stuff */
 @media (prefers-color-scheme: dark) {
+  /* Dark scrollbar */
   :root {
     color-scheme: dark;
   }
