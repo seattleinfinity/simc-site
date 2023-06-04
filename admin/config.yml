@@ -1,0 +1,31 @@
+backend:
+  name: git-gateway
+  branch: main
+
+publish_mode: editorial_workflow
+media_folder: '_site/assets/images/uploads' # Media files will be stored in the repo here
+ublic_folder: '/assets/images/uploads' # The src attribute for uploaded media will begin with /images/uploads
+
+collections:
+  - name: 'press-releases' # Used in routes
+    label: 'Press releases' # Used in the UI
+    folder: 'src/press-releases' # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: '{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {
+          label: 'Tags',
+          name: 'tags',
+          widget: 'hidden',
+          default: 'press_release',
+        }
+      - {
+          label: 'Layout',
+          name: 'layout',
+          widget: 'hidden',
+          default: 'article',
+        }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish date', name: 'date', widget: 'datetime' }
+      - { label: 'Blurb', name: 'blurb', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }

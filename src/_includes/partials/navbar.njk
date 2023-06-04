@@ -5,7 +5,7 @@
   <div class="flex items-center justify-end grow w-full max-w-6xl px-6">
     {# Brand #}
     <li class="flex items-center mr-auto text-white">
-      <img alt="SIMC logo" src="/assets/images/simc_logo_square.svg" width="30px" class="rounded-lg mr-3">
+      <img alt="SIMC logo" src="/assets/images/logo/simc_logo_square.svg" width="30px" class="rounded-lg mr-3">
       <a href="/">SIMC</a>
     </li>
 
@@ -13,7 +13,7 @@
     <div class="md:hidden flex items-center">
       <button name="Menu toggle" class="outline-none mobile-menu-button text-white">
         <svg class="h-6 w-6" fill="none" stroke-width="2" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
       </button>
     </div>
@@ -21,23 +21,22 @@
     {# Main desktop menu #}
     <ul class="hidden md:flex items-center self-stretch">
       {% for item in navbar %}
-      <li class="h-full {{ 'text-white' if item.url in page.url else 'text-neutral-400' }} hover:text-white hover:bg-neutral-800 transition-all">
-        <a href="{{ item.url }}" class="flex items-center h-full px-4">{{ item.title }}</a>
-      </li>
+        <li class="h-full {{ 'text-white' if item.url in page.url else 'text-neutral-400' }} hover:text-white hover:bg-neutral-800 transition-all">
+          <a href="{{ item.url }}" class="flex items-center h-full px-4">{{ item.title }}</a>
+        </li>
       {% endfor %}
     </ul>
   </div>
-
 
   {# Mobile menu needs to be separate #}
   {# This can probably also be made less redundant #}
   <div class="mobile-menu max-h-0 overflow-hidden items-start absolute top-14 z-10 w-full md:hidden bg-neutral-900 dark:bg-black transition-all duration-500">
     <ul class="flex flex-col my-2">
-    {% for item in navbar %}
-      <li class="flex text-white">
-        <a href="{{ item.url }}" class="w-full px-4 py-2">{{ item.title }}</a>
-      </li>
-    {% endfor %}
+      {% for item in navbar %}
+        <li class="flex text-white">
+          <a href="{{ item.url }}" class="w-full px-4 py-2">{{ item.title }}</a>
+        </li>
+      {% endfor %}
     </ul>
   </div>
 </nav>

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html class="h-full bg-neutral-900 dark:bg-black" lang="en-US">
   <head>
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta charset="utf-8" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,14 +13,14 @@
     {# Animate on scroll #}
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <link href="/assets/css/style.css" rel="stylesheet"/>
-    <link href="/assets/images/simc_logo_circle.svg" rel="icon" type="image/svg"/>
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    <link href="/assets/images/logo/simc_logo_circle.svg" rel="icon" type="image/svg" />
 
     {# Meta tags #}
     {% include 'partials/og-meta.njk' %}
 
     {% block head %}
-    {# Extra head content #}
+      {# Extra head content #}
     {% endblock %}
   </head>
 
@@ -28,8 +28,7 @@
   <body class="flex flex-col items-center relative z-0 min-h-full text-black dark:text-white bg-white dark:bg-neutral-900">
     {% include 'partials/navbar.njk' %}
 
-    {% block content %}
-    {% endblock %}
+    {% block content %}{% endblock %}
 
     {% include 'partials/footer.njk' %}
 
@@ -37,9 +36,7 @@
     {# Animate on scroll #}
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      AOS.init({
-        once: true
-      });
+      AOS.init({once: true});
     </script>
   </body>
 </html>
