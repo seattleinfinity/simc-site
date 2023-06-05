@@ -5,6 +5,7 @@ div.frame-content div[class*='PreviewContainer'] div {
 
 div.frame-content {
   margin-top: 2em;
+  margin-right: 50px;
 }
 
 /* From https://github.com/sindresorhus/github-markdown-css/blob/main/github-markdown.css */
