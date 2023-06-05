@@ -9,6 +9,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('./src/assets/images');
   eleventyConfig.addPassthroughCopy('./src/assets/quadtree-art');
 
+  eleventyConfig.addPassthroughCopy('./src/admin'); // Decap CMS
+
   // We want to wrap all markdown content with a div for styling purposes
   // We're doing this: https://github.com/11ty/eleventy/issues/464
   // Unstable, but works ¯\_(ツ)_/¯

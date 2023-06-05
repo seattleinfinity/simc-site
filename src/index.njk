@@ -6,7 +6,25 @@ blurb: Our goal is to inspire students to engage in mathematics and expand their
 {% extends 'layouts/base.njk' %}
 
 {% block head %}
-<script src="/assets/js/index.js" defer></script>
+  <script src="/assets/js/index.js" defer></script>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+  {# Sussy stuff from https://decapcms.org/docs/add-to-your-site/ #}
+  <script defer>
+    if (window.netlifyIdentity) {
+      window
+        .netlifyIdentity
+        .on("init", user => {
+          if (!user) {
+            window
+              .netlifyIdentity
+              .on("login", () => {
+                document.location.href = "/admin/";
+              });
+          }
+        });
+    }
+  </script>
 {% endblock %}
 
 {% block content %}
@@ -33,7 +51,7 @@ blurb: Our goal is to inspire students to engage in mathematics and expand their
       </div>
     </div>
   </div>
-  
+
   {# Woooo fancy stuff #}
   {% from 'partials/fancy-link.njk' import fancyLink %}
   <div class="flex flex-col sm:flex-row w-full lg:min-h-[12rem]">
