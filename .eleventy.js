@@ -29,6 +29,7 @@ module.exports = function (eleventyConfig) {
   const md = MarkdownIt({
     html: true,
     typographer: true,
+    linkify: true,
   });
   eleventyConfig.setLibrary('md', {
     render: (source) => {

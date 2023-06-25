@@ -51,8 +51,14 @@
   }
 
   /* Lists */
-  main ul {
+  main ol {
+    @apply list-decimal;
+  }
+
+  main ol,
+  ul {
     @apply pl-8;
+    @apply mb-3;
   }
 
   /* Add bullets to unordered lists */
@@ -67,7 +73,7 @@
   }
 
   p {
-    @apply pb-3;
+    @apply mb-3;
   }
 
   main p {
