@@ -11,6 +11,18 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy('./src/admin'); // Decap CMS
 
+  // Date formatting for articles (e.g. "July 4, 2023")
+  eleventyConfig.addFilter('dateFormat', (date) => {
+    return (
+      date.toLocaleDateString &&
+      date.toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+      })
+    );
+  });
+
   // We want to wrap all markdown content with a div for styling purposes
   // We're doing this: https://github.com/11ty/eleventy/issues/464
   // Unstable, but works ¯\_(ツ)_/¯

@@ -4,13 +4,15 @@ layout: main
 
 {% from 'partials/article-preview.njk' import articlePreview %}
 
-<p class="mt-8"><a href="/press-releases">Press releases</a> &gt; <a href="{{ url }}" class="font-bold">{{ title }}</a></p>
+<p class="mt-8">
+  <a href="/press-releases">Press releases</a> &gt; <a href="{{ url }}" class="font-bold">{{ title }}</a>
+</p>
 <div class="flex flex-col md:flex-row">
   <main class="m-0 sm:mr-6">
-    <img src="{{ image }}" alt="Cover image" class="object-cover w-full max-h-[40rem] mb-4"/>
-    <div class="mt-8 mb-3">
-      <h1 class="mb-2">{{ title }}</h1>
-      <p class="text-neutral-600">{{ date }}</p>
+    <div class="mb-3">
+      <h1 class="mt-0 mb-2">{{ title }}</h1>
+      <p class="text-neutral-600">{{ date | dateFormat }}</p>
+      <img src="{{ image }}" alt="Cover image" class="object-cover w-full max-h-[30rem] mb-4" />
     </div>
     {{ content | safe }}
   </main>
@@ -18,17 +20,17 @@ layout: main
   {# Other articles #}
   <div class="max-w-[18rem] mt-0">
     <hr class="block sm:hidden mb-8">
-    <h2 class="mt-0">Other press releases</h2>
+    <h2 class="mt-0 mb-4">Other press releases</h2>
     {% for article in collections.press_release | sort(false, true, 'date') %}
       {# Don't render the same article on the sidebar #}
       {% if article.url != page.url %}
-      {{ articlePreview(
-          article.data.title,
-          article.data.date,
-          article.data.blurb,
-          article.data.image,
-          article.url
-        ) }}
+        {{ articlePreview(
+             article.data.title,
+             article.data.date,
+             article.data.blurb,
+             article.data.image,
+             article.url
+           ) }}
       {% endif %}
     {% endfor %}
   </div>
