@@ -20,7 +20,7 @@ def upload_photo(photo_path: str, name: str) -> str:
         data={
             "key": key,
             "image": b64encode(open(photo_path, "rb").read()),
-            "name": f"{name}.png",
+            "name": f"{name}",
         }
     )
 
