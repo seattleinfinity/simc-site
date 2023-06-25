@@ -4,4 +4,7 @@ _site/
 **.env
 
 # Local Netlify folder
-.netlify
+.netlify/
+
+# Data
+.meta/data/

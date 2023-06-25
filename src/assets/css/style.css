@@ -4,13 +4,13 @@
 
 /* Markdown-specific styles (things in .md files) */
 .markdown-content h1 {
-  @apply mt-8;
-  @apply mb-4;
+  @apply mt-10;
+  @apply mb-10;
 }
 
 .markdown-content h2 {
-  @apply mt-4;
-  @apply mb-2;
+  @apply mt-6;
+  @apply mb-4;
 }
 
 @layer components {
@@ -28,7 +28,7 @@
     @apply text-6xl;
     @apply font-bold;
     @apply mt-8;
-    @apply mb-4;
+    @apply mb-10;
   }
 
   h2 {
