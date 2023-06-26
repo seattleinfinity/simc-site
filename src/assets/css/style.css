@@ -56,7 +56,7 @@
   }
 
   main ol,
-  ul {
+  main ul {
     @apply pl-8;
     @apply mb-3;
   }

@@ -4,7 +4,7 @@ layout: article
 title: '2021-22 Mock Mathcounts has concluded'
 date: 2021-12-09
 blurb: 'The 2021-2022 SIMC Mock MATHCOUNTS has concluded. Thanks everyone for participating!'
-image: https://lh6.googleusercontent.com/MbaKNnL9o5OlCWQ4pVawjq1jaTJ3J99EHbF5-_Db14AM2dhg9REwHqWDEluiAdACCyRRWu3Yu0SfKTO_lRUI_4yGfaPtCglAwEc5wG1zPvZ2A3tSUVPfQfuIRMnWD3z8Lw=w1280
+image: https://images.unsplash.com/photo-1581574919402-5b7d733224d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80
 ---
 
 December 19, 2021
