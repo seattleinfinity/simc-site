@@ -1,9 +1,39 @@
 {
   "2022-23": [
     {
-      "month": "October",
+      "month": "September",
       "url": "https://drive.google.com/file/d/1HsHuvnKAlXgAyoxHD_I_WLQidXTdSqd2/view?usp=sharing",
-      "blurb": "This month's pair of problems, by Edward and Alex, are about tasty logs."
+      "blurb": "These problems, written by Alex and Edward, are number-theory and algebra-flavored problems at the early AIME level."
+    },
+    {
+      "month": "October",
+      "url": "https://drive.google.com/file/d/1ire6msXlAfvG-GArjzuk3TadJ9H8rzsV/view?usp=drive_link",
+      "blurb": "This problem, written by Owen Z., is a neat combinatorics-flavored problem about counting sets at the mid-AMC level."
+    },
+    {
+      "month": "November",
+      "url": "https://drive.google.com/file/d/1M43AatAKGkd2ke8kHnO-nac9tN1uNMPw/view?usp=drive_link",
+      "blurb": "These problems, written by Owen X. and Michael Y., are algebra and combinatorics problems at the late-AMC level."
+    },
+    {
+      "month": "December",
+      "url": "https://drive.google.com/file/d/1Hg1VM8I0RVnXX9l02-m_bcsRu8Xt_itY/view?usp=drive_link",
+      "blurb": "This algebra problem, written by Cecilia S., features floors and fractional parts at the late-AMC level."
+    },
+    {
+      "month": "January",
+      "url": "https://drive.google.com/file/d/1bV1vIL6NtdcqQdNt1Ka8W-BHd89tr1r8/view?usp=drive_link",
+      "blurb": "The two problems, written by Rohan D. and Annabel G., are interesting problems at the mid to late AIME level."
+    },
+    {
+      "month": "February",
+      "url": "https://drive.google.com/file/d/1wCBLTOBPRl0sVBDIHcTXb3dFnr8jTe3N/view?usp=drive_link",
+      "blurb": "This month's pair of problems, written by Yuuki S., are roughly mid-AIME level and involve sums and products of probabilities."
+    },
+    {
+      "month": "March",
+      "url": "https://drive.google.com/file/d/1PKxEb5BVk-DMv_McNIW-SiTqMd51TDzb/view?usp=drive_link",
+      "blurb": "Problem 1, written by Tristan K., is a neat early-mid AIME level number theory problem, and Problem 2, written by William G., is an late-AMC-level question involving a certain polynomial's roots."
     }
   ],
   "2021-22": [
