@@ -8,7 +8,7 @@ blurb: A collection of the events we host.
   <a href="{{ url }}" class="relative min-h-[20rem] group">
     <div class="absolute bg-black w-full h-full overflow-clip rounded-xl">
       {# Alt should probably be made more helpful #}
-      <img src="{{ image }}" alt="{{ title }}" class="object-cover w-full h-full opacity-30 blur-lg group-hover:blur-sm duration-500">
+      <img src="{{ image }}" alt="{{ title }}" class="object-cover w-full h-full opacity-30 blur-lg group-hover:blur-none duration-500">
     </div>
     <div class="flex flex-col items-center justify-center absolute w-full h-full px-12 text-white transition-all">
       <h3 class="z-10 text-center">{{ title }}</h3>
@@ -28,7 +28,13 @@ blurb: A collection of the events we host.
         'SIMC 10',
         'https://images.unsplash.com/photo-1606326608802-164e734c2fd9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
         'Our first ever mock AMC 10-style contest.',
-        '/press-releases/2022_simc_10/'
+        '/press-releases/2022-09-07_2022_simc_10/'
+      ) }}
+    {{ eventCard(
+        'SIMC 8',
+        'https://drive.google.com/uc?export=view&id=14m_hlwPQC4r_bmWmLCpfoyhe5SwhkwOY',
+        'Like the SIMC 10, but for 8th graders and below.',
+        '/events/simc-8/'
       ) }}
     {{ eventCard(
         'Lectures',

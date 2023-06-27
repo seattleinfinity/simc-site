@@ -37,6 +37,13 @@ module.exports = function (eleventyConfig) {
     },
   });
 
+  // Write Markdown in Nunjucks :)
+  // https://www.aleksandrhovhannisyan.com/blog/custom-markdown-components-in-11ty/
+  eleventyConfig.addPairedShortcode('md', (children) => {
+    const content = md.render(children);
+    return `<div>${content}</div>`;
+  });
+
   return {
     // Special folders in the config
     dir: {
