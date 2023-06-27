@@ -4,13 +4,13 @@
   {% set articles = collections.press_release | sort(true, true, 'date') %}
 
   {% for article in articles %}
-  {{ articlePreview(
-      article.data.title,
-      article.data.date,
-      article.data.blurb,
-      article.data.image,
-      article.url,
-      loop.index0
-    ) }}
+    {{ articlePreview(
+         article.data.title,
+         article.data.date,
+         article.data.blurb,
+         article.data.image,
+         article.url,
+         loop.index0
+       ) }}
   {% endfor %}
 </div>

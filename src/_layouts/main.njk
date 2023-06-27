@@ -3,7 +3,9 @@
 {% extends 'layouts/base.njk' %}
 
 {% block content %}
-<div class="w-full max-w-6xl pt-[62px] pb-12 px-6">
-  {{ content | safe }}
-</div>
+  <div class="w-full max-w-6xl pt-[62px] pb-12 px-6">
+    <main class="pt-5">
+      {{ content | safe }}
+    </main>
+  </div>
 {% endblock %}

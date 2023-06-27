@@ -3,10 +3,6 @@
 @tailwind utilities;
 
 /* Markdown-specific styles (things in .md files) */
-.markdown-content h1 {
-  @apply mt-10;
-  @apply mb-10;
-}
 
 .markdown-content h2 {
   @apply mt-6;
@@ -81,6 +77,13 @@
     @apply leading-relaxed;
   }
 
+  /* Images */
+  main img {
+    @apply max-h-96;
+    @apply ml-auto;
+    @apply mr-auto;
+  }
+
   /* Links! */
   main p a,
   main li a,
@@ -89,6 +92,19 @@
     @apply hover:text-blue-800;
     @apply dark:hover:text-blue-300;
     @apply transition-all;
+  }
+
+  /* Tables */
+  main table {
+    @apply border;
+    @apply mb-3;
+  }
+
+  main table th,
+  main table td {
+    @apply px-2;
+    @apply py-1;
+    @apply border;
   }
 }
 
