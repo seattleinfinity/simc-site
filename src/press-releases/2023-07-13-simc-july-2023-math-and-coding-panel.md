@@ -1,15 +1,11 @@
 ---
-
 tags: press_release
 layout: article
 title: SIMC July 2023 math and coding panel
 date: 2023-07-13T23:44:38.576Z
 image: https://content.presentermedia.com/files/clipart/00010000/10090/panel_discussion_800_wht.jpg
-blurb: Join us for an exciting virtual panel as rising math and programming
-stars share their exhilarating experiences with high school math and
-programming contests. Get ready to be inspired by their triumphs, insights,
-and the thrilling world of problem solving!
----!
+blurb: Join us for an exciting virtual panel as rising math and programming stars share their exhilarating experiences with high school math and programming contests. Get ready to be inspired by their triumphs, insights, and the thrilling world of problem solving!
+---
 
 Dear math enthusiasts,
 
