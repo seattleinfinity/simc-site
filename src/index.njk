@@ -4,74 +4,77 @@ blurb: Our goal is to inspire students to engage in mathematics and expand their
 ---
 
 {% extends 'layouts/base.njk' %}
-
 {% block head %}
   <script src="/assets/js/index.js" defer></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
   {# Sussy stuff from https://decapcms.org/docs/add-to-your-site/ #}
   <script defer>
     if (window.netlifyIdentity) {
-      window
-        .netlifyIdentity
-        .on("init", user => {
-          if (!user) {
-            window
-              .netlifyIdentity
-              .on("login", () => {
-                document.location.href = "/admin/";
-              });
-          }
-        });
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
     }
   </script>
 {% endblock %}
 
 {% block content %}
-  <div class="w-full min-h-screen overflow-hidden z-10 bg-black">
-    <div class="relative flex flex-col items-center justify-center h-full" id="quadtree-content">
-      {% include 'partials/quadtree-art/quadtree-art.njk' %}
-
-      <div class="absolute px-6 text-white" id="title-container">
-        <h1 id="title" data-aos="fade-down" data-aos-duration="1000">
-          Seattle Infinity Math Circle
-        </h1>
-        <div class="max-w-3xl" data-aos-delay="500" data-aos="fade-up">
-          <span id="mission" class="text-xl text-neutral-200">
-            Our goal is to inspire students to engage in mathematics and expand their mathematical interests and capabilities.
-          </span>
-        </div>
-      </div>
-
-      <div class="absolute bottom-36 sm:bottom-12" data-aos="fade-down" data-aos-delay="1500" data-aos-anchor="#mission" id="down-arrow">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" class="w-12 12">
-          <desc>Down arrow</desc>
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
-        </svg>
+<div class="w-full min-h-screen overflow-hidden z-10 bg-black">
+  <div class="relative flex flex-col items-center justify-center h-full" id="quadtree-content">
+    {% include 'partials/quadtree-art/quadtree-art.njk' %}
+    <div class="absolute px-6 text-white" id="title-container">
+      <h1 id="title" data-aos="fade-down" data-aos-duration="1000">
+        Seattle Infinity Math Circle
+      </h1>
+      <div class="max-w-3xl" data-aos-delay="500" data-aos="fade-up">
+        <span id="mission" class="text-xl text-neutral-200">
+          Our goal is to inspire students to engage in mathematics and expand their mathematical interests and capabilities.
+        </span>
       </div>
     </div>
+    <div
+      class="absolute bottom-36 sm:bottom-12"
+      data-aos="fade-down"
+      data-aos-delay="1500"
+      data-aos-anchor="#mission"
+      id="down-arrow">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="#ffffff"
+        class="w-12 12">
+        <desc>Down arrow</desc>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/>
+      </svg>
+    </div>
   </div>
+</div>
 
-  {# Woooo fancy stuff #}
-  {% from 'partials/fancy-link.njk' import fancyLink %}
-  <div class="flex flex-col sm:flex-row w-full lg:min-h-[12rem]">
-    {# This could be componentized #}
-    {{ fancyLink(
+{# Woooo fancy stuff #}
+{% from 'partials/fancy-link.njk' import fancyLink %}
+<div
+  class="flex flex-col sm:flex-row w-full lg:min-h-[12rem]">
+  {# This could be componentized #}
+  {{ fancyLink(
         'Join Us',
         'Join our Discord server!',
-        'https://discord.com/invite/2Ma3dURhTt', 
+        'https://discord.gg/wE5RREqekM', 
         'grow-[3] text-white',
         'bg-green-900'
       ) }}
-    {{ fancyLink(
-        'Feedback',
-        'Send us feedback through this form.',
-        'https://docs.google.com/forms/d/1m0mcgrzRxA0jzXNAOoBbPE4nsTKCqiEvof7t3b-de00/viewform?edit_requested=true',
+  {{ fancyLink(
+        'Mailing list',
+        'Sign up for our mailing list so you don\'t miss out!',
+        'https://forms.gle/FDvWGo1FHqQSGkNK6',
         'grow-[1] text-white',
         'bg-green-800'
       ) }}
   </div>
-
   <div class="w-full h-auto max-w-6xl pb-12 px-6">
     <div class="pt-0 sm:pt-4">
       <h1>Recent press releases</h1>
