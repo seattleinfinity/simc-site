@@ -22,8 +22,8 @@ Just go to https://seattleinfinity.netlify.app/admin, log in, and begin editing 
 
 You don't even need to download anything to make edits! Everything can be done in the browser.
 
-1. Head over to https://github.com/womogenes/simc-site.
-2. Navigate to the file corresponding to the page you want to edit (e.g. [here](https://github.com/womogenes/simc-site/blob/main/src/index.njk) if you want to edit the homepage).
+1. Head over to https://github.com/seattleinfinity/simc-site.
+2. Navigate to the file corresponding to the page you want to edit (e.g. [here](https://github.com/seattleinfinity/simc-site/blob/main/src/index.njk) if you want to edit the homepage).
 3. Click the edit button (or press `e`) and make your changes.
    1. **Note:** If you're editing [Markdown](https://www.markdownguide.org/), you can preview your changes as you make them, but it might look a bit weird because it's actually Nunjucks. (See "Detailed Documentation" for more information.)
 4. Once you're done making changes, scroll to the bottom of the page and make your commit. Detailed commit message optional but encouraged.
@@ -35,7 +35,7 @@ You don't even need to download anything to make edits! Everything can be done i
 2. Clone the repository:
 
 ```
-git clone https://github.com/womogenes/simc-site.git
+git clone https://github.com/seattleinfinity/simc-site.git
 ```
 
 3. Navigate to the directory containing the file you want to edit, make your changes, and commit them.

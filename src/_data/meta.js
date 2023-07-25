@@ -6,6 +6,6 @@ module.exports = {
   // See src/partials/footer.njk
   webmaster: {
     name: 'SIMC tech gods',
-    link: 'https://womogenes.github.io/',
+    link: 'https://github.com/seattleinfinity',
   },
 };
