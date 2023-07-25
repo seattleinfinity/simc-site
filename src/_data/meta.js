@@ -5,7 +5,7 @@ module.exports = {
 
   // See src/partials/footer.njk
   webmaster: {
-    name: 'William Y. Feng',
+    name: 'SIMC tech gods',
     link: 'https://womogenes.github.io/',
   },
 };

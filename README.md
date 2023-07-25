@@ -2,7 +2,7 @@
 
 Revamped website for the Seattle Infinity Math Circle. The current site is at [www.seattleinfinity.org](https://www.seattleinfinity.org). This new site can be viewed at [seattleinfinity.netlify.app](https://seattleinfinity.netlify.app).
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f28627f3-d5d4-4111-98e2-b3e07c096672/deploy-status)](https://app.netlify.com/sites/seattleinfinity/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e73a75a8-f560-4156-b66d-847a7a892347/deploy-status)](https://app.netlify.com/sites/seattleinfinity/deploys)
 
 Since this documentation is pretty incomplete, **please bug William with questions** and eventually he will either explain and write documentation.
 
