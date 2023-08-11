@@ -2,86 +2,103 @@
   {
     "name": "Alex Zhao",
     "title": "President",
-    "photoURL": "https://i.ibb.co/8mHGX3k/alex-zhao.jpg"
+    "photoURL": "https://i.ibb.co/8mHGX3k/alex-zhao.jpg",
+    "bio": "Alex is a senior at Lakeside School. He has qualified for the USAJMO four times, and qualified for the USAMO this past year. Alex is a USAJMO Winner and a USAMO Silver Medalist, and has qualified for MOP three times. When not doing math, he can be found programming, chatting online, and playing any of clarinet, a number of ball sports, and strategy video games."
   },
   {
     "name": "William Y. Feng",
     "title": "Vice President",
-    "photoURL": "https://i.ibb.co/92QQJMH/william-y-feng.jpg"
+    "photoURL": "https://i.ibb.co/92QQJMH/william-y-feng.jpg",
+    "bio": "William is a senior at Lakeside School. He has been involved in contest math since elementary school, earning several Distinguished Honor Rolls on the AMC 10 and qualifying for the AIME multiple times. William enjoys community math events in particular and has participated in the Washington ARML team since 2018, helping organize things for the team for the past three years. Aside from math, William participates in competitive programming and believes a good deal of computer science topics should be integrated into a good math curriculum. In his spare time, William enjoys playing violin, folding origami, playing badminton, creating YouTube videos, performing card magic, and listening to EDM."
   },
   {
     "name": "Cecilia Sun",
     "title": "<i>Circle</i> editor-in-chief, content director",
-    "photoURL": "https://i.ibb.co/FWjh2V8/cecilia-sun.jpg"
+    "photoURL": "https://i.ibb.co/FWjh2V8/cecilia-sun.jpg",
+    "bio": "Cecilia is a senior at Lakeside School. Ever since attending her first math competition in third grade, Cecilia has grown to love complexities and connections within math. In addition to the subject itself, Cecilia also appreciates the communities that have been built around it and wants to continue to foster such communities while on SLG. Cecilia has qualified for the AIME four times, been on the distinguished honor roll for the AMC 10 three times, and earned a perfect score on the AMC 8. In addition to math, she enjoys playing the piano, learning physics, playing minesweeper, and spending time with her pets."
   },
   {
     "name": "Annabel Ge",
     "title": "Competitions director",
-    "photoURL": "https://i.ibb.co/bgr1vZj/annabel-ge.jpg"
+    "photoURL": "https://i.ibb.co/bgr1vZj/annabel-ge.jpg",
+    "bio": "Annabel is a senior at Lakeside school this year. She has participated in many math competitions since elementary school. She has gone through the AMC series for many years and has attended MOP two times. Her favorite olympiad subject is combo. In addition to math, she participates in her school's crew team, and some of her other interests include drawing, playing card games, and music. Annabel also enjoys coding (casually) and has participated in USACO. She's excited to be a part of SIMC leadership this year and help create engaging problems and tests!"
   },
   {
     "name": "William Gvozdjak",
     "title": "Content committee",
-    "photoURL": "https://i.ibb.co/KVTCy87/william-gvozdjak.png"
+    "photoURL": "https://i.ibb.co/KVTCy87/william-gvozdjak.png",
+    "bio": "William is a senior at Bellevue High School. He began participating in math competitions in elementary school and has qualified for the AIME multiple times and the USAJMO once. His favorite subject is geometry, but he is also fascinated by algebra and advanced math, and he loves elegant and simple solutions to complex math problems. William is passionate about web development and loves spending time thinking about and creating new designs for webpages. Aside from math and programming, William enjoys following sports and soccer, listening to music, and exploring random facts online."
   },
   {
     "name": "Owen Zhang",
     "title": "Competitions committee",
-    "photoURL": "https://i.ibb.co/60TX99n/owen-zhang.jpg"
+    "photoURL": "https://i.ibb.co/60TX99n/owen-zhang.jpg",
+    "bio": "Owen is a senior at Interlake High School and has been passionate about mathematics since the 4th grade. He has qualified for the USAJMO, qualified for the AIME 4 times, and participated in competitions such as ARML and Mathcounts. Outside of math, Owen enjoys listening to music, programming, physics, running, or catching up with friends."
   },
   {
     "name": "Nishka Kacheria",
     "title": "Content committee, puzzlemaster",
-    "photoURL": "https://i.ibb.co/dJLHzSc/nishka-kacheria.png"
+    "photoURL": "https://i.ibb.co/dJLHzSc/nishka-kacheria.png",
+    "bio": "Nishka is a senior at Interlake High School, and has loved math since elementary school. She has qualified for the AIME 4 times, for Math Prize for Girls several times, and received a distinguished honor roll for the AMC 12. She also enjoys programming, and in both, her favorite parts are feeling the eureka moments and the satisfaction of a clean solution. Other hobbies of hers include puzzling (both feeling confused and doing puzzles), launching flaming projectiles, and reading and writing."
   },
   {
     "name": "Rohan Dhillon",
     "title": "Competitions committee",
-    "photoURL": "https://i.ibb.co/VYx93dV/rohan-dhillon.jpg"
+    "photoURL": "https://i.ibb.co/VYx93dV/rohan-dhillon.jpg",
+    "bio": "Rohan is a junior at Lakeside School and has participated in math competitions like the AMC and Mathcounts since 6th grade, garnering distinctions multiple times on the AMC 10, DHR on the AMC 8, and what would have been the State countdown round in Mathcounts (were it not for COVID). When not doing math, you can find him attempting to ace his opponents at tennis tournaments, building science projects, coding, studying for physics competitions, or stirring up controversy at MUN debates."
   },
   {
     "name": "Joyce Huang",
     "title": "Competitions committee, outreach committee",
-    "photoURL": "https://i.ibb.co/S0cd926/joyce-huang.jpg"
+    "photoURL": "https://i.ibb.co/S0cd926/joyce-huang.jpg",
+    "bio": "Joyce Huang is a junior at Redmond High School. She won an Honorable Mention at the 2023 USAJMO. Joyce enjoys math because Joyce enjoys joy and math makes Joyce rejoice. Joyce also enjoys playing the oboe (which everyone knows is obviously the best instrument in the world), as well as the piano, cello, flute, alto saxophone, trumpet, and hopefully the lituus someday."
   },
   {
     "name": "Hongning Wang",
     "title": "Content co-director",
-    "photoURL": "https://i.ibb.co/VxgxNNQ/hongning-wang.png"
+    "photoURL": "https://i.ibb.co/VxgxNNQ/hongning-wang.png",
+    "bio": "Hongning is a junior at Eastlake High School. His pronouns are he/him/his. He has participated in math contests for six years and was a 2022 USAJMO Honorable Mention. He took part in SIMC events since middle school and is super excited to be on the SLG this year. Hongning is committed to sharing his experience in math to the math community. He hopes to continue creating meaningful contests, opportunities and problem of the months for SIMC members and others in our community during his second year on the SLG. When not doing math, Hongning likes to read a good book, read about current events, and play chess card games with friends. "
   },
   {
     "name": "Alon Ragoler",
     "title": "Almighty webmaster, competitions committee",
-    "photoURL": "https://i.ibb.co/n0FFXKj/alon-ragoler.webp"
+    "photoURL": "https://i.ibb.co/n0FFXKj/alon-ragoler.webp",
+    "bio": "Alon Ragoler is a junior at Eastlake High school. He has qualified for AIME 4 times, got top 56 at Mathcounts Nationals, and won USAMTS gold. He enjoys teaching, as he is an instructor at Daily Challenge and coaches his local middle school’s math and science clubs. Outside of math, Alon loves programming, web development, running, piano, percussion, xkcd, and evangelizing Linux to anyone who cares to listen."
   },
   {
     "name": "Owen Xuan",
     "title": "Content committee",
-    "photoURL": "https://i.ibb.co/DV8dMKb/owen-x.jpg"
+    "photoURL": "https://i.ibb.co/DV8dMKb/owen-x.jpg",
+    "bio": ""
   },
   {
     "name": "Amy Cui",
     "title": "Competitions co-director",
-    "photoURL": "https://i.ibb.co/qRjcpL9/amy-cui.jpg"
+    "photoURL": "https://i.ibb.co/qRjcpL9/amy-cui.jpg",
+    "bio": "Amy is a sophomore at Lakeside School, and she has been participating in math competitions since elementary school. She has attended MOP, qualified for JMO twice, and was a JMO Top Winner. Her favorite subject in math is geometry, but apart from solving problems, she also really values the friendships she has made in the math community. In addition to doing math, she enjoys fencing, running, reading, and listening to music."
   },
   {
     "name": "Immanuel Whang",
     "title": "Outreach co-director, competitions committee",
-    "photoURL": "https://i.ibb.co/89x0fjb/immanuel-whang.png"
+    "photoURL": "https://i.ibb.co/89x0fjb/immanuel-whang.png",
+    "bio": "Immanuel is a sophomore at Lakeside School. He is a 3x USAJMO qualifier, 4x AIME qualifier, and (somehow) placed 17th individually at ARML recently. One thing about math competitions that Immanuel appreciates is the community he can find through them. In his free time, Immanuel enjoys reading manga, listening to music, and playing chess."
   },
   {
     "name": "Alex Chen",
     "title": "Competitions committee, outreach committee",
-    "photoURL": "https://i.ibb.co/RN4cRtr/alex-chen.jpg"
+    "photoURL": "https://i.ibb.co/RN4cRtr/alex-chen.jpg",
+    "bio": "Alex is a sophomore at The Overlake School who has been passionate about math since elementary school. He has qualified for AIME multiple times and enjoys participating in any sort of mathematical competition. Outside of math, Alex also competes in robotics and debate. When not at a competition, he can frequently be found folding origami, listening to music, or working on personal projects."
   },
   {
     "name": "Christina Liu",
     "title": "Content committee",
-    "photoURL": "https://i.ibb.co/27WS0bj/christina-liu.jpg"
+    "photoURL": "https://i.ibb.co/27WS0bj/christina-liu.jpg",
+    "bio": ""
   },
   {
     "name": "Eric Yee",
     "title": "Outreach committee",
-    "photoURL": "https://i.ibb.co/4skzJcg/eric-yee.jpg"
+    "photoURL": "https://i.ibb.co/4skzJcg/eric-yee.jpg",
+    "bio": ""
   }
 ]

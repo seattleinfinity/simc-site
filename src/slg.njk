@@ -3,6 +3,10 @@ layout: standalone
 title: Student Leadership Group
 ---
 
+{% block head %}
+  <script src="/assets/js/slg.js" defer></script>
+{% endblock %}
+
 {# Person card component #}
 {% macro personCard(name, title, bio, photoURL, index) %}
   <div class="flex flex-col items-start" data-aos="fade-up" data-aos-delay="{{ (index % 3) * 50 }}">
@@ -12,10 +16,16 @@ title: Student Leadership Group
     </div>
 
     {# Content #}
-    <div class="-z-10 w-full h-full p-5 pt-10 -mt-7 rounded-md bg-slate-100 dark:bg-zinc-800">
-      <h3 class="text-center">{{ name }}</h3>
-      <p class="leading-tight text-center text-neutral-600 dark:text-neutral-400">{{ title | safe }}</p>
-      <p class="text-sm">{{ bio }}</p>
+    <div id="container-{{ index }}" class="-z-10 w-full h-full p-5 pt-10 -mt-7 rounded-md bg-slate-100 dark:bg-zinc-800 flip-container" onmouseenter="updatePersonHeight({{ index }}, true)" onmouseleave="updatePersonHeight({{ index }}, false)">
+      <div class="flip-inner">
+        <div class="flip-front">
+          <h3 class="text-center">{{ name }}</h3>
+          <p id="front-{{ index }}" class="leading-tight text-center text-neutral-600 dark:text-neutral-400">{{ title | safe }}</p>
+        </div>
+        <div class="flip-back">
+          <p id="back-{{ index }}" class="text-sm">{{ bio }}</p>
+        </div>
+      </div>
     </div>
   </div>
 {% endmacro %}
