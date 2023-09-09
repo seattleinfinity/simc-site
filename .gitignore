@@ -3,6 +3,9 @@ _site/
 .vscode/
 **.env
 
+# Eleventy Fetch cache
+.cache/
+
 # Local Netlify folder
 .netlify/
 

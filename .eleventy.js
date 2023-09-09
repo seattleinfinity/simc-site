@@ -1,6 +1,8 @@
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
 const MarkdownIt = require('markdown-it');
 
+require('dotenv').config();
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(EleventyRenderPlugin);
 

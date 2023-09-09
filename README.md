@@ -66,10 +66,14 @@ Developing locally with Decap requires:
 ### Local development
 
 1. Install [Node](https://nodejs.org/en/)
-2. Install all dependencies with `npm install` (or your package manager of choice)
-3. To run the development server, use `npm run dev` and follow the instructions in terminal
+2. Create a `.env` file in the project root and add a Github API key, needed for pulling Circle articles:
+   ```env
+   GITHUB_API_KEY=...
+   ```
+3. Install all dependencies with `npm install` (or your package manager of choice)
+4. To run the development server, use `npm run dev` and follow the instructions in terminal
    - Site should be live at `http://localhost:8080/`
-4. To build the site, use `npm run build`
+5. To build the site, use `npm run build`
 
 ### Writing content
 
