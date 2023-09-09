@@ -1,5 +1,6 @@
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
 const MarkdownIt = require('markdown-it');
+const katex = require('katex');
 
 require('dotenv').config();
 
@@ -44,6 +45,33 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPairedShortcode('md', (children) => {
     const content = md.render(children);
     return `<div>${content}</div>`;
+  });
+
+  // Katex parsing for math
+  // https://benborgers.com/posts/eleventy-katex
+  eleventyConfig.addFilter('latex', (content) => {
+    let replacements = [
+      ['``', '&ldquo;'],
+      [/''/g, '&rdquo;'],
+      ['\\\\', ''],
+    ];
+    for (let [og, repl] of replacements) {
+      content = content.replaceAll(og, repl);
+    }
+
+    return content
+      .replace(/\$\$(.+?)\$\$/g, (_, equation) => {
+        return katex.renderToString(equation, {
+          throwOnError: false,
+          displayMode: true,
+        });
+      })
+      .replace(/\$(.+?)\$/g, (_, equation) => {
+        return katex.renderToString(equation, {
+          throwOnError: false,
+          displayMode: false,
+        });
+      });
   });
 
   return {

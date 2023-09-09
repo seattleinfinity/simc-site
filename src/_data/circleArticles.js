@@ -22,7 +22,7 @@ const fetchContents = async () => {
       .filter((object) => object.type === 'file')
       .map(async (object) => {
         content = await EleventyFetch(object.download_url, {
-          duration: '0s',
+          duration: '1d',
           type: 'text',
           fetchOptions: {
             headers: {
@@ -31,7 +31,7 @@ const fetchContents = async () => {
             },
           },
         });
-        console.log(content);
+
         // return JSON.stringify(content, null, 2);
         return content;
       })
