@@ -9,4 +9,4 @@ The 2023-24 [HM/B/S]MT TST will take place remote on Sunday, September 10 from 4
 
 The [HM/B/S]MT TST submission form is [here](https://forms.gle/oGZqg2EUUWWQ4W4r9). The first few pages will ask for information and contest scores, and the answer submission will be on the final page. The test will be emailed to [this mailing list](https://forms.gle/vdJjR7cpUJmQChR57) (so you must ensure you’ve joined the mailing list if you want to take the TST!) at 4 PM and submissions to the form after 5 PM PST will be ignored. Please fill out the information on the first page before the test begins, so that you don’t have to scramble during the test filling out your information.
 
-**Problems will be posted on this page** at 4 PM PST on September 10, 2023. Sign up for our [mailing list](https://forms.gle/vdJjR7cpUJmQChR57) to get notified when the test is released.
+Problems are availalable here: https://drive.google.com/file/d/1Taf60XsKpS9owksVvdVUAxTwEwnZJK-u/view
