@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Georgia', 'Lora', 'Times New Roman', 'serif'],
       },
     },
   },

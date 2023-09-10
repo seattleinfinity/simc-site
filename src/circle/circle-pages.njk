@@ -5,12 +5,12 @@ layout: main
 
 <div class="flex flex-wrap gap-2">
   {% for article in circleArticles.parsedData %}
-    <div class="border rounded p-4">
-      <span class="whitespace-pre-wrap">{{ article | latex | safe }}</span>
+    <div class="card">
+      <span class="font-serif text-lg">{{ article | latex | safe }}</span>
     </div>
   {% endfor %}
 </div>
 
-<pre class="overflow-x-scroll border my-4 p-4">
+<pre class="overflow-x-scroll card">
 {{ circleArticles.rawData }}
 </pre>

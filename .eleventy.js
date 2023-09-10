@@ -51,15 +51,20 @@ module.exports = function (eleventyConfig) {
   // https://benborgers.com/posts/eleventy-katex
   eleventyConfig.addFilter('latex', (content) => {
     let replacements = [
+      [/\\title{(.+)}/g, (_, p1) => `<h2>${p1}</h2>`],
+      [/\\begin{itemize}/g, '<ol>'],
+      [/\\end{itemize}/g, '</ol>'],
+      [/\\begin{enumerate}/g, '<ul>'],
+      [/\\end{enumerate}/g, '</ul>'],
+      [/\\item (.+?)\n/g, (_, p1) => `<li>${p1}</li>`],
+      [/\\documentclass{.+?}/g, ''],
       ['``', '&ldquo;'],
       [/''/g, '&rdquo;'],
-      [/\n+?/g, '<br />'],
-      ['\\\\', '\n'],
+      // [/\n+/g, '<br />'],
+      [/\\\\/g, ''],
       ['--', '&ndash;'],
       [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
-      [/\\title{(.+?)}/g, (_, p1) => `<h2>${p1}</h2>`],
-      [/\\begin{.+?}/g, ''],
-      [/\\documentclass{.+?}/g, ''],
+      [/\n+(.+?)\n+/g, (_, p1) => `<p>${p1}</p>`],
     ];
     for (let [og, repl] of replacements) {
       content = content.replaceAll(og, repl);
