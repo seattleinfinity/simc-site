@@ -66,7 +66,8 @@ module.exports = function (eleventyConfig) {
       [/\\begin{enumerate}/g, '<ul>\n\n'],
       [/\\end{enumerate}/g, '</ul>'],
       [/\\item (.+?)\n/g, (_, p1) => `<li class="pl-2">${p1}</li>`],
-      [/\\documentclass{.+?}/g, ''],
+      [/\\begin{align\*?}/g, '\\[\\begin{aligned}'],
+      [/\\end{align\*?}/g, '\\end{aligned}\\]'],
 
       // Typographic things
       [/--/g, '&mdash;'],
@@ -84,13 +85,13 @@ module.exports = function (eleventyConfig) {
     ]);
 
     content = content
-      .replace(/\$\$(.+?)\$\$/g, (_, equation) => {
+      .replace(/\$\$([\s\S]+?)\$\$/g, (_, equation) => {
         return katex.renderToString(equation, {
           throwOnError: false,
           displayMode: true,
         });
       })
-      .replace(/\\\[(.+?)\\\]/g, (_, equation) => {
+      .replace(/\\\[([\s\S]+?)\\\]/g, (_, equation) => {
         return katex.renderToString(equation, {
           throwOnError: false,
           displayMode: true,
