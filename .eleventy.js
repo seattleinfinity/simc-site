@@ -47,6 +47,17 @@ module.exports = function (eleventyConfig) {
     return `<div>${content}</div>`;
   });
 
+  // Come up with blurbs
+  eleventyConfig.addFilter('blurbify', (content) => {
+    const words = inputString.split(' ');
+    return words.length > 50 ? words.slice(0, 50).join(' ') + '...' : content;
+  });
+
+  // Come up with blurbs
+  eleventyConfig.addFilter('json', (content) => {
+    return JSON.stringify(content, null, 2);
+  });
+
   // Katex parsing for math
   // https://benborgers.com/posts/eleventy-katex
   eleventyConfig.addFilter('latex', (content) => {
@@ -72,6 +83,7 @@ module.exports = function (eleventyConfig) {
       // Typographic things
       [/--/g, '&mdash;'],
       [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
+      [/\\\]\./g, '.\\]'],
 
       // Trash
       [/\\\\/g, ''],
