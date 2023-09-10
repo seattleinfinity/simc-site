@@ -53,7 +53,13 @@ module.exports = function (eleventyConfig) {
     let replacements = [
       ['``', '&ldquo;'],
       [/''/g, '&rdquo;'],
-      ['\\\\', ''],
+      [/\n+?/g, '<br />'],
+      ['\\\\', '\n'],
+      ['--', '&ndash;'],
+      [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
+      [/\\title{(.+?)}/g, (_, p1) => `<h2>${p1}</h2>`],
+      [/\\begin{.+?}/g, ''],
+      [/\\documentclass{.+?}/g, ''],
     ];
     for (let [og, repl] of replacements) {
       content = content.replaceAll(og, repl);
@@ -66,10 +72,17 @@ module.exports = function (eleventyConfig) {
           displayMode: true,
         });
       })
+      .replace(/\\\[(.+?)\\\]/g, (_, equation) => {
+        return katex.renderToString(equation, {
+          throwOnError: false,
+          displayMode: true,
+        });
+      })
       .replace(/\$(.+?)\$/g, (_, equation) => {
         return katex.renderToString(equation, {
           throwOnError: false,
           displayMode: false,
+          inline: true,
         });
       });
   });
