@@ -26,11 +26,13 @@
     @apply font-bold;
     @apply mt-8;
     @apply mb-10;
+    @apply tracking-tight;
   }
 
   h2 {
     @apply text-4xl;
     @apply font-bold;
+    @apply tracking-tight;
   }
 
   h3 {
