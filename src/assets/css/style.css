@@ -15,7 +15,7 @@
     @apply shadow;
     @apply rounded-lg;
     @apply border-2;
-    @apply dark:border-neutral-500;
+    @apply dark:border-neutral-700;
   }
 }
 
@@ -69,8 +69,8 @@
     @apply my-3;
   }
 
-  div.card p,
-  div.card ul {
+  /* Last element of a card shouldn't produce extra margin-bottom */
+  div.card *:nth-last-child(1) {
     @apply mb-0;
   }
 

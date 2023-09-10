@@ -11,7 +11,7 @@ layout: main
   <main class="w-full m-0 sm:mr-8">
     <div class="mb-3">
       <h1 class="mt-0 mb-2">{{ title | safe }}</h1>
-      <p class="text-neutral-600">{{ date | dateFormat }}</p>
+      <p class="text-neutral-600 dark:text-neutral-300">{{ date | dateFormat }}</p>
       <img src="{{ image }}" alt="Cover image" class="object-cover w-full max-h-[30rem] mb-4" />
     </div>
     {{ content | safe }}
@@ -21,9 +21,9 @@ layout: main
   <div class="max-w-[18rem] mt-0">
     <hr class="block sm:hidden mb-8">
     <h2 class="mt-0 mb-4">Other press releases</h2>
-    {% for article in collections.press_release | sort(false, true, 'date') %}
+    {% for article in collections.press_release | sort(true, true, 'date') %}
       {# Don't render the same article on the sidebar #}
-      {% if article.url != page.url %}
+      {% if article.url != page.url and article.data.image %}
         {{ articlePreview(
              article.data.title,
              article.data.date,

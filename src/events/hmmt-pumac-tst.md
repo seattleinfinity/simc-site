@@ -1,6 +1,7 @@
 ---
 layout: standalone
 title: HMMT/PUMaC
+blurb: Team selection for the HMMT/BMT/SMT contests.
 image: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
 ---
 
@@ -26,7 +27,7 @@ image: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?ixlib=rb-1.
 
 Every year, SIMC hosts a couple teams to the [Harvard-MIT Math Tournament](https://www.hmmt.org/), [Berkeley Math Tournament](https://bmt.berkeley.edu/), and [Stanford Math Tournament](https://www.stanfordmathtournament.com). To select our teams, we run a team selection test in September.
 
-Prior to 2023, we've also sent teams to the [Princeton University Mathematics Competition](https://jason-shi-f9dm.squarespace.com).
+Prior to 2024, we also sent teams to the [Princeton University Mathematics Competition](https://jason-shi-f9dm.squarespace.com).
 
 <div class="card mb-4 -pb-4">
   The <b>2022</b> HMMT/PUMaC TST was held from 4:00 - 5:00 PM on September 4, 2022.
