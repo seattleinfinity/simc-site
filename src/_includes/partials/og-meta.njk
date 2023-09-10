@@ -1,7 +1,7 @@
 {# OpenGraph meta tags to include in the head #}
 {# https://ahrefs.com/blog/open-graph-meta-tags/ #}
 
-<meta property="og:title" content="{{ title }}" />
+<meta property="og:title" content="SIMC • {{ title }}" />
 
 {% set canonURL = ['https://www.seattleinfinity.org', page.url ] | join %}
 <meta property="og:url" content="{{ canonURL }}" />
@@ -16,4 +16,3 @@
 
 {% set desc = blurb %}
 <meta property="og:description" content="{{ desc }}" />
-

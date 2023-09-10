@@ -4,20 +4,39 @@ title: HMMT/PUMaC
 image: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
 ---
 
-<div class="flex flex-col items-center mt-8">
-  <img alt="HMMT logo" src="https://hmmt-prod.s3.amazonaws.com/static/img/logo/hmmt/logo.png" class="max-h-24">
-  <img alt="PUMaC logo" src="https://images.squarespace-cdn.com/content/v1/570450471d07c094a39efaed/1489872743410-OCIZMLU7TAEPS1BAXH4P/PUMaC_logo_color.png"  class="max-h-24">
+<div class="flex gap-4 items-center mt-8 mb-16 pb-4 pt-8">
+  <img
+    class="h-24 dark:invert"
+    alt="HMMT logo"
+    src="https://hmmt-prod.s3.amazonaws.com/static/img/logo/hmmt/logo.png"
+  >
+  <img
+    class="h-24"
+    alt="BMT logo"
+    src="https://bmt.berkeley.edu/wp-content/uploads/2022/08/Rounded-58x59.png"
+  >
+  <img
+    class="h-24 dark:brightness-150"
+    alt="SMT logo"
+    src="https://sumo.stanford.edu/images/smtbanner.png"
+  >
 </div>
 
-# HMMT and PUMaC
+# [HM/B/S]MT TST
 
-Every year, SIMC hosts a couple teams to the [Harvard-MIT Math Tournament](https://www.hmmt.org/) and the [Princeton University Mathematics Competition](https://jason-shi-f9dm.squarespace.com/). To select our teams, we run a team selection test.
+Every year, SIMC hosts a couple teams to the [Harvard-MIT Math Tournament](https://www.hmmt.org/), [Berkeley Math Tournament](https://bmt.berkeley.edu/), and [Stanford Math Tournament](https://www.stanfordmathtournament.com). To select our teams, we run a team selection test in September.
+
+Prior to 2023, we've also sent teams to the [Princeton University Mathematics Competition](https://jason-shi-f9dm.squarespace.com).
+
+<div class="card mb-4 -pb-4">
+  The <b>2022</b> HMMT/PUMaC TST was held from 4:00 - 5:00 PM on September 4, 2022.
+  
+  [Problems](https://drive.google.com/file/d/1IkqiunSoElTCF-KQR92pXtuQzlYnrJQR/view?usp=sharing) and [Solutions](https://drive.google.com/file/d/1LoaxykPAv_JmOE37MpRQDABSp1o2HwNt/view?usp=sharing).
+</div>
 
 <!-- This can also probably be automated -->
 <div class="card mb-4">
-  The
-  <b>2021</b>
-  HMMT/PUMaC TST was held from 4:00 - 5:00 PM on September 5, 2021.
+  The <b>2021</b> HMMT/PUMaC TST was held from 4:00 - 5:00 PM on September 5, 2021.
   
   [Problems](https://drive.google.com/file/d/10g8aiLwl2PVZFe_OuxAt1ZvHzTq2BClt/view) and [Solutions](https://drive.google.com/file/d/1nsd_XmOudGGIVezClPSB8XBs-scAzQfN/view).
   
