@@ -1,16 +1,17 @@
 ---
 layout: main
+title: {{ article.title }}
 pagination:
   data: circleArticles
   size: 1
   alias: article
-permalink: "circle/{{ article.title | slugify }}"
+permalink: "circle/{{ article.title | slugify }}.html"
 ---
 
-<p><a href="/circle">&larr; All articles</a></p>
-
 <div class="flex flex-col items-center w-full">
-  <div class="max-w-3xl">
+  <div class="max-w-3xl pt-16">
+    <p><a href="/circle">&larr; All articles</a></p>
+
     <h2 class="mt-2 mb-2">{{ article.title | safe }}</h2>
 
     <div class="flex items-center justify-start gap-2 my-4">
