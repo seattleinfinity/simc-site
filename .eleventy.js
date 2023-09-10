@@ -73,8 +73,10 @@ module.exports = function (eleventyConfig) {
       [/--/g, '&mdash;'],
       [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
 
-      // Newlines
+      // Trash
       [/\\\\/g, ''],
+      [/\\maketitle/g, '\n\n'],
+
       // Chatgpt-generated
       // What this does is wrap all blocks of text surrounded by 2+ newlines in
       //   <p> tags
@@ -109,6 +111,7 @@ module.exports = function (eleventyConfig) {
       [/``/g, '&ldquo;'],
       [/''/g, '&rdquo;'],
       [/(?:&rdquo;|")([,.])/g, (_, p1) => `${p1}&rdquo;`],
+      [/\\\w+?{.+?}/g, ''],
     ]);
 
     return content;

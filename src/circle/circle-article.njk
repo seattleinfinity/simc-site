@@ -1,0 +1,32 @@
+---
+layout: main
+pagination:
+  data: circleArticles
+  size: 1
+  alias: article
+permalink: "circle/{{ article.title | slugify }}"
+---
+
+<p><a href="/circle">&larr; All articles</a></p>
+
+<div class="flex flex-col items-center w-full">
+  <div class="max-w-3xl">
+    <h2 class="mt-2 mb-2">{{ article.title | safe }}</h2>
+
+    <div class="flex items-center justify-start gap-2 my-4">
+      {% for member in slg %}
+        {% if member.name == article.author %}
+          <img class="w-8 m-0 rounded-full" src="{{ member.photoURL }}" />
+        {% endif %}
+      {% endfor %}
+      <span class="text-neutral-500">{{ article.author }}</span>
+    </div>
+    <div class="font-serif text-lg">{{ article.body | latex | safe }}</div>
+  </div>
+</div>
+
+<style>
+  .katex {
+    font-size: 1.05em;
+  }
+</style>

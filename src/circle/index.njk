@@ -4,10 +4,19 @@ title: The Circle
 blurb: Coming soon Fall 2022.
 ---
 
-<h1>{{ title | safe }}</h1>
-
 {% md %}
-*The Circle* is our very own math-literacy magazine for K-12 students.</p>
+# {{ title | safe }}
+
+*The Circle* is our very own math-literacy magazine for K-12 students.
+
+<h3 class="mb-2">September 2023 issue</h3>
+<ol>
+{% for article in circleArticles %}
+  <li>
+    <a href="{{ article.title | slugify }}">{{ article.title }}</a> &ndash; {{ article.author }}
+  </li>
+{% endfor %}
+</ol>
 
 Our mission is to advocate for the world of math, to provide a window into its fascinating history, its distinctive culture, and its many untold stories.
 

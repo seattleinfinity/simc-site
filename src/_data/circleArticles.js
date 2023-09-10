@@ -26,19 +26,17 @@ const fetchContents = async () => {
         let body = /\\begin{document}([\s\S]+)\\end{document}/g.exec(
           content
         )[1];
-        console.log(body);
-        const author = /\\author{([\s\S]+)}/g.exec(content)[1];
-        const title = /\\title{([\s\S]+)}/g.exec(content)[1];
+        const author = /\\author{([\s\S]+?)}/g.exec(content)[1];
+        const title = /\\title{([\s\S]+?)}/g.exec(content)[1];
 
         // Replace all images
-
         body = body.replace(
           /\\begin{center}[\s\S]*?\\includegraphics.*?{(.+?)}[\s\S]*?\\end{center}/g,
           (_, url) =>
             `<img
                class="!max-w-24 !max-h-60"
                src="https://raw.githubusercontent.com/seattleinfinity/simc-circle-articles/main/${folder}/${url}"
-             />\n\n`
+             />`
         );
 
         return { body, author, title };
@@ -47,7 +45,7 @@ const fetchContents = async () => {
 
   // Extract body, title, etc.
 
-  return { articleContents };
+  return articleContents;
 };
 
 module.exports = fetchContents();

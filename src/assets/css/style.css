@@ -85,7 +85,7 @@
 
   /* Images */
   main img {
-    @apply max-h-96;
+    @apply max-w-xs;
     @apply ml-auto;
     @apply mr-auto;
   }
