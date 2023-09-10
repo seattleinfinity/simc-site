@@ -50,27 +50,40 @@ module.exports = function (eleventyConfig) {
   // Katex parsing for math
   // https://benborgers.com/posts/eleventy-katex
   eleventyConfig.addFilter('latex', (content) => {
-    let replacements = [
+    const runReplacements = (content, replacements) => {
+      for (let [og, repl] of replacements) {
+        content = content.replace(og, repl);
+      }
+      return content;
+    };
+
+    // Text replacements to do before katex rendering
+    content = runReplacements(content, [
+      // Latex syntax
       [/\\title{(.+)}/g, (_, p1) => `<h2>${p1}</h2>`],
       [/\\begin{itemize}/g, '<ol>'],
-      [/\\end{itemize}/g, '</ol>'],
-      [/\\begin{enumerate}/g, '<ul>'],
+      [/\\end{itemize}/g, '</ol>\n\n'],
+      [/\\begin{enumerate}/g, '<ul>\n\n'],
       [/\\end{enumerate}/g, '</ul>'],
-      [/\\item (.+?)\n/g, (_, p1) => `<li>${p1}</li>`],
+      [/\\item (.+?)\n/g, (_, p1) => `<li class="pl-2">${p1}</li>`],
       [/\\documentclass{.+?}/g, ''],
-      ['``', '&ldquo;'],
-      [/''/g, '&rdquo;'],
-      // [/\n+/g, '<br />'],
-      [/\\\\/g, ''],
-      ['--', '&ndash;'],
-      [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
-      [/\n+(.+?)\n+/g, (_, p1) => `<p>${p1}</p>`],
-    ];
-    for (let [og, repl] of replacements) {
-      content = content.replaceAll(og, repl);
-    }
 
-    return content
+      // Typographic things
+      [/--/g, '&mdash;'],
+      [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
+
+      // Newlines
+      [/\\\\/g, ''],
+      // Chatgpt-generated
+      // What this does is wrap all blocks of text surrounded by 2+ newlines in
+      //   <p> tags
+      [
+        /(?:^|\r\n|\r|\n){2,}([\s\S]+?)(?=(?:\r\n|\r|\n){2,}|$)/g,
+        (_, p1) => `<p>${p1}</p>\n\n`,
+      ],
+    ]);
+
+    content = content
       .replace(/\$\$(.+?)\$\$/g, (_, equation) => {
         return katex.renderToString(equation, {
           throwOnError: false,
@@ -90,6 +103,14 @@ module.exports = function (eleventyConfig) {
           inline: true,
         });
       });
+
+    content = runReplacements(content, [
+      [/``/g, '&ldquo;'],
+      [/''/g, '&rdquo;'],
+      [/(?:&rdquo;|")([,.])/g, (_, p1) => `${p1}&rdquo;`],
+    ]);
+
+    return content;
   });
 
   return {

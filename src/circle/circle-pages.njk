@@ -3,14 +3,16 @@ title: Hello
 layout: main
 ---
 
-<div class="flex flex-wrap gap-2">
-  {% for article in circleArticles.parsedData %}
+<div class="flex flex-wrap gap-4">
+  {% for article in circleArticles.articleContents %}
     <div class="card">
-      <span class="font-serif text-lg">{{ article | latex | safe }}</span>
+      <div class="font-serif text-lg">{{ article.body | latex | safe }}</div>
     </div>
   {% endfor %}
 </div>
 
-<pre class="overflow-x-scroll card">
-{{ circleArticles.rawData }}
-</pre>
+<style>
+  .katex {
+    font-size: 1.1em;
+  }
+</style>

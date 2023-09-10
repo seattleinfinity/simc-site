@@ -3,44 +3,51 @@ const EleventyFetch = require('@11ty/eleventy-fetch');
 const { GITHUB_API_KEY } = process.env;
 
 const fetchContents = async () => {
-  const url =
-    'https://api.github.com/repos/seattleinfinity/simc-slg-2023-2024-overleaf/contents/Magazines/sept23';
+  let folder = 'sept23';
+
+  const url = `https://api.github.com/repos/seattleinfinity/simc-circle-articles/contents/${folder}`;
   const data = await EleventyFetch(url, {
-    duration: '1d',
+    duration: '0s',
     type: 'json',
-    fetchOptions: {
-      method: 'GET',
-      headers: {
-        Accept: 'application/vnd.github+json',
-        Authorization: `Bearer ${GITHUB_API_KEY}`,
-      },
-    },
+    fetchOptions: { headers: { Accept: 'application/vnd.github+json' } },
   });
 
-  let parsedData = await Promise.all(
+  let articleContents = await Promise.all(
     data
       .filter((object) => object.type === 'file')
       .map(async (object) => {
-        content = await EleventyFetch(object.download_url, {
-          duration: '1d',
+        let content = await EleventyFetch(object.download_url, {
+          duration: '0s',
           type: 'text',
-          fetchOptions: {
-            headers: {
-              Accept: 'application/vnd.github+json',
-              Authorization: `Bearer ${GITHUB_API_KEY}`,
-            },
-          },
+          fetchOptions: { headers: { Accept: 'application/vnd.github+json' } },
         });
 
-        // return JSON.stringify(content, null, 2);
-        return content;
+        // Extract body, author, etc. from tex source
+        let body = /\\begin{document}([\s\S]+)\\end{document}/g.exec(
+          content
+        )[1];
+        console.log(body);
+        const author = /\\author{([\s\S]+)}/g.exec(content)[1];
+        const title = /\\title{([\s\S]+)}/g.exec(content)[1];
+
+        // Replace all images
+
+        body = body.replace(
+          /\\begin{center}[\s\S]*?\\includegraphics.*?{(.+?)}[\s\S]*?\\end{center}/g,
+          (_, url) =>
+            `<img
+               class="!max-w-24 !max-h-60"
+               src="https://raw.githubusercontent.com/seattleinfinity/simc-circle-articles/main/${folder}/${url}"
+             />\n\n`
+        );
+
+        return { body, author, title };
       })
   );
 
-  return {
-    rawData: JSON.stringify(data, null, 2),
-    parsedData: parsedData,
-  };
+  // Extract body, title, etc.
+
+  return { articleContents };
 };
 
 module.exports = fetchContents();

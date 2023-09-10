@@ -13,8 +13,8 @@
   .card {
     @apply p-8;
     @apply shadow;
-    @apply rounded-lg;
-    @apply border-2;
+    @apply rounded;
+    @apply border;
     @apply dark:border-neutral-700;
   }
 }
