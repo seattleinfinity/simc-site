@@ -10,7 +10,7 @@
 {% set canonURL = ['https://www.seattleinfinity.org', page.url ] | join %}
 <meta property="og:url" content="{{ canonURL }}" />
 
-{% set image = image or meta.site_banner %}
+{% set image = image or meta.site_logo %}
 <meta property="og:image" content="{{ image }}" />
 {# <meta name="twitter:card" content="summary_large_image"> #}
 <meta name="twitter:image:src" content="{{ image }}">

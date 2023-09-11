@@ -49,11 +49,11 @@ module.exports = function (eleventyConfig) {
 
   // Come up with blurbs
   eleventyConfig.addFilter('blurbify', (content) => {
-    const words = inputString.split(' ');
+    const words = content.trim().split(' ');
     return words.length > 50 ? words.slice(0, 50).join(' ') + '...' : content;
   });
 
-  // Come up with blurbs
+  // JSON filter for stringifying objects
   eleventyConfig.addFilter('json', (content) => {
     return JSON.stringify(content, null, 2);
   });

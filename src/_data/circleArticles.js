@@ -6,7 +6,7 @@ const fetchContents = async () => {
 
   const url = `https://api.github.com/repos/seattleinfinity/simc-circle-articles/contents/${folder}`;
   const data = await EleventyFetch(url, {
-    duration: '0s',
+    duration: '1d',
     type: 'json',
     fetchOptions: { headers: { Accept: 'application/vnd.github+json' } },
   });
@@ -16,15 +16,15 @@ const fetchContents = async () => {
       .filter((object) => object.type === 'file')
       .map(async (object) => {
         let content = await EleventyFetch(object.download_url, {
-          duration: '0s',
+          duration: '1d',
           type: 'text',
           fetchOptions: { headers: { Accept: 'application/vnd.github+json' } },
         });
 
         // Extract body, author, etc. from tex source
-        let body = /\\begin{document}([\s\S]+)\\end{document}/g.exec(
-          content
-        )[1];
+        let body = /\\begin{document}([\s\S]+)\\end{document}/g
+          .exec(content)[1]
+          .replace(/\\maketitle\s*|\\section{.+?}\s*/, '');
         const author = /\\author{([\s\S]+?)}/g.exec(content)[1];
         const title = /\\title{([\s\S]+?)}/g.exec(content)[1];
 

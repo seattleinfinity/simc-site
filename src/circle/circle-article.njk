@@ -5,6 +5,9 @@ pagination:
   size: 1
   alias: article
 permalink: "circle/{{ article.title | slugify }}.html"
+eleventyComputed:
+  title: "{{ article.title }}"
+  blurb: "{{ article.body | blurbify }}"
 ---
 
 {% macro allArticles() %}
@@ -28,7 +31,7 @@ permalink: "circle/{{ article.title | slugify }}.html"
 
     <h1 class="mt-2 mb-2 text-4xl sm:text-6xl">{{ article.title | safe }}</h1>
     <div class="my-4">{{ byline() }}</div>
-    <div class="font-serif text-xl">{{ article.body | latex | safe }}</div>
+    <div class="font-serif text-lg">{{ article.body | latex | safe }}</div>
 
     <div class="border-t border-b my-4 py-4 px-4">
       <span class="mb-2 block font-bold">Author</span>
