@@ -124,9 +124,10 @@
   }
 }
 
+/* Flip cards for SLG page */
 .flip-container {
   perspective: 1000px;
-  height: 120px;
+  height: 140px;
   transition: 0.3s;
 }
 
