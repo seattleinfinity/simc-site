@@ -1,6 +1,5 @@
 // This should probably be scoped down to just src/circle when we get the chance
 const EleventyFetch = require('@11ty/eleventy-fetch');
-const { GITHUB_API_KEY } = process.env;
 
 const fetchContents = async () => {
   let folder = 'sept23';

@@ -2,7 +2,7 @@
 
 Revamped website for the Seattle Infinity Math Circle. The current site is at [www.seattleinfinity.org](https://www.seattleinfinity.org). This new site can be viewed at [seattleinfinity.netlify.app](https://seattleinfinity.netlify.app).
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/e73a75a8-f560-4156-b66d-847a7a892347/deploy-status)](https://app.netlify.com/sites/seattleinfinity/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/016843a2-c554-4a5b-92d6-4a41605870fe/deploy-status)](https://app.netlify.com/sites/seattleinfinity/deploys)
 
 Since this documentation is pretty incomplete, **please bug William with questions** and eventually he will either explain and write documentation.
 
@@ -66,14 +66,10 @@ Developing locally with Decap requires:
 ### Local development
 
 1. Install [Node](https://nodejs.org/en/)
-2. Create a `.env` file in the project root and add a Github API key, needed for pulling Circle articles:
-   ```env
-   GITHUB_API_KEY=...
-   ```
-3. Install all dependencies with `npm install` (or your package manager of choice)
-4. To run the development server, use `npm run dev` and follow the instructions in terminal
+2. Install all dependencies with `npm install` (or your package manager of choice)
+3. To run the development server, use `npm run dev` and follow the instructions in terminal
    - Site should be live at `http://localhost:8080/`
-5. To build the site, use `npm run build`
+4. To build the site, use `npm run build`
 
 ### Writing content
 
