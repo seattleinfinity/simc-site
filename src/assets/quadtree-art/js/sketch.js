@@ -8,8 +8,8 @@ let sketchContainer = document.querySelector('#sketch-container');
 
 window.setup = () => {
   const canvas = createCanvas(
-    sketchContainer.parentElement.parentElement.offsetWidth,
-    sketchContainer.parentElement.parentElement.offsetHeight
+    sketchContainer.parentElement.offsetWidth,
+    sketchContainer.parentElement.offsetHeight
   );
   canvas.parent(sketchContainer);
   pixelDensity(1);

@@ -29,8 +29,6 @@
 
   {# I'm not sure why z-0 is needed #}
   <body class="flex flex-col items-center relative z-0 min-h-full text-black dark:text-white bg-white dark:bg-neutral-900">
-    {% include 'partials/navbar.njk' %}
-
     {% block content %}{% endblock %}
 
     {% include 'partials/footer.njk' %}
