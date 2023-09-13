@@ -7,7 +7,7 @@ pagination:
 permalink: "circle/{{ article.issue | slugify }}/{{ article.title | slugify }}/index.html"
 eleventyComputed:
   title: "{{ article.title | safe }}"
-  blurb: "{{ article.body | blurbify }}"
+  blurb: "{{ article.blurb | safe }}"
 ---
 
 {% macro allArticles() %}

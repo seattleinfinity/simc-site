@@ -18,6 +18,11 @@ const fetchContents = async () => {
     await EleventyFetch(contentsURL, eleventyFetchOptions('json'))
   ).map((dir) => dir.name);
 
+  const blurbify = (content) => {
+    const words = content.trim().split(' ');
+    return words.length > 50 ? words.slice(0, 50).join(' ') + '...' : content;
+  };
+
   const articlesByIssue = await Promise.all(
     allIssues.map(async (issueName) => {
       const url = `${contentsURL}/${issueName}`;
@@ -39,6 +44,10 @@ const fetchContents = async () => {
             const author = /\\author{([\s\S]+?)}/g.exec(content)[1];
             const title = /\\title{([\s\S]+?)}/g.exec(content)[1];
 
+            let blurb = /\\blurb{(.+?)}/g.exec(content);
+            console.log(blurb);
+            blurb = blurb ? blurb[1] : blurbify(body);
+
             // Replace all images
             body = body.replace(
               /(?:\\begin{center})?\s*\\includegraphics(?:\[.*?(?:width=(.+))?.*?\])?{(.+?)}\s*(?:\\end{center})?/g,
@@ -54,7 +63,7 @@ const fetchContents = async () => {
               }
             );
 
-            return { body, author, title, issue: issueName };
+            return { body, author, title, issue: issueName, blurb };
           })
       );
 
