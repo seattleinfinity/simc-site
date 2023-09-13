@@ -30,12 +30,14 @@ const fetchContents = async () => {
 
         // Replace all images
         body = body.replace(
-          /\\begin{center}[\s\S]*?\\includegraphics.*?{(.+?)}[\s\S]*?\\end{center}/g,
-          (_, url) =>
-            `<img
-               class="!max-w-24 !max-h-60"
-               src="https://raw.githubusercontent.com/seattleinfinity/simc-circle-articles/main/${folder}/${url}"
-             />`
+          /\\begin{center}[\s\S]*?\\includegraphics(?:.*?width=(.+?)[,\]].*?)?{(.+?)}[\s\S]*?\\end{center}/g,
+          (_, width, url) => {
+            if (width) widthProp = ` style="width=${width}"`;
+            return `<img
+                      src="https://raw.githubusercontent.com/seattleinfinity/simc-circle-articles/main/${folder}/${url}"\
+                      ${widthProp}
+                    />`;
+          }
         );
 
         return { body, author, title };
