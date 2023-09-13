@@ -4,7 +4,7 @@ pagination:
   data: circleArticles.articlesArray
   size: 1
   alias: article
-permalink: "circle/{{ article.title | slugify }}.html"
+permalink: "circle/{{ article.issue | slugify }}/{{ article.title | slugify }}/index.html"
 eleventyComputed:
   title: "{{ article.title | safe }}"
   blurb: "{{ article.body | blurbify }}"

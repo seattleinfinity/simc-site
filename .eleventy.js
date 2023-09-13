@@ -79,11 +79,15 @@ module.exports = function (eleventyConfig) {
       [/\\item (.+?)\n/g, (_, p1) => `<li class="pl-2">${p1}</li>`],
       [/\\begin{align\*?}/g, '\\[\\begin{aligned}'],
       [/\\end{align\*?}/g, '\\end{aligned}\\]'],
+      [
+        /\\href{(.+?)}{(.+?)}/g,
+        (_, url, text) => `<a href="${url}" target="_blank">${text}</a>`,
+      ],
 
       // Typographic things
       [/--/g, '&mdash;'],
       [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
-      [/\\\]\./g, '.\\]'],
+      [/\\\]\./g, '.\\]'], // Put periods *inside* of display equations
 
       // Chatgpt-generated
       // What this does is wrap all blocks of text surrounded by 2+ newlines in
@@ -124,7 +128,7 @@ module.exports = function (eleventyConfig) {
       [/``/g, '&ldquo;'],
       [/''/g, '&rdquo;'],
       [/(?:&rdquo;|")([,.])/g, (_, p1) => `${p1}&rdquo;`],
-      [/\\\w+?{.+?}/g, ''],
+      // [/\\\w+?{(.+?)?}/g, (_, p1) => p1],
     ]);
 
     return content;

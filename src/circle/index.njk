@@ -13,7 +13,7 @@ blurb: SIMC's very own math-literacy magazine for K-12 students.
 <ol>
 {% for article in circleArticles.articlesArray %}
   <li>
-    <a href="{{ article.title | slugify }}">{{ article.title }}</a> &ndash; {{ article.author }}
+    <a href="{{ article.issue | slugify }}/{{ article.title | slugify }}">{{ article.title }}</a> &ndash; {{ article.author }}
   </li>
 {% endfor %}
 </ol>

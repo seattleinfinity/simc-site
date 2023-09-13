@@ -43,20 +43,18 @@ const fetchContents = async () => {
             body = body.replace(
               /(?:\\begin{center})?\s*\\includegraphics(?:\[.*?(?:width=(.+))?.*?\])?{(.+?)}\s*(?:\\end{center})?/g,
               (_, width, url) => {
+                // Extract width from \includegraphics syntax
                 let widthProp = width ? `style="width: ${width}"` : '';
-                if (author === 'Joyce Huang') {
-                  console.log(title, width);
-                }
-
                 let classProp = !width ? 'class="max-w-xs max-h-72"' : '';
 
+                // Set up image source
                 let ghImgBase =
                   'https://raw.githubusercontent.com/seattleinfinity/simc-circle-articles/main';
                 return `\n\n<img src="${ghImgBase}/${issueName}/${url}" ${widthProp} ${classProp} />\n\n`;
               }
             );
 
-            return { body, author, title, issueName };
+            return { body, author, title, issue: issueName };
           })
       );
 
