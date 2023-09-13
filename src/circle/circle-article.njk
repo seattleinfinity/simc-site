@@ -1,12 +1,12 @@
 ---
 layout: main
 pagination:
-  data: circleArticles
+  data: circleArticles.articlesArray
   size: 1
   alias: article
 permalink: "circle/{{ article.title | slugify }}.html"
 eleventyComputed:
-  title: "{{ article.title }}"
+  title: "{{ article.title | safe }}"
   blurb: "{{ article.body | blurbify }}"
 ---
 
@@ -18,7 +18,7 @@ eleventyComputed:
   <div class="flex items-center justify-start gap-2">    
     {% for member in slg %}
       {% if member.name == article.author %}
-        <img class="w-8 m-0 rounded-full" src="{{ member.photoURL }}" />
+        <img class="w-8 h-8 object-cover m-0 rounded-full" src="{{ member.photoURL }}" />
       {% endif %}
     {% endfor %}
     <span class="text-neutral-500">{{ article.author }}</span>
@@ -44,6 +44,6 @@ eleventyComputed:
 
 <style>
   .katex {
-    font-size: 1.05em;
+    font-size: 1.1em;
   }
 </style>

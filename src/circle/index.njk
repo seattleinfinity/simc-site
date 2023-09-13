@@ -9,9 +9,9 @@ blurb: SIMC's very own math-literacy magazine for K-12 students.
 
 *The Circle* is our very own math-literacy magazine for K-12 students.
 
-<h3 class="mb-2">September 2023 issue</h3>
+<h3 class="mb-2">Issues</h3>
 <ol>
-{% for article in circleArticles %}
+{% for article in circleArticles.articlesArray %}
   <li>
     <a href="{{ article.title | slugify }}">{{ article.title }}</a> &ndash; {{ article.author }}
   </li>

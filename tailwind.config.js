@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: 'jit',
-  content: ['.eleventy.js', './src/**/*.njk', './src/**/*.md', './src/**/*.js'],
+  content: ['_site/**/*.html'],
   theme: {
     extend: {
       fontFamily: {

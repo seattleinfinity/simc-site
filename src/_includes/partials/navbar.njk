@@ -1,10 +1,10 @@
 <script src="/assets/js/navbar.js" defer></script>
 
-<nav class="flex flex-col items-center self-start z-10 w-full py-4 bg-neutral-900 dark:bg-black">
+<nav class="flex flex-col items-center self-start z-10 w-full bg-neutral-900 dark:bg-black">
   {# This second layer is above the nav, which contains a background #}
   <div class="flex items-center justify-end grow w-full max-w-6xl px-6">
     {# Brand #}
-    <li class="flex items-center mr-auto text-white">
+    <li class="flex items-center mr-auto text-white py-3">
       <img alt="SIMC logo" src="/assets/images/logo/simc_logo_square.svg" width="30px" class="rounded-lg mr-3">
       <a href="/">SIMC</a>
     </li>
@@ -21,7 +21,7 @@
     {# Main desktop menu #}
     <ul class="hidden md:flex items-center self-stretch">
       {% for item in navbar %}
-        <li class="h-full {{ 'text-white' if item.url in page.url else 'text-neutral-400' }} hover:text-white hover:bg-neutral-800 transition-all">
+        <li class="h-full py-4 {{ 'text-white' if item.url in page.url else 'text-neutral-400' }} hover:text-white hover:bg-neutral-800 transition-all">
           <a href="{{ item.url }}" class="flex items-center h-full px-4">{{ item.title }}</a>
         </li>
       {% endfor %}
@@ -30,7 +30,7 @@
 
   {# Mobile menu needs to be separate #}
   {# This can probably also be made less redundant #}
-  <div class="mobile-menu max-h-0 overflow-hidden items-start absolute top-14 z-10 w-full md:hidden bg-neutral-900 dark:bg-black transition-all duration-500">
+  <div class="mobile-menu max-h-0 overflow-hidden items-start absolute top-12 z-10 w-full md:hidden bg-neutral-900 dark:bg-black transition-all duration-500">
     <ul class="flex flex-col my-2">
       {% for item in navbar %}
         <li class="flex text-white">
