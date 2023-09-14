@@ -1,6 +1,6 @@
 // This should probably be scoped down to just src/circle when we get the chance
 const EleventyFetch = require('@11ty/eleventy-fetch');
-const { blurbify } = require('../utils/filters.js');
+const { blurbify, latexFilter } = require('../utils/filters.js');
 
 const eleventyFetchOptions = (type) => {
   return {
@@ -19,8 +19,33 @@ const fetchContents = async () => {
     await EleventyFetch(contentsURL, eleventyFetchOptions('json'))
   ).map((dir) => dir.name);
 
-  const articlesByIssue = await Promise.all(
+  let articlesByIssue = await Promise.all(
     allIssues.map(async (issueName) => {
+      // Get the full name of this issue (e.g. "nov22" -> "November 2022")
+      const [_, monthAbbrev, year] = /^([a-zA-Z]+)(\d+)$/g.exec(issueName);
+      const monthNames = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ];
+      const monthIndex = monthNames.findIndex((x) =>
+        x.toLowerCase().startsWith(monthAbbrev)
+      );
+      const issueFullName = `${monthNames[monthIndex]} 20${year}`;
+      const issueDate = `20${year}-${(monthIndex + 1)
+        .toString()
+        .padStart(2, '0')}`;
+
+      // Get contents
       const url = `${contentsURL}/${issueName}`;
       const data = await EleventyFetch(url, eleventyFetchOptions('json'));
 
@@ -58,16 +83,39 @@ const fetchContents = async () => {
               }
             );
 
-            return { body, author, title, issue: issueName, blurb };
+            // Render the latex
+            body = latexFilter(body);
+
+            // Get a cover image
+            let coverImage = /<img src="(.+?)"/g.exec(body);
+            coverImage = coverImage ? coverImage[1] : '';
+
+            return {
+              body,
+              author,
+              title,
+              coverImage,
+              issue: issueName,
+              issueFullName,
+              blurb,
+            };
           })
       );
 
-      return articles;
+      return { issue: issueName, issueDate, issueFullName, articles };
     })
   );
 
   // Combine them in one big array
-  articlesArray = Array.from(Object.values(articlesByIssue)).flat(1);
+  // This is necessary for Eleventy's pagination
+  articlesArray = Array.from(Object.values(articlesByIssue))
+    .map((issue) => issue.articles)
+    .flat(1);
+
+  // Sort issues by date (descending)
+  articlesByIssue = articlesByIssue.sort((a, b) => {
+    return a.issueDate < b.issueDate ? 1 : -1;
+  });
 
   return { articlesByIssue, articlesArray };
 };

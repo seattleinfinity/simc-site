@@ -4,21 +4,46 @@ title: The Circle
 blurb: SIMC's very own math-literacy magazine for K-12 students.
 ---
 
-{% md %}
-# {{ title | safe }}
+{% import './circle-macros.njk' as circleMacros with context %}
 
-*The Circle* is our very own math-literacy magazine for K-12 students.
+<h1>{{ title | safe }}</h1>
 
-<h3 class="mb-2">Issues</h3>
-<ol>
-{% for article in circleArticles.articlesArray %}
-  <li>
-    <a href="{{ article.issue | slugify }}/{{ article.title | slugify }}">{{ article.title }}</a> &ndash; {{ article.author }}
-  </li>
+<i>The Circle</i> is our very own math-literacy magazine for K-12 students. Our mission is to advocate for the world of math, to provide a window into its fascinating history, its distinctive culture, and its many untold stories.
+
+{% macro articleCard(article) %}
+<a
+  class="card p-0 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+  href="/circle/{{ article.issue | slugify }}/{{ article.title | slugify }}"
+>
+  <div>
+    {% if article.coverImage %}
+      <img class="w-full h-32 m-0 object-cover" src="{{ article.coverImage }}" />
+    {% endif %}
+    <div class="flex flex-col gap-2 px-6 py-4 -mb-2">
+      <h4 class="text-black dark:text-white font-bold">{{ article.title }}</h4>
+      {{ circleMacros.byline(article.author) | safe }}
+      {% md %}{{ article.blurb | safe }}{% endmd %}
+    </div>
+  </div>
+</a>
+{% endmacro %}
+
+<div class="flex flex-col w-full my-4 gap-4">
+{% for issue in circleArticles.articlesByIssue %}
+  <div>
+    <h2 class="my-4 mb-4">{{ issue.issueFullName }}</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {% for article in issue.articles %}
+        {{ articleCard(article) }}
+      {% endfor %}
+    </div>
+  </div>
 {% endfor %}
-</ol>
+</div>
 
-Our mission is to advocate for the world of math, to provide a window into its fascinating history, its distinctive culture, and its many untold stories.
+
+{% md %}
+Before we published *The Circle* via website, we used to publish via PDF. Here are the old issues:
 
 - [Volume 1](https://drive.google.com/file/d/1YkCJ6wzRLFq8B0Sp0_v_3-Id7yRrj8wc/view?usp=drive_link) (Summer 2022)
 - [Volume 2](https://drive.google.com/file/d/1L7U52X1tzT849efnGCjm0pR-BpMnvdne/view?usp=drive_link) (Summer 2022)

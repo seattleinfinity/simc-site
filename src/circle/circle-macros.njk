@@ -1,0 +1,10 @@
+{% macro byline(author) %}
+<div class="flex items-center justify-start gap-2">
+  {% for member in slg %}
+    {% if member.name == author %}
+      <img class="w-8 h-8 object-cover m-0 rounded-full" src="{{ member.photoURL }}" />
+    {% endif %}
+  {% endfor %}
+  <span class="text-neutral-500 dark:text-neutral-200">{{ author }}</span>
+</div>
+{% endmacro %}
