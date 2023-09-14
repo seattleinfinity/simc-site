@@ -21,8 +21,8 @@ blurb: Our goal is to inspire students to engage in mathematics and expand their
 {% endblock %}
 
 {% block content %}
-<div class="flex flex-col w-full h-screen overflow-hidden bg-black">
-  {% include 'partials/navbar.njk' %}
+<div class="flex flex-col w-full h-screen bg-black">
+  <div class="fixed top-0 z-10 w-full">{% include 'partials/navbar.njk' %}</div>
 
   <div class="relative flex flex-col items-center justify-center h-full" id="quadtree-content">
     {% include 'partials/quadtree-art/quadtree-art.njk' %}

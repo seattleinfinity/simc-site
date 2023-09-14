@@ -45,7 +45,6 @@ const fetchContents = async () => {
             const title = /\\title{([\s\S]+?)}/g.exec(content)[1];
 
             let blurb = /\\blurb{(.+?)}/g.exec(content);
-            console.log(blurb);
             blurb = blurb ? blurb[1] : blurbify(body);
 
             // Replace all images
