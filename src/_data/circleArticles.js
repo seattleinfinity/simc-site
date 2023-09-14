@@ -4,7 +4,7 @@ const { blurbify, latexFilter } = require('../utils/filters.js');
 
 const eleventyFetchOptions = (type) => {
   return {
-    duration: '0s',
+    duration: '1s',
     type: type,
     fetchOptions: { headers: { Accept: 'application/vnd.github+json' } },
   };

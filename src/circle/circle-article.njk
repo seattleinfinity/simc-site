@@ -25,7 +25,7 @@ eleventyComputed:
       <p class="mb-2">{{ article.issueFullName }}</p>
       {{ circleMacros.byline(article.author) }}
     </div>
-    <div class="font-serif text-lg">{{ article.body | safe }}</div>
+    <div class="font-serif text-lg lining-nums">{{ article.body | safe }}</div>
 
     <div class="border-t border-b my-4 py-4 px-4">
       <span class="mb-2 block font-bold">Author</span>

@@ -34,6 +34,10 @@ const latexFilter = (content) => {
       /\\href{(.+?)}{(.+?)}/g,
       (_, url, text) => `<a href="${url}" target="_blank">${text}</a>`,
     ],
+    [
+      /\\subsection{(.+?)}\n/g,
+      (_, p1) => `<h3 class="mt-4 text-2xl">${p1}</h3>\n\n`,
+    ],
 
     // Typographic things
     [/--/g, '&mdash;'],
@@ -78,7 +82,7 @@ const latexFilter = (content) => {
     // Typography
     [/``/g, '&ldquo;'],
     [/''/g, '&rdquo;'],
-    [/(?:&rdquo;|")([,.])/g, (_, p1) => `${p1}&rdquo;`],
+    [/(?:[a-zA-Z](?:&rdquo;|"))([,.])/g, (_, p1) => `${p1}"`], // Put periods, commas *inside* quotes
     // [/\\\w+?{(.+?)?}/g, (_, p1) => p1],
   ]);
 
