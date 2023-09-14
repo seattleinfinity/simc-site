@@ -12,7 +12,7 @@ blurb: SIMC's very own math-literacy magazine for K-12 students.
 
 {% macro articleCard(article) %}
 <a
-  class="card p-0 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+  class="md:card border-y !p-0 overflow-clip hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
   href="/circle/{{ article.issue | slugify }}/{{ article.title | slugify }}"
 >
   <div>
@@ -32,7 +32,7 @@ blurb: SIMC's very own math-literacy magazine for K-12 students.
 {% for issue in circleArticles.articlesByIssue %}
   <div>
     <h2 class="my-4 mb-4">{{ issue.issueFullName }}</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 md:gap-4 border-y md:border-none">
       {% for article in issue.articles %}
         {{ articleCard(article) }}
       {% endfor %}
