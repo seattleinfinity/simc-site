@@ -1,5 +1,6 @@
 // This should probably be scoped down to just src/circle when we get the chance
 const EleventyFetch = require('@11ty/eleventy-fetch');
+const { blurbify } = require('../utils/filters.js');
 
 const eleventyFetchOptions = (type) => {
   return {
@@ -17,11 +18,6 @@ const fetchContents = async () => {
   const allIssues = (
     await EleventyFetch(contentsURL, eleventyFetchOptions('json'))
   ).map((dir) => dir.name);
-
-  const blurbify = (content) => {
-    const words = content.trim().split(' ');
-    return words.length > 50 ? words.slice(0, 50).join(' ') + '...' : content;
-  };
 
   const articlesByIssue = await Promise.all(
     allIssues.map(async (issueName) => {
