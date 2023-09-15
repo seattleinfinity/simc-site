@@ -6,8 +6,11 @@ const katex = require('katex');
 
 // Blurbify a piece of text (extract first 50 words)
 const blurbify = (content) => {
+  let nwords = 20;
   const words = content.trim().split(' ');
-  return words.length > 50 ? words.slice(0, 50).join(' ') + '...' : content;
+  return words.length > nwords
+    ? words.slice(0, nwords).join(' ') + '...'
+    : content;
 };
 
 // Replace tex source with HTML.
@@ -82,7 +85,8 @@ const latexFilter = (content) => {
     // Typography
     [/``/g, '&ldquo;'],
     [/''/g, '&rdquo;'],
-    [/(?:[a-zA-Z](?:&rdquo;|"))([,.])/g, (_, p1) => `${p1}"`], // Put periods, commas *inside* quotes
+    [/“/g, '"'], // Rip existing fancy quotes
+    [/(?<=[a-zA-Z])(?:&rdquo;|"|”)([,.])/g, (_, p1) => `${p1}"`], // Put periods, commas *inside* quotes
     // [/\\\w+?{(.+?)?}/g, (_, p1) => p1],
   ]);
 

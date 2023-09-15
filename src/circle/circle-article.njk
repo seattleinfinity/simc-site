@@ -8,6 +8,7 @@ permalink: "circle/{{ article.issue | slugify }}/{{ article.title | slugify }}/i
 eleventyComputed:
   title: "{{ article.title | safe }}"
   blurb: "{{ article.blurb | safe }}"
+  image: "{{ article.coverImage | safe }}"
 ---
 
 {% import './circle-macros.njk' as circleMacros with context %}
@@ -20,7 +21,7 @@ eleventyComputed:
   <div class="max-w-3xl pt-16">
     {{ allArticles() }}
 
-    <h1 class="mt-2 mb-2 text-4xl sm:text-6xl">{{ article.title | safe }}</h1>
+    <h1 class="mt-2 mb-4 text-4xl sm:text-6xl">{{ article.title | safe }}</h1>
     <div class="mt-2 mb-4 text-neutral-500 dark:text-neutral-200">      
       <p class="mb-2">{{ article.issueFullName }}</p>
       {{ circleMacros.byline(article.author) }}
