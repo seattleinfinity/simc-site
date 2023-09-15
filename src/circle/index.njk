@@ -7,12 +7,11 @@ blurb: SIMC's very own math-literacy magazine for K-12 students.
 {% import './circle-macros.njk' as circleMacros with context %}
 
 <h1>{{ title | safe }}</h1>
-
 <i>The Circle</i> is our very own math-literacy magazine for K-12 students. Our mission is to advocate for the world of math, to provide a window into its fascinating history, its distinctive culture, and its many untold stories.
 
 {% macro articleCard(article) %}
 <a
-  class="md:card border-y !p-0 overflow-clip hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+  class="md:border-none border-y !p-0 overflow-clip hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
   href="/circle/{{ article.issue | slugify }}/{{ article.title | slugify }}"
 >
   <div>

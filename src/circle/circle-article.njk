@@ -22,9 +22,8 @@ eleventyComputed:
     {{ allArticles() }}
 
     <h1 class="mt-2 mb-4 text-4xl sm:text-6xl">{{ article.title | safe }}</h1>
-    <div class="mt-2 mb-4 text-neutral-500 dark:text-neutral-200">      
-      <p class="mb-2">{{ article.issueFullName }}</p>
-      {{ circleMacros.byline(article.author) }}
+    <div class="flex items-center gap-2 ml-2 mt-2 mb-4 text-neutral-500 dark:text-neutral-200">
+      {{ circleMacros.byline(article.author) }} &bull; <span>{{ article.issueFullName }}</span>
     </div>
     <div class="font-serif text-lg lining-nums">{{ article.body | safe }}</div>
 

@@ -1,17 +1,19 @@
 {% from 'partials/article-preview.njk' import articlePreview %}
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-0 sm:gap-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-4 border-y md:border-none">
   {% set articles = collections.press_release | sort(true, true, 'date') %}
   {% for article in articles %}
-    {% if (article.data.image) %}
-      {{ articlePreview(
-          article.data.title,
-          article.data.date,
-          article.data.blurb,
-          article.data.image,
-          article.url,
-          loop.index0
-        ) }}
+    {% if (article.data.date) %}
+      <div class="border-y md:border-none">
+        {{ articlePreview(
+            article.data.title,
+            article.data.date,
+            article.data.blurb,
+            article.data.image,
+            article.url,
+            loop.index0
+          ) }}
+      </div>
     {% endif %}
   {% endfor %}
 </div>

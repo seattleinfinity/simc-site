@@ -41,6 +41,7 @@ const latexFilter = (content) => {
       /\\subsection{(.+?)}\n/g,
       (_, p1) => `<h3 class="mt-4 text-2xl">${p1}</h3>\n\n`,
     ],
+    [/\\emph{(.+?)}/g, (_, p1) => `<b>${p1}</b>`],
 
     // Typographic things
     [/--/g, '&mdash;'],
