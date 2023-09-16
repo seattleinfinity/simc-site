@@ -24,6 +24,14 @@ const latexFilter = (content) => {
 
   // Text replacements to do before katex rendering
   content = runReplacements(content, [
+    // Typographic things
+    [/--/g, '&mdash;'],
+    [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
+    [/\\\]\./g, '.\\]'], // Put periods *inside* of display equations
+    [/(``)|('')|“|”/g, '"'],
+    [/(?<=[a-zA-Z])"([,.])/g, (_, p1) => `${p1}"`], // Put periods, commas *inside* quotes
+    [/"([^"]+)?"/g, (_, p1) => `“${p1}”`], // Makes fancy quotes
+
     // Latex syntax
     [/\\title{(.+)}/g, (_, p1) => `<h2>${p1}</h2>`],
     [/\\begin{itemize}/g, '<ol>'],
@@ -41,16 +49,7 @@ const latexFilter = (content) => {
       /\\subsection{(.+?)}\n/g,
       (_, p1) => `<h3 class="mt-4 text-2xl">${p1}</h3>\n\n`,
     ],
-    [/\\emph{(.+?)}/g, (_, p1) => `<b>${p1}</b>`],
-
-    // Typographic things
-    [/--/g, '&mdash;'],
     [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
-    [/\\\]\./g, '.\\]'], // Put periods *inside* of display equations
-    [/(``)|('')|“|”/g, '"'],
-    [/(?<=[a-zA-Z])"([,.])/g, (_, p1) => `${p1}"`], // Put periods, commas *inside* quotes
-    [/"([^"]+)?"/g, (_, p1) => `“${p1}”`], // Makes fancy quotes
-
     // Chatgpt-generated
     // What this does is wrap all blocks of text surrounded by 2+ newlines in
     //   <p> tags

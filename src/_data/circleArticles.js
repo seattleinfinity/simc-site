@@ -68,6 +68,11 @@ const fetchContents = async () => {
             let blurb = /\\blurb{(.+?)}/g.exec(content);
             blurb = blurb ? blurb[1] : blurbify(body);
 
+            let epigraph = /\\epigraph{(.+?)}{(.+)}/g.exec(content);
+            epigraph = epigraph
+              ? epigraph.slice(1, 3).map((x) => latexFilter(x))
+              : '';
+
             // Render the latex
             body = latexFilter(body);
 
@@ -98,6 +103,7 @@ const fetchContents = async () => {
               issue: issueName,
               issueFullName,
               blurb,
+              epigraph,
             };
           })
       );

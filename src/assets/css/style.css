@@ -76,7 +76,7 @@
     @apply mb-0;
   }
 
-  p {
+  .paragraphs p {
     @apply mb-3;
   }
 

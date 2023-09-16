@@ -23,11 +23,26 @@ eleventyComputed:
 
     <div class="font-serif">
       {# Actual content (title, author, body) #}
-      <h1 class="mt-2 mb-4 text-4xl sm:text-6xl">{{ article.title | safe }}</h1>
-      <div class="flex items-center gap-2 mt-2 mb-4 text-neutral-500 dark:text-neutral-200">
+      <h1 class="mt-2 mb-4 text-4xl sm:text-5xl">{{ article.title | safe }}</h1>
+      <div class="flex items-center flex-wrap gap-x-2 mt-2 mb-4 text-neutral-500 dark:text-neutral-200">
         {{ circleMacros.byline(article.author) }} &bull; <span>{{ article.issueFullName }}</span>
       </div>
-      <div class="text-lg lining-nums">{{ article.body | safe }}</div>
+
+      {# Epigraph #}
+      {% if article.epigraph %}
+        <div class="flex justify-end my-4"> {# text-neutral-500 dark:text-neutral-300 #}
+          <div class="flex flex-col max-w-sm">
+            <span class="text text-end">
+              {{ article.epigraph[0] | safe }}
+            </span>
+            <hr class="w-full border-black my-1" />
+            <span class="self-end">{{ article.epigraph[1] | safe }}</span>
+          </div>
+        </div>
+      {% endif %}
+
+      {# Actual article body #}
+      <div class="paragraphs text-lg lining-nums">{{ article.body | safe }}</div>
     </div>
 
     <div class="border-t border-b my-4 py-4 px-4">

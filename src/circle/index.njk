@@ -31,7 +31,7 @@ blurb: SIMC's very own math-literacy magazine for K-12 students.
 {% for issue in circleArticles.articlesByIssue %}
   <div>
     <h2 class="my-4 mb-4">{{ issue.issueFullName }}</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 md:gap-y-6 md:gap-x-4 border-y md:border-none">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 md:gap-y-6 md:gap-x-4">
       {% for article in issue.articles %}
         {{ articleCard(article) }}
       {% endfor %}
