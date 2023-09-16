@@ -12,7 +12,12 @@ title: Student Leadership Group
   <div class="flex flex-col items-start" data-aos="fade-up" data-aos-delay="{{ (index % 3) * 50 }}">
     {# Photo #}
     <div class="self-center rounded-full bg-neutral-200 animate-pulse">
-      <img src="{{ photoURL }}" alt="Photo of {{ name }}" onload="this.parentElement.classList.remove('animate-pulse')" class="object-cover rounded-full w-32 h-32 aspect-square shadow-lg bg-white dark:bg-black hover:scale-110 transition-all duration-500">
+      <img
+        src="{{ photoURL }}"
+        alt="Photo of {{ name }}"
+        onload="this.parentElement.classList.remove('animate-pulse')"
+        class="object-cover rounded-full w-32 h-32 aspect-square shadow-lg bg-white dark:bg-black hover:scale-110 transition-all duration-500"
+      >
     </div>
 
     {# Content #}
@@ -33,7 +38,7 @@ title: Student Leadership Group
 {# Main content #}
 {% block main %}
   <h1>{{ title }}</h1>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-12">
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-12">
     {% for person in slg %}
       {{ personCard(person.name, person.title, person.bio, person.photoURL, loop.index0) }}
     {% endfor %}
