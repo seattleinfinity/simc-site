@@ -14,7 +14,7 @@ layout: main
       <p class="text-neutral-600 dark:text-neutral-300">{{ date | dateFormat }}</p>
       <img src="{{ image }}" alt="Cover image" class="object-cover w-full max-h-[30rem] mb-4" />
     </div>
-    {{ content | safe }}
+    <div class="paragraphs">{{ content | safe }}</div>
   </main>
 
   {# Other articles #}

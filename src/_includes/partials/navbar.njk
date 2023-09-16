@@ -2,7 +2,7 @@
 
 <nav class="flex flex-col items-center self-start z-10 w-full bg-neutral-900 dark:bg-black">
   {# This second layer is above the nav, which contains a background #}
-  <div class="flex items-center justify-end grow w-full max-w-6xl px-6">
+  <div class="flex items-center justify-end grow w-full max-w-6xl px-6 gap-x-4">
     {# Brand #}
     <li class="flex items-center mr-auto text-white py-3">
       <img alt="SIMC logo" src="/assets/images/logo/simc_logo_square.svg" width="30px" class="rounded-lg mr-3">
@@ -19,9 +19,9 @@
     </div>
 
     {# Main desktop menu #}
-    <ul class="hidden md:flex items-center self-stretch">
+    <ul class="hidden md:flex flex-wrap items-center self-stretch">
       {% for item in navbar %}
-        <li class="h-full {{ 'text-white' if item.url in page.url else 'text-neutral-400' }} hover:text-white hover:bg-neutral-800 transition-all">
+        <li class="h-12 {{ 'text-white' if item.url in page.url else 'text-neutral-400' }} hover:text-white hover:bg-neutral-800 transition-all">
           <a href="{{ item.url }}" class="flex items-center h-full px-4 py-4">{{ item.title }}</a>
         </li>
       {% endfor %}

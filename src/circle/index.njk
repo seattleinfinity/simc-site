@@ -11,14 +11,14 @@ blurb: SIMC's very own math-literacy magazine for K-12 students.
 
 {% macro articleCard(article) %}
 <a
-  class="md:border-none border-y !p-4 overflow-clip hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+  class="px-0 py-4 sm:px-4 overflow-clip sm:hover:bg-neutral-100 sm:dark:hover:bg-neutral-700 transition-colors"
   href="/circle/{{ article.issue | slugify }}/{{ article.title | slugify }}"
 >
   <div>
     {% if article.coverImage %}
-      <img class="w-full h-60 mb-4 md:mb-2 dark:bg-white object-cover" src="{{ article.coverImage }}" />
+      <img class="w-full h-60 mb-4 sm:mb-2 dark:bg-white object-cover" src="{{ article.coverImage }}" />
     {% endif %}
-    <div class="flex flex-col gap-2 -mb-2">
+    <div class="flex flex-col gap-2">
       <h4 class="text-black dark:text-white font-bold">{{ article.title }}</h4>
       {{ circleMacros.byline(article.author) | safe }}
       {% md %}{{ article.blurb | safe }}{% endmd %}
@@ -31,7 +31,7 @@ blurb: SIMC's very own math-literacy magazine for K-12 students.
 {% for issue in circleArticles.articlesByIssue %}
   <div>
     <h2 class="my-4 mb-4">{{ issue.issueFullName }}</h2>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 md:gap-y-6 md:gap-x-4">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-y-6 sm:gap-x-4 divide-y-2 sm:divide-none">
       {% for article in issue.articles %}
         {{ articleCard(article) }}
       {% endfor %}
