@@ -93,12 +93,11 @@ const fetchContents = async () => {
             );
 
             // Get a cover image
+            let titleHash = cyrb53(`${title}-${author}`) % 1003;
             let coverImage = /<img src="(.+?)"/g.exec(body);
             coverImage = coverImage
               ? coverImage[1]
-              : `https://loremflickr.com/1920/1080/abstract?lock=${cyrb53(
-                  title
-                )}}`;
+              : `https://loremflickr.com/1920/1080/abstract?lock=${titleHash}}`;
 
             return {
               body,

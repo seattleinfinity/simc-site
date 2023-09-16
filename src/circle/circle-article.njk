@@ -42,7 +42,7 @@ eleventyComputed:
       {% endif %}
 
       {# Actual article body #}
-      <div class="paragraphs text-lg lining-nums">{{ article.body | safe }}</div>
+      <div class="article-body paragraphs text-lg lining-nums">{{ article.body | safe }}</div>
     </div>
 
     <div class="border-t border-b my-4 py-4 px-4">
@@ -55,6 +55,12 @@ eleventyComputed:
 </div>
 
 <style>
+  @media (prefers-color-scheme: dark) {
+    .article-body img {
+      background-color: white;
+    }
+  }
+
   .katex {
     font-size: 1.1em;
   }
