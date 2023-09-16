@@ -5,6 +5,7 @@ blurb: Every month, members of SIMC's Student Leadership Group write math proble
 ---
 
 {% from './potm-card.njk' import potmCard %}
+
 {% macro potmCollection(year) %}
 <div class="card">
   <h2 class="mb-3">{{ year }} problems</h2>
@@ -18,7 +19,7 @@ blurb: Every month, members of SIMC's Student Leadership Group write math proble
 
 <h1>{{ title }}</h1>
 
-<p>{{ blurb }}</p>
+<p class="mb-2">{{ blurb }}</p>
 
 <div class="flex flex-col gap-6">
   {{ potmCollection('2022-23') }}

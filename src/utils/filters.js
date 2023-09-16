@@ -25,8 +25,9 @@ const latexFilter = (content) => {
   // Text replacements to do before katex rendering
   content = runReplacements(content, [
     // Typographic things
-    [/--/g, '&mdash;'],
+    [/-{2,3}/g, '&mdash;'],
     [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
+    [/.../, `&hellip`],
     [/\\\]\./g, '.\\]'], // Put periods *inside* of display equations
     [/(``)|('')|“|”/g, '"'],
     [/(?<=[a-zA-Z])"([,.])/g, (_, p1) => `${p1}"`], // Put periods, commas *inside* quotes

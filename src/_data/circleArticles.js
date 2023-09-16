@@ -1,6 +1,7 @@
 // This should probably be scoped down to just src/circle when we get the chance
 const EleventyFetch = require('@11ty/eleventy-fetch');
 const { blurbify, latexFilter } = require('../utils/filters.js');
+const { cyrb53 } = require('../utils/utils.js');
 
 const eleventyFetchOptions = (type) => {
   return {
@@ -95,9 +96,9 @@ const fetchContents = async () => {
             let coverImage = /<img src="(.+?)"/g.exec(body);
             coverImage = coverImage
               ? coverImage[1]
-              : `https://loremflickr.com/1920/1080/abstract?lock=${Math.round(
-                  Math.random() * 10000
-                )}`;
+              : `https://loremflickr.com/1920/1080/abstract?lock=${cyrb53(
+                  title
+                )}}`;
 
             return {
               body,

@@ -36,7 +36,9 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.setLibrary('md', {
     render: (source) => {
-      return `<div class="markdown-content">${md.render(source)}</div>`;
+      return `<div class="paragraphs markdown-content">${md.render(
+        source
+      )}</div>`;
     },
   });
 

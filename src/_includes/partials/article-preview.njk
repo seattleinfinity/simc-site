@@ -1,6 +1,6 @@
 {% macro articlePreview(title, date, blurb, image, link, index) %}
   <article
-    class="{{ 'md:col-span-2 md:row-span-1' if index == 0 }} col-span-1 row-span-1 w-full h-full"
+    class="{{ 'md:col-span-2 md:row-span-1' if index == 0 }} col-span-1 row-span-1 w-full"
     data-aos="fade-up"
     data-aos-delay="{{ ((index + 1) % 3) * 50 }}"
   >
