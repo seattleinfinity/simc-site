@@ -68,6 +68,9 @@ const fetchContents = async () => {
             let blurb = /\\blurb{(.+?)}/g.exec(content);
             blurb = blurb ? blurb[1] : blurbify(body);
 
+            // Render the latex
+            body = latexFilter(body);
+
             // Replace all images
             body = body.replace(
               /(?:\\begin{center})?\s*\\includegraphics(?:\[.*?(?:width=(.+))?.*?\])?{(.+?)}\s*(?:\\end{center})?/g,
@@ -82,9 +85,6 @@ const fetchContents = async () => {
                 return `\n\n<img src="${ghImgBase}/${issueName}/${url}" ${widthProp} ${classProp} />\n\n`;
               }
             );
-
-            // Render the latex
-            body = latexFilter(body);
 
             // Get a cover image
             let coverImage = /<img src="(.+?)"/g.exec(body);

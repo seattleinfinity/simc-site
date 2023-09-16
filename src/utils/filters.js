@@ -47,6 +47,9 @@ const latexFilter = (content) => {
     [/--/g, '&mdash;'],
     [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
     [/\\\]\./g, '.\\]'], // Put periods *inside* of display equations
+    [/(``)|('')|“|”/g, '"'],
+    [/(?<=[a-zA-Z])"([,.])/g, (_, p1) => `${p1}"`], // Put periods, commas *inside* quotes
+    [/"([^"]+)?"/g, (_, p1) => `“${p1}”`], // Makes fancy quotes
 
     // Chatgpt-generated
     // What this does is wrap all blocks of text surrounded by 2+ newlines in
@@ -83,11 +86,6 @@ const latexFilter = (content) => {
     [/\\\\/g, ''],
     [/\\maketitle/g, '\n\n'],
 
-    // Typography
-    [/``/g, '&ldquo;'],
-    [/''/g, '&rdquo;'],
-    [/“/g, '"'], // Rip existing fancy quotes
-    [/(?<=[a-zA-Z])(?:&rdquo;|"|”)([,.])/g, (_, p1) => `${p1}"`], // Put periods, commas *inside* quotes
     // [/\\\w+?{(.+?)?}/g, (_, p1) => p1],
   ]);
 
