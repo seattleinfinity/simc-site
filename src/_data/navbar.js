@@ -31,4 +31,8 @@ module.exports = [
     title: 'Contact',
     url: '/contact',
   },
+  {
+    title: 'Calender',
+    url: '/calender',
+  },
 ];
