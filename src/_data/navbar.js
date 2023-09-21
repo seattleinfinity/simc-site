@@ -32,7 +32,7 @@ module.exports = [
     url: '/contact',
   },
   {
-    title: 'Calender',
+    title: 'Calendar',
     url: '/gcalender',
   },
 ];
