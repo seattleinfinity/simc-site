@@ -33,6 +33,6 @@ module.exports = [
   },
   {
     title: 'Calender',
-    url: '/calender',
+    url: '/gcalender',
   },
 ];
