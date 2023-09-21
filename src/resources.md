@@ -6,23 +6,25 @@ blurb: A collection of math resources including a calendar for the 2022-23 schoo
 
 # {{ title }}
 
-## 2022-23 Competitions Calendar
+## 2023-24 Competitions Calendar
 
-- [Harvard-MIT Math Tournament](https://www.hmmt.org/): **Nov. 12, 2022 / Feb. 18, 2023**
+- [Harvard-MIT Math Tournament](https://www.hmmt.org/): **Nov. 11, 2023 / Feb. 17, 2024**
 - [Princeton University Mathematics Competition](https://jason-shi-f9dm.squarespace.com/): TBD
 - [AMC series](https://www.maa.org/math-competitions/about-amc/events-calendar)
-  - AMC 10/12 A: **Nov 10, 2022**
-  - AMC 10/12 B: **Nov 16, 2022**
-  - AIME, USA(J)MO: TBD
+  - AMC 8: **Jan 18--24, 2024**
+  - AMC 10/12 A: **Nov 8, 2023**
+  - AMC 10/12 B: **Nov 14, 2023**
+  - AIME I: **Feb 1, 2024**
+  - AIME II: **Feb. 7, 2024**
 - [Mathcounts](https://www.mathcounts.org/programs/critical-dates)
-  - School: **Nov. 1, 2022**
-  - Chapter: **Feb. 1-28, 2023**
-  - State: **Mar. 1 - Apr. 1, 2023**
-  - Nationals: **May 14-15, 2023**
-- [Carnegie Mellon Informatics and Mathematics Competition](https://cmimconline.org/)
-  - Carnegie Mellon Womens Math Competition: **Oct. 29, 2022**
-  - Math contest: **Feb. 26, 2022**
-  - Programming contest: **March 18-20, 2022**
+  - School: **Nov. 1, 2023**
+  - Chapter: **Feb. 1--29, 2024**
+  - State: **Mar. 1--31, 2023**
+  - Nationals: **May 12--13, 2023**
+- [Carnegie Mellon Informatics and Mathematics Competition](https://cmimc.math.cmu.edu/)
+  - Carnegie Mellon Womens Math Competition: **Oct. 28, 2023**
+  - Math contest: **Late March 2024**
+  - Programming contest: **April 2024**, online
 
 ## Online classes
 
