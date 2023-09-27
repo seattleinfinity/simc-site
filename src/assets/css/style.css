@@ -71,6 +71,13 @@
     @apply my-3;
   }
 
+  input {
+    @apply px-4 py-2
+      rounded
+      border border-neutral-400 dark:border-neutral-800 focus:outline-blue-500
+      transition-colors;
+  }
+
   /* Last element of a card shouldn't produce extra margin-bottom */
   div.card *:nth-last-child(1) {
     @apply mb-0;
