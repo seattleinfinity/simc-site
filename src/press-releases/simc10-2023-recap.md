@@ -4,9 +4,9 @@ layout: article
 title: SIMC 10 2022 is over
 date: 2022-24-09
 blurb: The SIMC 10 2022 is over! Congratulations to all the test takers!
-image: https://ibb.co/tZDNXd7
+image: https://drive.google.com/file/d/1_BpgHbmU9LDZXxynP9OtGhVw9us3fpNi/view?usp=sharing
 ---
-We've finished grading the SIMC 10! Congratulations to all those that made the trip to Bellevue Libary weekend. We were 
+We've finished grading the SIMC 10! Congratulations to all those who made the trip to Bellevue Libary weekend. We were 
 very excited to see so many enthusiastic test takers grinding for the AMC in a few weeks.  Note that due to an error in the answer choices for problem #19, we’ve given everyone full points for that problem.
 
 <a href="https://drive.google.com/file/d/1faleZkNCZmW6sGK0_VqxgKW3nxoNlSkQ/view?usp=sharing">Test</a> 
@@ -106,6 +106,6 @@ If you took the test online, you will also be emailed with your scores within th
   </tr>
 </table>
 
-
+Hope everyone enjoyed the competition! Stay tuned for next year's SIMC10!
 
 
