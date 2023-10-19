@@ -1,0 +1,111 @@
+---
+tags: press_release
+layout: article
+title: SIMC 10 2022 is over
+date: 2022-24-09
+blurb: The SIMC 10 2022 is over! Congratulations to all the test takers!
+image: https://ibb.co/tZDNXd7
+---
+We've finished grading the SIMC 10! Congratulations to all those that made the trip to Bellevue Libary weekend. We were 
+very excited to see so many enthusiastic test takers grinding for the AMC in a few weeks.  Note that due to an error in the answer choices for problem #19, we’ve given everyone full points for that problem.
+
+<a href="https://drive.google.com/file/d/1faleZkNCZmW6sGK0_VqxgKW3nxoNlSkQ/view?usp=sharing">Test</a> 
+
+<a href="https://drive.google.com/file/d/1hIIjn6UQGswAOm6meZng8PpeI24Lbn6g/view?usp=sharing">Solutions</a>
+
+If you took the test in person and turned in your answer sheet to us, you will receive an email with your score within the next few days. Congratulations to the following six people for being the top scorers at our in-person site!
+
+
+<table>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Score</th>
+  </tr>
+
+  <tr>
+    <th>1</th>
+    <th>Eric Yee</th>
+    <th>132</th>
+  </tr>
+
+  <tr>
+    <th>2</th>
+    <th>Benjamin Fu</th>
+    <th>132</th>
+  </tr>
+
+  <tr>
+    <th>3</th>
+    <th>Vishnu Mangipudi</th>
+    <th>123</th>
+  </tr>
+
+  <tr>
+    <th>4</th>
+    <th>Jason Yao</th>
+    <th>109.5</th>
+  </tr>
+
+  <tr>
+    <th>5</th>
+    <th>Leya Balayoghan</th>
+    <th>106.5</th>
+  </tr>
+  <tr>
+    <th>6</th>
+    <th>Eason Xu</th>
+    <th>103.5</th>
+  </tr>
+</table>
+
+
+If you took the test online, you will also be emailed with your scores within the next few days. Congratulations to the following six people for being the top scorers online!
+
+
+<table>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Score</th>
+  </tr>
+
+  <tr>
+    <th>1</th>
+    <th>Jiehe Liu</th>
+    <th>145.5</th>
+  </tr>
+
+  <tr>
+    <th>2</th>
+    <th>[Anonymous]</th>
+    <th>132</th>
+  </tr>
+
+  <tr>
+    <th>3</th>
+    <th>Faizaan Siddique</th>
+    <th>129</th>
+  </tr>
+
+  <tr>
+    <th>4</th>
+    <th>Catherine Xu</th>
+    <th>121.5</th>
+  </tr>
+
+  <tr>
+    <th>5</th>
+    <th>William Liu</th>
+    <th>111.5</th>
+  </tr>
+  <tr>
+    <th>6</th>
+    <th>[Anonymous]</th>
+    <th>11.5</th>
+  </tr>
+</table>
+
+
+
+
