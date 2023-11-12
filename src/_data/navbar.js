@@ -24,6 +24,10 @@ module.exports = [
     url: '/resources',
   },
   {
+    title: 'Newsletters',
+    url: '/newsletters',
+  },
+  {
     title: 'SLG',
     url: '/slg',
   },
