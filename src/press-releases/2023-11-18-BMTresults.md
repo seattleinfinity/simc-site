@@ -1,4 +1,6 @@
 ---
+tags: press_release
+layout: article
 title: "BMT Washington Gold!"
 blurb: 'Congratulations to Washington Gold at Berkley Math Tournament (BMT) 2023!'
 date: 2023-11-18
