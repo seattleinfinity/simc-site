@@ -26,30 +26,40 @@ const latexFilter = (content) => {
   content = runReplacements(content, [
     // Typographic things
     [/-{2,3}/g, '&mdash;'],
-    [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
+    [/–/g, '&ndash;'],
+    [/\\emph{([^]+?)}/g, (_, p1) => `<i>${p1}</i>`],
+    [/\\textit{([^\$]+?)}/g, (_, p1) => `<i>${p1}</i>`],
+    [/\\textbf{([^]+?)}/g, (_, p1) => `<b>${p1}</b>`],
     [/\\\]\./g, '.\\]'], // Put periods *inside* of display equations
     [/(``)|('')|“|”/g, '"'],
     [/`|‘|’/g, "'"],
-    [/(?<=[a-zA-Z])"([,.])(?!\.)/g, (_, p1) => `${p1}"`], // Put periods, commas *inside* quotes
+    [/"([^"]+)?"/g, (_, p1) => `&ldquo;${p1}&rdquo;`], // Double fancy quotes
+    [/'([^']+)?'/g, (_, p1) => `&lsquo;${p1}&rsquo;`], // Single fancy quotes
+    [/(?<=[a-zA-Z\)])"([,.])(?!\.)/g, (_, p1) => `${p1}"`], // Put periods, commas *inside* quotes
 
     // Latex syntax
     [/\\title{(.+)}/g, (_, p1) => `<h2>${p1}</h2>`],
     [/\\begin{itemize}/g, '<ol>'],
     [/\\end{itemize}/g, '</ol>\n\n'],
-    [/\\begin{enumerate}/g, '<ul>\n\n'],
-    [/\\end{enumerate}/g, '</ul>'],
+    [/\\begin{enumerate}/g, '<ul>'],
+    [/\\end{enumerate}/g, '</ul>\n\n'],
     [/\\item (.+?)\n/g, (_, p1) => `<li class="pl-2">${p1}</li>`],
     [/\\begin{align\*?}/g, '\\[\\begin{aligned}'],
     [/\\end{align\*?}/g, '\\end{aligned}\\]'],
+    [/\\begin{table}/g, '\\[\\begin{table}'],
+    [/\\end{table}/g, '\\end{table}\\]'],
     [
       /\\href{(.+?)}{(.+?)}/g,
       (_, url, text) => `<a href="${url}" target="_blank">${text}</a>`,
     ],
     [
-      /\\subsection{(.+?)}\n/g,
-      (_, p1) => `<h3 class="mt-4 text-2xl">${p1}</h3>\n\n`,
+      /\\section{(.+?)}\n/g,
+      (_, p1) => `<h2 class="mt-8 text-2xl">${p1}</h2>\n\n`,
     ],
-    [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
+    [
+      /\\subsection{(.+?)}\n/g,
+      (_, p1) => `<h3 class="mt-4 text-xl">${p1}</h3>\n\n`,
+    ],
     // Chatgpt-generated
     // What this does is wrap all blocks of text surrounded by 2+ newlines in
     //   <p> tags
@@ -66,7 +76,7 @@ const latexFilter = (content) => {
         displayMode: true,
       });
     })
-    .replace(/\\\[([\s\S]+?)\\\]/g, (_, equation) => {
+    .replace(/\\\[([^]+?)\\\]/g, (_, equation) => {
       return katex.renderToString(equation, {
         throwOnError: false,
         displayMode: true,
@@ -81,13 +91,15 @@ const latexFilter = (content) => {
     });
 
   content = runReplacements(content, [
+    [/>,/g, '>&#8288;,'], // Don't let equations break line
+
     // Trash
     [/\\\\/g, ''],
+    [/%.+(\n|\r)/g, ''],
+    [/\\%/g, '%'],
     [/\\maketitle/g, '\n\n'],
-    [/"([^"]+)?"/g, (_, p1) => `“${p1}”`], // Makes fancy quotes
-    [/'([^']+)?'/g, (_, p1) => `‘${p1}’`], // Makes fancy quotes
-
-    // [/\\\w+?{(.+?)?}/g, (_, p1) => p1],
+    [/\\\w+?{(.+?)?}/g, ''], // No more LaTeX stuf
+    [/\\centering/g, ''],
   ]);
 
   return content;

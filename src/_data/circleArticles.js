@@ -85,8 +85,10 @@ const fetchContents = async () => {
               /(?:\\begin{center})?\s*\\includegraphics(?:\[.*?(?:width=(.+))?.*?\])?{(.+?)}\s*(?:\\end{center})?/g,
               (_, width, url) => {
                 // Extract width from \includegraphics syntax
-                let widthProp = width ? `style="width: ${width}"` : '';
-                let classProp = !width ? 'class="max-w-xs max-h-72"' : '';
+                let widthProp = width
+                  ? `class="my-4" style="width: ${width}"`
+                  : '';
+                let classProp = !width ? 'class="my-4 max-w-xs max-h-72"' : '';
 
                 // Set up image source
                 let ghImgBase =
@@ -97,7 +99,7 @@ const fetchContents = async () => {
 
             // Get a cover image
             let titleHash = cyrb53(`${title}-${author}`) % 1003;
-            let coverImage = /<img src="(.+?)"/g.exec(body);
+            let coverImage = /<img .*? src="(.+?)"/g.exec(body);
             coverImage = coverImage
               ? coverImage[1]
               : `https://loremflickr.com/1920/1080/abstract?lock=${titleHash}`;
