@@ -52,7 +52,7 @@ const fetchContents = async () => {
 
       const articles = await Promise.all(
         data
-          .filter((object) => object.type === 'file' && object !== null)
+          .filter((object) => object.type === 'file')
           .map(async (object) => {
             let content = await EleventyFetch(
               object.download_url,
