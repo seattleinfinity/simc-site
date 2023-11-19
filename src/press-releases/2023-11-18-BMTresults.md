@@ -1,9 +1,8 @@
-![image](https://github.com/seattleinfinity/simc-site/assets/144967122/1d0cca3c-3ae3-488c-9426-aa07825ccf1b)---
+---
 title: "BMT Washington Gold!"
 blurb: 'Congratulations to Washington Gold at Berkley Math Tournament (BMT) 2023!'
 date: 2023-11-18
 image: https://media.discordapp.net/attachments/1034695824757768223/1175676881643782164/image.png?ex=656c196b&is=6559a46b&hm=2570f8d1aadc2c395ddc2b62f356a2d49a050a2265d02c7e8f91c7359b6222bd&=&width=726&height=544
-
 ---
 Congratulations to our Washington Gold team at the Berkley Math Tournament! We won 
 *__Power Round First Place__
