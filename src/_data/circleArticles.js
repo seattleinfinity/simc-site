@@ -16,9 +16,12 @@ const fetchContents = async () => {
     'https://api.github.com/repos/seattleinfinity/simc-circle-articles/contents/';
 
   // Fetch all folders in the Circle github repo
-  const allIssues = (
+  let allIssues = (
     await EleventyFetch(contentsURL, eleventyFetchOptions('json'))
-  ).map((dir) => dir.name);
+  )
+    .filter((item) => item.type === 'dir')
+    .map((dir) => dir.name);
+  console.log(allIssues);
 
   let articlesByIssue = await Promise.all(
     allIssues.map(async (issueName) => {
@@ -74,7 +77,7 @@ const fetchContents = async () => {
               ? epigraph.slice(1, 3).map((x) => latexFilter(x))
               : '';
 
-            // Render the latex
+            // Render the Latex
             body = latexFilter(body);
 
             // Replace all images

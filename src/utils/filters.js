@@ -29,8 +29,8 @@ const latexFilter = (content) => {
     [/\\emph{(.+?)}/g, (_, p1) => `<i>${p1}</i>`],
     [/\\\]\./g, '.\\]'], // Put periods *inside* of display equations
     [/(``)|('')|“|”/g, '"'],
+    [/`|‘|’/g, "'"],
     [/(?<=[a-zA-Z])"([,.])(?!\.)/g, (_, p1) => `${p1}"`], // Put periods, commas *inside* quotes
-    [/"([^"]+)?"/g, (_, p1) => `“${p1}”`], // Makes fancy quotes
 
     // Latex syntax
     [/\\title{(.+)}/g, (_, p1) => `<h2>${p1}</h2>`],
@@ -84,6 +84,8 @@ const latexFilter = (content) => {
     // Trash
     [/\\\\/g, ''],
     [/\\maketitle/g, '\n\n'],
+    [/"([^"]+)?"/g, (_, p1) => `“${p1}”`], // Makes fancy quotes
+    [/'([^']+)?'/g, (_, p1) => `‘${p1}’`], // Makes fancy quotes
 
     // [/\\\w+?{(.+?)?}/g, (_, p1) => p1],
   ]);
