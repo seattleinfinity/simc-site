@@ -54,8 +54,8 @@
     @apply list-decimal;
   }
 
-  main .paragraphs ol,
-  main .paragraphs ul {
+  main ol,
+  main ul {
     @apply pl-8;
     @apply mb-3;
   }
