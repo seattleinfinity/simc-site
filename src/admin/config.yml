@@ -29,5 +29,6 @@ collections:
         }
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish date', name: 'date', widget: 'datetime' }
+      - { label: 'Preview image', name: 'imageURL', widget: 'string' }
       - { label: 'Blurb', name: 'blurb', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
