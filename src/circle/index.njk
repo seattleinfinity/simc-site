@@ -21,7 +21,7 @@ blurb: SIMC's very own math-literacy magazine for K-12 students.
     <div class="flex flex-col gap-2">
       <h4 class="text-black dark:text-white font-bold">{{ article.title }}</h4>
       {{ circleMacros.byline(article.author) | safe }}
-      {% md %}{{ article.blurb | safe }}{% endmd %}
+      {{ article.blurb | latex | safe }}
     </div>
   </div>
 </a>
@@ -50,3 +50,25 @@ Before we published *The Circle* via website, we used to publish via PDF. Here a
 - [Volume 4](https://drive.google.com/file/d/1z1MxHLPKsUF4G6DMCYj0IuFIyw82nVPS/view?usp=drive_link) (Spring 2023)
 - [Volume 5](https://drive.google.com/file/d/1-toXmZCHnAISc7-9JcdpCIFnapTE-hrM/view?usp=drive_link) (Spring 2023)
 {% endmd %}
+
+<style>
+  .katex {
+    font-size: 1.1em;
+  }
+</style>
+
+<script defer>
+  // Maintain scroll location
+  // See https://css-tricks.com/memorize-scroll-position-across-page-loads/
+  let sidebar = document.querySelector('html');
+
+  let scrollValue = localStorage.getItem("sidebar-scroll");
+  if (scrollValue !== null) {
+    sidebar.scrollTop = parseInt(scrollValue, 10);
+  }
+
+  window.addEventListener("beforeunload", () => {
+    console.log(sidebar.scrollTop);
+    localStorage.setItem("sidebar-scroll", sidebar.scrollTop);
+  });
+</script>
