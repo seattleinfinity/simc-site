@@ -17,8 +17,8 @@ eleventyComputed:
   <p><a href="/circle">&larr; All articles</a></p>
 {% endmacro %}
 
-<div class="flex flex-col items-center w-full">
-  <div class="max-w-3xl pt-16">
+<div class="flex flex-col w-full">
+  <div class="max-w-3xl mx-auto pt-16">
     {{ allArticles() }}
 
     <div class="font-serif">
@@ -42,7 +42,7 @@ eleventyComputed:
       {% endif %}
 
       {# Actual article body #}
-      <div class="article-body paragraphs text-lg lining-nums">{{ article.body | safe }}</div>
+      <div class="article-body paragraphs text-lg sm:text-xl lining-nums">{{ article.body | safe }}</div>
     </div>
 
     <div class="border-t border-b my-4 py-4 px-4">
@@ -64,4 +64,25 @@ eleventyComputed:
   .katex {
     font-size: 1.1em;
   }
+
+  .katex-display {
+    height: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
 </style>
+
+{# Prevent breaking before punctuation #}
+{# See https://github.com/KaTeX/KaTeX/issues/1233#issuecomment-851040169 #}
+<script>
+  for (const span of document.getElementsByClassName("katex-html")) {
+    span.setAttribute("style", "white-space: nowrap");
+    const children = Array.from(span.children).slice(1);
+    for (const child of children) {
+      const spacer = document.createElement("span");
+      spacer.innerText = "\u200b"; // Zero-width space
+      spacer.style.whiteSpace = "normal";
+      span.insertBefore(spacer, child);
+    }
+  }
+</script>

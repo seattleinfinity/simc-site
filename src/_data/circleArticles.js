@@ -69,10 +69,10 @@ const fetchContents = async () => {
             const author = /\\author{([\s\S]+?)}/g.exec(content)[1];
             const title = /\\title{([\s\S]+?)}/g.exec(content)[1];
 
-            let blurb = /\\blurb{(.+?)}/g.exec(content);
+            let blurb = /\\blurb{(.+)}\n/g.exec(content);
             blurb = blurb ? blurb[1] : blurbify(body);
 
-            let epigraph = /\\epigraph{(.+?)}{(.+)}/g.exec(content);
+            let epigraph = /\\epigraph{([^]+?)}{(.+)}/g.exec(content);
             epigraph = epigraph
               ? epigraph.slice(1, 3).map((x) => latexFilter(x))
               : '';
@@ -86,23 +86,22 @@ const fetchContents = async () => {
               (_, width, url) => {
                 // Extract width from \includegraphics syntax
                 let widthProp = width
-                  ? `class="my-4" style="width: ${width}"`
+                  ? `style="width: ${width.split(',')[0]}"`
                   : '';
-                let classProp = !width ? 'class="my-4 max-w-xs max-h-72"' : '';
 
                 // Set up image source
                 let ghImgBase =
                   'https://raw.githubusercontent.com/seattleinfinity/simc-circle-articles/main';
-                return `\n\n<img src="${ghImgBase}/${issueName}/${url}" ${widthProp} ${classProp} />\n\n`;
+                return `\n\n<img src="${ghImgBase}/${issueName}/${url}" class="my-4" ${widthProp} alt="${url}" />\n\n`;
               }
             );
 
             // Get a cover image
             let titleHash = cyrb53(`${title}-${author}`) % 1003;
-            let coverImage = /<img .*? src="(.+?)"/g.exec(body);
+            let coverImage = /<img.*?src="(.+?)"/g.exec(body);
             coverImage = coverImage
               ? coverImage[1]
-              : `https://loremflickr.com/1920/1080/abstract?lock=${titleHash}`;
+              : `https://loremflickr.com/1280/720/abstract?lock=${titleHash}`;
 
             return {
               body,

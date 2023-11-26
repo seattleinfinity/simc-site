@@ -21,7 +21,7 @@
     {# Main desktop menu #}
     <ul class="hidden md:flex flex-wrap items-center self-stretch">
       {% for item in navbar %}
-        <li class="h-12 {{ 'text-white' if item.url in page.url else 'text-neutral-400' }} hover:text-white hover:bg-neutral-800 transition-all">
+        <li class="h-10 lg:h-12 {{ 'text-white' if item.url in page.url else 'text-neutral-400' }} hover:text-white hover:bg-neutral-800 transition-all">
           <a href="{{ item.url }}" class="flex items-center h-full px-4 py-4">{{ item.title }}</a>
         </li>
       {% endfor %}

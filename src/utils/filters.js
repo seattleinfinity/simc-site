@@ -34,7 +34,8 @@ const latexFilter = (content) => {
     [/(``)|('')|“|”/g, '"'],
     [/`|‘|’/g, "'"],
     [/"([^"]+)?"/g, (_, p1) => `&ldquo;${p1}&rdquo;`], // Double fancy quotes
-    [/'([^']+)?'/g, (_, p1) => `&lsquo;${p1}&rsquo;`], // Single fancy quotes
+    [/(?<= )'(.+)?'(?= )/g, (_, p1) => `&lsquo;${p1}&rsquo;`], // Single fancy quotes
+    [/(?<=\w)'/g, `&rsquo;`],
     [/(?<=[a-zA-Z\)])"([,.])(?!\.)/g, (_, p1) => `${p1}"`], // Put periods, commas *inside* quotes
 
     // Latex syntax
@@ -51,6 +52,10 @@ const latexFilter = (content) => {
     [
       /\\href{(.+?)}{(.+?)}/g,
       (_, url, text) => `<a href="${url}" target="_blank">${text}</a>`,
+    ],
+    [
+      /\\url{(.+?)}/g,
+      (_, url) => `<a href="${url}" target="_blank">${url}</a>`,
     ],
     [
       /\\section{(.+?)}\n/g,
@@ -94,12 +99,13 @@ const latexFilter = (content) => {
     [/>,/g, '>&#8288;,'], // Don't let equations break line
 
     // Trash
-    [/\\\\/g, ''],
-    [/%.+(\n|\r)/g, ''],
+    [/\\\$/g, '$'],
     [/\\%/g, '%'],
+    [/%.+(\n|\r)/g, ''],
     [/\\maketitle/g, '\n\n'],
     [/\\\w+?{(.+?)?}/g, ''], // No more LaTeX stuf
     [/\\centering/g, ''],
+    [/\\\\/g, ''],
   ]);
 
   return content;
