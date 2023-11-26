@@ -16,9 +16,22 @@ blurb: SIMC's very own math-literacy magazine for K-12 students.
 >
   <div>
     {% if article.coverImage %}
-      <div class="relative w-full h-60 mb-4 sm:mb-2 overflow-hidden">
-        <div class="absolute w-full h-full bg-neutral-200 -z-10 animate-pulse"></div>
-        <img class="w-full h-full bg-white dark:bg-neutral-200 object-cover" src="{{ article.coverImage }}" />
+      <div
+        class="relative w-full h-60 mb-4 sm:mb-2 overflow-hidden"
+        x-data="{ imageWatcher: { isLoaded: false }, loaded: false }"
+      >
+        <div
+          x-effect="if (imageWatcher.isLoaded) loaded = true"
+          x-show="!loaded"
+          class="absolute w-full h-full bg-neutral-200 -z-10 animate-pulse"
+        ></div>
+        <img
+          class="w-full h-full object-cover"
+          src="{{ article.coverImage }}"
+          alt="Article cover image"
+          x-data
+          x-image-watcher="imageWatcher"
+        />
       </div>
     {% endif %}
     <div class="flex flex-col gap-2">
@@ -60,18 +73,38 @@ Before we published *The Circle* via website, we used to publish via PDF. Here a
   }
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 <script defer>
   // Maintain scroll location
   // See https://css-tricks.com/memorize-scroll-position-across-page-loads/
-  let sidebar = document.querySelector('html');
+  (() => {
+    let sidebar = document.querySelector('html');
 
-  let scrollValue = localStorage.getItem("sidebar-scroll");
-  if (scrollValue !== null) {
-    sidebar.scrollTop = parseInt(scrollValue, 10);
-  }
+    let scrollValue = localStorage.getItem("sidebar-scroll");
+    if (scrollValue !== null) {
+      sidebar.scrollTop = parseInt(scrollValue, 10);
+    }
 
-  window.addEventListener("beforeunload", () => {
-    console.log(sidebar.scrollTop);
-    localStorage.setItem("sidebar-scroll", sidebar.scrollTop);
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem("sidebar-scroll", sidebar.scrollTop);
+    });
+  });
+
+  // Alpine image skeleton loader things
+  // From https://github.com/Random72IsTaken/image-watcher/blob/master/src/index.js
+  document.addEventListener('alpine:init', () => {
+    Alpine.directive(
+      'image-watcher',
+      (el, { expression }, { Alpine, evaluate }) => {
+        let data = Alpine.reactive(evaluate(expression));
+        if (el.nodeName.toLowerCase() !== 'img') {
+          el = el.querySelector('img');
+        }
+        el.addEventListener('load', () => {
+          data.isLoaded = true;
+        });
+        data.isLoaded = el.complete && el.naturalHeight !== 0;
+      }
+    );
   });
 </script>
