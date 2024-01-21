@@ -3,8 +3,6 @@ layout: main
 title: SIME
 ---
 
-<img src="https://iusd.org/sites/default/files/files/District/News/Images/363785logo.jpg" class=" object-cover w-full max-h-96 mt-12 rounded-xl">
-
 # {{ title }}
 
 **SIMC's SLG have worked hard to create a high quality mock AIME (SIME)**
