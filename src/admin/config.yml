@@ -13,7 +13,7 @@ collections:
     label: 'Press releases' # Used in the UI
     folder: 'src/press-releases' # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: '{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
+    slug: 'YYYY-MM-DD-{{slug}}.md' # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
       - {
           label: 'Tags',
@@ -29,6 +29,6 @@ collections:
         }
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish date', name: 'date', widget: 'datetime' }
-      - { label: 'Preview image', name: 'imageURL', widget: 'string' }
+      - { label: 'Preview image', name: 'image', widget: 'string' }
       - { label: 'Blurb', name: 'blurb', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
