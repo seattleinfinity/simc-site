@@ -14,7 +14,10 @@ The competition is similar to the [official MATHCOUNTS competition](https://www.
 
 There are no restrictions on who can participate---teams are encouraged to compete as their own team of 4, but other teams can be formed with no restrictions to school or grade, as long as you are **8th grade or under**. If you would like to participate but do not have a team or have a partial team, we can accommodate for this, and you will still be able to participate in the team round.
 
-## 2023 Mock Mathcounts
+## 2024 Mock Mathcounts (Upcoming)
+This year's Mock Mathcounts will be held both __online__ and __in-person__ at Bothell Library from 2:00 to 5:30 pm on Sunday, January 28th. Fill out this [google form](https://forms.gle/4PJft5tfVn2qZn3A7) for a chance at swag and Countdown glory!
+
+## 2023 Mock Mathcounts (Finished)
 
 Hi everyone,
 

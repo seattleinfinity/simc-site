@@ -8,6 +8,7 @@ blurb: See past and current SIMC Newsletters
 Join our [mailing list](https://forms.gle/FDvWGo1FHqQSGkNK6) to stay updated on our events!
 
 ## 2023-2024 Newsletters
+ - [**January**](http://eepurl.com/iHasYA) http://eepurl.com/iHasYA
  - [**November**](http://eepurl.com/iC6Ue2) http://eepurl.com/iC6Ue2
  - [**October**](http://eepurl.com/izpqBg) http://eepurl.com/izpqBg
  - [**September**](http://eepurl.com/iznXuQ) http://eepurl.com/iznXuQ
