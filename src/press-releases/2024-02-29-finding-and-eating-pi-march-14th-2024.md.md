@@ -16,3 +16,5 @@ Join us at Lake City library for a delicious night of mathematical intrigue 🥧
 **Where:** Lake City Library\
 **When:** Pi day 2024, 6 pm – 7 pm\
 **Food:** Pies (free)
+
+If you're interested in coming, please fill out [this Google form](https://forms.gle/xkDjzCenivaW2aGg6) so we know how much pie to get.
