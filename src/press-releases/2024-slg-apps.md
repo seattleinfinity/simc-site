@@ -1,0 +1,19 @@
+---
+tags: press_release
+layout: article
+title: 2024-25 SIMC SLG Applications
+date: 2024-05-27
+blurb: Do you want to give back to the math community? Do you enjoy our events? Apply for our Student Leadership Group!
+image: https://i.imgur.com/QOHGElg.jpeg
+---
+
+Are you a rising high schooler who wants to give back and nuture our math community in the Greater Seattle Area? Have you been exposed to the wonders of math in our events, and are itching to make more possible? If so apply for our Student Leadersip Group [here](https://docs.google.com/forms/u/0/d/1aqnMs05IS32QKnyB42W4OYHwPZ75ctq29gMtNP2lZDQ/viewform?urp=gmail_link&edit_requested=true#responses) Please submit your application by 11:59 PM PST on June 3rd.
+
+In an application, we are looking for the following qualities:
+
+* __Diversity:__ We value a diverse group of students from various schools and locations.
+* __Committment:__ Demonstrated dedication and reliability in past activities.
+* __Leadership__: Proven leadership skills and experience.
+* __Initiative:__ A proactive approach and the ability to problem-solve independently.
+
+We look forward to receiving your applications and are excited to welcome new members to our team!
