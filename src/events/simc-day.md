@@ -41,3 +41,11 @@ Here is a schedule for the day:
 </body>
 
 Naturally, there will be snacks and drinks and free merch from our sponsors! Hope to see you there!
+
+[Estimathon Problems](https://drive.google.com/file/d/17JbVQZSnPw59ShaE-jdkVJ0Z-W998FWY/view?usp=drive_link)
+
+[Estimathon Solutions](https://drive.google.com/file/d/18HFTmbnK8pIqmez7fpFvlORtti37hknz/view?usp=drive_link)
+
+[Puzzle Hunt Problems](https://drive.google.com/file/d/1uF6oHaK7Agvu37llCITzUlcjBkLBvNO2/view?usp=drive_link)
+
+[Puzzle Hunt Solutions](https://drive.google.com/file/d/1u6G8GXfPUC62aB3MMbnuFCd5EgRqs7E_/view?usp=drive_link)
