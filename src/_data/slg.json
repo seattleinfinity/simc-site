@@ -1,98 +1,117 @@
 [
   {
-    "name": "Zhao",
-    "title": "President",
-    "photoURL": "https://i.ibb.co/8mHGX3k/alex-zhao.jpg",
-    "bio": "Alex is a senior at Lakeside School. He has qualified for the USAJMO four times, and qualified for the USAMO this past year. Alex is a USAJMO Winner and a USAMO Silver Medalist, and has qualified for MOP three times. When not doing math, he can be found programming, chatting online, and playing any of clarinet, a number of ball sports, and strategy video games."
-  },
-  {
+    "name": "Edward Li",
+    "title": "Outreach/Competitions",
+    "photoURL": "",
+    "bio": "Edward is a sophomore at Mercer Island High School. He enjoys doing math, and hopes to make it into MOP this year. Besides for math, he likes to play chess and watch his favorite football team, FC Barcelona."
+},
+{
     "name": "Amy Cui",
     "title": "Vice-President",
-    "photoURL": "", 
+    "photoURL": "",
     "bio": "Amy is a junior at Lakeside School. She began participating in math competitions in elementary school and has since attended MOP twice, qualified for JMO three times, and was a JMO Top Winner. Her favorite subject in math is geometry. Outside of math, she enjoys running track and cross country, listening to music, reading, and spending time with friends."
 },
-  {
-    "name": "Annabel Ge",
-    "title": "Competitions director",
-    "photoURL": "https://i.ibb.co/bgr1vZj/annabel-ge.jpg",
-    "bio": "Annabel is a senior at Lakeside school this year. She has participated in many math competitions since elementary school. She has gone through the AMC series for many years and has attended MOP two times. Her favorite olympiad subject is combo. In addition to math, she participates in her school's crew team, and some of her other interests include drawing, playing card games, and music. Annabel also enjoys coding (casually) and has participated in USACO. She's excited to be a part of SIMC leadership this year and help create engaging problems and tests!"
-  },
-  {
-    "name": "William Gvozdjak",
-    "title": "Content committee",
-    "photoURL": "https://i.ibb.co/KVTCy87/william-gvozdjak.png",
-    "bio": "William is a senior at Bellevue High School. He began participating in math competitions in elementary school and has qualified for the AIME multiple times and the USAJMO once. His favorite subject is geometry, but he is also fascinated by algebra and advanced math, and he loves elegant and simple solutions to complex math problems. William is passionate about web development and loves spending time thinking about and creating new designs for webpages. Aside from math and programming, William enjoys following sports and soccer, listening to music, and exploring random facts online."
-  },
-  {
-    "name": "Owen Zhang",
-    "title": "Competitions committee",
-    "photoURL": "https://i.ibb.co/60TX99n/owen-zhang.jpg",
-    "bio": "Owen is a senior at Interlake High School and has been passionate about mathematics since the 4th grade. He has qualified for the USAJMO, qualified for the AIME 4 times, and participated in competitions such as ARML and Mathcounts. Outside of math, Owen enjoys listening to music, programming, physics, running, or catching up with friends."
-  },
-  {
-    "name": "Nishka Kacheria",
-    "title": "Content committee, puzzlemaster",
-    "photoURL": "https://i.ibb.co/dJLHzSc/nishka-kacheria.png",
-    "bio": "Nishka is a senior at Interlake High School, and has loved math since elementary school. She has qualified for the AIME 4 times, for Math Prize for Girls several times, and received a distinguished honor roll for the AMC 12. She also enjoys programming, and in both, her favorite parts are feeling the eureka moments and the satisfaction of a clean solution. Other hobbies of hers include puzzling (both feeling confused and doing puzzles), launching flaming projectiles, and reading and writing."
-  },
-  {
-    "name": "Rohan Dhillon",
-    "title": "Competitions committee",
-    "photoURL": "https://i.ibb.co/VYx93dV/rohan-dhillon.jpg",
-    "bio": "Rohan is a junior at Lakeside School and has participated in math competitions like the AMC and Mathcounts since 6th grade, garnering distinctions multiple times on the AMC 10, DHR on the AMC 8, and what would have been the State countdown round in Mathcounts (were it not for COVID). When not doing math, you can find him attempting to ace his opponents at tennis tournaments, building science projects, coding, studying for physics competitions, or stirring up controversy at MUN debates."
-  },
-  {
-    "name": "Joyce Huang",
-    "title": "Competitions committee, outreach committee",
-    "photoURL": "https://i.ibb.co/S0cd926/joyce-huang.jpg",
-    "bio": "Joyce Huang is a junior at Redmond High School. She won an Honorable Mention at the 2023 USAJMO. Joyce enjoys math because Joyce enjoys joy and math makes Joyce rejoice. Joyce also enjoys playing the oboe (which everyone knows is obviously the best instrument in the world), as well as the piano, cello, flute, alto saxophone, trumpet, and hopefully the lituus someday."
-  },
-  {
-    "name": "Hongning Wang",
-    "title": "Content director",
-    "photoURL": "https://i.ibb.co/VxgxNNQ/hongning-wang.png",
-    "bio": "Hongning is a junior at Eastlake High School. His pronouns are he/him/his. He has participated in math contests for six years and was a 2022 USAJMO Honorable Mention. He took part in SIMC events since middle school and is super excited to be on the SLG this year. Hongning is committed to sharing his experience in math to the math community. He hopes to continue creating meaningful contests, opportunities and problem of the months for SIMC members and others in our community during his second year on the SLG. When not doing math, Hongning likes to read a good book, read about current events, and play chess card games with friends. "
-  },
-  {
-    "name": "Owen Xuan",
-    "title": "Content committee",
-    "photoURL": "https://i.ibb.co/DV8dMKb/owen-x.jpg",
-    "bio": "Owen is a sophomore at Lakeside who frequently participates in competitive math events. He started math in 1st grade (doing Math Kangaroo), and has qualified for AIME twice and USAJMO once. He aspires to be invited to MOP next year. Aside from math, He enjoys LD debate, biking on park trails, and baking desserts. His favorite book series is Cradle by Will Wight; his eye color is brown; He loves a thought-provoking audiobook; He sucks at bowling."
-  },
-  {
-    "name": "Amy Cui",
-    "title": "Competitions co-director",
-    "photoURL": "https://i.ibb.co/qRjcpL9/amy-cui.jpg",
-    "bio": "Amy is a sophomore at Lakeside School, and she has been participating in math competitions since elementary school. She has attended MOP, qualified for JMO twice, and was a JMO Top Winner. Her favorite subject in math is geometry, but apart from solving problems, she also really values the friendships she has made in the math community. In addition to doing math, she enjoys fencing, running, reading, and listening to music."
-  },
-  {
+{
+    "name": "Christopher Peng",
+    "title": "Competitions, Content",
+    "photoURL": "",
+    "bio": "Christopher is a sophomore at Lakeside School. Competitive math has been a big part of his life ever since first grade, when he participated in Math League and Math Kangaroo. He is a 4x AIME qualifier and has qualified for USAJMO once, and has also participated in USAMTS, BMT, and HMMT. Aside from math, he enjoys playing Ultimate Frisbee, chess, and board/card games. His favorite ways to relax are reading, listening to music, and playing Brawl Stars."
+},
+{
+    "name": "Amey Bharambe",
+    "title": "Outreach Committee",
+    "photoURL": "",
+    "bio": "Amey is a junior at Redmond High School who loves math! He has participated in math competitions for years and enjoys the experience. Some of his achievements include AIME qualification and HM at the Stanford Math Tournament. When not \"mathing\", Amey likes to watch YouTube and play video games."
+},
+{
+    "name": "Tara Saini",
+    "title": "Content Committee",
+    "photoURL": "",
+    "bio": "Tara is a sophomore at Bellevue High School. She has qualified for AIME, competed at CMIMC, and attended Mathroots over the summer. She also enjoys advanced math, especially graph theory. Outside of school and math, Tara enjoys playing soccer and learning violin."
+},
+{
+    "name": "Max Xie",
+    "title": "Competition, Outreach",
+    "photoURL": "",
+    "bio": "Max is a 10th grader at Tesla STEM High School. His least favorite math topic is geometry like any sane person."
+},
+{
     "name": "Immanuel Whang",
-    "title": "Outreach co-director, competitions committee",
-    "photoURL": "https://i.ibb.co/89x0fjb/immanuel-whang.png",
-    "bio": "Immanuel is a sophomore at Lakeside School. He is a 3x USAJMO qualifier, 4x AIME qualifier, and (somehow) placed 17th individually at ARML recently. One thing about math competitions that Immanuel appreciates is the community he can find through them. In his free time, Immanuel enjoys reading manga, listening to music, and playing chess."
-  },
-  {
+    "title": "President",
+    "photoURL": "",
+    "bio": "After taking his first AMC 8 in 4th grade, Immanuel fell in love with problem solving and never looked back. Since then, some of his mathematical experiences include taking the USAJMO, attending PROMYS, and competing at HMMT. In his free time, Immanuel enjoys listening to music and going on walks."
+},
+{
+    "name": "Daniel Ge",
+    "title": "Competitions",
+    "photoURL": "",
+    "bio": "Daniel Ge is a student and coach passionate in mathematics and coding. He is a two-time USAJMO Winner (Silver) and USACO Platinum contestant. Outside of math, Daniel greatly enjoys hiking, skiing, and biking around the Pacific Northwest with his friends and family."
+},
+{
     "name": "Alex Chen",
-    "title": "Competitions committee, outreach committee",
-    "photoURL": "https://i.ibb.co/RN4cRtr/alex-chen.jpg",
-    "bio": "Alex is a sophomore at The Overlake School who has been passionate about math since elementary school. He has qualified for AIME multiple times and enjoys participating in any sort of mathematical competition. Outside of math, Alex also competes in robotics and debate. When not at a competition, he can frequently be found folding origami, listening to music, or working on personal projects."
-  },
-  {
+    "title": "Competitions associate director, outreach, content",
+    "photoURL": "",
+    "bio": "Alex is a junior at Overlake who loves collaborative math, having participated in ARML multiple times and attended summer programs. He has qualified for AIME 3 times, and still participates in math tournaments. Outside of math, Alex enjoys debating, solving puzzles, playing tetris, and hiking out in the Cascades."
+},
+{
+    "name": "Hannah Ma",
+    "title": "Outreach, Competitions",
+    "photoURL": "",
+    "bio": "Hannah is currently a sophomore at Lakeside School, and she's enjoyed doing math since elementary school. She has qualified for the AIME three times and the USAJMO once. Apart from doing math, she enjoys dancing, golfing, having fun with her friends, and listening to music."
+},
+{
+    "name": "Joyce Huang",
+    "title": "Director of Outreach",
+    "photoURL": "",
+    "bio": "Joyce Huang is a senior at Redmond High School. She won an Honorable Mention at the 2023 USAJMO. Joyce enjoys math because Joyce enjoys joy and math makes Joyce rejoice. Joyce also enjoys playing the oboe, as well as the piano, cello, flute, alto saxophone, trumpet, and hopefully the lituus someday."
+},
+{
+    "name": "Max Guo",
+    "title": "Outreach",
+    "photoURL": "",
+    "bio": "Max Guo is a rising senior at Skyline High School, outside of contest math he is interested in Machine Learning and its connections with Neuroscience."
+},
+{
+    "name": "Hongning Wang",
+    "title": "",
+    "photoURL": "",
+    "bio": "Hongning is a senior at Eastlake High School. He has served on the SLG for the past 4 years."
+},
+{
+    "name": "Rohan",
+    "title": "Competitions Director",
+    "photoURL": "",
+    "bio": "This is Rohan’s third year on SLG, and he is now director of Competitions. He has experience in the world of math competitions (HMMT, AIME x4) and math research (MIT PRIMES-USA). Outside of math, he enjoys math, physics, and computer science — as well as tennis and MUN."
+},
+{
     "name": "Christina Liu",
-    "title": "Content committee",
-    "photoURL": "https://i.ibb.co/27WS0bj/christina-liu.jpg",
-    "bio": "Christina is a sophomore at Lakeside School. She has qualified for the AIME thrice (three times? thrice?), been on the AMC 10 Distinguished Honor Roll, and has gone to Math Prize for Girls. Outside of math, she enjoys any kind of board sport (snowboarding, skateboarding, wakeboarding, surfing, probably fireboarding if it existed), playing guitar, and annihilating people at volleyball. Here’s a lame fact about her: if she was born three hours later, she would be three years old!"
-  },
-  {
-    "name": "Eric Yee",
-    "title": "Webmaster",
-    "photoURL": "https://i.ibb.co/4skzJcg/eric-yee.jpg",
-    "bio": "Eric Yee is a junior at Henry M. Jackson High School. He has been doing contest math for 3 years now and has qualified for AIME twice. He has been passionate about math since middle school, and believes that the best way to learn math is to work towards solving ever more difficult problems. When he is (unfortunately) not doing math, Eric enjoys trying to improvise on his trombone, listening to jazz, and swimming/drowning."
-  },
-  {
-    "name": "JB",
-    "title": "Webmaster",
-    "photoURL": "https://i.ibb.co/4skzJcg/eric-yee.jpg",
-    "bio": "J Yee is a junior at Henry M. Jackson High School. He has been doing contest math for 3 years now and has qualified for AIME twice. He has been passionate about math since middle school, and believes that the best way to learn math is to work towards solving ever more difficult problems. When he is (unfortunately) not doing math, Eric enjoys trying to improvise on his trombone, listening to jazz, and swimming/drowning."
-  }
+    "title": "Outreach (position tbd)",
+    "photoURL": "",
+    "bio": "Christina is a junior at Lakeside School. She is a USAJMO qualifier, has qualified for the AIME four times, been on the AMC 10 Distinguished Honor Roll twice, and is a Canada/USA Mathcamp and HCSSiM alum. Outside of math, she enjoys any kind of board sport (snowboarding, skateboarding, wakeboarding, surfing, probably fireboarding if it existed), playing electric guitar, and annihilating people at volleyball. Here’s a lame fact about her: if she was born three hours later, she would be four years old!"
+},
+{
+    "name": "Benjamin Fu",
+    "title": "Competitions",
+    "photoURL": "",
+    "bio": "Benjamin is a contributor of the Competitions Committee in SIMC. He was a MOP 2024 qualifier and has attended various contests such as HMMT and ARML. In his free time, he enjoys playing Minecraft."
+},
+{
+    "name": "Erin Bian",
+    "title": "Competitions",
+    "photoURL": "",
+    "bio": "Erin Bian is a freshman at Lakeside School. She is a 3-time AIME qualifier and earned Honorable Mention in the 2024 USAJMO. Erin has also qualified for Math Prize for Girls twice, earning Honorable Mention at the 2024 competition. In 8th grade, she represented Washington at MATHCOUNTS Nationals. This past summer, Erin participated in the G2 math camp held at MIT. Her other hobbies include chess, programming, ultimate frisbee, and debate."
+},
+{
+    "name": "Eric Shao",
+    "title": "Outreach/Competitions",
+    "photoURL": "",
+    "bio": "Eric Shao is a freshman at Mercer Island High School and is excited to be on Outreach and Competitions this year. He has been doing math competitions since 6th grade and has qualified for the AIME multiple times, as well as qualifying for MATHCOUNTS Nationals in 2023. Outside of math, Eric enjoys playing tennis, doing debate, and playing various TCGs."
+},
+{
+    "name": "Sophia Shen",
+    "title": "Outreach committee, Content committee",
+    "photoURL": "",
+    "bio": "Sophia is a sophomore at Interlake High School. She discovered her passion for competitive mathematics in middle school and has since then qualified for the AIME, USAJMO, and attended the Math Prize for Girls competition. Her favorite things about competitive math are the supportive community and lasting friendships she's made along the way. Outside of math, she enjoys coding, reading a good book, baking, and playing with her cat. In fact, cats are her favorite animal!"
+}
+
 ]
