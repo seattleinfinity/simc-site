@@ -5,7 +5,12 @@ title: SIME
 
 # {{ title }}
 
-**SIMC's SLG have worked hard to create a high quality mock AIME (SIME)**
+**SIMC's SLG have worked hard to create a high quality mocks (SIMC8, SIMC10, SIME)**
+
+The SIMC10 is a mock test for the AMC10, a prestigious 25 questions 75 minute long test. There are no restrictions on who can participate!
+
+[2022 SIMC10 Solutions](https://drive.google.com/file/d/1cLENnvhtsWBiPSFQXVcQc30h2tb6-Cu6/view?usp=sharing)
+
 
 The SIME is a mock test for the American Invitational Math Examination, a prestigious 15 questions 3-hour long long test for high scorers in the AMC 12 and 10. There ar eno restrictions on who can participate!
 
