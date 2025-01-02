@@ -4,7 +4,7 @@ layout: article
 title: SIMC8 Announcement
 date: 2025-01-02
 blurb: Start off 2025 with a high quality Mock AMC8
-image: https://i.imgur.com/QOHGElg.jpeg
+image: https://i.imgur.com/7qI17Dd.jpeg
 ---
 Hey all,
 
