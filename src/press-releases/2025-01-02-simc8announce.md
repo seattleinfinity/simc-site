@@ -12,7 +12,7 @@ As the holiday season winds down and we gear up for an exciting new year, what b
 
 Event Details:
     What: SIMC 8 – Mock AMC 8 Competition
-    When: Friday, January 19, 2024, 5:30 - 7:00
+    When: Sunday, January 19, 2024, 5:30 - 7:00
     Where: AoPS Academy Redmond
     Address: 17875 Redmond Way Ste 110, Redmond, WA 98052
 
