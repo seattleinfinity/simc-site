@@ -23,6 +23,8 @@ Missed SIMC 8 or ready for more? Check out our upcoming events:
 
 We hope to see you at these events as we continue exploring the joy of math together!
 
+Problems and Solutions: https://drive.google.com/drive/folders/1Nqxz_x40_fWeZt-czPiMdeyan-ab9c4S
+
 Best regards,
 Immanuel Whang & Jai Bindlish
 Seattle Infinity Math Circle
