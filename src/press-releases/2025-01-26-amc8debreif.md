@@ -5,7 +5,7 @@ title: AMC8 Debrief Announcement
 date: 2025-01-26
 blurb: AMC8 Contest Review Night @ AOPS Academy
 image: ''
-
+---
 Hello All,
 
 We are thrilled to announce that we will be collaborating with AoPS Academy to host an AMC 8 Debrief, providing students who participated in the AMC 8 an opportunity to review the test, discuss the problems, and share insights with their peers and student instructors.
