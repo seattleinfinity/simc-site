@@ -1,7 +1,7 @@
 ---
 tags: press_release
 layout: article
-title: 2022 Summer Reading Challenge Results
+title: AMC8 Debrief Announcement
 date: 2025-01-26
 blurb: AMC8 Contest Review Night @ AOPS Academy
 image: ''
