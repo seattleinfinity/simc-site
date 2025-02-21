@@ -1,27 +1,9 @@
 ---
 layout: standalone
-title: HMMT/PUMaC
+title: SIMC TST
 blurb: Team selection for the HMMT/BMT/SMT contests.
 image: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
 ---
-
-<div class="flex gap-4 items-center mt-8 mb-16 pb-4 pt-8">
-  <img
-    class="h-24 dark:invert"
-    alt="HMMT logo"
-    src="https://hmmt-prod.s3.amazonaws.com/static/img/logo/hmmt/logo.png"
-  >
-  <img
-    class="h-24"
-    alt="BMT logo"
-    src="https://bmt.berkeley.edu/wp-content/uploads/2022/08/Rounded-58x59.png"
-  >
-  <img
-    class="h-24 dark:brightness-150"
-    alt="SMT logo"
-    src="https://sumo.stanford.edu/images/smtbanner.png"
-  >
-</div>
 
 # [HM/B/S]MT TST
 
