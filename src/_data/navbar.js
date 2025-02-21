@@ -16,7 +16,7 @@ module.exports = [
     url: '/resources',
   },
   {
-    title: 'Newsletters',
+    title: 'News',
     url: '/newsletters',
   },
   {
