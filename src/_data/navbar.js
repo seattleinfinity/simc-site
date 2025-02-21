@@ -8,10 +8,6 @@ module.exports = [
     url: '/press-releases',
   },
   {
-    title: 'PoTM',
-    url: '/potm',
-  },
-  {
     title: 'Events',
     url: '/events',
   },
@@ -34,6 +30,10 @@ module.exports = [
   {
     title: 'Calendar',
     url: '/gcalender',
+  },
+  {
+    title: 'PoTM (Archive)',
+    url: '/potm',
   },
   {
     title: 'The Circle (Archive)',
