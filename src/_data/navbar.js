@@ -8,7 +8,7 @@ module.exports = [
     url: '/press-releases',
   },
   {
-    title: 'The Circle',
+    title: 'The Circle (Archive)',
     url: '/circle',
   },
   {
