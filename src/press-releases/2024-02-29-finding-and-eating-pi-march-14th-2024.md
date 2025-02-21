@@ -3,7 +3,7 @@ tags: press_release
 layout: article
 title: "Finding (and eating) Pi: March 14th, 2024"
 date: 2024-02-29T19:19:17.301Z
-image: https://www.almanac.com/sites/default/files/styles/or/public/image_nodes/pie-pi_oksana-mizina-ss.jpg
+image: (https://i.imgur.com/b8YBhj3.jpeg)
 blurb: Join Seattle Infinity Math Circle on 3/14/2024 as we find an approximate
   value for pi and eat some delicious pies 🥧
 ---
