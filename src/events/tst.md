@@ -5,7 +5,7 @@ blurb: Team selection for the HMMT/BMT/SMT contests.
 image: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
 ---
 
-# [HM/B/S]MT TST
+# TST
 
 Every year, SIMC hosts a couple teams to the [Harvard-MIT Math Tournament](https://www.hmmt.org/), [Berkeley Math Tournament](https://bmt.berkeley.edu/), and [Stanford Math Tournament](https://www.stanfordmathtournament.com). To select our teams, we run a team selection test in September.
 
