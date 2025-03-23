@@ -4,7 +4,7 @@ layout: article
 title: Mock Mathcounts Conclusion
 date: 2025-03-07
 blurb: SIMC Mock MATHCOUNTS Results + Problems!
-image: 'https://imgur.com/a/3rlEO5v'
+image: 'https://i.imgur.com/FLNGVbJ.jpeg'
 ---
 Hello All,
 
