@@ -15,7 +15,7 @@ This exciting event will feature four rounds — Sprint, Team, Guts, and Puzzle 
 
 
 
-**Parents and Coaches**, this is a fantastic opportunity to spark your child's love for problem solving at an early age. Don’t miss out — [sign them up here]{https://docs.google.com/forms/d/e/1FAIpQLSeQ6iiR-3h-sPGFjBQQuuZiUw48F7UwklKWga7HXdFsMYk5qA/viewform}!
+**Parents and Coaches**, this is a fantastic opportunity to spark your child's love for problem solving at an early age. Don’t miss out — [sign them up here](https://docs.google.com/forms/d/e/1FAIpQLSeQ6iiR-3h-sPGFjBQQuuZiUw48F7UwklKWga7HXdFsMYk5qA/viewform)!
 
 
 
@@ -23,4 +23,4 @@ A note about registration:
 We encourage students to register as part of a 4-person school team for the best experience. However, individual registrations are also welcome — we will happily place individual students into a team on the day of the competition.
 
 
-Visit our [inviation form]{https://docs.google.com/document/d/1_1aDnK7DF00FdSusO1JzE74mItyESGFUl4ukZyOshMQ/edit?usp=sharing} or reach out to seattleinfinitymathcircle@gmail.com for more information.
+Visit our [rulebook](https://docs.google.com/document/d/1OOLrWPZOB1pB-0ZP8EIUtdtbAuPblVSF0fuuRJ51uMY/edit?usp=sharing) or reach out to seattleinfinitymathcircle@gmail.com for more information.
