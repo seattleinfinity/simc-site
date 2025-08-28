@@ -28,7 +28,7 @@ blurb: A collection of math resources including a calendar for the 2022-23 schoo
 
 ## Online classes
 
-- [Art of Problem Solving](https://artofproblemsolving.com/)
+- [Art of Problem Solving](https://artofproblemsolving.com/) is recognized worldwide
 
 ## YouTube channels
 
