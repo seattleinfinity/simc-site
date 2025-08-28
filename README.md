@@ -1,6 +1,6 @@
 # Seattle Infinity Math Circle site
 
-Revamped website for the Seattle Infinity Math Circle. The current site is at [www.seattleinfinity.org](https://www.seattleinfinity.org). This new site can be viewed at [seattleinfinity.netlify.app](https://seattleinfinity.netlify.app).
+Revamped website for the Seattle Infinity Math Circle. The site used to be hosted at [www.seattleinfinity.org](https://www.seattleinfinity.org). The placeholder while we get that up and running again is [seattleinfinity.netlify.app](https://seattleinfinity.netlify.app).
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/016843a2-c554-4a5b-92d6-4a41605870fe/deploy-status)](https://app.netlify.com/sites/seattleinfinity/deploys)
 
@@ -12,7 +12,7 @@ If you ever run into trouble or have questions, feel free to ask William!
 
 All site content is in `/src`. Things in `/src/_data`, `/src/_includes`, `/src/_layouts`, and `/src/assets` are special and don't get rendered, but everything else corresponds to a real page on the site.
 
-For example, `/src/magazine/index.njk` maps to `/magazine` on the site, while `/src/press-releases/article-1234.md` maps to `/press-releases/article-1234.md` on the site.
+For example, `/src/magazine/index.njk` maps to `/magazine` on the site, while `/src/press-releases/article-1234.md` maps to `/press-releases/article-1234` on the site.
 
 ### Option 0: Decap CMS, still in beta
 
