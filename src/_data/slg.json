@@ -54,12 +54,6 @@
     "bio": "Sophia is a junior at Interlake High School with a passion for competitive math. She has qualified for the AIME, USAJMO, and twice for the Math Prize for Girls. She values the supportive community and friendships she’s built through competitive math. Fun fact: she has wayy too many photos of her cat, Candy."
 },
 {
-    "name": "Benjamin Fu",
-    "title": "Mathcounts Committee Director, Testing Coordinator",
-    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
-    "bio": "Benjamin is a contributor of the Mathcounts Committee in SIMC. He was a MOP 2024 qualifier and has attended various contests such as HMMT and ARML. In his free time, he enjoys playing Minecraft."
-},
-{
     "name": "Raymond Zhu",
     "title": "AIME Committee Co-Director, Problem Writer",
     "photoURL": "/assets/images/slg-photos/Raymond-Uncropped.png",
@@ -82,6 +76,12 @@
     "title": "Mathcounts Commitee, Problem Writer",
     "photoURL": "https://i.ibb.co/NsHbpSF/Real-Life-Daniel-Ge.jpg",
     "bio": "Daniel Ge is a student and coach passionate in mathematics and coding. He is a two-time USAJMO Winner (Silver) and USACO Platinum contestant. Outside of math, Daniel greatly enjoys hiking, skiing, and biking around the Pacific Northwest with his friends and family."
+},
+{
+    "name": "Laura Wang",
+    "title": "AIME Commitee Co-Director",
+    "photoURL": "https://i.ibb.co/n0QXfGB/AP1-Gcz-Mi-SLUj-LI8p-Jpvn-Xc2r-Ilp-Qk8eg-Zd-D1-Ij1-POCB7-EKOBrk1i-F1-Fragb-Ws-Hgc-E29-BDJf-DU8nry8tm.png",
+    "bio": "Laura is a sophomore at Lakeside School. She started enjoying math when she was five. Since then, she has qualified for JMO, tied for 7th at Math Prize for Girls in 2024, and was a MATHCOUNTS Nationals semifinalist. Her favorite math subject is geometry. When she’s not doing math she likes to draw, ice skate, and listen to music."
 },
 {
     "name": "Edward Li",
@@ -108,6 +108,12 @@
     "bio": "James is a freshman at Lakeside School. He started taking an interest in math in elementary school. Since then, he has participated in numerous competitions, such as HMMT, SMT, and ARML. His notable accomplishments include qualifying for the AIME three times and getting a score of 11 on the most recent test. Outside of math, James enjoys playing soccer, hanging out with friends, and watching movies."
 },
 {
+    "name": "Benjamin Fu",
+    "title": "Mathcounts Committee Director, Testing Coordinator",
+    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "bio": "Benjamin is a contributor of the Mathcounts Committee in SIMC. He was a MOP 2024 qualifier and has attended various contests such as HMMT and ARML. In his free time, he enjoys playing Minecraft."
+},
+{
     "name": "Lalith Durbhakula",
     "title": "",
     "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
@@ -130,12 +136,6 @@
     "title": "",
     "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
     "bio": "Wesley Wu is a sophomore at Newport High School. His favorite subjects are algebra and geometry. Outside of math, he also plays competitive tennis."
-},
-{
-    "name": "Laura Wang",
-    "title": "AIME Commitee Co-Director",
-    "photoURL": "https://i.ibb.co/n0QXfGB/AP1-Gcz-Mi-SLUj-LI8p-Jpvn-Xc2r-Ilp-Qk8eg-Zd-D1-Ij1-POCB7-EKOBrk1i-F1-Fragb-Ws-Hgc-E29-BDJf-DU8nry8tm.png",
-    "bio": "Laura is a sophomore at Lakeside School. She started enjoying math when she was five. Since then, she has qualified for JMO, tied for 7th at Math Prize for Girls in 2024, and was a MATHCOUNTS Nationals semifinalist. Her favorite math subject is geometry. When she’s not doing math she likes to draw, ice skate, and listen to music."
 }
 ]
 
