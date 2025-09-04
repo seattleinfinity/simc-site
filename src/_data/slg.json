@@ -31,69 +31,111 @@
 },
 {
     "name": "Christopher Peng",
-    "title": "",
-    "photoURL": "",
-    "bio": ""
+    "title": "AMC 8 Committee Co-Director, Puzzles Writer",
+    "photoURL": "https://i.ibb.co/bXD1w2f/IMG-8422-1-Christopher-Peng.jpg",
+    "bio": "Christopher is a junior at Lakeside School. Competitive math has been a big part of his life ever since first grade, when he participated in Math League and Math Kangaroo. He is a 4x AIME qualifier and has qualified for USAJMO once, and has also participated in USAMTS, BMT, and HMMT. Aside from math, he enjoys playing Ultimate Frisbee, chess, and board/card games. His favorite ways to relax are reading, listening to music, and playing Brawl Stars."
 },
 {
     "name": "Erin Bian",
-    "title": "",
-    "photoURL": "",
-    "bio": ""
+    "title": "AMC 10 Committee Co-Director, Problem Writer",
+    "photoURL": "https://i.ibb.co/FxWwqqt/pic-Erin-Bian.jpg",
+    "bio": "Erin is a sophomore at Lakeside School. She is a 4x AIME qualifier, 3x MP4G qualifier, 2x USAJMO qualifier (honorable mention in 2024 and 2025), and USACO Gold contestant. She participated in the G2 math program in 2024 and Canada/USA Mathcamp in 2025. Erin’s other hobbies include chess and ultimate frisbee."
 },
 {
     "name": "Max Xie",
-    "title": "",
-    "photoURL": "",
-    "bio": ""
+    "title": "Elementary Competition Co-Director, Problem Writer",
+    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "bio": "Max is a 11th grader at Tesla STEM High School. His least favorite math topic is geometry like any sane person."
 },
 {
     "name": "Sophia Shen",
-    "title": "",
-    "photoURL": "",
-    "bio": ""
+    "title": "Sierra Leone Committee Co-Director",
+    "photoURL": "https://i.ibb.co/gm77Nq9/Sophia-Shen-Sophia-Shen.jpg",
+    "bio": "Sophia is a junior at Interlake High School with a passion for competitive math. She has qualified for the AIME, USAJMO, and twice for the Math Prize for Girls. She values the supportive community and friendships she’s built through competitive math. Fun fact: she has wayy too many photos of her cat, Candy."
 },
 {
-    "name": "Benjamin",
-    "title": "",
-    "photoURL": "",
-    "bio": ""
+    "name": "Benjamin Fu",
+    "title": "Mathcounts Committee Director, Testing Coordinator",
+    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "bio": "Benjamin is a contributor of the Mathcounts Committee in SIMC. He was a MOP 2024 qualifier and has attended various contests such as HMMT and ARML. In his free time, he enjoys playing Minecraft."
 },
 {
     "name": "Raymond Zhu",
-    "title": "",
-    "photoURL": "",
+    "title": "AIME Committee Co-Director, Problem Writer",
+    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
     "bio": "Raymond Zhu is a junior from Lakeside School. He started competition math in elementary school with the AMC 8, and has since attended MOP in 2025. Outside of math, he enjoys rowing with Lakeside Crew, and has qualified for Nationals with the school's U17 8+ boat."
 },
 {
-    "name": "",
+    "name": "Hannah Ma",
+    "title": "Mathcounts Commitee Co-Director",
+    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "bio": "Hannah is a junior at Lakeside School. Since starting math in elementary school, she has qualified for the AIME four times, the USAJMO twice, and attended PROMYS. Apart from doing math, she enjoys dancing, golfing, fluting, and watching sunsets with her friends."
+},
+{
+    "name": "Eason Deng",
+    "title": "AMC 10 Committee, Problem Writer",
+    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "bio": "Eason Deng is in the class of 2029, and currently attends Lakeside School. He practices competitive math, preparing for contests such as AMC12, AIME, JMO, and other olympiads. His favorite math topic is Algebra/Number Theory, and his least favorite math topic is Combinatorics. He has also interviewed and been interviewed by AoPS. Outside of math, he enjoys tennis and violin, as well as spending quality time with family and friends."
+},
+{
+    "name": "Daniel Ge",
+    "title": "Mathcounts Commitee, Problem Writer",
+    "photoURL": "https://i.ibb.co/NsHbpSF/Real-Life-Daniel-Ge.jpg",
+    "bio": "Daniel Ge is a student and coach passionate in mathematics and coding. He is a two-time USAJMO Winner (Silver) and USACO Platinum contestant. Outside of math, Daniel greatly enjoys hiking, skiing, and biking around the Pacific Northwest with his friends and family."
+},
+{
+    "name": "Edward Li",
+    "title": "AIME Committee, Problem Writer",
+    "photoURL": "https://i.ibb.co/Z2YdX4w/IMG-0686-1.jpg",
+    "bio": "Edward is a Junior at Mercer Island High School. He enjoys doing math and his biggest math achievements include qualifying for USAJMO once, winning Mathcounts State, and being a 3-time AIME qualifier. Outside of math, he likes to play chess, do robotics, watch his favorite football teams, FC Barcelona and the Spain National Team, run cross country, and study world (including US) politics and law."
+},
+{
+    "name": "Eric Shao",
+    "title": "AMC 8 Committee Co-Director, Problem Writer",
+    "photoURL": "https://i.ibb.co/VC2BZvP/8-B228-F01-8-FD8-43-E2-B15-A-721806-D069846-U9-A3992-2024-10-06-T05-45-04-648-Eric-Shao.jpg",
+    "bio": "Eric Shao is a sophomore at Mercer Island High School and is excited to be on Outreach and Competitions this year. He has been doing math competitions since 6th grade and has qualified for the AIME multiple times, as well as qualifying for MATHCOUNTS Nationals in 2023. Outside of math, Eric enjoys playing tennis, doing debate, and playing various TCGs."
+},
+{
+    "name": "Harry Liu",
+    "title": "AMC 8 Committee, Problem Writer",
+    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "bio": "Harry is a junior at Lakeside School who is passionate about mathematics, coding, and electrical engineering. He began competing in math contests in second grade and has qualified for AIME several times. He is a USACO Gold contestant, a two-time ACSL Senior Division Silver Medalist, and has twice attended the FRC World Championship. Outside of STEM, he enjoys playing piano and violin, reading, hiking, and staying active through tennis and swimming."
+},
+{
+    "name": "James Yang",
+    "title": "AMC 10 Committee, Problem Writer",
+    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "bio": "James is a freshman at Lakeside School. He started taking an interest in math in elementary school. Since then, he has participated in numerous competitions, such as HMMT, SMT, and ARML. His notable accomplishments include qualifying for the AIME three times and getting a score of 11 on the most recent test. Outside of math, James enjoys playing soccer, hanging out with friends, and watching movies."
+},
+{
+    "name": "Lalith Durbhakula",
     "title": "",
-    "photoURL": "",
+    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
     "bio": ""
 },
 {
-    "name": "",
-    "title": "",
-    "photoURL": "",
-    "bio": ""
+    "name": "Guhan Thiagarajan",
+    "title": "Elementary Competition Committee, Problem Writer",
+    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "bio": "Guhan is a new SLG member from North Creek High School."
 },
 {
-    "name": "",
+    "name": "Patrick Y",
     "title": "",
-    "photoURL": "",
-    "bio": ""
+    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "bio": "Patrick is a 8th grader at Heatherwood Middle School. He has had a strong passion for math ever since he was young and has took multiple Awesomemath classes. Outside of math, Patrick enjoys playing trumbone and hanging out with friends."
 },
 {
-    "name": "",
+    "name": "Wesley Wu",
     "title": "",
-    "photoURL": "",
-    "bio": ""
+    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "bio": "Wesley Wu is a sophomore at Newport High School. His favorite subjects are algebra and geometry. Outside of math, he also plays competitive tennis."
 },
 {
-    "name": "",
-    "title": "",
-    "photoURL": "",
-    "bio": ""
+    "name": "Laura Wang",
+    "title": "AIME Commitee Co-Director",
+    "photoURL": "https://i.ibb.co/n0QXfGB/AP1-Gcz-Mi-SLUj-LI8p-Jpvn-Xc2r-Ilp-Qk8eg-Zd-D1-Ij1-POCB7-EKOBrk1i-F1-Fragb-Ws-Hgc-E29-BDJf-DU8nry8tm.png",
+    "bio": "Laura is a sophomore at Lakeside School. She started enjoying math when she was five. Since then, she has qualified for JMO, tied for 7th at Math Prize for Girls in 2024, and was a MATHCOUNTS Nationals semifinalist. Her favorite math subject is geometry. When she’s not doing math she likes to draw, ice skate, and listen to music."
 }
 ]
 
