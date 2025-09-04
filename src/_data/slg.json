@@ -18,10 +18,10 @@
     "bio": "This is Rohan’s third year on SLG, and he is now director of Competitions. He has experience in the world of math competitions (HMMT, AIME x4) and math research (MIT PRIMES-USA). Outside of math, he enjoys math, physics, and computer science — as well as tennis and MUN."
 },
   {
-    "name": "Alex Chen",
-    "title": "Competitions Associate Director, Outreach, Content",
-    "photoURL": "https://i.ibb.co/Nmcmjf9/alex-chen-slg-Alex.jpg",
-    "bio": "Alex is a junior at Overlake who loves collaborative math, having participated in ARML multiple times and attended summer programs. He has qualified for AIME 3 times, and still participates in math tournaments. Outside of math, Alex enjoys debating, solving puzzles, playing tetris, and hiking out in the Cascades."
+    "name": "Christina Liu",
+    "title": "Outreach Director, Webmaster",
+    "photoURL": "https://files.catbox.moe/lragml.png",
+    "bio": "Christina is a senior at Lakeside School. She is a USAMO and USAJMO qualifier, has qualified for the AIME five times, been on the AMC 10/12 Distinguished Honor Roll three times, and is a Canada/USA Mathcamp and HCSSiM alum. Outside of math, she enjoys any kind of board sport (snowboarding, skateboarding, wakeboarding, surfing, probably fireboarding if it existed), playing cello and electric guitar, and annihilating people at volleyball. Here’s a lame fact about her: if she was born three hours later, she would be four years old!"
 },
 {
     "name": "Jai Bindlish",
@@ -86,12 +86,6 @@
     "bio": "Max Guo is a rising senior at Skyline High School, outside of contest math he is interested in Machine Learning and its connections with Neuroscience."
 },
 {
-    "name": "Christina Liu",
-    "title": "Outreach Associate Director",
-    "photoURL": "https://i.ibb.co/Npvm3k6/ihatethisphotoofmyselfbutwhatever-Christina-Liu.jpg",
-    "bio": "Christina is a junior at Lakeside School. She is a USAJMO qualifier, has qualified for the AIME four times, been on the AMC 10 Distinguished Honor Roll twice, and is a Canada/USA Mathcamp and HCSSiM alum. Outside of math, she enjoys any kind of board sport (snowboarding, skateboarding, wakeboarding, surfing, probably fireboarding if it existed), playing cello and electric guitar, and annihilating people at volleyball. Here’s a lame fact about her: if she was born three hours later, she would be four years old!"
-},
-{
     "name": "Amey Bharambe",
     "title": "Outreach",
     "photoURL": "https://i.ibb.co/8MKXFj6/amey-bharambe-Amey-Bharambe.jpg",
@@ -135,3 +129,4 @@
 }
 
 ]
+
