@@ -21,7 +21,7 @@ title: Student Leadership Group
     </div>
 
     {# Content #}
-    <div id="container-{{ index }}" class="-z-10 w-full h-full p-5 pt-10 -mt-7 rounded-md bg-slate-100 dark:bg-zinc-800 flip-container" onmouseenter="updatePersonHeight({{ index }}, true)" onmouseleave="updatePersonHeight({{ index }}, false)">
+    <div id="container-{{ index }}" class="-z-10 w-full h-full p-5 pt-10 -mt-7 rounded-md bg-slate-100 dark:bg-zinc-800 flip-container" onmouseenter="updatePersonHeight('{{ index }}', true)" onmouseleave="updatePersonHeight('{{ index }}', false)">
       <div class="flip-inner">
         <div class="flip-front">
           <h3 class="text-center">{{ name }}</h3>
