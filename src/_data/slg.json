@@ -42,12 +42,6 @@
     "bio": "Erin is a sophomore at Lakeside School. She is a 4x AIME qualifier, 3x MP4G qualifier, 2x USAJMO qualifier (honorable mention in 2024 and 2025), and USACO Gold contestant. She participated in the G2 math program in 2024 and Canada/USA Mathcamp in 2025. Erin’s other hobbies include chess and ultimate frisbee."
 },
 {
-    "name": "Max Xie",
-    "title": "Elementary Competition Co-Director, Problem Writer",
-    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
-    "bio": "Max is a 11th grader at Tesla STEM High School. His least favorite math topic is geometry like any sane person."
-},
-{
     "name": "Sophia Shen",
     "title": "Sierra Leone Committee Co-Director",
     "photoURL": "https://i.ibb.co/gm77Nq9/Sophia-Shen-Sophia-Shen.jpg",
@@ -90,6 +84,12 @@
     "bio": "Edward is a Junior at Mercer Island High School. He enjoys doing math and his biggest math achievements include qualifying for USAJMO once, winning Mathcounts State, and being a 3-time AIME qualifier. Outside of math, he likes to play chess, do robotics, watch his favorite football teams, FC Barcelona and the Spain National Team, run cross country, and study world (including US) politics and law."
 },
 {
+    "name": "Patrick Y",
+    "title": "",
+    "photoURL": "/assets/images/slg-photos/Patrick-Uncropped.png",
+    "bio": "Patrick is a 8th grader at Heatherwood Middle School. He has had a strong passion for math ever since he was young and has took multiple Awesomemath classes. Outside of math, Patrick enjoys playing trumbone and hanging out with friends."
+},
+{
     "name": "Eric Shao",
     "title": "AMC 8 Committee Co-Director, Problem Writer",
     "photoURL": "https://i.ibb.co/VC2BZvP/8-B228-F01-8-FD8-43-E2-B15-A-721806-D069846-U9-A3992-2024-10-06-T05-45-04-648-Eric-Shao.jpg",
@@ -108,6 +108,12 @@
     "bio": "James is a freshman at Lakeside School. He started taking an interest in math in elementary school. Since then, he has participated in numerous competitions, such as HMMT, SMT, and ARML. His notable accomplishments include qualifying for the AIME three times and getting a score of 11 on the most recent test. Outside of math, James enjoys playing soccer, hanging out with friends, and watching movies."
 },
 {
+    "name": "Max Xie",
+    "title": "Elementary Competition Co-Director, Problem Writer",
+    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "bio": "Max is a 11th grader at Tesla STEM High School. His least favorite math topic is geometry like any sane person."
+},
+{
     "name": "Benjamin Fu",
     "title": "Mathcounts Committee Director, Testing Coordinator",
     "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
@@ -124,12 +130,6 @@
     "title": "Elementary Competition Committee, Problem Writer",
     "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
     "bio": "Guhan is a new SLG member from North Creek High School."
-},
-{
-    "name": "Patrick Y",
-    "title": "",
-    "photoURL": "/assets/images/slg-photos/Patrick-Uncropped.png",
-    "bio": "Patrick is a 8th grader at Heatherwood Middle School. He has had a strong passion for math ever since he was young and has took multiple Awesomemath classes. Outside of math, Patrick enjoys playing trumbone and hanging out with friends."
 },
 {
     "name": "Wesley Wu",
