@@ -1,12 +1,15 @@
 ---
 layout: main
-title: SIMC Lectures
+title: SIMC Panels & Lectures
 image: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'
 ---
 
-# SIMC lectures
+# SIMC Panels & Lectures
 
-As part of our mission to increase math literacy, we hold monthly lectures about a wide array of math topics. Our first installment of the 2022-23 season will take place this October and be given by SLG member William Y. Feng. See below for more details!
+As part of our mission to increase math literacy, we hold panels and lectures every year about a wide array of math topics and questions. This year, we're continuing our panels on summer camps, inviting speakers from every major math camp in the United States. We've discontinued the Lecture series for now as we've focused more on competitions.
+
+## 2025-2026 Summer Camps Panel
+**⏰ When:** TBD. We'll alert you via email when this happens, so sign up for our newsletter!
 
 ## February 2023 lecture
 
@@ -89,5 +92,3 @@ and turn it into a 4902-digit number that happens to be prime:
 17771777373777733893937777777777177713337717777737377777717777377777777779888893124893
 </pre>
 </div>
-
-Don't miss the first installment of the 2022 SIMC lectures!
