@@ -3,7 +3,7 @@ tags: press_release
 layout: article
 title: SIMC TST Conclusion
 date: 2025-10-03
-image: https://i.imgur.com/6fGdnvB.jpeg
+image: https://imgur.com/zDUECqV.jpeg
 blurb: A competition that tests competitors' problem-solving wits, featuring a proof-writing round.
 ---
 
