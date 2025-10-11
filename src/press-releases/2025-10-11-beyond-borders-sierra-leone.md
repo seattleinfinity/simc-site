@@ -3,7 +3,7 @@ tags: press_release
 layout: article
 title: Beyond Borders
 date: 2025-10-11
-image: https://imgur.com/a/qBVqed7.png
+image: https://imgur.com/qBVqed7.png
 blurb: Partnering with the United for Development School in Sierra Leone
 ---
 
