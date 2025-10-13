@@ -15,5 +15,3 @@ Here at SIMC, we understand how much of a privilege it is to have access to math
 ![Images of our lesson.](https://i.imgur.com/oaoY9dY.png)
 ![Images of our lesson.](https://i.imgur.com/Kw278pW.png)
 
-[See our lesson here.](https://imgur.com/a/BNG3grY)
-
