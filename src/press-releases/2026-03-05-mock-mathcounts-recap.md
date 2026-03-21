@@ -6,6 +6,7 @@ date: 2026-03-05
 blurb: SIMC Mock Mathcounts Recap
 image: 'https://i.imgur.com/7DXK7W7.png'
 ---
+
 Hey all,
 
 Thanks to all of you who attended the SIMC Mock Mathcounts on Tuesday!
