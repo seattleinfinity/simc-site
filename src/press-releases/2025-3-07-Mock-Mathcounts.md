@@ -2,7 +2,7 @@
 tags: press_release
 layout: article
 title: Mock Mathcounts Conclusion
-date: 2026-03-07
+date: 2025-3-07
 blurb: SIMC Mock MATHCOUNTS Results + Problems!
 image: 'https://i.imgur.com/FLNGVbJ.jpeg'
 ---
