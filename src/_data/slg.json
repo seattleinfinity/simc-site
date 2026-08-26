@@ -2,7 +2,7 @@
 {
     "name": "Immanuel Whang",
     "title": "President",
-    "photoURL": "https://i.ibb.co/Ldf3QXn/yb-picture-Immanuel-Whang.png",
+    "photoURL": "/assets/images/slg-photos/Immanuel-Whang.png",
     "bio": "After taking his first AMC 8 in 4th grade, Immanuel fell in love with problem solving and never looked back. Since then, some of his mathematical experiences include taking the USAJMO, attending PROMYS, and competing at HMMT. In his free time, Immanuel enjoys listening to music and going on walks."
 },
 {
@@ -14,7 +14,7 @@
 {
     "name": "Owen Xuan",
     "title": "Elementary Competition Director, Webmaster",
-    "photoURL": "/assets/images/slg-photos/Owen-Uncropped.jpg",
+    "photoURL": "/assets/images/slg-photos/Owen-Uncropped.JPG",
     "bio": "Owen is a senior at Lakeside School. He likes applied math (poker) and game theory. If he's not teaching elementary schoolers math over the summer, or drinking chocolate milk after a cross country meet, don't hesitate to ask to duo on bughouse or go bouldering. He's qualified for the USAJMO 2x, AIME 5x, and his favorite math experience has been, unequivocally, HCSSiM."
 },
   {
@@ -26,25 +26,25 @@
 {
     "name": "Jai Bindlish Test",
     "title": "Web Outreach Director, Webmaster",
-    "photoURL": "https://i.ibb.co/XjfBNRR/1501782.png",
+    "photoURL": "/assets/images/slg-photos/Jai-Bindlish.png",
     "bio": "Jai is a junior at Tesla STEM High School. He started his math journey in 4th grade, with the AMC8. Since then, he has participated in many math excursions, like SMT, AIME, BMT, and ARML. When he's not doing math, you can find him playing football, teaching TaeKwonDo as a 2nd degree black belt, and messing with Arduinos and other microcontrollers."
 },
 {
     "name": "Christopher Peng",
     "title": "AMC 8 Committee Co-Director, Puzzles Writer",
-    "photoURL": "https://i.ibb.co/bXD1w2f/IMG-8422-1-Christopher-Peng.jpg",
+    "photoURL": "/assets/images/slg-photos/Christopher-Peng.jpg",
     "bio": "Christopher is a junior at Lakeside School. Competitive math has been a big part of his life ever since first grade, when he participated in Math League and Math Kangaroo. He is a 4x AIME qualifier and has qualified for USAJMO once, and has also participated in USAMTS, BMT, and HMMT. Aside from math, he enjoys playing Ultimate Frisbee, chess, and board/card games. His favorite ways to relax are reading, listening to music, and playing Brawl Stars."
 },
 {
     "name": "Erin Bian",
     "title": "AMC 10 Committee Co-Director, Problem Writer",
-    "photoURL": "https://i.ibb.co/FxWwqqt/pic-Erin-Bian.jpg",
+    "photoURL": "/assets/images/slg-photos/Erin-Bian.jpg",
     "bio": "Erin is a sophomore at Lakeside School. She is a 4x AIME qualifier, 3x MP4G qualifier, 2x USAJMO qualifier (honorable mention in 2024 and 2025), and USACO Gold contestant. She participated in the G2 math program in 2024 and Canada/USA Mathcamp in 2025. Erin’s other hobbies include chess and ultimate frisbee."
 },
 {
     "name": "Sophia Shen",
     "title": "Sierra Leone Committee Co-Director, AMC 10 Committee Co-Director",
-    "photoURL": "https://i.ibb.co/gm77Nq9/Sophia-Shen-Sophia-Shen.jpg",
+    "photoURL": "/assets/images/slg-photos/Sophia-Shen.jpg",
     "bio": "Sophia is a junior at Interlake High School with a passion for competitive math. She has qualified for the AIME, USAJMO, and twice for the Math Prize for Girls. She values the supportive community and friendships she’s built through competitive math. Fun fact: she has wayy too many photos of her cat, Candy."
 },
 {
@@ -80,7 +80,7 @@
 {
     "name": "Laura Wang",
     "title": "AIME Commitee Co-Director",
-    "photoURL": "https://i.ibb.co/n0QXfGB/AP1-Gcz-Mi-SLUj-LI8p-Jpvn-Xc2r-Ilp-Qk8eg-Zd-D1-Ij1-POCB7-EKOBrk1i-F1-Fragb-Ws-Hgc-E29-BDJf-DU8nry8tm.png",
+    "photoURL": "/assets/images/slg-photos/Laura-Wang.png",
     "bio": "Laura is a sophomore at Lakeside School. She started enjoying math when she was five. Since then, she has qualified for JMO, tied for 7th at Math Prize for Girls in 2024, and was a MATHCOUNTS Nationals semifinalist. Her favorite math subject is geometry. When she’s not doing math she likes to draw, ice skate, and listen to music."
 },
 {
@@ -98,7 +98,7 @@
 {
     "name": "Eric Shao",
     "title": "AMC 8 Committee Co-Director, Problem Writer",
-    "photoURL": "https://i.ibb.co/VC2BZvP/8-B228-F01-8-FD8-43-E2-B15-A-721806-D069846-U9-A3992-2024-10-06-T05-45-04-648-Eric-Shao.jpg",
+    "photoURL": "/assets/images/slg-photos/Eric-Shao.jpg",
     "bio": "Eric Shao is a sophomore at Mercer Island High School and is excited to be on Outreach and Competitions this year. He has been doing math competitions since 6th grade and has qualified for the AIME multiple times, as well as qualifying for MATHCOUNTS Nationals in 2023. Outside of math, Eric enjoys playing tennis, doing debate, and playing various TCGs."
 },
 {
@@ -116,7 +116,7 @@
 {
     "name": "Benjamin Fu",
     "title": "Mathcounts Committee Director, Testing Coordinator",
-    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "photoURL": "/assets/images/slg-photos/default-profile.jpg",
     "bio": "Benjamin is a contributor of the Mathcounts Committee in SIMC. He was a MOP 2024 qualifier and has attended various contests such as HMMT and ARML. In his free time, he enjoys playing Minecraft."
 },
 {
@@ -128,13 +128,13 @@
 {
     "name": "Guhan Thiagarajan",
     "title": "Elementary Competition Committee, Problem Writer",
-    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "photoURL": "/assets/images/slg-photos/default-profile.jpg",
     "bio": "Guhan is a new SLG member from North Creek High School."
 },
 {
     "name": "Wesley Wu",
     "title": "SIME Committee, Mock Mathcounts Committee",
-    "photoURL": "https://i.ibb.co/1Z1bX2G/Tiktok-Default-Profile-Picture-Sticker-Sticker-by-tgamez522.jpg",
+    "photoURL": "/assets/images/slg-photos/default-profile.jpg",
     "bio": "Wesley Wu is a sophomore at Newport High School. His favorite subjects are algebra and geometry. Outside of math, he also plays competitive tennis."
 }
 ]

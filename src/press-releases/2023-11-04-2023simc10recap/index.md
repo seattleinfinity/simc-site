@@ -1,0 +1,53 @@
+---
+tags: press_release
+layout: article
+title: SIMC 10 2023 is over
+date: 2023-11-04
+blurb: SIMC 10 results are out. Congratulations to all the test takers!
+image: cover.jpeg
+---
+
+Results are out for the SIMC 10! Congratulations to everyone who made it to Redmond Libary or their computers (for online competitors) for the SIMC10. Below are the problems/solutions, score distribution, and leaderboard.
+
+<a href="https://drive.google.com/file/d/1s1xrO9oD0atTr3Mo0soCgEYoLZhBw_iJ/view?usp=drive_link"> Test</a>
+
+<a href="https://drive.google.com/file/d/1hIIjn6UQGswAOm6meZng8PpeI24Lbn6g/view?usp=sharing"> Solutions</a>
+
+Distributions:
+
+
+
+Leaderboard: Congrats to our top scorers! (The top score of 130 is from out-of-state, so they won’t be named.)
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Score</th>
+    </tr>
+    <tr>
+        <td>Mingyue Yang (IRL)</td>
+        <td>123</td>
+    </tr>
+    <tr>
+        <td>Avyank Niraj (IRL)</td>
+        <td>120</td>
+    </tr>
+    <tr>
+        <td>Daniel Ge (IRL)</td>
+        <td>120</td>
+    </tr>
+    <tr>
+        <td>Aryan Agrawal (Online)</td>
+        <td>120</td>
+    </tr>
+    <tr>
+        <td>Vishnu Mangipudi (Online)</td>
+        <td>118.5</td>
+    </tr>
+    <tr>
+        <td>Jeffrey Zhao (Online)</td>
+        <td>114</td>
+    </tr>
+</table>
+
+At our in-person event, we also handed out Jane Street and AoPS merchandise to winners. Stay tuned to register for the SIMC 8/SIME when more information is released, to get the chance to win more merch and a free Mathematica subscription!

@@ -1,0 +1,22 @@
+---
+tags: press_release
+layout: article
+title: Announcing the inaugural 2022 SIMC 10
+date: 2022-09-07
+blurb: This year, SIMC is hosting its first ever mock AMC 10 contest, the SIMC
+  10. Click for more details.
+image: cover.jpg
+---
+
+Hi everyone!
+
+We hope your school years are getting off to a good start. This year's AMC 10A/10B will be on [November 10 and November 16](https://www.maa.org/math-competitions/about-amc/events-calendar); to aid in your preparation, we are excited to announce that we will be hosting an in-person/virtual mock AMC 10 at Bellevue Library on Saturday, October 22 from 3:45-5:00.
+
+There will be two options for taking the test:
+
+- For those who wish to take the test virtually, problems will be sent through email on the test date.
+- For those who wish to take the test in-person, please arrive at [Bellevue Library](https://goo.gl/maps/GDUZC3HYgyLpiCk58) at 3:30. We will begin the test at 3:45 pm and finish at around 5.
+
+Registration will open soon---watch this page for updates.
+
+We hope to see you there!

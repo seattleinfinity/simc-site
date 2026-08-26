@@ -1,0 +1,106 @@
+---
+tags: press_release
+layout: article
+title: SIMC 10A Recap
+date: 2025-11-02
+blurb: Thank you to all who participated in SIMC 10A! This is a quick debrief about the event.
+image: cover.jpg
+---
+Congrats to all the participants of SIMC's **2025 Mock AMC 10A**!! We were very excited to see so many enthusiastic test takers, and the competition was intense this year! Best of luck to everyone taking the real exam!
+
+That being said, here is the **OFFICIAL LEADERBOARD** of top scorers:
+
+<table>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Score</th>
+  </tr>
+
+  <tr>
+    <th>1</th>
+    <th>Kaiyuan Mao</th>
+    <th>144</th>
+  </tr>
+
+  <tr>
+    <th>2</th>
+    <th>Arjun Raman</th>
+    <th>132</th>
+  </tr>
+
+  <tr>
+    <th>3</th>
+    <th>Steve Cui</th>
+    <th>129</th>
+  </tr>
+
+  <tr>
+    <th>4</th>
+    <th>Joshua Khohayting</th>
+    <th>127.5</th>
+  </tr>
+
+  <tr>
+    <th>5</th>
+    <th>Anthony Cao</th>
+    <th>126</th>
+  </tr>
+  
+  <tr>
+    <th>6</th>
+    <th>Nightshade37</th>
+    <th>126</th>
+  </tr>  
+  
+  <tr>
+    <th>7</th>
+    <th>Shuyin Liu</th>
+    <th>124.5</th>
+  </tr>
+    
+  <tr>
+    <th>8</th>
+    <th>Alexander Yu</th>
+    <th>123</th>
+  </tr>
+
+  <tr>
+    <th>9</th>
+    <th>Anish Agrawal</th>
+    <th>118.5</th>
+  </tr>
+    
+  <tr>
+    <th>10</th>
+    <th>Jonathan Judson</th>
+    <th>117</th>
+  </tr>
+</table><br />
+
+Here are also some really cool **STATS** about this year's contest:
+* Number of participants: 41
+* **Mean score: 99**
+* Top 25%: 117
+* **Median score: 103.5**
+* Top 75%: 87
+
+Based on this test, we also have some **PREDICTED CUTOFFS** -- see if you made them or not!
+* Estimated AIME floor: 93
+* Estimated top 5% Honor Roll: 103.5
+* Estimated top 1% Distinguished Honor Roll: 126
+<br />
+_(Remember: these are predictions, so please take them with a grain of salt!!)_
+
+And now, some **TRIVIA:**
+* Problem 10 had the most incorrect responses (18)
+* Problems 12, 20, 21, and 24 had no incorrect responses (wow!)
+* Problems 1 and 5 had the most correct responses (40)
+* Problems 23 and 25 had the fewest correct responses (6)
+
+Finally, if you'd like to try the problems yourself, here are the **OFFICIAL PROBLEMS AND SOLUTIONS:** 
+<a href="https://drive.google.com/file/d/1vn-A-NcKwzSRddTWU2aR0FlawjTJFOmw/view?usp=drive_link">Test</a> <br />
+
+<a href="https://drive.google.com/file/d/1NlAmleL54RsZa1VosUakE3x8cApZ2No1/view?usp=drive_link">Solutions</a>
+
+And that's a wrap! Thank you all for playing, see you all in the SIMC 10B recap!!

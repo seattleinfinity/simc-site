@@ -1,6 +1,6 @@
 # Seattle Infinity Math Circle site
 
-React/Vite static site for Seattle Infinity Math Circle. The visual system is based on the Figma-derived SIMC mockup and keeps the Netlify `_site` output directory.
+React/Vite static site for Seattle Infinity Math Circle.
 
 ## Local development
 
@@ -9,32 +9,24 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173`. Build a deployable static site with:
+Build the deployable static site with:
 
 ```sh
 npm run build
 ```
 
-The build is written to `_site`. Netlify’s `public/_redirects` keeps client-side routes working on direct visits.
+The build is written to `_site`.
 
-## Editing content
+## Content structure
 
-Markdown and JSON remain the editable source of truth:
+Every public event, press release, and past test is a self-contained folder:
 
-- `src/press-releases/*.md` → `/press-releases/:slug`
-- `src/events/*.md` → `/events/:slug`
-- `src/_data/slg.json` → `/slg` and `/about-us`
-- `src/_data/potm.json` → `/potm`
-- `src/resources.md`, `src/newsletters.md`, and `src/gcalender.md` feed their React pages
-- `src/test-archive.js` contains the structured Past Tests registry and explicit unresolved gaps
-- `src/assets` is copied to `public/assets`; the LaTeX-generated integral mark is `public/int.svg`
+- `src/events/<slug>/index.md` → `/events/<slug>`
+- `src/press-releases/<slug>/index.md` → `/press-releases/<slug>`
+- `src/past-tests/<slug>/index.md` → `/past-tests/<slug>`
 
-Press-release and event detail pages render the complete Markdown body, including links, tables, images, raw HTML, and iframes. The Circle archive loads current issue/article files from `seattleinfinity/simc-circle-articles` at runtime and links to its historical archive.
+Images and other local assets belong beside the Markdown that uses them. Past-test problem PDFs are embedded on their detail pages when a direct PDF URL is available; solutions remain exact external links. The archive does not invent replacement materials when the source has no usable file.
 
-The Decap CMS entry point remains at `/admin`; its configuration and preview assets are under `src/admin` and are copied to `public/admin`.
+The attached classroom image used on the home and About pages is `public/assets/images/about-classroom.png`. Sponsor marks and student portraits are also local files under `public/assets/images/`.
 
-## Routes and legacy aliases
-
-The app preserves the existing pages and aliases, including `/events/SIMC10`, `/events/SIMC8`, `/events/SIME`, `/gcalender`, `/calender`, `/newletter`, `/about-us`, and `/past-tests`. Additional coverage includes `/newsletters`, `/calendar`, `/potm`, `/circle`, `/announcements/mathcounts`, and every press-release detail route.
-
-See [`docs/content-migration-audit.md`](docs/content-migration-audit.md) for the migration counts, source links, test-material audit, and unresolved gaps.
+The Decap CMS entry point remains at `/admin`; its configuration and preview assets are under `src/admin` and `public/admin`.
