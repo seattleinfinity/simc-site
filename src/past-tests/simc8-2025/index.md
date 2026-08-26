@@ -2,6 +2,7 @@
 type: past-test
 category: mock-amc8
 year: 2025
+hosted_date: January 19, 2025
 title: Mock AMC 8 (SIME 8) 2025
 status: confirmed
 problem_pdfs: https://drive.google.com/file/d/1-HPwvmVBPOAH1hBkGtVZNa-P-FSWoYDO/view

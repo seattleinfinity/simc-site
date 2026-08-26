@@ -2,6 +2,7 @@
 type: past-test
 category: mock-mathcounts
 year: 2025
+hosted_date: March 2025
 title: Mock MATHCOUNTS 2025
 status: needs-source
 ---

@@ -2,6 +2,7 @@
 type: past-test
 category: tst
 year: 2025
+hosted_date: September 27, 2025
 title: SIMC TST 2025
 status: confirmed
 problem_pdfs: https://drive.google.com/file/d/107cv4uoiYN_2V0cfsSXv2iIDrNp9WbxY/view; https://drive.google.com/file/d/1ZG66aBLYljOwaPpXKy3Q9ooSTxQZWITE/view

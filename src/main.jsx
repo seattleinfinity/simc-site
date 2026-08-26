@@ -507,7 +507,7 @@ function TestArchiveCard({ test }) {
   return (
     <InternalLink href={'/past-tests/' + test.slug} className="test-archive-card">
       <div className="test-archive-copy">
-        <p className="card-kicker">Hosted in {formatTestYear(test.year)}</p>
+        <p className="card-kicker">{test.hosted_date}</p>
         <h3>{test.title}</h3>
         <p>{test.description || TEST_CARD_DESCRIPTIONS[test.category] || 'Competition test materials.'}</p>
       </div>

@@ -2,6 +2,7 @@
 type: past-test
 category: tst
 year: 2020
+hosted_date: September 6, 2020
 title: SIMC TST 2020
 status: confirmed
 problem_pdfs: http://drive.google.com/file/d/1krIHO5IISN4uxL7Q-eOs-W0E9m9LidM3/view?usp=sharing

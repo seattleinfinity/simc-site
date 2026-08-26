@@ -2,6 +2,7 @@
 type: past-test
 category: mock-mathcounts
 year: 2024
+hosted_date: January 28, 2024
 title: Mock MATHCOUNTS 2024
 status: confirmed
 problem_pdfs: https://drive.google.com/file/d/15qJm3BjgLxY5LoEJgu6cFkSFNjKkf2KX/view; https://drive.google.com/file/d/1g0VYQC0idPHGq5yXS3cZcB9VN7a_SIt5/view; https://drive.google.com/file/d/1Uiu0kja3yuB01V8TDpxdBlCt1EyFQjOZ/view

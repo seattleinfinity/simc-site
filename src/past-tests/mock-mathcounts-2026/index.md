@@ -2,6 +2,7 @@
 type: past-test
 category: mock-mathcounts
 year: 2026
+hosted_date: March 3, 2026
 title: Mock MATHCOUNTS 2026
 status: confirmed
 problem_pdfs: https://drive.google.com/file/d/10-XvyiPj_uXvp-fRvSHnT82GvpdkxPWT/view; https://drive.google.com/file/d/1T7x0kjm305yPaCnLVesviWJhCT267EUg/view; https://drive.google.com/file/d/1bQDKDraEDVHiOX6IeQwOUPEm00p9nr0T/view
