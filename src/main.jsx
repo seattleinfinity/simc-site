@@ -288,7 +288,7 @@ function PersonCard({ name, role, bio, image }) {
       <SourceImage src={image} className="card-image" alt={`Photo of ${name}`} />
       <div className="card-copy">
         <h3>{name}</h3>
-        <p className="card-kicker">{role}</p>
+        {role && <p className="card-kicker">{role}</p>}
         <p>{bio}</p>
       </div>
     </article>
