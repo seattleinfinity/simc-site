@@ -14,7 +14,7 @@ import {
   PRESS_CONTENT_BY_SLUG,
   slugify,
 } from './content.js';
-import { EVENT_MATERIALS, TEST_ARCHIVE, TEST_GAPS } from './test-archive.js';
+import { TEST_ARCHIVE, TEST_GAPS } from './test-archive.js';
 import { localizeImage } from './image-map.js';
 import './styles.css';
 
@@ -26,9 +26,9 @@ const MOCK_CONTENT_URL = '/announcements/mathcounts';
 const SOURCE_SITE = 'https://seattleinfinity.netlify.app';
 
 const SPONSORS = [
-  { name: 'Jane Street', href: 'https://www.janestreet.com/', image: '/assets/images/logo/logo_horizontal_white_registered-01.png', className: 'sponsor-image-jane' },
-  { name: 'AoPS Academy Bellevue', href: 'https://bellevue.aopsacademy.org/', image: '/assets/images/logo/aops-logo.svg', className: 'sponsor-image-aops' },
-  { name: 'X-Camp', href: 'https://www.x-camp.org/', image: '/assets/images/logo/logo.jpg', className: 'sponsor-image-xcamp' },
+  { name: 'Jane Street', href: 'https://www.janestreet.com/', image: '/assets/images/sponsors/jane-street-logo.png', className: 'sponsor-image-jane' },
+  { name: 'AoPS Academy Bellevue', href: 'https://bellevue.aopsacademy.org/', image: '/assets/images/sponsors/aops-logo.png', className: 'sponsor-image-aops' },
+  { name: 'X-Camp', href: 'https://www.x-camp.org/', image: '/assets/images/sponsors/xcamp-logo.png', className: 'sponsor-image-xcamp' },
 ];
 
 const AWARDS_BY_YEAR = [
@@ -485,9 +485,13 @@ const UPCOMING_EVENTS = [
 ];
 
 const RESOURCE_CARDS = [
-  { title: 'Online classes', description: 'Art of Problem Solving is recognized worldwide.', href: 'https://artofproblemsolving.com/' },
-  { title: 'YouTube channels', description: 'Explore 3Blue1Brown and Numberphile for visual and conversational math.', href: 'https://www.youtube.com/@3blue1brown' },
-  { title: 'Books', description: 'The source recommends the AoPS Bookstore, Things to Make and Do in the Fourth Dimension, and Real Mathematical Analysis.', href: 'https://artofproblemsolving.com/store' },
+  { title: 'AoPS', description: 'Online classes and problem-solving resources.', href: 'https://artofproblemsolving.com/' },
+  { title: 'X-Camp', description: 'Coding and mathematics programs for students.', href: 'https://www.x-camp.org/' },
+  { title: '3Blue1Brown', description: 'Visual explanations of mathematics.', href: 'https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw' },
+  { title: 'Numberphile', description: 'Conversations about numbers, puzzles, and mathematical ideas.', href: 'https://www.youtube.com/channel/UCoxcjq-8xIDTYp3uz647V5A' },
+  { title: 'AoPS Bookstore', description: 'Books and problem-solving resources from AoPS.', href: 'https://artofproblemsolving.com/store' },
+  { title: 'Things to Make and Do in the Fourth Dimension', description: 'Matt Parker’s playful tour of mathematical ideas.', href: 'https://www.goodreads.com/book/show/23008136-things-to-make-and-do-in-the-fourth-dimension' },
+  { title: 'Real Mathematical Analysis', description: 'Charles Pugh’s analysis textbook.', href: 'https://smartmanmaths.files.wordpress.com/2017/11/real-mathematical-analysis.pdf' },
 ];
 
 const SLG_PEOPLE = [
@@ -1030,18 +1034,10 @@ function ResourcesPage() {
         </div>
       </section>
       <section className="resources-external">
-        <h2>Online classes, YouTube, and books</h2>
+        <h2>External resources</h2>
         <div className="link-grid">
           {RESOURCE_CARDS.map((resource) => <LinkCard key={resource.title} {...resource} />)}
         </div>
-      </section>
-      <section className="resources-materials">
-        <h2>SIMC Day materials</h2>
-        <div className="link-grid">{EVENT_MATERIALS.map((material) => <LinkCard key={material.href} title={material.label} description="Local event material" href={material.href} />)}</div>
-      </section>
-      <section className="resources-source">
-        <h2>Competition calendar and reading list</h2>
-        <MarkdownBody source={(PAGE_CONTENT_BY_SLUG.resources?.body || '').replace(/^#\s+.+(?:\r?\n){1,2}/, '')} />
       </section>
     </main>
   );

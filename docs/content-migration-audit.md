@@ -19,6 +19,8 @@ The React/Vite build reads the existing Markdown and JSON files in `src/` at bui
 
 Fifty-one recoverable image URLs from the source Markdown, event pages, SLG data, and fallback cards are stored under `public/assets/images/migrated/` and are used automatically by the React renderer. The source URLs are retained as a fallback for links that could not be fetched: four expired Discord attachments returned 404, Presentermedia returned 403, the NSBE logo returned 404, and two stale Googleusercontent links returned 400/HTML. No replacement image was fabricated for those cases.
 
+Footer sponsor marks are transparent assets from official sources: Jane Street's official wordmark SVG was rasterized to `public/assets/images/sponsors/jane-street-logo.png`, while AoPS's official PNG and X-Camp's official PNG are stored as `aops-logo.png` and `xcamp-logo.png`.
+
 ## Past-test archive
 
 Material links below are copied from the source repository. The React archive does not fabricate links; records marked `needs-source` remain visibly unresolved.
