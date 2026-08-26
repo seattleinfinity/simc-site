@@ -110,7 +110,38 @@ const EVENT_ITEMS = EVENT_CONTENT.map((event) => ({
   ...event,
   date: event.schedule || event.date,
 }));
-const UPCOMING_EVENTS = EVENT_ITEMS.filter(({ featured }) => featured);
+const SCHEDULE_MONTHS = {
+  january: 1,
+  february: 2,
+  march: 3,
+  april: 4,
+  may: 5,
+  june: 6,
+  july: 7,
+  august: 8,
+  september: 9,
+  october: 10,
+  november: 11,
+  december: 12,
+  winter: 1,
+  spring: 3,
+  summer: 6,
+  fall: 9,
+  autumn: 9,
+};
+const CURRENT_MONTH = new Date().getMonth() + 1;
+const eventSortKey = (schedule) => {
+  const text = String(schedule || '').toLowerCase();
+  const months = [...new Set(Object.entries(SCHEDULE_MONTHS)
+    .filter(([label]) => text.includes(label))
+    .map(([, month]) => month))];
+  const phase = text.includes('early') ? 0 : text.includes('late') ? 2 : 1;
+  if (!months.length) return 120;
+  return Math.min(...months.map((month) => ((month - CURRENT_MONTH + 12) % 12) * 3 + phase));
+};
+const UPCOMING_EVENTS = EVENT_ITEMS
+  .filter(({ featured }) => featured)
+  .sort((a, b) => eventSortKey(a.schedule || a.date) - eventSortKey(b.schedule || b.date));
 
 
 const PEOPLE = SLG_DATA.map(({ name, title, photoURL, bio }) => ({
@@ -376,7 +407,7 @@ function HomeLatest() {
           <Button href="/events" tone="outline">View all events</Button>
         </div>
         <div className="compact-stack">
-          {UPCOMING_EVENTS.map((event) => <CompactCard key={event.slug} title={event.title} date={event.date} description={event.description} href={`/events/${event.slug}`} />)}
+          {UPCOMING_EVENTS.slice(0, 3).map((event) => <CompactCard key={event.slug} title={event.title} date={event.date} description={event.description} href={`/events/${event.slug}`} />)}
         </div>
       </div>
       <div className="home-latest-column">
@@ -448,24 +479,38 @@ function YearRule({ children }) {
   return <div className="section-year-rule"><span>{children}</span></div>;
 }
 
+const formatTestYear = (year) => {
+  const endYear = Number(year);
+  return Number.isFinite(endYear) ? `${endYear - 1} — ${endYear}` : year;
+};
+
 const TEST_CATEGORY_LABELS = {
   'mock-aime': 'Mock AIME',
+  'mock-amc8': 'Mock AMC 8',
   'mock-amc10': 'Mock AMC 10',
   'mock-amc12': 'Mock AMC 12',
   'mock-mathcounts': 'Mock MATHCOUNTS',
   elementary: 'Elementary competition',
   tst: 'SIMC TST',
 };
+const TEST_CARD_DESCRIPTIONS = {
+  'mock-aime': 'A practice AIME-style test.',
+  'mock-amc8': 'A practice AMC 8-style test.',
+  'mock-amc10': 'A practice AMC 10-style test.',
+  'mock-amc12': 'A practice AMC 12-style test.',
+  'mock-mathcounts': 'A practice MATHCOUNTS competition.',
+  elementary: 'A practice elementary math competition.',
+  tst: 'A team selection test for math tournaments.',
+};
 
 function TestArchiveCard({ test }) {
   return (
     <InternalLink href={'/past-tests/' + test.slug} className="test-archive-card">
       <div className="test-archive-copy">
-        <p className="card-kicker">{TEST_CATEGORY_LABELS[test.category]}</p>
+        <p className="card-kicker">Hosted in {formatTestYear(test.year)}</p>
         <h3>{test.title}</h3>
-        <p className={'test-status test-status-' + test.status}>{test.status === 'needs-source' ? 'Source needed' : 'Materials available'}</p>
+        <p>{test.description || TEST_CARD_DESCRIPTIONS[test.category] || 'Competition test materials.'}</p>
       </div>
-      <span className="test-view-link">View past test</span>
     </InternalLink>
   );
 }
@@ -485,7 +530,7 @@ function ResourcesPage({ onlyTests = false }) {
         <div className="test-year-list">
           {grouped.map(({ year, tests: yearTests }) => (
             <div className="test-year" key={year}>
-              <YearRule>{year}</YearRule>
+              <YearRule>{formatTestYear(year)}</YearRule>
               <div className="test-archive-grid">{yearTests.map((test) => <TestArchiveCard key={test.slug} test={test} />)}</div>
             </div>
           ))}
@@ -506,7 +551,7 @@ function PastTestDetailPage({ slug }) {
   return (
     <main>
       <section className="announcement-hero">
-        <p className="card-kicker card-kicker-light">{TEST_CATEGORY_LABELS[test.category]} · {test.year}</p>
+        <p className="card-kicker card-kicker-light">{TEST_CATEGORY_LABELS[test.category]} · {formatTestYear(test.year)}</p>
         <h1>{test.title}</h1>
         <Button href="/past-tests" tone="light">Back to past tests</Button>
       </section>
