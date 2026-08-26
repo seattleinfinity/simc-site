@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Markdown-specific styles (things in .md files) */
+
+.markdown-content h2 {
+  @apply mt-6;
+  @apply mb-4;
+}
+
+@layer components {
+  .card {
+    @apply p-8;
+    @apply shadow;
+    @apply rounded;
+    @apply border;
+    @apply dark:border-neutral-700;
+  }
+}
+
+@layer base {
+  /* Headings */
+  h1 {
+    @apply text-6xl;
+    @apply font-bold;
+    @apply mt-8;
+    @apply mb-10;
+    @apply tracking-tight;
+  }
+
+  h2 {
+    @apply text-4xl;
+    @apply font-bold;
+    @apply tracking-tight;
+  }
+
+  h3 {
+    @apply text-3xl;
+    @apply font-bold;
+  }
+
+  h4 {
+    @apply text-2xl;
+    @apply text-neutral-500;
+  }
+
+  h5 {
+    @apply font-bold;
+  }
+
+  /* Lists */
+  main ol {
+    @apply list-decimal;
+  }
+
+  main ol,
+  main ul {
+    @apply pl-8;
+    @apply mb-3;
+  }
+
+  /* Add bullets to unordered lists */
+  main ul li {
+    @apply list-disc;
+    @apply list-outside;
+  }
+
+  /* Text content and miscellaneous stuff */
+  hr {
+    @apply my-3;
+  }
+
+  input {
+    @apply px-4 py-2
+      rounded
+      border border-neutral-400 dark:border-neutral-800 focus:outline-blue-500
+      transition-colors;
+  }
+
+  /* Last element of a card shouldn't produce extra margin-bottom */
+  div.card *:nth-last-child(1) {
+    @apply mb-0;
+  }
+
+  .paragraphs p {
+    @apply mb-3;
+  }
+
+  main p {
+    /* Line-height */
+    @apply leading-relaxed;
+  }
+
+  /* Images */
+  main img {
+    @apply ml-auto;
+    @apply mr-auto;
+  }
+
+  /* Links! */
+  main p a,
+  main li a,
+  main > a {
+    @apply text-blue-500;
+    @apply dark:text-blue-400;
+    @apply hover:text-blue-800;
+    @apply dark:hover:text-blue-200;
+    @apply transition-all;
+  }
+
+  /* Tables */
+  main table {
+    @apply border;
+    @apply mb-3;
+  }
+
+  main table th,
+  main table td {
+    @apply px-2;
+    @apply py-1;
+    @apply border;
+  }
+}
+
+/* Dark mode and stuff */
+@media (prefers-color-scheme: dark) {
+  /* Dark scrollbar */
+  :root {
+    color-scheme: dark;
+  }
+}
+
+/* Flip cards for SLG page */
+.flip-container {
+  perspective: 1000px;
+  height: 140px;
+  transition: 0.3s;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-container:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front,
+.flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
