@@ -144,12 +144,26 @@ const UPCOMING_EVENTS = EVENT_ITEMS
   .sort((a, b) => eventSortKey(a.schedule || a.date) - eventSortKey(b.schedule || b.date));
 
 
-const PEOPLE = SLG_DATA.map(({ name, title, photoURL, bio }) => ({
-  name,
-  role: title || '',
-  image: photoURL,
-  bio,
-}));
+const FEATURED_PEOPLE = { 'Erin Bian': 0, 'Christopher Peng': 1, 'Raymond Zhu': 2 };
+const seniorityRank = (bio) => {
+  const text = String(bio || '').toLowerCase();
+  if (/\bsenior\b/.test(text)) return 0;
+  if (/\bjunior\b/.test(text)) return 1;
+  if (/\bsophomore\b/.test(text)) return 2;
+  return 3;
+};
+const PEOPLE = [...SLG_DATA]
+  .sort((a, b) =>
+    (FEATURED_PEOPLE[a.name] ?? 3) - (FEATURED_PEOPLE[b.name] ?? 3)
+    || seniorityRank(a.bio) - seniorityRank(b.bio)
+    || a.name.localeCompare(b.name)
+  )
+  .map(({ name, title, photoURL, bio }) => ({
+    name,
+    role: title || '',
+    image: photoURL,
+    bio,
+  }));
 
 const markdown = new MarkdownIt({ html: true, linkify: true, typographer: true });
 const renderMarkdown = (source) => DOMPurify.sanitize(markdown.render(source || ''), {
