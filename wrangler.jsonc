@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "simc-site",
+  "main": "./worker/index.js",
+  "compatibility_date": "2026-08-26",
+  "assets": {
+    "directory": "./_site",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  }
+}
