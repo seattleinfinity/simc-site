@@ -21,11 +21,11 @@ There is no test or lint script in `package.json`. Run `npm run typecheck` for a
 
 ## Application architecture
 
-- `src/main.tsx` contains the app, shared layout components, page components, content-derived lists, and the React Router route table.
+- `src/main.tsx` is the application entry point and owns the top-level router/theme/scroll setup. Shared layout and UI components live under `src/components/`, page components under `src/pages/`, and the React Router route table in `src/site-routes.tsx`.
 - `BrowserRouter`, `Routes`, `Route`, `Link`, `useLocation`, and `useParams` provide client-side navigation. `ScrollToTop` handles route changes; `SiteRoutes` owns the route table.
 - `src/content.ts` uses eager `import.meta.glob()` calls to bundle Markdown and adjacent media at build time. It parses the repository's simple YAML-like front matter, creates typed records and slugs/aliases, resolves local relative assets, and exposes records grouped as press releases, events, past tests, and generic pages.
-- Markdown is rendered in `src/main.tsx` with `markdown-it`, then sanitized with DOMPurify. KaTeX CSS is imported for math content. Keep the sanitizer and local-asset rewriting in mind when changing Markdown features.
-- `src/data/slg.json` supplies Student Leadership Group people and photos; `src/main.tsx` sorts and presents this data.
+- Markdown is rendered in `src/components/markdown-content.tsx` with `markdown-it`, then sanitized with DOMPurify. KaTeX CSS is imported for math content. Keep the sanitizer and local-asset rewriting in mind when changing Markdown features.
+- `src/data/slg.json` supplies Student Leadership Group people and photos; `src/data/site.ts` prepares the site data and `src/pages/static-pages.tsx` presents the SLG page.
 - `src/styles.css` is the stylesheet entry point and remains the main styling API for semantic classes.
 
 ## Routes
