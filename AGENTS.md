@@ -4,7 +4,7 @@
 
 - Seattle Infinity Math Circle's public website.
 - Typed React component code rendered by Vite; this is a client-side static site, not a server-rendered app.
-- The production build directory is `_site/` (configured in `vite.config.ts`). It is ignored by Git.
+- The production build directory is `dist/` (configured in `vite.config.ts`). It is ignored by Git.
 - The app source is TypeScript/TSX and uses React Router for client-side navigation.
 
 ## Development commands
@@ -13,8 +13,8 @@
 npm install
 npm run dev       # Vite development server
 npm run typecheck # validates the TypeScript source
-npm run build     # typechecks, then writes the deployable site to _site/
-npm run preview   # serves the built _site/ output
+npm run build     # typechecks, then writes the deployable site to dist/
+npm run preview   # serves the built dist/ output
 ```
 
 There is no test or lint script in `package.json`. Run `npm run typecheck` for a fast check and `npm run build` for the production compilation.
@@ -62,7 +62,7 @@ Generic pages such as newsletters/resources are also Markdown records with `type
 - Content-local assets are imported by Vite through `src/content.ts` and should be referenced relative to their Markdown source.
 - The footer and contact/home surfaces link to Discord, Instagram, Google Forms, sponsor websites, and Google Calendar embeds. The mailing-list email fields are currently client-only confirmation states; they do not submit to a backend.
 - `worker/index.js` is a minimal Cloudflare Worker that forwards requests to the `ASSETS` binding.
-- `wrangler.jsonc` names the Worker `simc-site`, points at `_site`, enables SPA `not_found_handling`, and uses the repository's compatibility date. The README says Cloudflare Workers Builds runs `npm run build` and then `npx wrangler deploy` on pushes to production `main`; verify hosting state separately from a local build.
+- `wrangler.jsonc` names the Worker `simc-site`, points at `dist/`, enables SPA `not_found_handling`, and uses the repository's compatibility date. The README says Cloudflare Workers Builds runs `npm run build` and then `npx wrangler deploy` on pushes to production `main`; verify hosting state separately from a local build.
 
 ## Change guidance
 

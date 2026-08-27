@@ -1,7 +1,7 @@
 **__pycache__/
 
 node_modules/
-_site/
+dist/
 .wrangler/
 .dev.vars*
 .vscode/

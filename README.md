@@ -15,7 +15,7 @@ Build the deployable static site with:
 npm run build
 ```
 
-The build is written to `_site`.
+The build is written to `dist`.
 
 ## Content structure
 
