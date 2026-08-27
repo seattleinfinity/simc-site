@@ -54,7 +54,7 @@ Each content item is a folder containing `index.md`:
 
 Use the existing front matter conventions. Common fields include `title`, `blurb`, `date`, `schedule`, `featured`, `aliases`, `past_tests`, and `image`; past tests additionally use `type: past-test`, `category`, `year`, `hosted_date`, `problem_pdfs`, `solution_links`, and `source_links`. Multiple material links are separated with semicolons. Relative images/PDFs should live beside the Markdown file; external URLs are preserved. Do not invent missing problem or solution files.
 
-Generic pages such as newsletters/resources are also Markdown records with `type: page`. Decap CMS is served from `/admin`; its source config is `src/admin/config.yml`, its public copied assets are under `public/admin`, and it uses Git Gateway, `main`, and editorial workflow settings.
+Generic pages such as newsletters/resources are also Markdown records with `type: page`.
 
 ## Assets and external services
 
@@ -70,4 +70,4 @@ Generic pages such as newsletters/resources are also Markdown records with `type
 - For content changes, update the relevant Markdown/front matter first and let the glob-derived records drive the UI. Only change `src/main.tsx` when presentation or route behavior actually needs it.
 - Preserve accessible labels, `target="_blank"`/`rel="noreferrer"` behavior for external links, direct-PDF fallback behavior, and the responsive rules in the lower portion of `src/styles.css`.
 - When changing styles, keep the stylesheet's global semantic selectors and responsive rules in mind. Recheck desktop and narrow/mobile layouts after TSX or CSS edits.
-- A successful `npm run build` proves static compilation only; it does not prove Worker deployment, custom-domain routing, CMS authentication, external embeds, or browser-level behavior.
+- A successful `npm run build` proves static compilation only; it does not prove Worker deployment, custom-domain routing, external embeds, or browser-level behavior.

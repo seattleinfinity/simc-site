@@ -29,8 +29,6 @@ Images and other local assets belong beside the Markdown that uses them. Past-te
 
 The attached classroom image used on the home and About pages is `public/assets/images/about-classroom.png`. Sponsor marks and student portraits are also local files under `public/assets/images/`.
 
-The Decap CMS entry point remains at `/admin`; its configuration and preview assets are under `src/admin` and `public/admin`.
-
 ## Deployment
 
 Cloudflare Workers Builds watches the production `main` branch and runs `npm run build` followed by `npx wrangler deploy` on every push.
