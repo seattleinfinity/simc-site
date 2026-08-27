@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { PersonCard } from '../components/content-card';
 import { MarkdownBody } from '../components/markdown-content';
+import { MasonryGrid } from '../components/masonry-grid';
 import { Intro } from '../components/page-primitives';
 import { Button, SignupBanner } from '../components/site-shell';
 import { PAGE_CONTENT_BY_SLUG, type ContentRecord } from '../content';
@@ -95,13 +96,11 @@ export function SlgPage() {
       <SignupBanner />
       <section className="slg-page-list">
         <h2>Meet the Student Leadership Group</h2>
-        <div className="people-grid">
-          {Array.from({ length: 3 }, (_, columnIndex) => (
-            <div className="people-column" key={columnIndex}>
-              {PEOPLE.filter((_, index) => index % 3 === columnIndex).map((person) => <PersonCard key={person.name} {...person} />)}
-            </div>
-          ))}
-        </div>
+        <MasonryGrid
+          className="people-grid"
+          items={PEOPLE}
+          renderItem={(person) => <PersonCard key={person.name} {...person} />}
+        />
       </section>
     </main>
   );

@@ -1,4 +1,5 @@
 import { CompactCard, PressCard } from '../components/content-card';
+import { MasonryGrid } from '../components/masonry-grid';
 import { ResultsSection } from '../components/results-section';
 import { Button, SignupBanner } from '../components/site-shell';
 import { PRESS_CONTENT } from '../content';
@@ -35,9 +36,13 @@ function HomeLatest() {
           <div className="title-spacer" />
           <Button href="/events" tone="outline">View all events</Button>
         </div>
-        <div className="compact-stack">
-          {UPCOMING_EVENTS.slice(0, 3).map((event) => <CompactCard key={event.slug} title={event.title} date={event.date} description={event.description} href={`/events/${event.slug}`} />)}
-        </div>
+        <MasonryGrid
+          className="compact-stack"
+          items={UPCOMING_EVENTS.slice(0, 3)}
+          minColumnWidth={280}
+          gap={12}
+          renderItem={(event) => <CompactCard key={event.slug} title={event.title} date={event.date} description={event.description} href={`/events/${event.slug}`} />}
+        />
       </div>
       <div className="home-latest-column">
         <div className="section-title-row">
@@ -45,9 +50,12 @@ function HomeLatest() {
           <div className="title-spacer" />
           <Button href="/press-releases" tone="outline">View all press releases</Button>
         </div>
-        <div className="featured-press-grid">
-          {PRESS_CONTENT.slice(0, 2).map((article) => <PressCard key={article.slug} variant="featured" title={article.title} date={article.date} description={article.description} image={article.image} href={`/press-releases/${article.slug}`} />)}
-        </div>
+        <MasonryGrid
+          className="featured-press-grid"
+          items={PRESS_CONTENT.slice(0, 2)}
+          minColumnWidth={280}
+          renderItem={(article) => <PressCard key={article.slug} variant="featured" title={article.title} date={article.date} description={article.description} image={article.image} href={`/press-releases/${article.slug}`} />}
+        />
       </div>
     </section>
   );
