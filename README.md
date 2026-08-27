@@ -15,7 +15,7 @@ Build the deployable static site with:
 npm run build
 ```
 
-The build is written to `_site`.
+The build is written to `dist`.
 
 ## Content structure
 
@@ -28,8 +28,6 @@ Every public event, press release, and past test is a self-contained folder:
 Images and other local assets belong beside the Markdown that uses them. Past-test problem PDFs are embedded on their detail pages when a direct PDF URL is available; solutions remain exact external links. The archive does not invent replacement materials when the source has no usable file.
 
 The attached classroom image used on the home and About pages is `public/assets/images/about-classroom.png`. Sponsor marks and student portraits are also local files under `public/assets/images/`.
-
-The Decap CMS entry point remains at `/admin`; its configuration and preview assets are under `src/admin` and `public/admin`.
 
 ## Deployment
 
