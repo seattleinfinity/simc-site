@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, type CSSProperties, type FormEvent, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import DOMPurify from 'dompurify';
 import MarkdownIt from 'markdown-it';
@@ -12,7 +12,8 @@ import {
   PRESS_CONTENT,
   PRESS_CONTENT_BY_SLUG,
   slugify,
-} from './content.js';
+  type ContentRecord,
+} from './content';
 import './styles.css';
 
 const EMAIL = 'seattleinfinitymathcircle@gmail.com';
@@ -20,13 +21,28 @@ const DISCORD_URL = 'https://discord.gg/wwyZnWB2tw';
 const MAILING_LIST_URL = 'https://forms.gle/FDvWGo1FHqQSGkNK6';
 const INSTAGRAM_URL = 'https://www.instagram.com/seattleinfinitymathcircle/';
 
-const SPONSORS = [
+interface Sponsor {
+  name: string;
+  href: string;
+  image: string;
+  className: string;
+}
+
+type Award = [competition: string, rank: string];
+
+interface AwardsYear {
+  year: string;
+  rows: number;
+  awards: Award[];
+}
+
+const SPONSORS: Sponsor[] = [
   { name: 'Jane Street', href: 'https://www.janestreet.com/', image: '/assets/images/sponsors/jane-street-logo.png', className: 'sponsor-image-jane' },
   { name: 'AoPS Academy Bellevue', href: 'https://bellevue.aopsacademy.org/', image: '/assets/images/sponsors/aops-logo.png', className: 'sponsor-image-aops' },
   { name: 'X-Camp', href: 'https://www.x-camp.org/', image: '/assets/images/sponsors/xcamp-logo.png', className: 'sponsor-image-xcamp' },
 ];
 
-const AWARDS_BY_YEAR = [
+const AWARDS_BY_YEAR: AwardsYear[] = [
   {
     year: '2025 — 2026',
     rows: 4,
@@ -100,17 +116,17 @@ const AWARDS_BY_YEAR = [
   },
 ];
 
-const TOP_THREE = new Set(['1st', '2nd', '3rd']);
+const TOP_THREE = new Set<string>(['1st', '2nd', '3rd']);
 const CAROUSEL_AWARDS = AWARDS_BY_YEAR.flatMap(({ awards }) => awards.filter(([, rank]) => TOP_THREE.has(rank)));
 
 const PRESS_RELEASES = [...PRESS_CONTENT];
 const PRESS_RELEASES_BY_SLUG = PRESS_CONTENT_BY_SLUG;
 
-const EVENT_ITEMS = EVENT_CONTENT.map((event) => ({
+const EVENT_ITEMS: ContentRecord[] = EVENT_CONTENT.map((event) => ({
   ...event,
   date: event.schedule || event.date,
 }));
-const SCHEDULE_MONTHS = {
+const SCHEDULE_MONTHS: Record<string, number> = {
   january: 1,
   february: 2,
   march: 3,
@@ -130,7 +146,7 @@ const SCHEDULE_MONTHS = {
   autumn: 9,
 };
 const CURRENT_MONTH = new Date().getMonth() + 1;
-const eventSortKey = (schedule) => {
+const eventSortKey = (schedule?: string): number => {
   const text = String(schedule || '').toLowerCase();
   const months = [...new Set(Object.entries(SCHEDULE_MONTHS)
     .filter(([label]) => text.includes(label))
@@ -144,15 +160,29 @@ const UPCOMING_EVENTS = EVENT_ITEMS
   .sort((a, b) => eventSortKey(a.schedule || a.date) - eventSortKey(b.schedule || b.date));
 
 
-const FEATURED_PEOPLE = { 'Erin Bian': 0, 'Christopher Peng': 1, 'Raymond Zhu': 2 };
-const seniorityRank = (bio) => {
+interface SourcePerson {
+  name: string;
+  title?: string;
+  photoURL?: string;
+  bio: string;
+}
+
+interface Person {
+  name: string;
+  role: string;
+  image?: string;
+  bio: string;
+}
+
+const FEATURED_PEOPLE: Record<string, number> = { 'Erin Bian': 0, 'Christopher Peng': 1, 'Raymond Zhu': 2 };
+const seniorityRank = (bio: string): number => {
   const text = String(bio || '').toLowerCase();
   if (/\bsenior\b/.test(text)) return 0;
   if (/\bjunior\b/.test(text)) return 1;
   if (/\bsophomore\b/.test(text)) return 2;
   return 3;
 };
-const PEOPLE = [...SLG_DATA]
+const PEOPLE: Person[] = [...(SLG_DATA as SourcePerson[])]
   .sort((a, b) =>
     (FEATURED_PEOPLE[a.name] ?? 3) - (FEATURED_PEOPLE[b.name] ?? 3)
     || seniorityRank(a.bio) - seniorityRank(b.bio)
@@ -166,37 +196,37 @@ const PEOPLE = [...SLG_DATA]
   }));
 
 const markdown = new MarkdownIt({ html: true, linkify: true, typographer: true });
-const renderMarkdown = (source) => DOMPurify.sanitize(markdown.render(source || ''), {
+const renderMarkdown = (source: string): string => DOMPurify.sanitize(markdown.render(source || ''), {
   USE_PROFILES: { html: true },
   ADD_TAGS: ['iframe'],
   ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling', 'target', 'rel', 'style'],
 });
 
-function MarkdownBody({ source, className = 'markdown-content' }) {
+function MarkdownBody({ source, className = 'markdown-content' }: { source: string; className?: string }) {
   return <div className={className} dangerouslySetInnerHTML={{ __html: renderMarkdown(source) }} />;
 }
 
-function RichTitle({ children }) {
+function RichTitle({ children }: { children: ReactNode }) {
   return <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(String(children || '')) }} />;
 }
 
-function resolvePress(slug) {
+function resolvePress(slug?: string): ContentRecord | undefined {
   const key = decodeURIComponent(slug || '').replace(/^\/+|\/+$/g, '');
   return PRESS_RELEASES_BY_SLUG[key] || PRESS_RELEASES_BY_SLUG[slugify(key)];
 }
 
-function resolveEvent(slug) {
+function resolveEvent(slug?: string): ContentRecord | undefined {
   const key = decodeURIComponent(slug || '').replace(/^\/+|\/+$/g, '');
   return EVENT_CONTENT_BY_SLUG[key] || EVENT_CONTENT_BY_SLUG[slugify(key)];
 }
 
-function navigate(path) {
+function navigate(path: string): void {
   window.history.pushState({}, '', path);
   window.dispatchEvent(new PopStateEvent('popstate'));
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function usePath() {
+function usePath(): string {
   const [path, setPath] = useState(`${window.location.pathname}${window.location.search}`);
   useEffect(() => {
     const update = () => setPath(`${window.location.pathname}${window.location.search}`);
@@ -206,7 +236,12 @@ function usePath() {
   return path.replace(/\/+$/, '') || '/';
 }
 
-function InternalLink({ href, children, className = '', ...props }) {
+interface InternalLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  href: string;
+  children: ReactNode;
+}
+
+function InternalLink({ href, children, className = '', ...props }: InternalLinkProps) {
   return (
     <a
       href={href}
@@ -224,7 +259,7 @@ function InternalLink({ href, children, className = '', ...props }) {
   );
 }
 
-function Logo({ full = false, inverse = false }) {
+function Logo({ full = false, inverse = false }: { full?: boolean; inverse?: boolean }) {
   return (
     <InternalLink href="/" className={`logo ${full ? 'logo-full' : 'logo-simc'} ${inverse ? 'logo-inverse' : ''}`}>
       <img src="/int.svg" alt="" aria-hidden="true" />
@@ -233,11 +268,22 @@ function Logo({ full = false, inverse = false }) {
   );
 }
 
-function Button({ href, children, tone = 'primary', external = false, type = 'button', ...props }) {
+type ButtonTone = 'primary' | 'light' | 'outline';
+
+interface ButtonProps {
+  href?: string;
+  children: ReactNode;
+  tone?: ButtonTone;
+  external?: boolean;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  form?: string;
+}
+
+function Button({ href, children, tone = 'primary', external = false, type = 'button', form }: ButtonProps) {
   const className = `button button-${tone}`;
-  if (external) return <a className={className} href={href} target="_blank" rel="noreferrer" {...props}>{children}</a>;
-  if (href) return <InternalLink className={className} href={href} {...props}>{children}</InternalLink>;
-  return <button className={className} type={type} {...props}>{children}</button>;
+  if (external) return <a className={className} href={href} target="_blank" rel="noreferrer">{children}</a>;
+  if (href) return <InternalLink className={className} href={href}>{children}</InternalLink>;
+  return <button className={className} type={type} form={form}>{children}</button>;
 }
 
 function Header() {
@@ -301,16 +347,31 @@ function Footer() {
   );
 }
 
-function PageShell({ children }) {
+function PageShell({ children }: { children: ReactNode }) {
   return <><Header />{children}<Footer /></>;
 }
 
-function SourceImage({ src, className = '', alt }) {
+interface SourceImageProps {
+  src?: string;
+  className?: string;
+  alt: string;
+}
+
+function SourceImage({ src, className = '', alt }: SourceImageProps) {
   if (!src) return null;
   return <img className={'source-image ' + className} src={src} alt={alt} loading="lazy" />;
 }
 
-function PressCard({ variant = 'page', title, date, description = '', image, href }) {
+interface PressCardProps {
+  variant?: 'page' | 'compact' | 'featured';
+  title: string;
+  date?: string;
+  description?: string;
+  image?: string;
+  href: string;
+}
+
+function PressCard({ variant = 'page', title, date, description = '', image, href }: PressCardProps) {
   return (
     <InternalLink href={href} className={'press-card press-card-' + variant}>
       {variant !== 'compact' && image && <SourceImage src={image} className="card-image" alt={title + ' source image'} />}
@@ -323,11 +384,11 @@ function PressCard({ variant = 'page', title, date, description = '', image, hre
   );
 }
 
-function CompactCard({ title, date, description = '', href }) {
+function CompactCard({ title, date, description = '', href }: Omit<PressCardProps, 'variant' | 'image'>) {
   return <PressCard variant="compact" title={title} date={date} description={description} href={href} />;
 }
 
-function PersonCard({ name, role, bio, image }) {
+function PersonCard({ name, role, bio, image }: Person) {
   return (
     <article className="person-card">
       <SourceImage src={image} className="card-image" alt={`Photo of ${name}`} />
@@ -340,7 +401,13 @@ function PersonCard({ name, role, bio, image }) {
   );
 }
 
-function ResultsAwardItem({ competition, rank, ariaHidden = false }) {
+interface ResultsAwardItemProps {
+  competition: string;
+  rank: string;
+  ariaHidden?: boolean;
+}
+
+function ResultsAwardItem({ competition, rank, ariaHidden = false }: ResultsAwardItemProps) {
   return (
     <div className="results-award-item" aria-hidden={ariaHidden || undefined}>
       <span className="results-rank">{rank}</span>
@@ -349,11 +416,11 @@ function ResultsAwardItem({ competition, rank, ariaHidden = false }) {
   );
 }
 
-function ResultsYear({ year, rows, awards }) {
+function ResultsYear({ year, rows, awards }: AwardsYear) {
   return (
     <div className="results-year">
       <div className="results-year-rule"><span>{year}</span></div>
-      <div className="results-awards-grid" style={{ '--results-rows': rows }}>
+      <div className="results-awards-grid" style={{ '--results-rows': rows } as CSSProperties}>
         {awards.map(([competition, rank]) => <ResultsAwardItem key={`${competition}-${rank}`} competition={competition} rank={rank} />)}
       </div>
     </div>
@@ -451,7 +518,14 @@ function HomePage() {
   );
 }
 
-function Intro({ title, body, className = '', children }) {
+interface IntroProps {
+  title: string;
+  body?: string;
+  className?: string;
+  children?: ReactNode;
+}
+
+function Intro({ title, body, className = '', children }: IntroProps) {
   return (
     <section className={`page-intro ${className}`}>
       <h1>{title}</h1>
@@ -489,16 +563,16 @@ function EventsPage() {
   );
 }
 
-function YearRule({ children }) {
+function YearRule({ children }: { children: ReactNode }) {
   return <div className="section-year-rule"><span>{children}</span></div>;
 }
 
-const formatTestYear = (year) => {
+const formatTestYear = (year?: string | number): string => {
   const endYear = Number(year);
-  return Number.isFinite(endYear) ? `${endYear - 1} — ${endYear}` : year;
+  return Number.isFinite(endYear) ? `${endYear - 1} — ${endYear}` : String(year || '');
 };
 
-const TEST_CATEGORY_LABELS = {
+const TEST_CATEGORY_LABELS: Record<string, string> = {
   'mock-aime': 'Mock AIME',
   'mock-amc8': 'Mock AMC 8',
   'mock-amc10': 'Mock AMC 10',
@@ -507,7 +581,7 @@ const TEST_CATEGORY_LABELS = {
   elementary: 'Elementary competition',
   tst: 'SIMC TST',
 };
-const TEST_CARD_DESCRIPTIONS = {
+const TEST_CARD_DESCRIPTIONS: Record<string, string> = {
   'mock-aime': 'A practice AIME-style test.',
   'mock-amc8': 'A practice AMC 8-style test.',
   'mock-amc10': 'A practice AMC 10-style test.',
@@ -517,19 +591,19 @@ const TEST_CARD_DESCRIPTIONS = {
   tst: 'A team selection test for math tournaments.',
 };
 
-function TestArchiveCard({ test }) {
+function TestArchiveCard({ test }: { test: ContentRecord }) {
   return (
     <InternalLink href={'/past-tests/' + test.slug} className="test-archive-card">
       <div className="test-archive-copy">
         <p className="card-kicker">{test.hosted_date}</p>
         <h3>{test.title}</h3>
-        <p>{test.description || TEST_CARD_DESCRIPTIONS[test.category] || 'Competition test materials.'}</p>
+        <p>{test.description || TEST_CARD_DESCRIPTIONS[test.category || ''] || 'Competition test materials.'}</p>
       </div>
     </InternalLink>
   );
 }
 
-function ResourcesPage({ onlyTests = false }) {
+function ResourcesPage({ onlyTests = false }: { onlyTests?: boolean } = {}) {
   const tests = Object.values(PAST_TEST_CONTENT_BY_SLUG);
   const grouped = Array.from(new Set(tests.map((test) => Number(test.year))))
     .sort((a, b) => b - a)
@@ -552,20 +626,20 @@ function ResourcesPage({ onlyTests = false }) {
       </section>
       {!onlyTests && <section className="resources-external">
         <h2>External resources</h2>
-        <MarkdownBody source={resources.body.replace(/^#\s+.+(?:\r?\n){1,2}/, '')} />
+        {resources && <MarkdownBody source={resources.body.replace(/^#\s+.+(?:\r?\n){1,2}/, '')} />}
       </section>}
     </main>
   );
 }
 
-function PastTestDetailPage({ slug }) {
+function PastTestDetailPage({ slug }: { slug?: string }) {
   const key = decodeURIComponent(slug || '').replace(/^\/+|\/+$/g, '');
   const test = PAST_TEST_CONTENT_BY_SLUG[key] || PAST_TEST_CONTENT_BY_SLUG[slugify(key)];
   if (!test) return <NotFoundPage />;
   return (
     <main>
       <section className="announcement-hero">
-        <p className="card-kicker card-kicker-light">{TEST_CATEGORY_LABELS[test.category]} · {formatTestYear(test.year)}</p>
+        <p className="card-kicker card-kicker-light">{TEST_CATEGORY_LABELS[test.category || ''] || 'SIMC test'} · {formatTestYear(test.year)}</p>
         <h1>{test.title}</h1>
         <Button href="/past-tests" tone="light">Back to past tests</Button>
       </section>
@@ -593,9 +667,17 @@ function PastTestDetailPage({ slug }) {
   );
 }
 
-function SourceArticlePage({ article, backHref, backLabel }) {
+interface SourceArticlePageProps {
+  article?: ContentRecord;
+  backHref: string;
+  backLabel: string;
+}
+
+function SourceArticlePage({ article, backHref, backLabel }: SourceArticlePageProps) {
   if (!article) return <NotFoundPage />;
-  const relatedTests = (article.pastTests || []).map((slug) => PAST_TEST_CONTENT_BY_SLUG[slug]);
+  const relatedTests = article.pastTests
+    .map((slug) => PAST_TEST_CONTENT_BY_SLUG[slug])
+    .filter((test): test is ContentRecord => Boolean(test));
   return (
     <main>
       <section className="announcement-hero">
@@ -621,16 +703,22 @@ function AnnouncementPage() {
   return <SourceArticlePage article={resolvePress('2026-2-28-mockmathcounts')} backHref="/press-releases" backLabel="Back to press releases" />;
 }
 
-function PressDetailPage({ slug }) {
+function PressDetailPage({ slug }: { slug?: string }) {
   const article = resolvePress(slug);
   return <SourceArticlePage article={article} backHref="/press-releases" backLabel="Back to press releases" />;
 }
 
-function EventDetailPage({ slug }) {
+function EventDetailPage({ slug }: { slug?: string }) {
   return <SourceArticlePage article={resolveEvent(slug)} backHref="/events" backLabel="Back to events" />;
 }
 
-function MarkdownPage({ record, title, body }) {
+interface MarkdownPageProps {
+  record?: ContentRecord;
+  title?: string;
+  body?: string;
+}
+
+function MarkdownPage({ record, title, body }: MarkdownPageProps) {
   const pageTitle = title || record?.title || 'SIMC';
   const content = (body || record?.body || '').replace(/^#\s+.+(?:\r?\n){1,2}/, '');
   return (
@@ -734,7 +822,7 @@ function NotFoundPage() {
   return <main><Intro title="That page is missing."><Button href="/">Back home</Button></Intro></main>;
 }
 
-function renderRoute(path) {
+function renderRoute(path: string): React.ComponentType {
   if (path === '/') return HomePage;
   if (path === '/events') return EventsPage;
   if (path.startsWith('/events/')) return () => <EventDetailPage slug={path.slice('/events/'.length)} />;
@@ -762,4 +850,6 @@ function App() {
   return <PageShell><Page /></PageShell>;
 }
 
-createRoot(document.getElementById('root')).render(<App />);
+const root = document.getElementById('root');
+if (!root) throw new Error('Missing #root element');
+createRoot(root).render(<App />);
