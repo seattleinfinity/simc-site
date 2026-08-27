@@ -1,4 +1,4 @@
-import React, { useEffect, useState, type CSSProperties, type FormEvent, type ReactNode } from 'react';
+import { useEffect, useState, type ButtonHTMLAttributes, type CSSProperties, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Link, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import DOMPurify from 'dompurify';
@@ -12,7 +12,7 @@ import {
   PAST_TEST_CONTENT_BY_SLUG,
   PRESS_CONTENT,
   PRESS_CONTENT_BY_SLUG,
-  slugify,
+  findContentRecord,
   type ContentRecord,
 } from './content';
 import './styles.css';
@@ -120,9 +120,6 @@ const AWARDS_BY_YEAR: AwardsYear[] = [
 const TOP_THREE = new Set<string>(['1st', '2nd', '3rd']);
 const CAROUSEL_AWARDS = AWARDS_BY_YEAR.flatMap(({ awards }) => awards.filter(([, rank]) => TOP_THREE.has(rank)));
 
-const PRESS_RELEASES = [...PRESS_CONTENT];
-const PRESS_RELEASES_BY_SLUG = PRESS_CONTENT_BY_SLUG;
-
 const EVENT_ITEMS: ContentRecord[] = EVENT_CONTENT.map((event) => ({
   ...event,
   date: event.schedule || event.date,
@@ -158,8 +155,7 @@ const eventSortKey = (schedule?: string): number => {
 };
 const UPCOMING_EVENTS = EVENT_ITEMS
   .filter(({ featured }) => featured)
-  .sort((a, b) => eventSortKey(a.schedule || a.date) - eventSortKey(b.schedule || b.date));
-
+  .sort((a, b) => eventSortKey(a.date) - eventSortKey(b.date));
 
 interface SourcePerson {
   name: string;
@@ -211,16 +207,6 @@ function RichTitle({ children }: { children: ReactNode }) {
   return <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(String(children || '')) }} />;
 }
 
-function resolvePress(slug?: string): ContentRecord | undefined {
-  const key = decodeURIComponent(slug || '').replace(/^\/+|\/+$/g, '');
-  return PRESS_RELEASES_BY_SLUG[key] || PRESS_RELEASES_BY_SLUG[slugify(key)];
-}
-
-function resolveEvent(slug?: string): ContentRecord | undefined {
-  const key = decodeURIComponent(slug || '').replace(/^\/+|\/+$/g, '');
-  return EVENT_CONTENT_BY_SLUG[key] || EVENT_CONTENT_BY_SLUG[slugify(key)];
-}
-
 function Logo({ full = false, inverse = false }: { full?: boolean; inverse?: boolean }) {
   return (
     <Link to="/" className={`logo ${full ? 'logo-full' : 'logo-simc'} ${inverse ? 'logo-inverse' : ''}`}>
@@ -237,7 +223,7 @@ interface ButtonProps {
   children: ReactNode;
   tone?: ButtonTone;
   external?: boolean;
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   form?: string;
 }
 
@@ -460,7 +446,7 @@ function HomeLatest() {
           <Button href="/press-releases" tone="outline">View all press releases</Button>
         </div>
         <div className="featured-press-grid">
-          {PRESS_RELEASES.slice(0, 2).map((article) => <PressCard key={article.slug} variant="featured" title={article.title} date={article.date} description={article.description} image={article.image} href={`/press-releases/${article.slug}`} />)}
+          {PRESS_CONTENT.slice(0, 2).map((article) => <PressCard key={article.slug} variant="featured" title={article.title} date={article.date} description={article.description} image={article.image} href={`/press-releases/${article.slug}`} />)}
         </div>
       </div>
     </section>
@@ -505,7 +491,7 @@ function PressReleasesPage() {
       <section className="press-page-list">
         <h2>Latest press releases</h2>
         <div className="press-page-grid">
-          {PRESS_RELEASES.map((article) => <PressCard key={article.slug} title={article.title} date={article.date} description={article.description} image={article.image} href={`/press-releases/${article.slug}`} />)}
+          {PRESS_CONTENT.map((article) => <PressCard key={article.slug} title={article.title} date={article.date} description={article.description} image={article.image} href={`/press-releases/${article.slug}`} />)}
         </div>
       </section>
     </main>
@@ -596,8 +582,7 @@ function ResourcesPage({ onlyTests = false }: { onlyTests?: boolean } = {}) {
 
 function PastTestDetailPage() {
   const { slug } = useParams<'slug'>();
-  const key = decodeURIComponent(slug || '').replace(/^\/+|\/+$/g, '');
-  const test = PAST_TEST_CONTENT_BY_SLUG[key] || PAST_TEST_CONTENT_BY_SLUG[slugify(key)];
+  const test = findContentRecord(PAST_TEST_CONTENT_BY_SLUG, slug);
   if (!test) return <NotFoundPage />;
   return (
     <main>
@@ -663,18 +648,18 @@ function SourceArticlePage({ article, backHref, backLabel }: SourceArticlePagePr
 }
 
 function AnnouncementPage() {
-  return <SourceArticlePage article={resolvePress('2026-2-28-mockmathcounts')} backHref="/press-releases" backLabel="Back to press releases" />;
+  return <SourceArticlePage article={PRESS_CONTENT_BY_SLUG['2026-2-28-mockmathcounts']} backHref="/press-releases" backLabel="Back to press releases" />;
 }
 
 function PressDetailPage() {
   const { slug } = useParams<'slug'>();
-  const article = resolvePress(slug);
+  const article = findContentRecord(PRESS_CONTENT_BY_SLUG, slug);
   return <SourceArticlePage article={article} backHref="/press-releases" backLabel="Back to press releases" />;
 }
 
 function EventDetailPage() {
   const { slug } = useParams<'slug'>();
-  return <SourceArticlePage article={resolveEvent(slug)} backHref="/events" backLabel="Back to events" />;
+  return <SourceArticlePage article={findContentRecord(EVENT_CONTENT_BY_SLUG, slug)} backHref="/events" backLabel="Back to events" />;
 }
 
 interface MarkdownPageProps {
@@ -700,17 +685,14 @@ function NewslettersPage() {
   return <MarkdownPage record={PAGE_CONTENT_BY_SLUG.newsletters} />;
 }
 
-const CALENDAR_EMBEDS = [
-  'https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FLos_Angeles&showTitle=1&showCalendars=1&mode=AGENDA&src=YTkxNzhhNzU4ZGRjYjhmM2FjM2ZmNGQ1MWQ2OGNiNTcwNjdmMDUyODljZTc4YmUyNDliMDM0MWJhNmQyYzY3MUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23C0CA33',
-  'https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FLos_Angeles&showPrint=0&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=MDBkNmVmNGIyMWNmNWQxODI4ZmExNGM0M2M2OGQzNzYwNTkyZTY4ZTgyYzQxZGM5ODMyNmIwNWFjODVkN2FmYkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=YTkxNzhhNzU4ZGRjYjhmM2FjM2ZmNGQ1MWQ2OGNiNTcwNjdmMDUyODljZTc4YmUyNDliMDM0MWJhNmQyYzY3MUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%2333B679&color=%23F09300&color=%23C0CA33',
-];
+const CALENDAR_EMBED_URL = 'https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FLos_Angeles&showTitle=1&showCalendars=1&mode=AGENDA&src=YTkxNzhhNzU4ZGRjYjhmM2FjM2ZmNGQ1MWQ2OGNiNTcwNjdmMDUyODljZTc4YmUyNDliMDM0MWJhNmQyYzY3MUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23C0CA33';
 
 function CalendarPage() {
   return (
     <main>
       <Intro title="Calendar" body="Upcoming SIMC events and competition dates." />
       <section className="embedded-page">
-        <iframe title="SIMC calendar" src={CALENDAR_EMBEDS[0]} loading="lazy" />
+        <iframe title="SIMC calendar" src={CALENDAR_EMBED_URL} loading="lazy" />
       </section>
     </main>
   );
@@ -787,44 +769,57 @@ function NotFoundPage() {
   return <main><Intro title="That page is missing."><Button href="/">Back home</Button></Intro></main>;
 }
 
+function SiteRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/events" element={<EventsPage />} />
+      <Route path="/events/:slug" element={<EventDetailPage />} />
+      <Route path="/resources" element={<ResourcesPage />} />
+      <Route path="/past-tests" element={<ResourcesPage onlyTests />} />
+      <Route path="/mock-tests" element={<ResourcesPage onlyTests />} />
+      <Route path="/past-tests/:slug" element={<PastTestDetailPage />} />
+      <Route path="/press-releases" element={<PressReleasesPage />} />
+      <Route path="/press-releases/:slug" element={<PressDetailPage />} />
+      <Route path="/announcements/mathcounts" element={<AnnouncementPage />} />
+      <Route path="/announcement" element={<AnnouncementPage />} />
+      <Route path="/contact" element={<ContactPage />} />
+      <Route path="/about-us" element={<SlgPage />} />
+      <Route path="/about" element={<SlgPage />} />
+      <Route path="/slg" element={<SlgPage />} />
+      <Route path="/newsletters" element={<NewslettersPage />} />
+      <Route path="/newsletter" element={<NewslettersPage />} />
+      <Route path="/newletter" element={<NewslettersPage />} />
+      <Route path="/calendar" element={<CalendarPage />} />
+      <Route path="/gcalender" element={<CalendarPage />} />
+      <Route path="/calender" element={<CalendarPage />} />
+      <Route path="/potm" element={<PotmPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  );
+}
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
+  return null;
+}
+
 function App() {
-  const { pathname, search } = useLocation();
+  const { search } = useLocation();
   useEffect(() => {
     const requestedTheme = new URLSearchParams(search).get('theme');
     document.documentElement.dataset.theme = requestedTheme === 'dark' ? 'dark' : 'light';
   }, [search]);
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [pathname]);
-
   return (
-    <PageShell>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/events" element={<EventsPage />} />
-        <Route path="/events/:slug" element={<EventDetailPage />} />
-        <Route path="/resources" element={<ResourcesPage />} />
-        <Route path="/past-tests" element={<ResourcesPage onlyTests />} />
-        <Route path="/mock-tests" element={<ResourcesPage onlyTests />} />
-        <Route path="/past-tests/:slug" element={<PastTestDetailPage />} />
-        <Route path="/press-releases" element={<PressReleasesPage />} />
-        <Route path="/press-releases/:slug" element={<PressDetailPage />} />
-        <Route path="/announcements/mathcounts" element={<AnnouncementPage />} />
-        <Route path="/announcement" element={<AnnouncementPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/about-us" element={<SlgPage />} />
-        <Route path="/about" element={<SlgPage />} />
-        <Route path="/slg" element={<SlgPage />} />
-        <Route path="/newsletters" element={<NewslettersPage />} />
-        <Route path="/newsletter" element={<NewslettersPage />} />
-        <Route path="/newletter" element={<NewslettersPage />} />
-        <Route path="/calendar" element={<CalendarPage />} />
-        <Route path="/gcalender" element={<CalendarPage />} />
-        <Route path="/calender" element={<CalendarPage />} />
-        <Route path="/potm" element={<PotmPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </PageShell>
+    <>
+      <ScrollToTop />
+      <PageShell>
+        <SiteRoutes />
+      </PageShell>
+    </>
   );
 }
 

@@ -48,6 +48,20 @@ export const slugify = (value: string): string => value
   .replace(/[^a-z0-9]+/g, '-')
   .replace(/^-|-$/g, '');
 
+export const findContentRecord = (
+  records: Record<string, ContentRecord>,
+  slug?: string,
+): ContentRecord | undefined => {
+  const rawKey = (slug || '').replace(/^\/+|\/+$/g, '');
+  let key = rawKey;
+  try {
+    key = decodeURIComponent(rawKey);
+  } catch {
+    // Keep the raw path segment so malformed URLs resolve to the not-found view.
+  }
+  return records[key] || records[slugify(key)];
+};
+
 const stringValue = (value: unknown): string | undefined => typeof value === 'string' ? value : undefined;
 
 const dateValue = (value: unknown): Date | undefined => {
