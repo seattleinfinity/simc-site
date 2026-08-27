@@ -94,10 +94,14 @@ const parseFrontMatter = (raw: string): { data: RawFrontMatter; content: string 
     const match = /^([A-Za-z0-9_-]+):\s*(.*)$/.exec(line);
     if (match) {
       activeKey = match[1];
-      data[activeKey] = parseScalar(match[2]);
+      data[activeKey] = match[2].trim();
     } else if (activeKey && line.trim()) {
       data[activeKey] = `${String(data[activeKey] ?? '')}\n${line.trim()}`;
     }
+  });
+
+  Object.keys(data).forEach((key) => {
+    data[key] = parseScalar(String(data[key]));
   });
 
   return { data, content: raw.slice(end + 4) };
