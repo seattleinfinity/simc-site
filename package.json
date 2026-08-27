@@ -16,6 +16,7 @@
     "markdown-it": "^13.0.1",
     "react": "latest",
     "react-dom": "latest",
+    "react-router-dom": "^7.18.2",
     "vite": "latest"
   },
   "devDependencies": {

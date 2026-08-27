@@ -1,5 +1,6 @@
 import React, { useEffect, useState, type CSSProperties, type FormEvent, type ReactNode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Link, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import DOMPurify from 'dompurify';
 import MarkdownIt from 'markdown-it';
 import 'katex/dist/katex.min.css';
@@ -220,51 +221,12 @@ function resolveEvent(slug?: string): ContentRecord | undefined {
   return EVENT_CONTENT_BY_SLUG[key] || EVENT_CONTENT_BY_SLUG[slugify(key)];
 }
 
-function navigate(path: string): void {
-  window.history.pushState({}, '', path);
-  window.dispatchEvent(new PopStateEvent('popstate'));
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function usePath(): string {
-  const [path, setPath] = useState(`${window.location.pathname}${window.location.search}`);
-  useEffect(() => {
-    const update = () => setPath(`${window.location.pathname}${window.location.search}`);
-    window.addEventListener('popstate', update);
-    return () => window.removeEventListener('popstate', update);
-  }, []);
-  return path.replace(/\/+$/, '') || '/';
-}
-
-interface InternalLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  href: string;
-  children: ReactNode;
-}
-
-function InternalLink({ href, children, className = '', ...props }: InternalLinkProps) {
-  return (
-    <a
-      href={href}
-      className={className}
-      onClick={(event) => {
-        if (href.startsWith('/')) {
-          event.preventDefault();
-          navigate(href);
-        }
-      }}
-      {...props}
-    >
-      {children}
-    </a>
-  );
-}
-
 function Logo({ full = false, inverse = false }: { full?: boolean; inverse?: boolean }) {
   return (
-    <InternalLink href="/" className={`logo ${full ? 'logo-full' : 'logo-simc'} ${inverse ? 'logo-inverse' : ''}`}>
+    <Link to="/" className={`logo ${full ? 'logo-full' : 'logo-simc'} ${inverse ? 'logo-inverse' : ''}`}>
       <img src="/int.svg" alt="" aria-hidden="true" />
       <span>{full ? 'SEATTLE INFINITY MATH CIRCLE' : 'SIMC'}</span>
-    </InternalLink>
+    </Link>
   );
 }
 
@@ -282,7 +244,7 @@ interface ButtonProps {
 function Button({ href, children, tone = 'primary', external = false, type = 'button', form }: ButtonProps) {
   const className = `button button-${tone}`;
   if (external) return <a className={className} href={href} target="_blank" rel="noreferrer">{children}</a>;
-  if (href) return <InternalLink className={className} href={href}>{children}</InternalLink>;
+  if (href) return <Link className={className} to={href}>{children}</Link>;
   return <button className={className} type={type} form={form}>{children}</button>;
 }
 
@@ -291,10 +253,10 @@ function Header() {
     <header className="site-header">
       <Logo inverse />
       <nav className="main-nav" aria-label="Main navigation">
-        <InternalLink href="/events">Events</InternalLink>
-        <InternalLink href="/resources">Resources</InternalLink>
-        <InternalLink href="/press-releases">Press releases</InternalLink>
-        <InternalLink href="/about-us">About us</InternalLink>
+        <Link to="/events">Events</Link>
+        <Link to="/resources">Resources</Link>
+        <Link to="/press-releases">Press releases</Link>
+        <Link to="/about-us">About us</Link>
         <Button href="/contact" tone="light">Contact us</Button>
       </nav>
     </header>
@@ -327,7 +289,7 @@ function Footer() {
       <div className="footer-brand">
         <Logo full />
         <div className="footer-links">
-          <InternalLink href="/contact">Mailing list</InternalLink>
+          <Link to="/contact">Mailing list</Link>
           <a href={DISCORD_URL} target="_blank" rel="noreferrer">Discord</a>
           <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram</a>
         </div>
@@ -373,14 +335,14 @@ interface PressCardProps {
 
 function PressCard({ variant = 'page', title, date, description = '', image, href }: PressCardProps) {
   return (
-    <InternalLink href={href} className={'press-card press-card-' + variant}>
+    <Link to={href} className={'press-card press-card-' + variant}>
       {variant !== 'compact' && image && <SourceImage src={image} className="card-image" alt={title + ' source image'} />}
       <div className="card-copy">
         <p className="card-kicker">{date}</p>
         <h3><RichTitle>{title}</RichTitle></h3>
         {variant !== 'compact' && description && <p>{description}</p>}
       </div>
-    </InternalLink>
+    </Link>
   );
 }
 
@@ -593,13 +555,13 @@ const TEST_CARD_DESCRIPTIONS: Record<string, string> = {
 
 function TestArchiveCard({ test }: { test: ContentRecord }) {
   return (
-    <InternalLink href={'/past-tests/' + test.slug} className="test-archive-card">
+    <Link to={'/past-tests/' + test.slug} className="test-archive-card">
       <div className="test-archive-copy">
         <p className="card-kicker">{test.hosted_date}</p>
         <h3>{test.title}</h3>
         <p>{test.description || TEST_CARD_DESCRIPTIONS[test.category || ''] || 'Competition test materials.'}</p>
       </div>
-    </InternalLink>
+    </Link>
   );
 }
 
@@ -632,7 +594,8 @@ function ResourcesPage({ onlyTests = false }: { onlyTests?: boolean } = {}) {
   );
 }
 
-function PastTestDetailPage({ slug }: { slug?: string }) {
+function PastTestDetailPage() {
+  const { slug } = useParams<'slug'>();
   const key = decodeURIComponent(slug || '').replace(/^\/+|\/+$/g, '');
   const test = PAST_TEST_CONTENT_BY_SLUG[key] || PAST_TEST_CONTENT_BY_SLUG[slugify(key)];
   if (!test) return <NotFoundPage />;
@@ -692,7 +655,7 @@ function SourceArticlePage({ article, backHref, backLabel }: SourceArticlePagePr
         <MarkdownBody source={article.body} />
         {relatedTests.length > 0 && <section className="article-past-tests">
           <h3>Past tests</h3>
-          <div className="link-grid">{relatedTests.map((test) => <InternalLink key={test.slug} className="link-card" href={'/past-tests/' + test.slug}><h3>{test.title}</h3><p>Open test materials</p></InternalLink>)}</div>
+          <div className="link-grid">{relatedTests.map((test) => <Link key={test.slug} className="link-card" to={'/past-tests/' + test.slug}><h3>{test.title}</h3><p>Open test materials</p></Link>)}</div>
         </section>}
       </article>
     </main>
@@ -703,12 +666,14 @@ function AnnouncementPage() {
   return <SourceArticlePage article={resolvePress('2026-2-28-mockmathcounts')} backHref="/press-releases" backLabel="Back to press releases" />;
 }
 
-function PressDetailPage({ slug }: { slug?: string }) {
+function PressDetailPage() {
+  const { slug } = useParams<'slug'>();
   const article = resolvePress(slug);
   return <SourceArticlePage article={article} backHref="/press-releases" backLabel="Back to press releases" />;
 }
 
-function EventDetailPage({ slug }: { slug?: string }) {
+function EventDetailPage() {
+  const { slug } = useParams<'slug'>();
   return <SourceArticlePage article={resolveEvent(slug)} backHref="/events" backLabel="Back to events" />;
 }
 
@@ -822,34 +787,51 @@ function NotFoundPage() {
   return <main><Intro title="That page is missing."><Button href="/">Back home</Button></Intro></main>;
 }
 
-function renderRoute(path: string): React.ComponentType {
-  if (path === '/') return HomePage;
-  if (path === '/events') return EventsPage;
-  if (path.startsWith('/events/')) return () => <EventDetailPage slug={path.slice('/events/'.length)} />;
-  if (path.startsWith('/past-tests/')) return () => <PastTestDetailPage slug={path.slice('/past-tests/'.length)} />;
-  if (path === '/resources') return ResourcesPage;
-  if (path === '/mock-tests' || path === '/past-tests') return () => <ResourcesPage onlyTests />;
-  if (path === '/press-releases') return PressReleasesPage;
-  if (path.startsWith('/press-releases/')) return () => <PressDetailPage slug={path.slice('/press-releases/'.length)} />;
-  if (path === '/announcements/mathcounts' || path === '/announcement') return AnnouncementPage;
-  if (path === '/contact') return ContactPage;
-  if (path === '/slg' || path === '/about' || path === '/about-us') return SlgPage;
-  if (path === '/newsletters' || path === '/newsletter' || path === '/newletter') return NewslettersPage;
-  if (path === '/gcalender' || path === '/calender' || path === '/calendar') return CalendarPage;
-  if (path === '/potm') return PotmPage;
-  return NotFoundPage;
-}
-
 function App() {
-  const path = usePath();
+  const { pathname, search } = useLocation();
   useEffect(() => {
-    const requestedTheme = new URLSearchParams(path.split('?')[1] || '').get('theme');
+    const requestedTheme = new URLSearchParams(search).get('theme');
     document.documentElement.dataset.theme = requestedTheme === 'dark' ? 'dark' : 'light';
-  }, [path]);
-  const Page = renderRoute(path.split('?')[0]);
-  return <PageShell><Page /></PageShell>;
+  }, [search]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
+
+  return (
+    <PageShell>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/events/:slug" element={<EventDetailPage />} />
+        <Route path="/resources" element={<ResourcesPage />} />
+        <Route path="/past-tests" element={<ResourcesPage onlyTests />} />
+        <Route path="/mock-tests" element={<ResourcesPage onlyTests />} />
+        <Route path="/past-tests/:slug" element={<PastTestDetailPage />} />
+        <Route path="/press-releases" element={<PressReleasesPage />} />
+        <Route path="/press-releases/:slug" element={<PressDetailPage />} />
+        <Route path="/announcements/mathcounts" element={<AnnouncementPage />} />
+        <Route path="/announcement" element={<AnnouncementPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/about-us" element={<SlgPage />} />
+        <Route path="/about" element={<SlgPage />} />
+        <Route path="/slg" element={<SlgPage />} />
+        <Route path="/newsletters" element={<NewslettersPage />} />
+        <Route path="/newsletter" element={<NewslettersPage />} />
+        <Route path="/newletter" element={<NewslettersPage />} />
+        <Route path="/calendar" element={<CalendarPage />} />
+        <Route path="/gcalender" element={<CalendarPage />} />
+        <Route path="/calender" element={<CalendarPage />} />
+        <Route path="/potm" element={<PotmPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </PageShell>
+  );
 }
 
 const root = document.getElementById('root');
 if (!root) throw new Error('Missing #root element');
-createRoot(root).render(<App />);
+createRoot(root).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+);
