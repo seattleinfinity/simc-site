@@ -718,7 +718,13 @@ function SlgPage() {
       <SignupBanner />
       <section className="slg-page-list">
         <h2>Meet the Student Leadership Group</h2>
-        <div className="people-grid">{PEOPLE.map((person) => <PersonCard key={person.name} {...person} />)}</div>
+        <div className="people-grid">
+          {Array.from({ length: 3 }, (_, columnIndex) => (
+            <div className="people-column" key={columnIndex}>
+              {PEOPLE.filter((_, index) => index % 3 === columnIndex).map((person) => <PersonCard key={person.name} {...person} />)}
+            </div>
+          ))}
+        </div>
       </section>
     </main>
   );
