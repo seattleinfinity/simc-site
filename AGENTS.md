@@ -25,7 +25,7 @@ There is no test or lint script in `package.json`. Run `npm run typecheck` for a
 - `BrowserRouter`, `Routes`, `Route`, `Link`, `useLocation`, and `useParams` provide client-side navigation. `ScrollToTop` handles route changes; `SiteRoutes` owns the route table.
 - `src/content.ts` uses eager `import.meta.glob()` calls to bundle Markdown and adjacent media at build time. It parses the repository's simple YAML-like front matter, creates typed records and slugs/aliases, resolves local relative assets, and exposes records grouped as press releases, events, past tests, and generic pages.
 - Markdown is rendered in `src/main.tsx` with `markdown-it`, then sanitized with DOMPurify. KaTeX CSS is imported for math content. Keep the sanitizer and local-asset rewriting in mind when changing Markdown features.
-- `src/_data/slg.json` supplies Student Leadership Group people and photos; `src/main.tsx` sorts and presents this data.
+- `src/data/slg.json` supplies Student Leadership Group people and photos; `src/main.tsx` sorts and presents this data.
 - `src/styles.css` is the stylesheet entry point and remains the main styling API for semantic classes.
 
 ## Routes

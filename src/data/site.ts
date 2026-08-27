@@ -1,4 +1,4 @@
-import SLG_DATA from '../_data/slg.json';
+import SLG_DATA from './slg.json';
 import { EVENT_CONTENT, type ContentRecord } from '../content';
 
 export const EMAIL = 'seattleinfinitymathcircle@gmail.com';
