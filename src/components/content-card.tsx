@@ -24,7 +24,7 @@ export interface PressCardProps {
 
 export function PressCard({ variant = 'page', title, date, description = '', image, href }: PressCardProps) {
   return (
-    <Link to={href} className={'press-card press-card-' + variant}>
+    <Link to={href} className={'column-card press-card press-card-' + variant}>
       {variant !== 'compact' && image && <SourceImage src={image} className="card-image" alt={title + ' source image'} />}
       <div className="card-copy">
         <p className="card-kicker">{date}</p>
@@ -41,7 +41,7 @@ export function CompactCard({ title, date, description = '', href }: Omit<PressC
 
 export function PersonCard({ name, role, bio, image }: Person) {
   return (
-    <article className="person-card">
+    <article className="column-card person-card">
       <SourceImage src={image} className="card-image" alt={`Photo of ${name}`} />
       <div className="card-copy">
         <h3>{name}</h3>

@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import { SourceImage } from '../components/content-card';
 import { MarkdownBody, RichTitle } from '../components/markdown-content';
+import { MasonryGrid } from '../components/masonry-grid';
 import { Button, SignupBanner } from '../components/site-shell';
 import {
   EVENT_CONTENT_BY_SLUG,
@@ -72,7 +73,11 @@ function SourceArticlePage({ article, backHref, backLabel }: SourceArticlePagePr
         <MarkdownBody source={article.body} />
         {relatedTests.length > 0 && <section className="article-past-tests">
           <h3>Past tests</h3>
-          <div className="link-grid">{relatedTests.map((test) => <Link key={test.slug} className="link-card" to={'/past-tests/' + test.slug}><h3>{test.title}</h3><p>Open test materials</p></Link>)}</div>
+          <MasonryGrid
+            className="link-grid"
+            items={relatedTests}
+            renderItem={(test) => <Link key={test.slug} className="column-card link-card" to={'/past-tests/' + test.slug}><h3>{test.title}</h3><p>Open test materials</p></Link>}
+          />
         </section>}
       </article>
     </main>
