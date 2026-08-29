@@ -249,10 +249,11 @@ h3 { font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-si
 .resource-card .markdown-content a { color: var(--text); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
 .announcement-article { display: flex; width: 100%; min-height: 915px; height: auto; align-items: center; flex-direction: column; gap: 40px; padding: 60px 0 100px; background: var(--bg); }
-.announcement-article h2, .announcement-article .markdown-content, .announcement-image, .announcement-article .article-past-tests { width: 720px; }
+.announcement-article h2, .announcement-article .markdown-content, .announcement-image, .announcement-article .article-related { width: 720px; }
 .announcement-article h2 { height: 46px; line-height: 46px; text-align: left; }
 .announcement-image { height: auto; object-fit: contain; flex: 0 0 auto; }
 .announcement-article .markdown-content { font-size: 16px; line-height: 21px; }
+.article-related { display: flex; flex-direction: column; gap: 16px; }
 
 .markdown-content { color: var(--text); overflow-wrap: anywhere; }
 .markdown-content > * + * { margin-top: 16px; }
@@ -398,7 +399,7 @@ input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in sr
   .resources-tests { min-height: 906px; }
   .resources-external { min-height: 298px; }
   .announcement-article { width: 100%; height: auto; min-height: 915px; align-items: stretch; padding: 56px 20px 80px; }
-  .announcement-article h2, .announcement-article .markdown-content, .announcement-image, .announcement-article .article-past-tests { width: 100%; }
+  .announcement-article h2, .announcement-article .markdown-content, .announcement-image, .announcement-article .article-related { width: 100%; }
   .announcement-image { height: auto; }
   .announcement-article .markdown-content { height: auto; }
   .contact-layout { min-height: 503px; }

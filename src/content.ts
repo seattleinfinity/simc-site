@@ -25,6 +25,7 @@ export interface ContentRecord {
   year?: string;
   hosted_date?: string;
   pastTests: string[];
+  pressReleases: string[];
   problemPdfs: Material[];
   solutionLinks: Material[];
   sourceLinks: Material[];
@@ -169,6 +170,7 @@ const parseRecord = (path: string, raw: string): ContentRecord => {
     solutionLinks: splitMaterials(path, parsed.data.solution_links),
     sourceLinks: splitMaterials(path, parsed.data.source_links),
     pastTests: splitList(parsed.data.past_tests),
+    pressReleases: splitList(parsed.data.press_releases),
     body,
   };
 };

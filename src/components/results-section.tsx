@@ -32,7 +32,7 @@ export function ResultsSection() {
   return (
     <section className={`results-section ${expanded ? 'results-expanded' : 'results-collapsed'}`} aria-label="SIMC results">
       <div className="results-header">
-        <h2 className="results-label">The most decorated team in the USA</h2>
+        <h2 className="results-label">Among USA's top math teams</h2>
         <div className="results-toggle-controls">
           {!expanded && <button className="results-toggle" type="button" aria-expanded="false" aria-controls="results-carousel" onClick={() => setExpanded(true)}>View all results</button>}
           {expanded && <button className="results-toggle results-close" type="button" aria-label="Show top three results" aria-expanded="true" aria-controls="results-list" onClick={() => setExpanded(false)}>×</button>}

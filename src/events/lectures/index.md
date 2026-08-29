@@ -5,14 +5,12 @@ blurb: Math literacy panels and lectures from the SIMC community.
 schedule: Winter and summer
 featured: true
 image: cover.jpg
+press_releases: 2023-11-23-2024-summer-math-camps-panel; 2023-07-13-simc-july-2023-math-and-coding-panel
 ---
 
 # SIMC Panels & Lectures
 
 As part of our mission to increase math literacy, we hold panels and lectures every year about a wide array of math topics and questions. This year, we're continuing our panels on summer camps, inviting speakers from every major math camp in the United States. We've discontinued the Lecture series for now as we've focused more on competitions.
-
-## 2025-2026 Summer Camps Panel
-**⏰ When:** TBD. We'll alert you via email when this happens, so sign up for our newsletter!
 
 ## February 2023 lecture
 
