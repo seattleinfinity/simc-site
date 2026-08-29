@@ -323,9 +323,9 @@ input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in sr
 .footer-links { display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
 .footer-links a { color: var(--text); font-size: 12px; font-weight: 600; line-height: 20px; letter-spacing: .96px; text-decoration: none; text-transform: uppercase; white-space: nowrap; }
 .footer-spacer { min-width: 1px; flex: 1 1 0; }
-.sponsors { display: flex; flex-direction: column; gap: 12px; }
+.sponsors { display: flex; width: fit-content; flex-direction: column; gap: 12px; }
 .sponsors .eyebrow { color: var(--text); }
-.sponsor-row { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
+.sponsor-row { display: flex; width: fit-content; flex-wrap: wrap; align-items: center; gap: 24px; }
 .sponsor-link { display: inline-flex; width: auto; height: 42px; flex: 0 0 auto; align-items: center; justify-content: center; padding: 0; background: transparent; }
 .sponsor-image { display: block; width: auto; height: 42px; max-width: none; max-height: none; object-fit: contain; opacity: 1; visibility: visible; }
 :root[data-theme='dark'] .sponsor-image { filter: brightness(0) invert(1); }
