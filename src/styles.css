@@ -163,7 +163,7 @@ h3 { font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-si
 .hero-panel { display: flex; width: 550px; height: 174px; flex-direction: column; gap: 24px; padding: 28px 30px; background: var(--surface); color: var(--text); }
 .hero-panel p { width: 490px; height: 42px; line-height: 21px; }
 .hero-actions { display: flex; width: 458px; gap: 15px; height: 52px; }
-.hero-actions-spacer { width: 18px; height: 1px; flex: 0 0 18px; }
+.hero-actions-spacer { width: auto; min-width: 1px; height: 1px; flex: 1 1 0; }
 .hero-actions .button { width: 205px; min-width: 205px; }
 .home-hero-image { width: 100%; height: 358px; }
 
