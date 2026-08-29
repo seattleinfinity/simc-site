@@ -135,6 +135,7 @@ h3 { font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-si
 .button-outline { border-color: var(--accent); background: var(--surface); color: var(--on-surface); }
 .button-primary:hover { background: var(--accent-soft); color: var(--on-surface); }
 .button-light:hover, .button-outline:hover { background: var(--accent-soft); }
+.button:disabled { cursor: wait; opacity: .7; transform: none; }
 .main-nav .button { width: 140px; min-width: 140px; }
 
 .source-image { display: block; object-fit: cover; }
@@ -195,13 +196,19 @@ h3 { font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-si
 .results-year-rule span { flex: 0 0 auto; color: var(--award-gold); font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: 600; line-height: 26px; white-space: nowrap; }
 .results-awards-grid { display: flex; width: 100%; height: calc(var(--results-rows) * 49px); flex-wrap: wrap; align-content: center; align-items: center; justify-content: center; column-gap: 40px; overflow: hidden; padding: 0 20px; }
 
-.signup-banner { display: flex; width: 100%; height: 132px; align-items: center; gap: 20px; padding: 24px 80px; background: var(--accent-soft); }
+.signup-banner { display: flex; width: 100%; min-height: 132px; height: auto; align-items: center; gap: 20px; padding: 24px 80px; background: var(--accent-soft); }
 .signup-copy { display: flex; height: 84px; flex-direction: column; justify-content: center; gap: 6px; color: var(--text); }
 .signup-copy h2 { font-family: 'Source Serif 4', Georgia, serif; font-size: 36px; font-weight: 600; line-height: normal; white-space: nowrap; }
 .signup-copy p { line-height: 21px; white-space: nowrap; }
 .signup-spacer { width: auto; min-width: 1px; flex: 1 1 0; }
-.signup-form { width: 424px; flex: 0 0 424px; }
+.signup-form { display: flex; width: 424px; flex: 0 0 424px; flex-direction: column; gap: 6px; }
 .signup-banner > .button { width: 205px; min-width: 205px; }
+.turnstile-container { width: 100%; min-height: 0; }
+.turnstile-container:empty { display: none; }
+.mailing-list-status { margin: 0; color: var(--muted); font-size: 13px; line-height: 18px; }
+.mailing-list-status a { color: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.mailing-list-status-error { color: #a33b32; }
+:root[data-theme='dark'] .mailing-list-status-error { color: #ffb4ab; }
 
 .page-intro { display: flex; width: 100%; height: 243px; flex-direction: column; gap: 20px; padding: 60px 80px; background: var(--accent); color: var(--on-accent); }
 .page-intro h1 { color: var(--on-accent); }
@@ -302,6 +309,7 @@ h3 { font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-si
 .contact-form-row { display: grid; width: 100%; grid-template-columns: 340px 205px; gap: 15px; margin-top: auto; }
 
 input { width: 100%; height: 48px; padding: 11px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--input-bg); color: var(--input-text); outline: none; }
+input:disabled { cursor: wait; opacity: .75; }
 input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent); }
 
 .about-hero { display: grid; width: 100%; height: 426px; grid-template-columns: 550px minmax(0, 1fr); gap: 48px; padding: 80px; background: var(--accent); }

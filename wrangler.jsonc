@@ -6,6 +6,22 @@
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
+    "run_worker_first": ["/api/*", "/unsubscribe"],
     "not_found_handling": "single-page-application"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "simc-mailing-list",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "secrets": {
+    "required": ["TURNSTILE_SECRET", "UNSUBSCRIBE_SECRET"]
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
   }
 }

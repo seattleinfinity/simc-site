@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS subscribers (
+  id TEXT PRIMARY KEY NOT NULL,
+  email TEXT NOT NULL UNIQUE,
+  subscribed INTEGER NOT NULL DEFAULT 1 CHECK (subscribed IN (0, 1)),
+  unsubscribe_token_hash TEXT NOT NULL UNIQUE,
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

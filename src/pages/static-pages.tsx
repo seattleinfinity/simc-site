@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import { PersonCard } from '../components/content-card';
+import { MailingListFeedback, useMailingListSubscription } from '../components/mailing-list-form';
 import { MarkdownBody } from '../components/markdown-content';
 import { Intro } from '../components/page-primitives';
 import { Button, SignupBanner } from '../components/site-shell';
 import { PAGE_CONTENT_BY_SLUG, type ContentRecord } from '../content';
-import { CALENDAR_EMBED_URL, DISCORD_URL, EMAIL, MAILING_LIST_URL, PEOPLE } from '../data/site';
+import { CALENDAR_EMBED_URL, DISCORD_URL, EMAIL, PEOPLE } from '../data/site';
 
 interface MarkdownPageProps {
   record?: ContentRecord;
@@ -45,17 +45,18 @@ export function PotmPage() {
 }
 
 function ContactMailingForm() {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const subscription = useMailingListSubscription();
   return (
-    <form className="contact-option" onSubmit={(event) => { event.preventDefault(); if (email.trim()) setSubmitted(true); }}>
+    <form id="contact-email-form" className="contact-option" onSubmit={subscription.submit}>
       <h2>Join our mailing list</h2>
-      <p><a href={MAILING_LIST_URL} target="_blank" rel="noreferrer">Sign up for our mailing list</a> so you don't miss out on any of our fun events!</p>
+      <p>Sign up for our mailing list so you don't miss out on any of our fun events!</p>
       <div className="contact-form-row">
         <label className="sr-only" htmlFor="contact-email">Email address</label>
-        <input id="contact-email" type="email" placeholder="your@email.com" value={email} onChange={(event) => { setEmail(event.target.value); setSubmitted(false); }} required />
-        <Button type="submit">{submitted ? 'You are in' : 'Join mailing list'}</Button>
+        <input id="contact-email" type="email" placeholder="your@email.com" value={subscription.email} onChange={(event) => subscription.onEmailChange(event.target.value)} aria-describedby="contact-email-status" disabled={subscription.isSubmitting} required />
+        <Button type="submit" disabled={subscription.isSubmitting}>{subscription.isSubmitting ? 'Joining...' : subscription.status === 'success' ? 'You are in' : 'Join mailing list'}</Button>
       </div>
+      <div ref={subscription.turnstileContainerRef} className="turnstile-container" />
+      <MailingListFeedback state={subscription} statusId="contact-email-status" />
     </form>
   );
 }
