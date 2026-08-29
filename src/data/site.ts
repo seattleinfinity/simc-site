@@ -23,9 +23,9 @@ export interface AwardsYear {
 }
 
 export const SPONSORS: Sponsor[] = [
-  { name: 'Jane Street', href: 'https://www.janestreet.com/', image: '/assets/images/sponsors/jane-street-logo.png', className: 'sponsor-image-jane' },
-  { name: 'AoPS Academy Bellevue', href: 'https://bellevue.aopsacademy.org/', image: '/assets/images/sponsors/aops-logo.png', className: 'sponsor-image-aops' },
-  { name: 'X-Camp', href: 'https://www.x-camp.org/', image: '/assets/images/sponsors/xcamp-logo.png', className: 'sponsor-image-xcamp' },
+  { name: 'Jane Street', href: 'https://www.janestreet.com/', image: '/assets/images/sponsors/jane-street-logo.svg', className: 'sponsor-image-jane' },
+  { name: 'AoPS Academy Bellevue', href: 'https://bellevue.aopsacademy.org/', image: '/assets/images/sponsors/aops-logo.svg', className: 'sponsor-image-aops' },
+  { name: 'X-Camp', href: 'https://www.x-camp.org/', image: '/assets/images/sponsors/xcamp-logo.svg', className: 'sponsor-image-xcamp' },
 ];
 
 export const AWARDS_BY_YEAR: AwardsYear[] = [
