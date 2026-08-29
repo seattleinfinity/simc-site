@@ -2,7 +2,9 @@
 
 node_modules/
 dist/
+_site/
 .wrangler/
 .dev.vars*
 .vscode/
+.idea/
 **.env
