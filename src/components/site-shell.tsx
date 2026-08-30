@@ -69,6 +69,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="footer-brand">
         <Logo full />
+         <p className="eyebrow">501(c)(3) nonprofit organization</p>
         <div className="footer-links">
           <Link to="/contact">Mailing list</Link>
           <a href={DISCORD_URL} target="_blank" rel="noreferrer">Discord</a>
