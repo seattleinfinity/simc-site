@@ -3,11 +3,11 @@ tags: press_release
 layout: article
 title: SIMC Day
 date: 2024-05-26
-blurb: Estimathon, Puzzle Hunt, Merch, FOOD 
+blurb: Estimathon, Puzzle Hunt, Merch, and food.
 image: cover.jpg
 ---
 
-Seattle Infinity Math Circle is ecstatic to unveil our first-ever __SIMC Day__. At __Kingsgate Libary__ from 12:30 PM to 5:15 PM on May 26th will be an afternoon of intense mathematical exploration and an opportunity to meet math students in the area.
+Seattle Infinity Math Circle is ecstatic to unveil our first-ever __SIMC Day__. At __Kingsgate Library__ from 12:30 PM to 5:15 PM on May 26, 2024, there will be an afternoon of intense mathematical exploration and an opportunity to meet math students in the area.
 
 There will be an array of activities including:
 * An __Estimathon__ sponsored by Jane Street

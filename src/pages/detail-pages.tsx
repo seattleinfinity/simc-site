@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { SourceImage } from '../components/content-card';
+import { PressCard, SourceImage } from '../components/content-card';
 import { MarkdownBody, RichTitle } from '../components/markdown-content';
 import { MasonryGrid } from '../components/masonry-grid';
 import { Button, SignupBanner } from '../components/site-shell';
@@ -59,6 +59,9 @@ function SourceArticlePage({ article, backHref, backLabel }: SourceArticlePagePr
   const relatedTests = article.pastTests
     .map((slug) => PAST_TEST_CONTENT_BY_SLUG[slug])
     .filter((test): test is ContentRecord => Boolean(test));
+  const relatedPressReleases = article.pressReleases
+    .map((slug) => PRESS_CONTENT_BY_SLUG[slug])
+    .filter((release): release is ContentRecord => Boolean(release));
   return (
     <main>
       <section className="announcement-hero">
@@ -71,13 +74,23 @@ function SourceArticlePage({ article, backHref, backLabel }: SourceArticlePagePr
         <h2><RichTitle>{article.title}</RichTitle></h2>
         {article.image && <SourceImage src={article.image} className="announcement-image" alt={article.title + ' source image'} />}
         <MarkdownBody source={article.body} />
-        {relatedTests.length > 0 && <section className="article-past-tests">
-          <h3>Past tests</h3>
-          <MasonryGrid
-            className="link-grid"
-            items={relatedTests}
-            renderItem={(test) => <Link key={test.slug} className="column-card link-card" to={'/past-tests/' + test.slug}><h3>{test.title}</h3><p>Open test materials</p></Link>}
-          />
+        {(relatedPressReleases.length > 0 || relatedTests.length > 0) && <section className="article-related">
+          {relatedPressReleases.length > 0 && <>
+            <h3>Press releases</h3>
+            <MasonryGrid
+              className="link-grid"
+              items={relatedPressReleases}
+              renderItem={(release) => <PressCard key={release.slug} variant="compact" title={release.title} date={release.date} href={'/press-releases/' + release.slug} />}
+            />
+          </>}
+          {relatedTests.length > 0 && <>
+            <h3>Past tests</h3>
+            <MasonryGrid
+              className="link-grid"
+              items={relatedTests}
+              renderItem={(test) => <Link key={test.slug} className="column-card link-card" to={'/past-tests/' + test.slug}><h3>{test.title}</h3><p>Open test materials</p></Link>}
+            />
+          </>}
         </section>}
       </article>
     </main>

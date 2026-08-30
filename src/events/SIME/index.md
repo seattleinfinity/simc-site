@@ -1,19 +1,16 @@
 ---
 layout: main
-title: Mock AIME (SIME)
+title: SIME (Mock AIME)
 blurb: SIMC's annual mock AIME competition.
 schedule: Mid-January
 featured: true
-past_tests: sime-2024
+aliases: mock-sime; Mock SIME
+press_releases: 2024-01-21-sime-2024-has-concluded
+past_tests: sime-2024; sime-2026
 ---
 
-SIMC has worked very hard to make high quality mocks for the American Mathematics Comeptitions - AIME edition.
+# {{ title }}
 
+SIME is SIMC's annual mock AIME, designed as a challenging timed practice competition for students preparing for advanced math contests.
 
-## 2025 SIME
-There was no SIME in 2025. Stay tuned for 2026 and beyond!
-
-## 2024 SIME
-This will be the first ever SIME! It will take place at the Fremont Branch Library on January 21st, from 10:30 AM to 1:30 PM PST!
-
-[Registration Form (Closed)](https://docs.google.com/forms/d/e/1FAIpQLSfAEUqa8R4PYkHUZRwSzXf5mxAqHbe8OmsUcp5KGa5dEQOD8g/viewform): Registration will be due the end of the day on January 18th.
+The 2024 edition was the first; there was no SIME in 2025, and the 2026 problem set is available in the past-test cards below.
