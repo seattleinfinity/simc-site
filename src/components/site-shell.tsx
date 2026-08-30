@@ -1,5 +1,6 @@
-import { useState, type ButtonHTMLAttributes, type ReactNode } from 'react';
+import { type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import { MailingListFeedback, useMailingListSubscription } from './mailing-list-form';
 import { DISCORD_URL, INSTAGRAM_URL, SPONSORS } from '../data/site';
 
 type ButtonTone = 'primary' | 'light' | 'outline';
@@ -11,13 +12,14 @@ export interface ButtonProps {
   external?: boolean;
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   form?: string;
+  disabled?: boolean;
 }
 
-export function Button({ href, children, tone = 'primary', external = false, type = 'button', form }: ButtonProps) {
+export function Button({ href, children, tone = 'primary', external = false, type = 'button', form, disabled = false }: ButtonProps) {
   const className = `button button-${tone}`;
   if (external) return <a className={className} href={href} target="_blank" rel="noreferrer">{children}</a>;
   if (href) return <Link className={className} to={href}>{children}</Link>;
-  return <button className={className} type={type} form={form}>{children}</button>;
+  return <button className={className} type={type} form={form} disabled={disabled}>{children}</button>;
 }
 
 function Logo({ full = false, inverse = false }: { full?: boolean; inverse?: boolean }) {
@@ -45,8 +47,7 @@ function Header() {
 }
 
 export function SignupBanner() {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const subscription = useMailingListSubscription();
   return (
     <section className="signup-banner" aria-label="Join the SIMC community">
       <div className="signup-copy">
@@ -54,11 +55,15 @@ export function SignupBanner() {
         <p>Sign up for our mailing list so you don't miss out!</p>
       </div>
       <div className="signup-spacer" aria-hidden="true" />
-      <form id="banner-email-form" className="signup-form" onSubmit={(event) => { event.preventDefault(); if (email.trim()) setSubmitted(true); }}>
+      <form id="banner-email-form" className="signup-form" onSubmit={subscription.submit}>
         <label className="sr-only" htmlFor="banner-email">Email address</label>
-        <input id="banner-email" type="email" value={email} onChange={(event) => { setEmail(event.target.value); setSubmitted(false); }} placeholder="your@email.com" required />
+        <input id="banner-email" type="email" value={subscription.email} onChange={(event) => subscription.onEmailChange(event.target.value)} placeholder="your@email.com" aria-describedby="banner-email-status" disabled={subscription.isSubmitting} required />
+        <div ref={subscription.turnstileContainerRef} className="turnstile-container" />
+        <MailingListFeedback state={subscription} statusId="banner-email-status" />
       </form>
-      <button className="button button-primary" type="submit" form="banner-email-form">{submitted ? 'You\'ve been added!' : 'Join mailing list'}</button>
+      <button className="button button-primary" type="submit" form="banner-email-form" disabled={subscription.isSubmitting}>
+        {subscription.isSubmitting ? 'Joining...' : subscription.status === 'success' ? 'You\'ve been added!' : 'Join mailing list'}
+      </button>
       <Button href={DISCORD_URL} external tone="outline">Join our Discord</Button>
     </section>
   );

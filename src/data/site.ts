@@ -3,7 +3,6 @@ import { EVENT_CONTENT, type ContentRecord } from '../content';
 
 export const EMAIL = 'seattleinfinitymathcircle@gmail.com';
 export const DISCORD_URL = 'https://discord.gg/wwyZnWB2tw';
-export const MAILING_LIST_URL = 'https://forms.gle/FDvWGo1FHqQSGkNK6';
 export const INSTAGRAM_URL = 'https://www.instagram.com/seattleinfinitymathcircle/';
 export const CALENDAR_EMBED_URL = 'https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FLos_Angeles&showTitle=1&showCalendars=1&mode=AGENDA&src=YTkxNzhhNzU4ZGRjYjhmM2FjM2ZmNGQ1MWQ2OGNiNTcwNjdmMDUyODljZTc4YmUyNDliMDM0MWJhNmQyYzY3MUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23C0CA33';
 

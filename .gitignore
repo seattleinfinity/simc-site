@@ -5,6 +5,8 @@ dist/
 _site/
 .wrangler/
 .dev.vars*
+.env.local
+.env.*.local
 .vscode/
 .idea/
 **.env
