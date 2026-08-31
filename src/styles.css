@@ -139,7 +139,7 @@ h3 { font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-si
 .button-outline { border-color: var(--accent); background: var(--surface); color: var(--on-surface); }
 .button-primary:hover { background: var(--accent-soft); color: var(--on-surface); }
 .button-light:hover, .button-outline:hover { background: var(--accent-soft); }
-.main-nav .button { width: 140px; min-width: 140px; }
+.main-nav .button, .header-actions > .button { width: 140px; min-width: 140px; }
 
 .source-image { display: block; object-fit: cover; }
 
