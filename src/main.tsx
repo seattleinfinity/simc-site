@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import { BrowserRouter, useLocation } from 'react-router-dom';
+import { SeoHead } from './components/seo-head';
 import { PageShell } from './components/site-shell';
 import { SiteRoutes } from './site-routes';
 import './styles.css';
@@ -21,6 +22,7 @@ function App() {
   }, [search]);
   return (
     <>
+      <SeoHead />
       <ScrollToTop />
       <PageShell>
         <SiteRoutes />
@@ -31,8 +33,14 @@ function App() {
 
 const root = document.getElementById('root');
 if (!root) throw new Error('Missing #root element');
-createRoot(root).render(
+const app = (
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
+  </BrowserRouter>
 );
+
+if (root.hasChildNodes()) {
+  hydrateRoot(root, app);
+} else {
+  createRoot(root).render(app);
+}
