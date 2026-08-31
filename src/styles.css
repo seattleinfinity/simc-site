@@ -347,7 +347,7 @@ input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in sr
   .signup-banner > .button { min-width: 0; flex-shrink: 1; }
   .section-title-row { height: auto; min-height: 52px; }
   .section-title-row h2 { min-width: 0; flex: 1 1 auto; white-space: normal; }
-  .section-title-row .button { width: 212px; min-width: 180px; flex: 0 1 212px; }
+  .section-title-row .button { width: 212px; min-width: 212px; flex: 0 0 212px; }
   .title-spacer { display: none; }
   .contact-form-row { grid-template-columns: minmax(0, 1fr) minmax(160px, 205px); }
 }
