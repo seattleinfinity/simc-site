@@ -1,14 +1,17 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { PERMANENT_REDIRECTS as EXPECTED_REDIRECTS } from '../worker/index.js';
 
 const SCRIPT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const PROJECT_ROOT = process.env.SEO_CHECK_ROOT
   ? resolve(process.env.SEO_CHECK_ROOT)
   : SCRIPT_ROOT;
 const DIST_ROOT = join(PROJECT_ROOT, 'dist');
+const CLIENT_ROOT = join(DIST_ROOT, 'client');
 const ORIGIN = 'https://seattleinfinity.org';
 const SITEMAP_URL = `${ORIGIN}/sitemap.xml`;
+const EXPECTED_INDEXABLE_PAGE_COUNT = 78;
 
 const STATIC_PATHS = [
   '/',
@@ -33,16 +36,28 @@ const KNOWN_ALIASES = new Set([
   '/calender',
   '/announcement',
   '/announcements/mathcounts',
+  '/events/simc-8',
+  '/events/sime-8',
+  '/events/mock-sime',
 ]);
 
 const errors = [];
 const counts = {
   sitemapUrls: 0,
   htmlPages: 0,
+  notFoundPages: 0,
   jsonLdScripts: 0,
   feedEntries: 0,
   feedUrls: 0,
 };
+
+const outputRelative = (pathname) => {
+  const value = relative(CLIENT_ROOT, pathname);
+  return value.split('\\').join('/');
+};
+
+const outputLabel = (pathname) => `dist/client/${pathname}`;
+const sitemapLabel = outputLabel('sitemap.xml');
 
 function addError(scope, message) {
   errors.push(`${scope}: ${message}`);
@@ -341,7 +356,7 @@ function linkCanonicalValue(tokens, scope) {
   return value || null;
 }
 
-function validateJsonLd(html, tokens, scope) {
+function validateJsonLd(html, tokens, scope, { required = true } = {}) {
   const scriptCount = tokens.filter((token) => token.kind === 'open' && token.name === 'script').length;
   const closeCount = countLiteral(html, /<\/script\b/giu);
   if (closeCount > scriptCount) {
@@ -355,7 +370,7 @@ function validateJsonLd(html, tokens, scope) {
   });
 
   if (scripts.length === 0) {
-    addError(scope, 'at least one application/ld+json script is required');
+    if (required) addError(scope, 'at least one application/ld+json script is required');
     return;
   }
 
@@ -514,29 +529,29 @@ function localXmlName(name) {
 
 function parseSitemap(source, sitemapPath) {
   if (!source.trim()) {
-    addError('dist/sitemap.xml', 'file is empty');
+    addError(sitemapLabel, 'file is empty');
     return [];
   }
 
   const { tokens, issues } = scanXml(source);
-  issues.forEach((issue) => addError('dist/sitemap.xml', issue));
+  issues.forEach((issue) => addError(sitemapLabel, issue));
 
   const roots = tokens.filter((token) => !token.parent);
   if (roots.length !== 1) {
-    addError('dist/sitemap.xml', `expected exactly one XML root element (found ${roots.length})`);
+    addError(sitemapLabel, `expected exactly one XML root element (found ${roots.length})`);
     return [];
   }
 
   const root = roots[0];
   if (localXmlName(root.name) !== 'urlset') {
-    addError('dist/sitemap.xml', `root element must be <urlset> (found <${root.name}>)`);
+    addError(sitemapLabel, `root element must be <urlset> (found <${root.name}>)`);
     return [];
   }
-  if (!root.close) addError('dist/sitemap.xml', 'root <urlset> must have a closing tag');
+  if (!root.close) addError(sitemapLabel, 'root <urlset> must have a closing tag');
 
   const namespace = firstAttribute(root.attributes, 'xmlns');
   if (namespace !== 'http://www.sitemaps.org/schemas/sitemap/0.9') {
-    addError('dist/sitemap.xml', 'root <urlset> must declare the sitemap 0.9 namespace');
+    addError(sitemapLabel, 'root <urlset> must declare the sitemap 0.9 namespace');
   }
 
   if (root.start > 0) {
@@ -544,24 +559,24 @@ function parseSitemap(source, sitemapPath) {
       .replace(/<\?[\s\S]*?\?>/gu, '')
       .replace(/<!--[\s\S]*?-->/gu, '')
       .trim();
-    if (before) addError('dist/sitemap.xml', 'non-whitespace content appears before the root element');
+    if (before) addError(sitemapLabel, 'non-whitespace content appears before the root element');
   }
   if (root.close) {
     const after = source.slice(root.close.end + 1)
       .replace(/<!--[\s\S]*?-->/gu, '')
       .trim();
-    if (after) addError('dist/sitemap.xml', 'non-whitespace content appears after the root element');
+    if (after) addError(sitemapLabel, 'non-whitespace content appears after the root element');
   }
 
   const urls = tokens.filter((token) => token.parent === root && localXmlName(token.name) === 'url');
-  if (urls.length === 0) addError('dist/sitemap.xml', 'sitemap must contain at least one <url> entry');
+  if (urls.length === 0) addError(sitemapLabel, 'sitemap must contain at least one <url> entry');
 
   const entries = [];
   const seenLocs = new Map();
   const seenPaths = new Map();
 
   urls.forEach((urlToken, index) => {
-    const scope = `dist/sitemap.xml url #${index + 1}`;
+    const scope = `${sitemapLabel} url #${index + 1}`;
     if (!urlToken.close) {
       addError(scope, '<url> must have a closing tag');
       return;
@@ -630,26 +645,174 @@ function parseSitemap(source, sitemapPath) {
   return entries;
 }
 
-function routeHtmlPath(pathname) {
-  if (pathname === '/') return join(DIST_ROOT, 'index.html');
-  const route = pathname.replace(/^\//u, '');
-  const output = join(DIST_ROOT, `${route}.html`);
-  const relativeOutput = relative(DIST_ROOT, output);
-  if (relativeOutput.startsWith('..') || relativeOutput.includes('\\')) return null;
-  return output;
+function listHtmlCandidates(directory, prefix = '') {
+  if (!existsSync(directory)) return [];
+  let entries;
+  try {
+    entries = readdirSync(directory, { withFileTypes: true });
+  } catch {
+    return [];
+  }
+
+  const result = [];
+  entries.forEach((entry) => {
+    // Framework Mode emits route data files alongside the HTML documents.
+    // They are implementation details, not independently indexable pages.
+    if (entry.name.toLowerCase().endsWith('.data')) return;
+
+    const pathname = join(directory, entry.name);
+    const relativeName = prefix ? join(prefix, entry.name) : entry.name;
+    if (entry.isDirectory()) {
+      result.push(...listHtmlCandidates(pathname, relativeName));
+      return;
+    }
+    if (!entry.isFile() || !entry.name.toLowerCase().endsWith('.html')) return;
+    if (entry.name.toLowerCase() === '__spa-fallback.html') return;
+    result.push({ path: pathname, relativeName });
+  });
+  return result;
+}
+
+function routePathFromHtml(relativeName) {
+  const normalizedName = relativeName.split('\\').join('/');
+  const parts = normalizedName.split('/');
+  const file = parts.pop() || '';
+  if (!file.toLowerCase().endsWith('.html')) return null;
+
+  let routeParts = parts;
+  if (file.toLowerCase() !== 'index.html') {
+    routeParts = [...parts, file.slice(0, -'.html'.length)];
+  }
+  if (routeParts.length === 0) return '/';
+
+  const rawPath = `/${routeParts.join('/')}`;
+  if (rawPath.includes('\\') || rawPath.includes('\0') || rawPath.split('/').some((part) => part === '.' || part === '..')) {
+    return null;
+  }
+
+  try {
+    return decodeURIComponent(rawPath).replace(/\/+/gu, '/').replace(/\/$/u, '') || '/';
+  } catch {
+    // Keep malformed escapes visible so they cannot silently match a sitemap.
+    return rawPath;
+  }
+}
+
+function discoverHtmlOutputs() {
+  const routeOutputs = new Map();
+  const notFoundOutputs = [];
+  const candidates = listHtmlCandidates(CLIENT_ROOT);
+
+  candidates.forEach((candidate) => {
+    const relativeName = outputRelative(candidate.path);
+    if (relativeName === '404.html') {
+      notFoundOutputs.push(candidate);
+      return;
+    }
+
+    const pathname = routePathFromHtml(relativeName);
+    if (!pathname) {
+      addError(outputLabel(relativeName), 'HTML output path cannot be mapped to a safe route pathname');
+      return;
+    }
+    // Framework prerendering may retain /404 as 404/index.html. The hosting
+    // convention is the generated root 404.html, which is checked separately.
+    if (pathname === '/404') return;
+
+    const previous = routeOutputs.get(pathname);
+    if (previous) {
+      addError(outputLabel(relativeName), `multiple HTML outputs map to route ${pathname} (also ${outputLabel(outputRelative(previous.path))})`);
+      return;
+    }
+    routeOutputs.set(pathname, candidate);
+  });
+
+  return { routeOutputs, notFoundOutputs };
+}
+
+function validateSpaFallback() {
+  const pathname = join(CLIENT_ROOT, '__spa-fallback.html');
+  if (!isFile(pathname)) return;
+
+  const scope = outputLabel('__spa-fallback.html');
+  const html = readText(pathname, scope);
+  if (html === null) return;
+
+  const { tokens, issues } = scanHtml(html);
+  issues.forEach((issue) => addError(scope, issue));
+
+  const canonicalLinks = tokens.filter((token) => {
+    if (token.kind !== 'open' || token.name !== 'link') return false;
+    const rel = firstAttribute(token.attributes, 'rel') || '';
+    return rel.split(/\s+/u).some((value) => value.toLowerCase() === 'canonical');
+  });
+  if (canonicalLinks.length > 0) {
+    addError(scope, 'generic SPA fallback must not contain a canonical link');
+  }
+
+  const routeSpecificMeta = new Set([
+    'description',
+    'og:title',
+    'og:description',
+    'og:url',
+    'og:type',
+    'twitter:title',
+    'twitter:description',
+    'twitter:card',
+  ]);
+  tokens.filter((token) => token.kind === 'open' && token.name === 'meta').forEach((token) => {
+    const identities = [
+      ...allAttributes(token.attributes, 'name'),
+      ...allAttributes(token.attributes, 'property'),
+    ].map((value) => value.toLowerCase());
+    const content = firstAttribute(token.attributes, 'content') || '';
+    identities.forEach((identity) => {
+      if (routeSpecificMeta.has(identity)) {
+        addError(scope, `generic SPA fallback must not contain route-specific ${identity} metadata`);
+      }
+      if (['robots', 'googlebot', 'bingbot'].includes(identity)) {
+        const directives = content.toLowerCase().split(/[,\s]+/u).filter(Boolean);
+        if (!directives.includes('noindex') && !directives.includes('none')) {
+          addError(scope, `generic SPA fallback ${identity} metadata must not allow indexing (found: ${content})`);
+        }
+      }
+    });
+  });
+
+  const jsonLdScripts = tokens.filter((token) => {
+    if (token.kind !== 'open' || token.name !== 'script') return false;
+    const type = firstAttribute(token.attributes, 'type') || '';
+    return type.split(';', 1)[0].trim().toLowerCase() === 'application/ld+json';
+  });
+  if (jsonLdScripts.length > 0) {
+    addError(scope, 'generic SPA fallback must not contain route-specific JSON-LD');
+  }
+
+  const bodyIndex = tokens.findIndex((token) => token.kind === 'open' && token.name === 'body');
+  if (bodyIndex < 0) {
+    addError(scope, 'generic SPA fallback must contain a <body> element');
+    return;
+  }
+  const bodyStart = tokens[bodyIndex].end + 1;
+  const bodyClose = matchingClose(tokens, bodyIndex);
+  const bodyEnd = bodyClose ? bodyClose.start : html.length;
+  const bodyInner = html.slice(bodyStart, bodyEnd);
+  if (hasMeaningfulRootContent(bodyInner)) {
+    addError(scope, 'generic SPA fallback must not contain prerendered route content');
+  }
 }
 
 function validateHtmlPage(entry, htmlPath, html) {
-  const scope = `dist/${relative(DIST_ROOT, htmlPath)}`;
+  const scope = outputLabel(outputRelative(htmlPath));
   const { tokens, issues } = scanHtml(html);
   issues.forEach((issue) => addError(scope, issue));
 
   const rootIndices = tokens
     .map((token, index) => ({ token, index }))
     .filter(({ token }) => token.kind === 'open' && firstAttribute(token.attributes, 'id')?.toLowerCase() === 'root');
-  if (rootIndices.length !== 1) {
-    addError(scope, `prerendered #root element must appear exactly once (found ${rootIndices.length})`);
-  } else {
+  if (rootIndices.length > 1) {
+    addError(scope, `prerendered #root element must appear at most once (found ${rootIndices.length})`);
+  } else if (rootIndices.length === 1) {
     const rootInner = elementInnerHtml(html, tokens, rootIndices[0].index);
     if (rootInner === null || !hasMeaningfulRootContent(rootInner)) {
       addError(scope, 'prerendered #root content must be non-empty');
@@ -695,6 +858,8 @@ function validateHtmlPage(entry, htmlPath, html) {
     bodyStart = tokens[bodyIndex].end + 1;
     const bodyClose = matchingClose(tokens, bodyIndex);
     if (bodyClose) bodyEnd = bodyClose.start;
+    const bodyInner = html.slice(bodyStart, bodyEnd);
+    if (!hasMeaningfulRootContent(bodyInner)) addError(scope, 'rendered body content must be non-empty');
   } else {
     addError(scope, 'rendered body must contain a <body> element');
   }
@@ -706,12 +871,12 @@ function validateHtmlPage(entry, htmlPath, html) {
 
   const urlAttributes = new Set(['src', 'href', 'srcset', 'action', 'poster', 'content']);
   tokens.filter((token) => token.kind === 'open').forEach((token) => token.attributes.forEach((attribute) => {
-    if (urlAttributes.has(attribute.name) && /\/src\//iu.test(attribute.value)) {
+    if (urlAttributes.has(attribute.name) && /(?:\/src\/|\/@fs(?:\/|$))/iu.test(attribute.value)) {
       addError(scope, `development asset URL is not allowed: ${attribute.value}`);
     }
   }));
-  if (/<(?:script|link)\b[^>]*\/src\//iu.test(html)) {
-    addError(scope, 'development /src/ asset URL detected in rendered HTML');
+  if (/<(?:script|link)\b[^>]*(?:\/src\/|\/@fs(?:\/|["']))/iu.test(html)) {
+    addError(scope, 'development /src/ or /@fs/ asset URL detected in rendered HTML');
   }
 
   validateJsonLd(html, tokens, scope);
@@ -719,19 +884,145 @@ function validateHtmlPage(entry, htmlPath, html) {
   if (canonical && canonical !== entry.loc) {
     addError(scope, `canonical URL must exactly equal sitemap URL ${entry.loc} (found ${canonical})`);
   }
+  if (canonical) {
+    try {
+      const canonicalUrl = new URL(canonical);
+      if (canonicalUrl.pathname !== entry.pathname || canonicalUrl.search || canonicalUrl.hash) {
+        addError(scope, `canonical URL pathname must exactly match sitemap pathname ${entry.pathname} (found ${canonical})`);
+      }
+    } catch {
+      addError(scope, `canonical link must be an absolute URL (found ${canonical})`);
+    }
+  }
   if (openGraph.url && openGraph.url !== entry.loc) {
     addError(scope, `og:url must exactly equal sitemap URL ${entry.loc} (found ${openGraph.url})`);
+  }
+  if (openGraph.url) {
+    try {
+      const openGraphUrl = new URL(openGraph.url);
+      if (openGraphUrl.pathname !== entry.pathname || openGraphUrl.search || openGraphUrl.hash) {
+        addError(scope, `og:url pathname must exactly match sitemap pathname ${entry.pathname} (found ${openGraph.url})`);
+      }
+    } catch {
+      addError(scope, `og:url must be an absolute URL (found ${openGraph.url})`);
+    }
   }
 
   if (title) entry.title = title;
   if (description) entry.description = normalizeText(description);
+  if (canonical) entry.canonical = canonical;
   counts.htmlPages += 1;
+}
+
+function validateNotFoundPage(htmlPath, html) {
+  const scope = outputLabel(outputRelative(htmlPath));
+  const { tokens, issues } = scanHtml(html);
+  issues.forEach((issue) => addError(scope, issue));
+
+  const rootIndices = tokens
+    .map((token, index) => ({ token, index }))
+    .filter(({ token }) => token.kind === 'open' && firstAttribute(token.attributes, 'id')?.toLowerCase() === 'root');
+  if (rootIndices.length > 1) {
+    addError(scope, `404 #root element must appear at most once (found ${rootIndices.length})`);
+  } else if (rootIndices.length === 1) {
+    const rootInner = elementInnerHtml(html, tokens, rootIndices[0].index);
+    if (rootInner === null || !hasMeaningfulRootContent(rootInner)) {
+      addError(scope, '404 #root content must be non-empty and rendered');
+    }
+  }
+
+  const titleTokens = tokens.filter((token) => token.kind === 'open' && token.name === 'title');
+  let title = '';
+  if (titleTokens.length !== 1) {
+    addError(scope, `title element must appear exactly once (found ${titleTokens.length})`);
+  } else {
+    const inner = elementInnerHtml(html, tokens, tokens.indexOf(titleTokens[0]));
+    title = inner === null ? '' : normalizeText(inner);
+    if (!title) addError(scope, 'title element must contain meaningful text');
+  }
+
+  metaValue(tokens, 'description', scope, 'meta description');
+  const robots = metaValue(tokens, 'robots', scope, 'robots meta');
+  if (robots) {
+    const directives = robots.toLowerCase().split(/[,\s]+/u).filter(Boolean);
+    if (!directives.includes('noindex') && !directives.includes('none')) {
+      addError(scope, `404 robots meta must include noindex (found: ${robots})`);
+    }
+  }
+
+  // A 404 is not an indexable route, so canonical and og:url are optional;
+  // social title/description/card metadata remain required and useful.
+  metaValue(tokens, 'og:title', scope, 'og:title meta');
+  metaValue(tokens, 'og:description', scope, 'og:description meta');
+  metaValue(tokens, 'og:type', scope, 'og:type meta');
+  metaValue(tokens, 'twitter:title', scope, 'twitter:title meta');
+  metaValue(tokens, 'twitter:description', scope, 'twitter:description meta');
+  metaValue(tokens, 'twitter:card', scope, 'twitter:card meta');
+
+  const bodyIndex = tokens.findIndex((token) => token.kind === 'open' && token.name === 'body');
+  let bodyStart = 0;
+  let bodyEnd = html.length;
+  if (bodyIndex >= 0) {
+    bodyStart = tokens[bodyIndex].end + 1;
+    const bodyClose = matchingClose(tokens, bodyIndex);
+    if (bodyClose) bodyEnd = bodyClose.start;
+    const bodyInner = html.slice(bodyStart, bodyEnd);
+    if (!hasMeaningfulRootContent(bodyInner)) addError(scope, '404 rendered body content must be non-empty');
+  } else {
+    addError(scope, '404 response must contain a <body> element');
+  }
+
+  const h1Tokens = tokens.filter((token) => token.kind === 'open'
+    && token.name === 'h1'
+    && token.start >= bodyStart
+    && token.start < bodyEnd);
+  if (h1Tokens.length < 1) addError(scope, '404 rendered body must contain at least one <h1>');
+
+  const bodySource = bodyEnd > bodyStart ? html.slice(bodyStart, bodyEnd) : '';
+  const bodyText = normalizeText(bodySource
+    .replace(/<!--[\s\S]*?-->/gu, ' ')
+    .replace(/<script\b[\s\S]*?<\/script\s*>/giu, ' ')
+    .replace(/<style\b[\s\S]*?<\/style\s*>/giu, ' '));
+  if (!/(?:\b404\b|not\s+found|page\s+(?:is\s+)?missing|couldn['’]?t\s+find)/iu.test(bodyText)) {
+    addError(scope, '404 rendered body must contain real missing-page content');
+  }
+
+  const urlAttributes = new Set(['src', 'href', 'srcset', 'action', 'poster', 'content']);
+  tokens.filter((token) => token.kind === 'open').forEach((token) => token.attributes.forEach((attribute) => {
+    if (urlAttributes.has(attribute.name) && /(?:\/src\/|\/@fs(?:\/|$))/iu.test(attribute.value)) {
+      addError(scope, `development asset URL is not allowed: ${attribute.value}`);
+    }
+  }));
+  if (/<(?:script|link)\b[^>]*(?:\/src\/|\/@fs(?:\/|["']))/iu.test(html)) {
+    addError(scope, 'development /src/ or /@fs/ asset URL detected in rendered HTML');
+  }
+
+  // Framework output may omit JSON-LD on a 404. Validate it when present.
+  validateJsonLd(html, tokens, scope, { required: false });
+  if (title) counts.notFoundPages += 1;
+}
+
+function validateOutputExactness(entries, routeOutputs) {
+  const sitemapPaths = new Set();
+  entries.forEach((entry) => {
+    sitemapPaths.add(entry.pathname);
+    sitemapPaths.add(entry.decodedPath);
+  });
+
+  routeOutputs.forEach((candidate, pathname) => {
+    if (!sitemapPaths.has(pathname)) {
+      addError(outputLabel(outputRelative(candidate.path)), `HTML output route ${pathname} has no corresponding sitemap URL`);
+    }
+  });
 }
 
 function validateRouteShape(entries) {
   const paths = new Set(entries.map((entry) => entry.pathname));
+  if (entries.length !== EXPECTED_INDEXABLE_PAGE_COUNT) {
+    addError(sitemapLabel, `expected exactly ${EXPECTED_INDEXABLE_PAGE_COUNT} indexable canonical pages (found ${entries.length})`);
+  }
   STATIC_PATHS.forEach((path) => {
-    if (!paths.has(path)) addError('dist/sitemap.xml', `required canonical static route is missing: ${path}`);
+    if (!paths.has(path)) addError(sitemapLabel, `required canonical static route is missing: ${path}`);
   });
 
   const detailFamilies = [
@@ -743,7 +1034,7 @@ function validateRouteShape(entries) {
     const matches = entries.filter((entry) => entry.pathname.startsWith(prefix)
       && entry.pathname.slice(prefix.length).length > 0
       && !entry.pathname.slice(prefix.length).includes('/'));
-    if (matches.length === 0) addError('dist/sitemap.xml', `at least one ${label} detail route is required under ${prefix}`);
+    if (matches.length === 0) addError(sitemapLabel, `at least one ${label} detail route is required under ${prefix}`);
   });
 
   entries.forEach((entry) => {
@@ -752,17 +1043,17 @@ function validateRouteShape(entries) {
     const isDetail = detailFamilies.some(([prefix]) => path.startsWith(prefix)
       && path.slice(prefix.length).length > 0
       && !path.slice(prefix.length).includes('/'));
-    if (!isStatic && !isDetail) addError('dist/sitemap.xml', `unsupported canonical route in sitemap: ${path}`);
+    if (!isStatic && !isDetail) addError(sitemapLabel, `unsupported canonical route in sitemap: ${path}`);
   });
 }
 
 function validateRobots() {
-  const pathname = join(DIST_ROOT, 'robots.txt');
+  const pathname = join(CLIENT_ROOT, 'robots.txt');
   if (!isFile(pathname)) {
-    addError('dist/robots.txt', 'file is required');
+    addError(outputLabel('robots.txt'), 'file is required');
     return;
   }
-  const source = readText(pathname, 'dist/robots.txt');
+  const source = readText(pathname, outputLabel('robots.txt'));
   if (source === null) return;
 
   const lines = source.split(/\r?\n/u);
@@ -770,19 +1061,67 @@ function validateRobots() {
   lines.forEach((line) => {
     const withoutComment = line.replace(/#.*$/u, '').trim();
     const disallow = /^disallow\s*:\s*(.*)$/iu.exec(withoutComment);
-    if (disallow && disallow[1].trim() === '/') addError('dist/robots.txt', 'must not disallow the site root (Disallow: /)');
+    if (disallow && disallow[1].trim() === '/') addError(outputLabel('robots.txt'), 'must not disallow the site root (Disallow: /)');
     const sitemap = /^sitemap\s*:\s*(\S+)\s*$/iu.exec(withoutComment);
     if (sitemap) {
       try {
         const url = new URL(sitemap[1]);
         if (url.href === SITEMAP_URL) sitemapReference = true;
       } catch {
-        addError('dist/robots.txt', `Sitemap reference is not a valid URL: ${sitemap[1]}`);
+        addError(outputLabel('robots.txt'), `Sitemap reference is not a valid URL: ${sitemap[1]}`);
       }
     }
   });
 
-  if (!sitemapReference) addError('dist/robots.txt', `must reference the canonical sitemap ${SITEMAP_URL}`);
+  if (!sitemapReference) addError(outputLabel('robots.txt'), `must reference the canonical sitemap ${SITEMAP_URL}`);
+}
+
+function validateRedirects(entries) {
+  const pathname = join(CLIENT_ROOT, '_redirects');
+  const scope = outputLabel('_redirects');
+  if (!isFile(pathname)) {
+    addError(scope, 'Cloudflare static redirect file is required');
+    return;
+  }
+
+  const source = readText(pathname, scope);
+  if (source === null) return;
+
+  const redirects = new Map();
+  source.split(/\r?\n/u).forEach((line, index) => {
+    const value = line.replace(/#.*$/u, '').trim();
+    if (!value) return;
+    const fields = value.split(/\s+/u);
+    if (fields.length !== 3 || fields[2] !== '301') {
+      addError(scope, `line ${index + 1} must be a source, destination, and 301 status`);
+      return;
+    }
+    if (redirects.has(fields[0])) {
+      addError(scope, `duplicate redirect source on line ${index + 1}: ${fields[0]}`);
+      return;
+    }
+    redirects.set(fields[0], fields[1]);
+  });
+
+  EXPECTED_REDIRECTS.forEach((destination, sourcePath) => {
+    const actual = redirects.get(sourcePath);
+    if (actual !== destination) {
+      addError(scope, `required permanent redirect is missing: ${sourcePath} -> ${destination}`);
+    }
+  });
+
+  redirects.forEach((destination, sourcePath) => {
+    if (EXPECTED_REDIRECTS.get(sourcePath) !== destination) {
+      addError(scope, `redirect is not mirrored by the Worker: ${sourcePath} -> ${destination}`);
+    }
+  });
+
+  const canonicalPaths = new Set(entries.map((entry) => entry.pathname));
+  EXPECTED_REDIRECTS.forEach((destination, sourcePath) => {
+    if (!canonicalPaths.has(destination)) {
+      addError(scope, `redirect destination is not a canonical sitemap route: ${sourcePath} -> ${destination}`);
+    }
+  });
 }
 
 function listXmlCandidates(directory, prefix = '') {
@@ -812,14 +1151,14 @@ function chooseFeedFile() {
     join('press-releases', 'feed.xml'),
   ];
   for (const relativeName of preferred) {
-    const pathname = join(DIST_ROOT, relativeName);
+    const pathname = join(CLIENT_ROOT, relativeName);
     if (isFile(pathname)) return { path: pathname, relativeName };
   }
 
-  const candidates = listXmlCandidates(DIST_ROOT)
+  const candidates = listXmlCandidates(CLIENT_ROOT)
     .filter(({ relativeName }) => relativeName !== 'sitemap.xml');
   for (const candidate of candidates) {
-    const source = readText(candidate.path, `dist/${candidate.relativeName}`);
+    const source = readText(candidate.path, outputLabel(candidate.relativeName));
     if (source && /<\s*(?:rss|feed)\b/iu.test(source)) return candidate;
   }
   return null;
@@ -855,26 +1194,27 @@ function parseFeedUrl(value) {
 function validateFeed(entries) {
   const feed = chooseFeedFile();
   if (!feed) {
-    addError('dist/feed.xml', 'generated XML feed is required (expected feed.xml, rss.xml, atom.xml, or an equivalent feed file)');
+    addError(outputLabel('feed.xml'), 'generated XML feed is required (expected feed.xml, rss.xml, atom.xml, or an equivalent feed file)');
     return;
   }
 
-  const source = readText(feed.path, `dist/${feed.relativeName}`);
+  const feedScope = outputLabel(feed.relativeName);
+  const source = readText(feed.path, feedScope);
   if (source === null || !source.trim()) {
-    addError(`dist/${feed.relativeName}`, 'feed is empty');
+    addError(feedScope, 'feed is empty');
     return;
   }
 
   const { tokens, issues } = scanXml(source);
-  issues.forEach((issue) => addError(`dist/${feed.relativeName}`, issue));
+  issues.forEach((issue) => addError(feedScope, issue));
   const roots = tokens.filter((token) => !token.parent);
   if (roots.length !== 1) {
-    addError(`dist/${feed.relativeName}`, `expected exactly one XML feed root (found ${roots.length})`);
+    addError(feedScope, `expected exactly one XML feed root (found ${roots.length})`);
     return;
   }
   const rootName = localXmlName(roots[0].name);
   if (rootName !== 'rss' && rootName !== 'feed') {
-    addError(`dist/${feed.relativeName}`, `root element must be <rss> or <feed> (found <${roots[0].name}>)`);
+    addError(feedScope, `root element must be <rss> or <feed> (found <${roots[0].name}>)`);
     return;
   }
 
@@ -885,11 +1225,11 @@ function validateFeed(entries) {
     const name = localXmlName(token.name);
     return token.parent && (name === 'item' || name === 'entry');
   });
-  if (itemTokens.length === 0) addError(`dist/${feed.relativeName}`, 'feed must contain at least one RSS <item> or Atom <entry>');
+  if (itemTokens.length === 0) addError(feedScope, 'feed must contain at least one RSS <item> or Atom <entry>');
 
   let matchingItems = 0;
   itemTokens.forEach((item, index) => {
-    const scope = `dist/${feed.relativeName} entry #${index + 1}`;
+    const scope = `${feedScope} entry #${index + 1}`;
     if (!item.close) {
       addError(scope, 'feed entry is not closed');
       return;
@@ -928,74 +1268,89 @@ function validateFeed(entries) {
 
   counts.feedEntries = matchingItems;
   if (matchingItems === 0) {
-    addError(`dist/${feed.relativeName}`, 'feed must contain at least one canonical press-release URL');
+    addError(feedScope, 'feed must contain at least one canonical press-release URL');
   }
 }
 
 function validateUniqueMetadata(entries) {
   const titles = new Map();
   const descriptions = new Map();
+  const canonicals = new Map();
   entries.forEach((entry) => {
     if (entry.title) {
       const previous = titles.get(entry.title);
-      if (previous) addError(`dist/sitemap.xml ${entry.pathname}`, `duplicate page title "${entry.title}" (also used by ${previous})`);
+      if (previous) addError(`${sitemapLabel} ${entry.pathname}`, `duplicate page title "${entry.title}" (also used by ${previous})`);
       else titles.set(entry.title, entry.pathname);
     }
     if (entry.description) {
       const previous = descriptions.get(entry.description);
-      if (previous) addError(`dist/sitemap.xml ${entry.pathname}`, `duplicate meta description "${entry.description}" (also used by ${previous})`);
+      if (previous) addError(`${sitemapLabel} ${entry.pathname}`, `duplicate meta description "${entry.description}" (also used by ${previous})`);
       else descriptions.set(entry.description, entry.pathname);
+    }
+    if (entry.canonical) {
+      const previous = canonicals.get(entry.canonical);
+      if (previous) addError(`${sitemapLabel} ${entry.pathname}`, `duplicate canonical URL "${entry.canonical}" (also used by ${previous})`);
+      else canonicals.set(entry.canonical, entry.pathname);
     }
   });
 }
 
 function main() {
-  if (!existsSync(DIST_ROOT)) {
-    addError('dist/', 'production output directory is missing; run npm run build before SEO verification');
+  if (!existsSync(CLIENT_ROOT)) {
+    addError('dist/client/', 'React Router Framework Mode output directory is missing; run npm run build before SEO verification');
   }
 
-  const sitemapPath = join(DIST_ROOT, 'sitemap.xml');
-  const sitemapSource = isFile(sitemapPath) ? readText(sitemapPath, 'dist/sitemap.xml') : null;
-  if (sitemapSource === null && existsSync(DIST_ROOT)) {
-    addError('dist/sitemap.xml', 'file is required');
+  const discovered = discoverHtmlOutputs();
+  validateSpaFallback();
+  if (discovered.notFoundOutputs.length !== 1) {
+    addError(outputLabel('404.html'), `exactly one root 404.html is required (found ${discovered.notFoundOutputs.length})`);
+  } else {
+    const notFoundPath = discovered.notFoundOutputs[0].path;
+    const notFoundSource = readText(notFoundPath, outputLabel(outputRelative(notFoundPath)));
+    if (notFoundSource !== null) validateNotFoundPage(notFoundPath, notFoundSource);
+  }
+
+  const sitemapPath = join(CLIENT_ROOT, 'sitemap.xml');
+  const sitemapSource = isFile(sitemapPath) ? readText(sitemapPath, sitemapLabel) : null;
+  if (sitemapSource === null && existsSync(CLIENT_ROOT)) {
+    addError(sitemapLabel, 'file is required');
   }
 
   let entries = [];
   if (sitemapSource !== null) {
     entries = parseSitemap(sitemapSource, sitemapPath);
     validateRouteShape(entries);
+    validateOutputExactness(entries, discovered.routeOutputs);
 
     entries.forEach((entry) => {
-      const htmlPath = routeHtmlPath(entry.decodedPath);
-      if (!htmlPath) {
-        addError(`dist/sitemap.xml ${entry.pathname}`, 'could not safely map pathname to a flat .html output');
+      const candidate = discovered.routeOutputs.get(entry.decodedPath)
+        || discovered.routeOutputs.get(entry.pathname);
+      if (!candidate) {
+        addError(`${sitemapLabel} ${entry.pathname}`, `HTML output required for sitemap URL ${entry.loc}`);
         return;
       }
-      if (!isFile(htmlPath)) {
-        addError(`dist/${relative(DIST_ROOT, htmlPath)}`, `HTML output required for sitemap URL ${entry.loc}`);
-        return;
-      }
-      const html = readText(htmlPath, `dist/${relative(DIST_ROOT, htmlPath)}`);
-      if (html !== null) validateHtmlPage(entry, htmlPath, html);
+      const html = readText(candidate.path, outputLabel(outputRelative(candidate.path)));
+      if (html !== null) validateHtmlPage(entry, candidate.path, html);
     });
 
     validateUniqueMetadata(entries);
   }
 
-  if (existsSync(DIST_ROOT)) {
+  if (existsSync(CLIENT_ROOT)) {
     validateRobots();
+    validateRedirects(entries);
     validateFeed(entries);
   }
 
   if (errors.length > 0) {
     console.error(`SEO verification failed with ${errors.length} issue${errors.length === 1 ? '' : 's'}.`);
     errors.forEach((error) => console.error(`- ${error}`));
-    console.error(`Checked ${counts.sitemapUrls} sitemap URL${counts.sitemapUrls === 1 ? '' : 's'}, ${counts.htmlPages} HTML page${counts.htmlPages === 1 ? '' : 's'}, ${counts.jsonLdScripts} JSON-LD script${counts.jsonLdScripts === 1 ? '' : 's'}, and ${counts.feedEntries} feed entr${counts.feedEntries === 1 ? 'y' : 'ies'}.`);
+    console.error(`Checked ${counts.sitemapUrls} sitemap URL${counts.sitemapUrls === 1 ? '' : 's'}, ${counts.htmlPages} indexable HTML page${counts.htmlPages === 1 ? '' : 's'}, ${counts.notFoundPages} noindex 404 page${counts.notFoundPages === 1 ? '' : 's'}, ${counts.jsonLdScripts} JSON-LD script${counts.jsonLdScripts === 1 ? '' : 's'}, and ${counts.feedEntries} feed entr${counts.feedEntries === 1 ? 'y' : 'ies'}.`);
     process.exitCode = 1;
     return;
   }
 
-  console.log(`SEO verification passed: ${counts.sitemapUrls} sitemap URL${counts.sitemapUrls === 1 ? '' : 's'}, ${counts.htmlPages} HTML page${counts.htmlPages === 1 ? '' : 's'}, ${counts.jsonLdScripts} JSON-LD script${counts.jsonLdScripts === 1 ? '' : 's'}, and ${counts.feedEntries} canonical feed entr${counts.feedEntries === 1 ? 'y' : 'ies'}.`);
+  console.log(`SEO verification passed: ${counts.sitemapUrls} sitemap URL${counts.sitemapUrls === 1 ? '' : 's'}, ${counts.htmlPages} indexable HTML page${counts.htmlPages === 1 ? '' : 's'}, ${counts.notFoundPages} noindex 404 page${counts.notFoundPages === 1 ? '' : 's'}, ${counts.jsonLdScripts} JSON-LD script${counts.jsonLdScripts === 1 ? '' : 's'}, and ${counts.feedEntries} canonical feed entr${counts.feedEntries === 1 ? 'y' : 'ies'}.`);
 }
 
 main();

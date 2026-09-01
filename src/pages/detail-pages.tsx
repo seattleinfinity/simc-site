@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router';
 import { PressCard, SourceImage } from '../components/content-card';
 import { MarkdownBody, RichTitle } from '../components/markdown-content';
 import { MasonryGrid } from '../components/masonry-grid';

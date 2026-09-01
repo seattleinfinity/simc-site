@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { RichTitle } from './markdown-content';
 import type { Person } from '../data/site';
 
