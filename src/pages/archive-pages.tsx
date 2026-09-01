@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { CompactCard, PressCard } from '../components/content-card';
 import { MarkdownBody } from '../components/markdown-content';
 import { MasonryGrid } from '../components/masonry-grid';

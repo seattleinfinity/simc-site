@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ButtonHTMLAttributes, type ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { DISCORD_URL, INSTAGRAM_URL, SPONSORS } from '../data/site';
 
 type ButtonTone = 'primary' | 'light' | 'outline';

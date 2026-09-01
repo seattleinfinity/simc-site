@@ -6,7 +6,7 @@ schedule: Early March
 featured: true
 press_releases: 2021-12-09-conclusion-mock-mathcounts; 2023-01-16-announce-mock-mathcounts; 2024-01-28-2024-mock-mathcounts; 2025-03-07-mock-mathcounts; 2026-2-28-mockmathcounts; 2026-03-05-mock-mathcounts-recap
 past_tests: mock-mathcounts-2021-22; mock-mathcounts-2023; mock-mathcounts-2024; mock-mathcounts-2025; mock-mathcounts-2026
-image: cover.jpg
+image: mathcounts-logo.jpg
 ---
 
 <img src="./mathcounts-logo.jpg" class=" object-cover w-full max-h-96 mt-12 rounded-xl">

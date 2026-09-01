@@ -2,7 +2,6 @@
 tags: standalone
 title: SIMC Day
 blurb: Estimathon, Puzzle Hunt, Merch, and food.
-image: cover.png
 schedule: Late May
 featured: true
 press_releases: 2024-05-14-simc-day

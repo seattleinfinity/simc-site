@@ -4,8 +4,9 @@
   "main": "./worker/index.js",
   "compatibility_date": "2026-08-26",
   "assets": {
-    "directory": "./dist",
+    "directory": "./dist/client",
     "binding": "ASSETS",
-    "not_found_handling": "single-page-application"
+    "not_found_handling": "404-page",
+    "html_handling": "drop-trailing-slash"
   }
 }
