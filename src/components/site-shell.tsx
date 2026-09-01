@@ -1,4 +1,4 @@
-import { useState, type ButtonHTMLAttributes, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { Link } from 'react-router';
 import { DISCORD_URL, INSTAGRAM_URL, SPONSORS } from '../data/site';
 
@@ -11,13 +11,14 @@ export interface ButtonProps {
   external?: boolean;
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   form?: string;
+  onClick?: () => void;
 }
 
-export function Button({ href, children, tone = 'primary', external = false, type = 'button', form }: ButtonProps) {
+export function Button({ href, children, tone = 'primary', external = false, type = 'button', form, onClick }: ButtonProps) {
   const className = `button button-${tone}`;
-  if (external) return <a className={className} href={href} target="_blank" rel="noreferrer">{children}</a>;
-  if (href) return <Link className={className} to={href}>{children}</Link>;
-  return <button className={className} type={type} form={form}>{children}</button>;
+  if (external) return <a className={className} href={href} target="_blank" rel="noreferrer" onClick={onClick}>{children}</a>;
+  if (href) return <Link className={className} to={href} onClick={onClick}>{children}</Link>;
+  return <button className={className} type={type} form={form} onClick={onClick}>{children}</button>;
 }
 
 function Logo({ full = false, inverse = false }: { full?: boolean; inverse?: boolean }) {
@@ -30,16 +31,45 @@ function Logo({ full = false, inverse = false }: { full?: boolean; inverse?: boo
 }
 
 function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <header className="site-header">
       <Logo inverse />
-      <nav className="main-nav" aria-label="Main navigation">
-        <Link to="/events">Events</Link>
-        <Link to="/resources">Resources</Link>
-        <Link to="/press-releases">Press releases</Link>
-        <Link to="/about-us">About us</Link>
-        <Button href="/contact" tone="light">Contact us</Button>
+      <nav id="main-navigation" className={`main-nav ${menuOpen ? 'main-nav-open' : ''}`} aria-label="Main navigation">
+        <Link to="/events" onClick={closeMenu}>Events</Link>
+        <Link to="/resources" onClick={closeMenu}>Resources</Link>
+        <Link to="/press-releases" onClick={closeMenu}>Press releases</Link>
+        <Link to="/about-us" onClick={closeMenu}>About us</Link>
       </nav>
+      <div className="header-actions">
+        <Button href="/contact" tone="light" onClick={closeMenu}>Contact us</Button>
+        <button
+          ref={menuButtonRef}
+          className="mobile-menu-toggle"
+          type="button"
+          aria-expanded={menuOpen}
+          aria-controls="main-navigation"
+          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? 'Close' : 'Menu'}
+        </button>
+      </div>
     </header>
   );
 }
