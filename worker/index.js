@@ -1,25 +1,10 @@
+import redirectTargets from '../redirects.json' with { type: 'json' };
+
 const SITE_ORIGIN = 'https://seattleinfinity.org';
 
-// Static navigation requests are redirected by public/_redirects. Mirror the
-// rules here for bots and other requests that Cloudflare routes through the
-// Worker before the static-assets layer.
-export const PERMANENT_REDIRECTS = new Map([
-  ['/about', '/about-us'],
-  ['/slg', '/about-us'],
-  ['/mock-tests', '/past-tests'],
-  ['/newsletter', '/newsletters'],
-  ['/newletter', '/newsletters'],
-  ['/gcalender', '/calendar'],
-  ['/calender', '/calendar'],
-  ['/announcement', '/press-releases/2026-2-28-mockmathcounts'],
-  ['/announcements/mathcounts', '/press-releases/2026-2-28-mockmathcounts'],
-  ['/events/SIMC10', '/events/simc10'],
-  ['/events/SIMC8', '/events/simc8'],
-  ['/events/SIME', '/events/sime'],
-  ['/events/simc-8', '/events/simc8'],
-  ['/events/sime-8', '/events/simc8'],
-  ['/events/mock-sime', '/events/sime'],
-]);
+// Keep the edge redirect table in the same source-of-truth manifest used by
+// the application and generated static-assets output.
+export const PERMANENT_REDIRECTS = new Map(Object.entries(redirectTargets));
 
 export default {
   async fetch(request, env) {

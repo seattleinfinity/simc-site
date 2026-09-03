@@ -1,3 +1,5 @@
+import { parse as parseYaml } from 'yaml';
+
 export interface Material {
   href: string;
   embedSrc: string | null;
@@ -20,7 +22,7 @@ export interface ContentRecord {
   blurb?: string;
   schedule?: string;
   featured?: boolean;
-  aliases?: string;
+  aliases?: string | string[];
   category?: string;
   year?: string;
   hosted_date?: string;
@@ -31,7 +33,7 @@ export interface ContentRecord {
   sourceLinks: Material[];
 }
 
-type RawFrontMatter = Record<string, string | boolean>;
+type RawFrontMatter = Record<string, string | boolean | string[]>;
 type RawModules = Record<string, string>;
 
 const PRESS_FILES = import.meta.glob('./press-releases/*/index.md', { query: '?raw', import: 'default', eager: true }) as RawModules;
@@ -75,37 +77,38 @@ const dateValue = (value: unknown): Date | undefined => {
   return Number.isNaN(date.getTime()) ? undefined : date;
 };
 
-const parseScalar = (value: string): string | boolean => {
-  const trimmed = value.trim();
-  if (trimmed.startsWith("'") && trimmed.endsWith("'")) return trimmed.slice(1, -1).replace(/''/g, "'");
-  if (trimmed.startsWith('"') && trimmed.endsWith('"')) return trimmed.slice(1, -1).replace(/\\"/g, '"').replace(/\\\//g, '/');
-  if (trimmed === 'true') return true;
-  if (trimmed === 'false') return false;
-  return trimmed;
-};
-
-const parseFrontMatter = (raw: string): { data: RawFrontMatter; content: string } => {
+const parseFrontMatter = (raw: string, sourcePath: string): { data: RawFrontMatter; content: string } => {
   if (!raw.startsWith('---')) return { data: {}, content: raw };
-  const end = raw.indexOf('\n---', 3);
-  if (end < 0) return { data: {}, content: raw };
 
-  const data: RawFrontMatter = {};
-  let activeKey: string | undefined;
-  raw.slice(4, end).split(/\r?\n/).forEach((line) => {
-    const match = /^([A-Za-z0-9_-]+):\s*(.*)$/.exec(line);
-    if (match) {
-      activeKey = match[1];
-      data[activeKey] = match[2].trim();
-    } else if (activeKey && line.trim()) {
-      data[activeKey] = `${String(data[activeKey] ?? '')}\n${line.trim()}`;
+  const match = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/u.exec(raw);
+  if (!match) return { data: {}, content: raw };
+
+  let parsed: unknown;
+  try {
+    parsed = parseYaml(match[1]);
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    throw new Error(`${sourcePath}: invalid YAML front matter (${detail})`);
+  }
+
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    throw new Error(`${sourcePath}: front matter must be a YAML mapping`);
+  }
+
+  const data: RawFrontMatter = Object.create(null) as RawFrontMatter;
+  Object.entries(parsed).forEach(([key, value]) => {
+    if (typeof value === 'string' || typeof value === 'boolean') {
+      data[key] = value;
+    } else if (Array.isArray(value) && value.every((entry) => typeof entry === 'string')) {
+      data[key] = value;
+    } else if (value === null || typeof value === 'number' || typeof value === 'bigint') {
+      data[key] = String(value ?? '');
+    } else {
+      throw new Error(`${sourcePath}: front matter field "${key}" must be a scalar value`);
     }
   });
 
-  Object.keys(data).forEach((key) => {
-    data[key] = parseScalar(String(data[key]));
-  });
-
-  return { data, content: raw.slice(end + 4) };
+  return { data, content: raw.slice(match[0].length) };
 };
 
 export const formatDate = (value: unknown): string => {
@@ -128,9 +131,12 @@ const resolveLocalAsset = (sourcePath: string, value?: string): string | undefin
   return asset ? `${asset}${suffix}` : value;
 };
 
-const splitList = (value: unknown): string[] => typeof value === 'string'
-  ? value.split(/\s*;\s*/).filter(Boolean)
-  : [];
+const splitList = (value: unknown): string[] => {
+  const values = Array.isArray(value) ? value : [value];
+  return values
+    .filter((entry): entry is string => typeof entry === 'string')
+    .flatMap((entry) => entry.split(/\s*;\s*/).filter(Boolean));
+};
 
 const splitMaterials = (sourcePath: string, value: unknown): Material[] => splitList(value)
   .map((href) => resolveLocalAsset(sourcePath, href))
@@ -150,7 +156,7 @@ const rewriteLocalAssets = (sourcePath: string, body: string): string => body
   .replace(/(<(?:img|source)\b[^>]+\b(?:src|srcset)=['"])([^'"]+)(['"])/gi, (_, prefix: string, value: string, suffix: string) => `${prefix}${resolveLocalAsset(sourcePath, value)}${suffix}`);
 
 const parseRecord = (path: string, raw: string): ContentRecord => {
-  const parsed = parseFrontMatter(raw);
+  const parsed = parseFrontMatter(raw, path);
   const sourceSlug = path.split('/').slice(-2, -1)[0] || 'untitled';
   const title = stringValue(parsed.data.title) || sourceSlug;
   const body = rewriteLocalAssets(path, parsed.content.trim().replace(/\{\{\s*title\s*\}\}/g, title));
@@ -178,7 +184,7 @@ const parseRecord = (path: string, raw: string): ContentRecord => {
 const recordsFrom = (modules: RawModules): ContentRecord[] => Object.entries(modules).map(([path, raw]) => parseRecord(path, raw));
 
 const bySlug = (records: ContentRecord[]): Record<string, ContentRecord> => Object.fromEntries(records.flatMap((record) => {
-  const aliases = typeof record.aliases === 'string' ? splitList(record.aliases) : [];
+  const aliases = splitList(record.aliases);
   return [
     [record.slug, record],
     [record.sourceSlug, record],

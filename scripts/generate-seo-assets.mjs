@@ -1,6 +1,7 @@
 import { readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { JSDOM } from 'jsdom';
 
 const scriptsDirectory = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptsDirectory, '..');
@@ -11,252 +12,89 @@ const clientDirectory = path.resolve(
 const DEFAULT_SITE_NAME = 'Seattle Infinity Math Circle';
 const DEFAULT_SITE_DESCRIPTION = 'Seattle Infinity Math Circle inspires students across the Seattle area to explore mathematics through competitions, events, and community.';
 const FALLBACK_DOCUMENT_NAMES = new Set(['__spa-fallback.html', '__spa-fallback.htm']);
+const REDIRECT_MANIFEST_PATH = path.join(projectRoot, 'redirects.json');
 
 const fail = (message) => {
   throw new Error(`[generate-seo-assets] ${message}`);
 };
 
+async function readRedirectManifest() {
+  let parsed;
+  try {
+    parsed = JSON.parse(await readFile(REDIRECT_MANIFEST_PATH, 'utf8'));
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    fail(`redirect manifest is not valid JSON: ${detail}`);
+  }
+
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    fail('redirect manifest must contain an object of source paths to destinations.');
+  }
+
+  for (const [source, destination] of Object.entries(parsed)) {
+    if (!source.startsWith('/') || !destination.startsWith('/')) {
+      fail(`redirects must use absolute paths: ${source} -> ${destination}`);
+    }
+  }
+
+  return parsed;
+}
+
+const renderRedirects = (redirects) => [
+  '# Generated from redirects.json. Do not edit this build artifact directly.',
+  ...Object.entries(redirects)
+    .sort(([sourceA], [sourceB]) => sourceA.localeCompare(sourceB))
+    .map(([source, destination]) => `${source} ${destination} 301`),
+  '',
+].join('\n');
+
 const textValue = (...values) => values.find((value) => typeof value === 'string' && value.trim())?.trim() || '';
 
-function decodeEntities(value) {
-  return String(value).replace(/&(#x[\da-f]+|#\d+|amp|lt|gt|quot|apos|nbsp);/giu, (whole, entity) => {
-    const lower = entity.toLowerCase();
-    if (lower === 'amp') return '&';
-    if (lower === 'lt') return '<';
-    if (lower === 'gt') return '>';
-    if (lower === 'quot') return '"';
-    if (lower === 'apos') return "'";
-    if (lower === 'nbsp') return '\u00a0';
-
-    const codePoint = lower.startsWith('#x')
-      ? Number.parseInt(lower.slice(2), 16)
-      : Number.parseInt(lower.slice(1), 10);
-    if (!Number.isInteger(codePoint) || codePoint < 0 || codePoint > 0x10ffff) return whole;
-    try {
-      return String.fromCodePoint(codePoint);
-    } catch {
-      return whole;
-    }
-  });
-}
-
-function findTagEnd(source, start) {
-  let quote = '';
-  for (let index = start + 1; index < source.length; index += 1) {
-    const character = source[index];
-    if (quote) {
-      if (character === quote) quote = '';
-    } else if (character === '"' || character === "'") {
-      quote = character;
-    } else if (character === '>') {
-      return index;
-    }
-  }
-  return -1;
-}
-
-function parseAttributes(source) {
-  const attributes = [];
-  let index = 0;
-
-  while (index < source.length) {
-    while (index < source.length && /\s/u.test(source[index])) index += 1;
-    while (index < source.length && source[index] === '/') index += 1;
-    while (index < source.length && /\s/u.test(source[index])) index += 1;
-    if (index >= source.length) break;
-
-    const nameStart = index;
-    while (index < source.length && !/[\s=/>]/u.test(source[index])) index += 1;
-    if (nameStart === index) {
-      index += 1;
-      continue;
-    }
-
-    const name = source.slice(nameStart, index).toLowerCase();
-    while (index < source.length && /\s/u.test(source[index])) index += 1;
-
-    let value = '';
-    if (source[index] === '=') {
-      index += 1;
-      while (index < source.length && /\s/u.test(source[index])) index += 1;
-      if (source[index] === '"' || source[index] === "'") {
-        const quote = source[index];
-        index += 1;
-        const valueStart = index;
-        while (index < source.length && source[index] !== quote) index += 1;
-        value = source.slice(valueStart, index);
-        if (index < source.length) index += 1;
-      } else {
-        const valueStart = index;
-        while (index < source.length && !/[\s>]/u.test(source[index])) index += 1;
-        value = source.slice(valueStart, index).replace(/\/$/u, '');
-      }
-    }
-
-    attributes.push({ name, value: decodeEntities(value) });
-  }
-
-  return attributes;
-}
-
-function parseOpenTag(raw) {
-  let index = 1;
-  while (index < raw.length && /\s/u.test(raw[index])) index += 1;
-  if (raw[index] === '/' || raw[index] === '!' || raw[index] === '?') return null;
-
-  const nameStart = index;
-  while (index < raw.length && !/[\s/>]/u.test(raw[index])) index += 1;
-  if (nameStart === index) return null;
-
-  const name = raw.slice(nameStart, index).toLowerCase();
-  const attributesEnd = raw.length - 1;
-  let attributesSource = raw.slice(index, attributesEnd);
-  const selfClosing = /\/\s*$/u.test(attributesSource);
-  if (selfClosing) attributesSource = attributesSource.replace(/\/\s*$/u, '');
-
-  return {
-    name,
-    attributes: parseAttributes(attributesSource),
-    selfClosing,
-  };
-}
-
-function findClosingTag(source, name, start) {
-  const lowerSource = source.toLowerCase();
-  const lowerName = name.toLowerCase();
-  let cursor = start;
-  while (cursor < source.length) {
-    const candidate = lowerSource.indexOf(`</${lowerName}`, cursor);
-    if (candidate < 0) return null;
-    const afterName = source[candidate + lowerName.length + 2] || '';
-    if (afterName === '>' || /\s/u.test(afterName)) {
-      const end = findTagEnd(source, candidate);
-      return end < 0 ? { start: candidate, end: -1 } : { start: candidate, end };
-    }
-    cursor = candidate + 2;
-  }
-  return null;
-}
-
 function scanHtml(source, relativeName) {
-  const tags = [];
-  const issues = [];
-  let cursor = 0;
-  let inHead = false;
-  let sawHead = false;
-
-  while (cursor < source.length) {
-    const start = source.indexOf('<', cursor);
-    if (start < 0) break;
-
-    if (source.startsWith('<!--', start)) {
-      const endComment = source.indexOf('-->', start + 4);
-      if (endComment < 0) {
-        issues.push('unterminated HTML comment');
-        break;
-      }
-      cursor = endComment + 3;
-      continue;
-    }
-
-    const end = findTagEnd(source, start);
-    if (end < 0) {
-      issues.push(`unterminated HTML tag near byte ${start}`);
-      break;
-    }
-
-    const raw = source.slice(start, end + 1);
-    let closeName = '';
-    let closeIndex = 1;
-    while (closeIndex < raw.length && /\s/u.test(raw[closeIndex])) closeIndex += 1;
-    if (raw[closeIndex] === '/') {
-      closeIndex += 1;
-      while (closeIndex < raw.length && /\s/u.test(raw[closeIndex])) closeIndex += 1;
-      const closeNameStart = closeIndex;
-      while (closeIndex < raw.length && !/[\s>]/u.test(raw[closeIndex])) closeIndex += 1;
-      closeName = raw.slice(closeNameStart, closeIndex).toLowerCase();
-    }
-
-    if (closeName) {
-      if (closeName === 'head') inHead = false;
-      cursor = end + 1;
-      continue;
-    }
-
-    const parsed = parseOpenTag(raw);
-    if (!parsed) {
-      cursor = end + 1;
-      continue;
-    }
-
-    if (parsed.name === 'head') {
-      sawHead = true;
-      inHead = true;
-    }
-
-    const tag = {
-      ...parsed,
-      inHead,
-      content: '',
-      start,
-      end,
-    };
-    tags.push(tag);
-
-    if ((parsed.name === 'script' || parsed.name === 'title') && !parsed.selfClosing) {
-      const closing = findClosingTag(source, parsed.name, end + 1);
-      if (!closing || closing.end < 0) {
-        issues.push(`unterminated <${parsed.name}> element`);
-        break;
-      }
-      tag.content = source.slice(end + 1, closing.start);
-      cursor = closing.end + 1;
-      continue;
-    }
-
-    cursor = end + 1;
+  let document;
+  try {
+    document = new JSDOM(source).window.document;
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    fail(relativeName + ': unable to parse HTML (' + detail + ').');
   }
 
-  if (issues.length > 0) {
-    fail(`${relativeName}: ${issues.join('; ')}`);
-  }
-
-  const relevantTags = sawHead ? tags.filter((tag) => tag.inHead) : tags;
-  const getAttribute = (tag, name) => tag.attributes.find((attribute) => attribute.name === name)?.value || '';
-  const metaTags = relevantTags.filter((tag) => tag.name === 'meta');
-  const canonicalLinks = relevantTags
-    .filter((tag) => tag.name === 'link' && getAttribute(tag, 'rel').split(/\s+/u).some((value) => value.toLowerCase() === 'canonical'))
-    .map((tag) => getAttribute(tag, 'href'));
-  const jsonLdScripts = relevantTags
-    .filter((tag) => tag.name === 'script' && getAttribute(tag, 'type').toLowerCase() === 'application/ld+json')
-    .map((tag, index) => {
-      const text = tag.content.trim();
-      if (!text) fail(`${relativeName}: JSON-LD script #${index + 1} is empty.`);
+  const metadataRoot = /<head\b/iu.test(source) ? document.head : document;
+  const getAttribute = (element, name) => element?.getAttribute(name)?.trim() || '';
+  const metaTags = Array.from(metadataRoot.querySelectorAll('meta'));
+  const canonicalLinks = Array.from(metadataRoot.querySelectorAll('link'))
+    .filter((element) => getAttribute(element, 'rel').split(/\s+/u)
+      .some((value) => value.toLowerCase() === 'canonical'))
+    .map((element) => getAttribute(element, 'href'));
+  const jsonLdScripts = Array.from(metadataRoot.querySelectorAll('script'))
+    .filter((element) => getAttribute(element, 'type').split(';', 1)[0].toLowerCase() === 'application/ld+json')
+    .map((element, index) => {
+      const text = (element.textContent || '').trim();
+      if (!text) fail(relativeName + ': JSON-LD script #' + (index + 1) + ' is empty.');
       try {
         return JSON.parse(text);
       } catch (error) {
         const detail = error instanceof Error ? error.message : String(error);
-        fail(`${relativeName}: JSON-LD script #${index + 1} is invalid JSON (${detail}).`);
+        fail(relativeName + ': JSON-LD script #' + (index + 1) + ' is invalid JSON (' + detail + ').');
       }
     });
 
-  const firstMeta = (attributeName, attributeValue) => metaTags.find((tag) => (
-    getAttribute(tag, attributeName).toLowerCase() === attributeValue.toLowerCase()
+  const firstMeta = (attributeName, attributeValue) => metaTags.find((element) => (
+    getAttribute(element, attributeName).toLowerCase() === attributeValue.toLowerCase()
   ));
   const contentForMeta = (...queries) => {
     for (const [attributeName, attributeValue] of queries) {
-      const tag = firstMeta(attributeName, attributeValue);
-      const content = tag ? getAttribute(tag, 'content') : '';
+      const element = firstMeta(attributeName, attributeValue);
+      const content = element ? getAttribute(element, 'content') : '';
       if (content) return content;
     }
     return '';
   };
 
-  const titleTag = relevantTags.find((tag) => tag.name === 'title');
-  const title = titleTag ? decodeEntities(titleTag.content.replace(/\s+/gu, ' ').trim()) : '';
+  const title = (metadataRoot.querySelector('title')?.textContent || '').replace(/\s+/gu, ' ').trim();
   const robotsValues = metaTags
-    .filter((tag) => ['robots', 'googlebot', 'bingbot'].includes(getAttribute(tag, 'name').toLowerCase()))
-    .map((tag) => getAttribute(tag, 'content'));
+    .filter((element) => ['robots', 'googlebot', 'bingbot'].includes(getAttribute(element, 'name').toLowerCase()))
+    .map((element) => getAttribute(element, 'content'));
   const noIndex = robotsValues.some((value) => /(?:^|[\s,;])(?:noindex|none)(?:$|[\s,;])/iu.test(value));
 
   return {
@@ -587,6 +425,8 @@ async function main() {
     fail(`client output directory is missing: ${clientDirectory}. Run the framework build first.`);
   }
 
+  const redirects = await readRedirectManifest();
+
   const htmlFiles = await collectHtmlFiles(clientDirectory);
   if (htmlFiles.length === 0) fail(`no generated HTML documents found recursively under ${clientDirectory}.`);
 
@@ -659,8 +499,9 @@ async function main() {
   await writeFile(path.join(clientDirectory, 'sitemap.xml'), sitemap, 'utf8');
   await writeFile(path.join(clientDirectory, 'feed.xml'), feed, 'utf8');
   await writeFile(path.join(clientDirectory, '404.html'), notFoundHtml);
+  await writeFile(path.join(clientDirectory, '_redirects'), renderRedirects(redirects), 'utf8');
 
-  console.log(`Generated sitemap.xml (${canonicalDocuments.length} URL${canonicalDocuments.length === 1 ? '' : 's'}), feed.xml, and 404.html under ${clientDirectory}.`);
+  console.log(`Generated sitemap.xml (${canonicalDocuments.length} URL${canonicalDocuments.length === 1 ? '' : 's'}), feed.xml, 404.html, and _redirects under ${clientDirectory}.`);
 }
 
 await main();
