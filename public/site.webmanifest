@@ -1,0 +1,18 @@
+{
+  "name": "Seattle Infinity Math Circle",
+  "short_name": "SIMC",
+  "description": "Seattle Infinity Math Circle inspires students across the Seattle area to explore mathematics through competitions, events, and community.",
+  "lang": "en-US",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0a3158",
+  "icons": [
+    {
+      "src": "/int.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ]
+}

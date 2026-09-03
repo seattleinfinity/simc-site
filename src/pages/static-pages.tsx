@@ -91,7 +91,17 @@ export function SlgPage() {
           <h1>Student Leadership Group</h1>
           <div className="about-panel"><p>Our student leaders create competitions, write problems, and expand math literacy for students across the Seattle area.</p></div>
         </div>
-        <img className="source-image about-image" src="/assets/images/about-classroom.png" alt="Students working on math problems at a SIMC event" />
+        <img
+          className="source-image about-image"
+          src="/assets/images/about-classroom-1600.webp"
+          srcSet="/assets/images/about-classroom-800.webp 800w, /assets/images/about-classroom-1600.webp 1600w"
+          sizes="(max-width: 899px) 100vw, 50vw"
+          width="1600"
+          height="1200"
+          fetchPriority="high"
+          decoding="async"
+          alt="Students working on math problems at a SIMC event"
+        />
       </section>
       <SignupBanner />
       <section className="slg-page-list">

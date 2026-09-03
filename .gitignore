@@ -2,6 +2,7 @@
 
 node_modules/
 dist/
+.react-router/
 _site/
 .wrangler/
 .react-router/

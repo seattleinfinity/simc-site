@@ -4,7 +4,7 @@ title: SIMC Panels & Lectures
 blurb: Math literacy panels and lectures from the SIMC community.
 schedule: Winter and summer
 featured: true
-image: cover.jpg
+image: lecture-photo.jpg
 press_releases: 2023-11-23-2024-summer-math-camps-panel; 2023-07-13-simc-july-2023-math-and-coding-panel
 ---
 
