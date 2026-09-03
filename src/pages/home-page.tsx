@@ -41,7 +41,8 @@ function HomeLatest() {
           items={UPCOMING_EVENTS.slice(0, 3)}
           minColumnWidth={280}
           gap={12}
-          renderItem={(event) => <CompactCard key={event.slug} title={event.title} date={event.date} description={event.description} href={`/events/${event.slug}`} />}
+          getItemKey={(event) => event.slug}
+          renderItem={(event) => <CompactCard title={event.title} date={event.date} description={event.description} href={`/events/${event.slug}`} />}
         />
       </div>
       <div className="home-latest-column">
@@ -54,7 +55,8 @@ function HomeLatest() {
           className="featured-press-grid"
           items={PRESS_CONTENT.slice(0, 2)}
           minColumnWidth={280}
-          renderItem={(article) => <PressCard key={article.slug} variant="featured" title={article.title} date={article.date} description={article.description} image={article.image} href={`/press-releases/${article.slug}`} />}
+          getItemKey={(article) => article.slug}
+          renderItem={(article) => <PressCard variant="featured" title={article.title} date={article.date} description={article.description} image={article.image} href={`/press-releases/${article.slug}`} />}
         />
       </div>
     </section>

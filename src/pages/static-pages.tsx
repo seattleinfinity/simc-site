@@ -99,7 +99,8 @@ export function SlgPage() {
         <MasonryGrid
           className="people-grid"
           items={PEOPLE}
-          renderItem={(person) => <PersonCard key={person.name} {...person} />}
+          getItemKey={(person) => person.name}
+          renderItem={(person) => <PersonCard {...person} />}
         />
       </section>
     </main>

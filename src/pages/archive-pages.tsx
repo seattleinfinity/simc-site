@@ -34,7 +34,8 @@ export function PressReleasesPage() {
         <MasonryGrid
           className="press-page-grid"
           items={PRESS_CONTENT}
-          renderItem={(article) => <PressCard key={article.slug} title={article.title} date={article.date} description={article.description} image={article.image} href={`/press-releases/${article.slug}`} />}
+          getItemKey={(article) => article.slug}
+          renderItem={(article) => <PressCard title={article.title} date={article.date} description={article.description} image={article.image} href={`/press-releases/${article.slug}`} />}
         />
       </section>
     </main>
@@ -51,7 +52,8 @@ export function EventsPage() {
         <MasonryGrid
           className="compact-grid"
           items={UPCOMING_EVENTS}
-          renderItem={(event) => <CompactCard key={event.slug} title={event.title} date={event.date} description={event.description} href={`/events/${event.slug}`} />}
+          getItemKey={(event) => event.slug}
+          renderItem={(event) => <CompactCard title={event.title} date={event.date} description={event.description} href={`/events/${event.slug}`} />}
         />
       </section>
     </main>
@@ -88,7 +90,8 @@ export function ResourcesPage({ onlyTests = false }: { onlyTests?: boolean } = {
                 className="test-archive-grid"
                 items={yearTests}
                 gap={16}
-                renderItem={(test) => <TestArchiveCard key={test.slug} test={test} />}
+                getItemKey={(test) => test.slug}
+                renderItem={(test) => <TestArchiveCard test={test} />}
               />
             </div>
           ))}
@@ -99,7 +102,8 @@ export function ResourcesPage({ onlyTests = false }: { onlyTests?: boolean } = {
         <MasonryGrid
           className="resource-grid"
           items={resourceItems}
-          renderItem={(item, index) => <div className="column-card resource-card" key={`${item}-${index}`}><MarkdownBody source={item} /></div>}
+          getItemKey={(item, index) => `${item}-${index}`}
+          renderItem={(item) => <div className="column-card resource-card"><MarkdownBody source={item} /></div>}
         />
       </section>}
     </main>

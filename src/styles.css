@@ -215,8 +215,9 @@ h3 { font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-si
 
 .press-page-list { width: 100%; min-height: 687.6667px; height: auto; padding: 60px 80px; background: var(--bg); }
 .press-page-list > h2, .events-page-list > h2, .resources-tests > h2, .resources-external > h2, .slg-page-list > h2 { line-height: 46px; }
-.masonry-grid { display: grid; grid-template-columns: repeat(var(--masonry-columns), minmax(0, 1fr)); align-items: start; gap: var(--masonry-gap); width: 100%; height: auto; }
-.masonry-column { display: flex; min-width: 0; flex-direction: column; gap: var(--masonry-gap); }
+.masonry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--masonry-min-column-width)), 1fr)); grid-auto-flow: row dense; grid-auto-rows: 1px; align-items: start; column-gap: var(--masonry-gap); width: 100%; height: auto; margin-bottom: calc(-1 * var(--masonry-gap)); }
+.masonry-item { min-width: 0; }
+.masonry-item-content { min-width: 0; }
 .column-card { display: flex; overflow: hidden; width: 100%; min-width: 0; height: auto; min-height: 0; flex-direction: column; gap: 8px; border: 1px solid var(--accent-soft); border-radius: 10px; padding: 16px; background: var(--surface); box-shadow: var(--shadow); color: var(--text); text-decoration: none; transition: transform .18s ease, box-shadow .18s ease; }
 .column-card:is(a, .resource-card):hover { transform: translateY(-3px); box-shadow: 0 8px 12px rgba(0, 0, 0, .18); }
 .press-page-grid { margin-top: 24px; }
@@ -311,7 +312,7 @@ input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in sr
 .person-card .card-copy { gap: 8px; }
 
 .home-latest { display: grid; width: 100%; height: auto; min-height: 597px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; padding: 60px 80px; background: var(--bg); }
-.home-latest-column { display: flex; width: 100%; flex-direction: column; gap: 24px; }
+.home-latest-column { display: flex; width: 100%; min-width: 0; flex-direction: column; gap: 24px; }
 .section-title-row { display: flex; width: 100%; height: 52px; align-items: center; gap: 10px; }
 .section-title-row h2 { flex: 0 0 auto; white-space: nowrap; }
 .title-spacer { min-width: 1px; flex: 1 1 auto; }

@@ -80,7 +80,8 @@ function SourceArticlePage({ article, backHref, backLabel }: SourceArticlePagePr
             <MasonryGrid
               className="link-grid"
               items={relatedPressReleases}
-              renderItem={(release) => <PressCard key={release.slug} variant="compact" title={release.title} date={release.date} href={'/press-releases/' + release.slug} />}
+              getItemKey={(release) => release.slug}
+              renderItem={(release) => <PressCard variant="compact" title={release.title} date={release.date} href={'/press-releases/' + release.slug} />}
             />
           </>}
           {relatedTests.length > 0 && <>
@@ -88,7 +89,8 @@ function SourceArticlePage({ article, backHref, backLabel }: SourceArticlePagePr
             <MasonryGrid
               className="link-grid"
               items={relatedTests}
-              renderItem={(test) => <Link key={test.slug} className="column-card link-card" to={'/past-tests/' + test.slug}><h3>{test.title}</h3><p>Open test materials</p></Link>}
+              getItemKey={(test) => test.slug}
+              renderItem={(test) => <Link className="column-card link-card" to={'/past-tests/' + test.slug}><h3>{test.title}</h3><p>Open test materials</p></Link>}
             />
           </>}
         </section>}

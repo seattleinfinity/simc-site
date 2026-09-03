@@ -4,6 +4,8 @@ node_modules/
 dist/
 _site/
 .wrangler/
+.react-router/
+.DS_Store
 .dev.vars*
 .vscode/
 .idea/
