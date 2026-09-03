@@ -54,19 +54,6 @@ interface StaticPageDefinition extends StaticPage {
   collection?: boolean;
 }
 
-const CANONICAL_STATIC_PATHS = [
-  '/',
-  '/events',
-  '/resources',
-  '/past-tests',
-  '/press-releases',
-  '/contact',
-  '/about-us',
-  '/newsletters',
-  '/calendar',
-  '/potm',
-] as const;
-
 const STATIC_PAGES: Record<string, StaticPageDefinition> = {
   '/': {
     kind: 'home',
@@ -122,6 +109,18 @@ const STATIC_PAGES: Record<string, StaticPageDefinition> = {
   },
 };
 
+const CANONICAL_DYNAMIC_ROUTES: DynamicRoute[] = [
+  ...EVENT_CONTENT.map((record): DynamicRoute => ({ kind: 'event', record, canonicalPath: `/events/${record.slug}` })),
+  ...PAST_TEST_CONTENT.map((record): DynamicRoute => ({ kind: 'past-test', record, canonicalPath: `/past-tests/${record.slug}` })),
+  ...PRESS_CONTENT.map((record): DynamicRoute => ({ kind: 'press-release', record, canonicalPath: `/press-releases/${record.slug}` })),
+];
+
+const DYNAMIC_ROUTE_PREFIXES: Record<DynamicKind, 'events' | 'press-releases' | 'past-tests'> = {
+  event: 'events',
+  'past-test': 'past-tests',
+  'press-release': 'press-releases',
+};
+
 const safeDecode = (value: string): string => {
   try {
     return decodeURIComponent(value);
@@ -166,52 +165,26 @@ const slugKey = (value: string): string => {
     .replace(/^-|-$/g, '');
 };
 
-const dynamicRoutes = new Map<string, DynamicRoute>();
-
-const registerDynamicRecords = (
-  prefix: 'events' | 'press-releases' | 'past-tests',
-  kind: DynamicKind,
-  records: ContentRecord[],
-) => {
-  const definitions = records.map((record): DynamicRoute => ({
-    kind,
-    record,
-    canonicalPath: `/${prefix}/${record.slug}`,
-  }));
-
-  // Register canonical slugs first so an alias collision cannot displace a real
-  // content record. Every record contributes one canonical route only.
-  definitions.forEach((definition) => {
-    dynamicRoutes.set(`${prefix}/${slugKey(definition.record.slug)}`, definition);
-  });
-
-};
-
-registerDynamicRecords('events', 'event', EVENT_CONTENT);
-registerDynamicRecords('press-releases', 'press-release', PRESS_CONTENT);
-registerDynamicRecords('past-tests', 'past-test', PAST_TEST_CONTENT);
-
-const sortedRoutes = (routes: SeoRoute[]): SeoRoute[] => routes
-  .slice()
-  .sort((a, b) => a.path.localeCompare(b.path));
-
 const isoDate = (date?: Date): string | undefined => {
   if (!date || Number.isNaN(date.getTime())) return undefined;
   return date.toISOString().slice(0, 10);
 };
 
-const dynamicSeoRoutes = (prefix: 'events' | 'press-releases' | 'past-tests', records: ContentRecord[]): SeoRoute[] => sortedRoutes(records.map((record) => {
-  const route: SeoRoute = { path: `/${prefix}/${record.slug}` };
-  const lastmod = isoDate(record.dateValue);
-  if (lastmod) route.lastmod = lastmod;
-  return route;
-}));
+const dynamicRoutes = new Map<string, DynamicRoute>(CANONICAL_DYNAMIC_ROUTES.map((route) => [
+  `${DYNAMIC_ROUTE_PREFIXES[route.kind]}/${slugKey(route.record.slug)}`,
+  route,
+]));
+
+const dynamicSeoRoutes = CANONICAL_DYNAMIC_ROUTES.map((route) => {
+  const seoRoute: SeoRoute = { path: route.canonicalPath };
+  const lastmod = isoDate(route.record.dateValue);
+  if (lastmod) seoRoute.lastmod = lastmod;
+  return seoRoute;
+});
 
 export const SEO_ROUTES: SeoRoute[] = [
-  ...CANONICAL_STATIC_PATHS.map((path) => ({ path })),
-  ...dynamicSeoRoutes('events', EVENT_CONTENT),
-  ...dynamicSeoRoutes('past-tests', PAST_TEST_CONTENT),
-  ...dynamicSeoRoutes('press-releases', PRESS_CONTENT),
+  ...Object.keys(STATIC_PAGES).map((path) => ({ path })),
+  ...dynamicSeoRoutes,
 ];
 
 const plainText = (value: string): string => value
@@ -262,12 +235,6 @@ const contentDescription = (record: ContentRecord, kind: DynamicKind): string =>
   if (kind === 'past-test') return `Past SIMC test materials for “${title}.”`;
   return `A SIMC press release titled “${title}.”`;
 };
-
-const CANONICAL_DYNAMIC_ROUTES: DynamicRoute[] = [
-  ...EVENT_CONTENT.map((record): DynamicRoute => ({ kind: 'event', record, canonicalPath: `/events/${record.slug}` })),
-  ...PAST_TEST_CONTENT.map((record): DynamicRoute => ({ kind: 'past-test', record, canonicalPath: `/past-tests/${record.slug}` })),
-  ...PRESS_CONTENT.map((record): DynamicRoute => ({ kind: 'press-release', record, canonicalPath: `/press-releases/${record.slug}` })),
-];
 
 const valueCounts = (getValue: (route: DynamicRoute) => string): Map<string, number> => {
   const counts = new Map<string, number>();
