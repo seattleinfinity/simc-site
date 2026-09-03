@@ -29,6 +29,10 @@ Images and other local assets belong beside the Markdown that uses them. Past-te
 
 The attached classroom image used on the home and About pages is `public/assets/images/about-classroom.png`. Sponsor marks and student portraits are also local files under `public/assets/images/`.
 
+## Redirects
+
+Legacy URL redirects are authored in `redirects.json`. `npm run build` generates the Cloudflare `dist/client/_redirects` artifact and checks content front-matter aliases against the same manifest. Do not edit the generated artifact directly.
+
 ## Deployment
 
 Cloudflare Workers Builds watches the production `main` branch and runs `npm run build` followed by `npx wrangler deploy` on every push.

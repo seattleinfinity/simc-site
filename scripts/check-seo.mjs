@@ -26,20 +26,12 @@ const STATIC_PATHS = [
   '/potm',
 ];
 
-const KNOWN_ALIASES = new Set([
-  '/about',
-  '/slg',
-  '/mock-tests',
-  '/newsletter',
-  '/newletter',
-  '/gcalender',
-  '/calender',
-  '/announcement',
-  '/announcements/mathcounts',
-  '/events/simc-8',
-  '/events/sime-8',
-  '/events/mock-sime',
-]);
+const KNOWN_ALIASES = new Set([...EXPECTED_REDIRECTS.keys()]);
+const CONTENT_ROUTE_FAMILIES = [
+  { directory: join(PROJECT_ROOT, 'src', 'events'), prefix: '/events/' },
+  { directory: join(PROJECT_ROOT, 'src', 'press-releases'), prefix: '/press-releases/' },
+  { directory: join(PROJECT_ROOT, 'src', 'past-tests'), prefix: '/past-tests/' },
+];
 
 const errors = [];
 const counts = {
@@ -61,6 +53,23 @@ const sitemapLabel = outputLabel('sitemap.xml');
 
 function addError(scope, message) {
   errors.push(`${scope}: ${message}`);
+}
+
+const slugifyRouteSegment = (value) => String(value)
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/gu, '-')
+  .replace(/^-|-$/gu, '');
+
+function frontMatterValue(source, key) {
+  if (!source.startsWith('---')) return '';
+  const end = source.indexOf('\n---', 3);
+  if (end < 0) return '';
+  const match = new RegExp(`^${key}:\\s*(.*)$`, 'mu').exec(source.slice(4, end));
+  return match?.[1]?.trim() || '';
+}
+
+function splitFrontMatterList(value) {
+  return value.split(/\s*;\s*/u).filter(Boolean);
 }
 
 function readText(pathname, scope) {
@@ -627,7 +636,7 @@ function parseSitemap(source, sitemapPath) {
     if (/%2f|%5c/iu.test(parsed.pathname)) addError(scope, 'encoded slashes are not valid route paths');
 
     const path = parsed.pathname;
-    if (KNOWN_ALIASES.has(path.toLowerCase())) {
+    if (KNOWN_ALIASES.has(path)) {
       addError(scope, `known route alias is not allowed in the sitemap: ${path}`);
     }
 
@@ -1076,6 +1085,44 @@ function validateRobots() {
   if (!sitemapReference) addError(outputLabel('robots.txt'), `must reference the canonical sitemap ${SITEMAP_URL}`);
 }
 
+function validateContentAliases() {
+  CONTENT_ROUTE_FAMILIES.forEach(({ directory, prefix }) => {
+    if (!existsSync(directory)) return;
+
+    let entries;
+    try {
+      entries = readdirSync(directory, { withFileTypes: true });
+    } catch (error) {
+      const detail = error instanceof Error ? error.message : String(error);
+      addError(relative(PROJECT_ROOT, directory), `unable to inspect content directory: ${detail}`);
+      return;
+    }
+
+    entries.filter((entry) => entry.isDirectory()).forEach((entry) => {
+      const pathname = join(directory, entry.name, 'index.md');
+      if (!isFile(pathname)) return;
+
+      const scope = relative(PROJECT_ROOT, pathname).split('\\').join('/');
+      const source = readText(pathname, scope);
+      if (source === null) return;
+
+      const canonicalPath = `${prefix}${slugifyRouteSegment(entry.name)}`;
+      const aliases = splitFrontMatterList(frontMatterValue(source, 'aliases'));
+      aliases.forEach((alias) => {
+        const aliasPath = `${prefix}${slugifyRouteSegment(alias)}`;
+        if (aliasPath === canonicalPath) {
+          addError(scope, `content alias "${alias}" resolves to its canonical route; remove the redundant alias`);
+          return;
+        }
+
+        if (EXPECTED_REDIRECTS.get(aliasPath) !== canonicalPath) {
+          addError(scope, `content alias "${alias}" requires redirect ${aliasPath} -> ${canonicalPath} in redirects.json`);
+        }
+      });
+    });
+  });
+}
+
 function validateRedirects(entries) {
   const pathname = join(CLIENT_ROOT, '_redirects');
   const scope = outputLabel('_redirects');
@@ -1299,6 +1346,8 @@ function main() {
   if (!existsSync(CLIENT_ROOT)) {
     addError('dist/client/', 'React Router Framework Mode output directory is missing; run npm run build before SEO verification');
   }
+
+  validateContentAliases();
 
   const discovered = discoverHtmlOutputs();
   validateSpaFallback();

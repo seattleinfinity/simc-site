@@ -1,0 +1,17 @@
+{
+  "/about": "/about-us",
+  "/slg": "/about-us",
+  "/mock-tests": "/past-tests",
+  "/newsletter": "/newsletters",
+  "/newletter": "/newsletters",
+  "/gcalender": "/calendar",
+  "/calender": "/calendar",
+  "/announcement": "/press-releases/2026-2-28-mockmathcounts",
+  "/announcements/mathcounts": "/press-releases/2026-2-28-mockmathcounts",
+  "/events/SIMC10": "/events/simc10",
+  "/events/SIMC8": "/events/simc8",
+  "/events/SIME": "/events/sime",
+  "/events/simc-8": "/events/simc8",
+  "/events/sime-8": "/events/simc8",
+  "/events/mock-sime": "/events/sime"
+}

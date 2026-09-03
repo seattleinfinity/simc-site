@@ -4,6 +4,7 @@ import {
   PRESS_CONTENT,
   type ContentRecord,
 } from './content';
+import { getRedirectTarget } from './redirects';
 
 export const SITE_URL = 'https://seattleinfinity.org';
 
@@ -121,16 +122,6 @@ const STATIC_PAGES: Record<string, StaticPageDefinition> = {
   },
 };
 
-const STATIC_ALIASES: Record<string, string> = {
-  '/about': '/about-us',
-  '/slg': '/about-us',
-  '/mock-tests': '/past-tests',
-  '/newsletter': '/newsletters',
-  '/newletter': '/newsletters',
-  '/gcalender': '/calendar',
-  '/calender': '/calendar',
-};
-
 const safeDecode = (value: string): string => {
   try {
     return decodeURIComponent(value);
@@ -175,10 +166,6 @@ const slugKey = (value: string): string => {
     .replace(/^-|-$/g, '');
 };
 
-const splitAliases = (value?: string): string[] => typeof value === 'string'
-  ? value.split(/\s*;\s*/).filter(Boolean)
-  : [];
-
 const dynamicRoutes = new Map<string, DynamicRoute>();
 
 const registerDynamicRecords = (
@@ -198,27 +185,11 @@ const registerDynamicRecords = (
     dynamicRoutes.set(`${prefix}/${slugKey(definition.record.slug)}`, definition);
   });
 
-  definitions.forEach((definition) => {
-    const aliases = [definition.record.sourceSlug, ...splitAliases(definition.record.aliases)];
-    aliases.forEach((alias) => {
-      const key = slugKey(alias);
-      if (key && !dynamicRoutes.has(`${prefix}/${key}`)) {
-        dynamicRoutes.set(`${prefix}/${key}`, definition);
-      }
-    });
-  });
 };
 
 registerDynamicRecords('events', 'event', EVENT_CONTENT);
 registerDynamicRecords('press-releases', 'press-release', PRESS_CONTENT);
 registerDynamicRecords('past-tests', 'past-test', PAST_TEST_CONTENT);
-
-const announcementRoute = PRESS_CONTENT.find(({ slug }) => slug === '2026-2-28-mockmathcounts');
-if (announcementRoute) {
-  const announcementPath = `/press-releases/${announcementRoute.slug}`;
-  STATIC_ALIASES['/announcement'] = announcementPath;
-  STATIC_ALIASES['/announcements/mathcounts'] = announcementPath;
-}
 
 const sortedRoutes = (routes: SeoRoute[]): SeoRoute[] => routes
   .slice()
@@ -542,7 +513,7 @@ const dynamicSeoData = (route: DynamicRoute): SeoData => {
 
 export function getSeoData(pathname: string): SeoData {
   const normalizedPath = normalizePath(pathname);
-  const canonicalPath = STATIC_ALIASES[normalizedPath] || normalizedPath;
+  const canonicalPath = getRedirectTarget(normalizedPath) || normalizedPath;
   const staticPage = STATIC_PAGES[canonicalPath];
   if (staticPage) return staticSeoData(canonicalPath, staticPage);
 

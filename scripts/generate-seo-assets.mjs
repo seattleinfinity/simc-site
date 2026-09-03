@@ -11,10 +11,41 @@ const clientDirectory = path.resolve(
 const DEFAULT_SITE_NAME = 'Seattle Infinity Math Circle';
 const DEFAULT_SITE_DESCRIPTION = 'Seattle Infinity Math Circle inspires students across the Seattle area to explore mathematics through competitions, events, and community.';
 const FALLBACK_DOCUMENT_NAMES = new Set(['__spa-fallback.html', '__spa-fallback.htm']);
+const REDIRECT_MANIFEST_PATH = path.join(projectRoot, 'redirects.json');
 
 const fail = (message) => {
   throw new Error(`[generate-seo-assets] ${message}`);
 };
+
+async function readRedirectManifest() {
+  let parsed;
+  try {
+    parsed = JSON.parse(await readFile(REDIRECT_MANIFEST_PATH, 'utf8'));
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    fail(`redirect manifest is not valid JSON: ${detail}`);
+  }
+
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    fail('redirect manifest must contain an object of source paths to destinations.');
+  }
+
+  for (const [source, destination] of Object.entries(parsed)) {
+    if (!source.startsWith('/') || !destination.startsWith('/')) {
+      fail(`redirects must use absolute paths: ${source} -> ${destination}`);
+    }
+  }
+
+  return parsed;
+}
+
+const renderRedirects = (redirects) => [
+  '# Generated from redirects.json. Do not edit this build artifact directly.',
+  ...Object.entries(redirects)
+    .sort(([sourceA], [sourceB]) => sourceA.localeCompare(sourceB))
+    .map(([source, destination]) => `${source} ${destination} 301`),
+  '',
+].join('\n');
 
 const textValue = (...values) => values.find((value) => typeof value === 'string' && value.trim())?.trim() || '';
 
@@ -587,6 +618,8 @@ async function main() {
     fail(`client output directory is missing: ${clientDirectory}. Run the framework build first.`);
   }
 
+  const redirects = await readRedirectManifest();
+
   const htmlFiles = await collectHtmlFiles(clientDirectory);
   if (htmlFiles.length === 0) fail(`no generated HTML documents found recursively under ${clientDirectory}.`);
 
@@ -659,8 +692,9 @@ async function main() {
   await writeFile(path.join(clientDirectory, 'sitemap.xml'), sitemap, 'utf8');
   await writeFile(path.join(clientDirectory, 'feed.xml'), feed, 'utf8');
   await writeFile(path.join(clientDirectory, '404.html'), notFoundHtml);
+  await writeFile(path.join(clientDirectory, '_redirects'), renderRedirects(redirects), 'utf8');
 
-  console.log(`Generated sitemap.xml (${canonicalDocuments.length} URL${canonicalDocuments.length === 1 ? '' : 's'}), feed.xml, and 404.html under ${clientDirectory}.`);
+  console.log(`Generated sitemap.xml (${canonicalDocuments.length} URL${canonicalDocuments.length === 1 ? '' : 's'}), feed.xml, 404.html, and _redirects under ${clientDirectory}.`);
 }
 
 await main();
