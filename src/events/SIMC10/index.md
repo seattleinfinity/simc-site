@@ -2,9 +2,9 @@
 layout: main
 title: SIMC 10 (Mock AMC 10)
 blurb: SIMC's annual mock AMC 10 competition.
-schedule: Early November
+schedule: Sunday, October 25, 2026, 2:30 pm to 5 pm
 featured: true
-press_releases: 2022-09-07-2022-simc-10; 2022-09-24-simc10recap; 2023-10-18-pre-simc10; 2023-11-04-2023simc10recap; 2025-11-02-amc10recap; 2025-11-05-simc10brecap
+press_releases: 2026-10-12-simc10-announcement; 2022-09-07-2022-simc-10; 2022-09-24-simc10recap; 2023-10-18-pre-simc10; 2023-11-04-2023simc10recap; 2025-11-02-amc10recap; 2025-11-05-simc10brecap
 past_tests: simc10-2022; simc10-2023; simc10-2024; simc10-2025-a; simc10-2025-b
 ---
 
