@@ -48,29 +48,35 @@ function Header() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className="site-header">
-      <Logo inverse />
-      <nav id="main-navigation" className={`main-nav ${menuOpen ? 'main-nav-open' : ''}`} aria-label="Main navigation">
-        <Link to="/events" onClick={closeMenu}>Events</Link>
-        <Link to="/resources" onClick={closeMenu}>Resources</Link>
-        <Link to="/press-releases" onClick={closeMenu}>Press releases</Link>
-        <Link to="/about-us" onClick={closeMenu}>About us</Link>
-      </nav>
-      <div className="header-actions">
-        <Button href="/contact" tone="light" onClick={closeMenu}>Contact us</Button>
-        <button
-          ref={menuButtonRef}
-          className="mobile-menu-toggle"
-          type="button"
-          aria-expanded={menuOpen}
-          aria-controls="main-navigation"
-          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          {menuOpen ? 'Close' : 'Menu'}
-        </button>
+    <>
+      <div className="event-registration-banner" role="region" aria-label="SIMC 10 registration">
+        <p>Register for SIMC 10 on Sunday, October 25, from 2:30 pm to 5 pm.</p>
+        <a href="https://tinyurl.com/simc-10" target="_blank" rel="noreferrer">Register now</a>
       </div>
-    </header>
+      <header className="site-header">
+        <Logo inverse />
+        <nav id="main-navigation" className={`main-nav ${menuOpen ? 'main-nav-open' : ''}`} aria-label="Main navigation">
+          <Link to="/events" onClick={closeMenu}>Events</Link>
+          <Link to="/resources" onClick={closeMenu}>Resources</Link>
+          <Link to="/press-releases" onClick={closeMenu}>Press releases</Link>
+          <Link to="/about-us" onClick={closeMenu}>About us</Link>
+        </nav>
+        <div className="header-actions">
+          <Button href="/contact" tone="light" onClick={closeMenu}>Contact us</Button>
+          <button
+            ref={menuButtonRef}
+            className="mobile-menu-toggle"
+            type="button"
+            aria-expanded={menuOpen}
+            aria-controls="main-navigation"
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? 'Close' : 'Menu'}
+          </button>
+        </div>
+      </header>
+    </>
   );
 }
 

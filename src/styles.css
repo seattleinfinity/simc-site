@@ -69,6 +69,35 @@ h3 { font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-si
 }
 .card-kicker-light { color: var(--on-accent); }
 
+.event-registration-banner {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 8px 20px;
+  background: #fff0b3;
+  color: #111c28;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+.event-registration-banner a {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.event-registration-banner a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
 .site-header {
   display: flex;
   width: 100%;
@@ -416,6 +445,7 @@ input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in sr
 @media (max-width: 760px) {
   h1 { font-size: 48px; line-height: 1.2; }
   h2 { font-size: 30px; }
+  .event-registration-banner { flex-direction: column; gap: 8px; }
   .site-header { height: auto; min-height: 88px; flex-wrap: wrap; padding: 20px; }
   .header-actions { margin-left: auto; gap: 12px; }
   .header-actions > .button { width: 128px; min-width: 128px; height: 48px; min-height: 48px; padding: 12px 10px; }

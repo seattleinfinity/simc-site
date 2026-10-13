@@ -58,10 +58,12 @@ function SourceArticlePage({ article, backHref, backLabel }: SourceArticlePagePr
   if (!article) return <NotFoundPage />;
   const relatedTests = article.pastTests
     .map((slug) => PAST_TEST_CONTENT_BY_SLUG[slug])
-    .filter((test): test is ContentRecord => Boolean(test));
+    .filter((test): test is ContentRecord => Boolean(test))
+    .sort((a, b) => (Date.parse(b.hosted_date || '') || 0) - (Date.parse(a.hosted_date || '') || 0));
   const relatedPressReleases = article.pressReleases
     .map((slug) => PRESS_CONTENT_BY_SLUG[slug])
-    .filter((release): release is ContentRecord => Boolean(release));
+    .filter((release): release is ContentRecord => Boolean(release))
+    .sort((a, b) => (b.dateValue?.getTime() || 0) - (a.dateValue?.getTime() || 0));
   return (
     <main>
       <section className="announcement-hero">
@@ -71,7 +73,6 @@ function SourceArticlePage({ article, backHref, backLabel }: SourceArticlePagePr
       </section>
       <SignupBanner />
       <article className="announcement-article">
-        <h2><RichTitle>{article.title}</RichTitle></h2>
         {article.image && <SourceImage src={article.image} className="announcement-image" alt={article.title + ' source image'} />}
         <MarkdownBody source={article.body} />
         {(relatedPressReleases.length > 0 || relatedTests.length > 0) && <section className="article-related">
