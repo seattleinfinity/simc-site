@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "react-router dev",
     "typecheck": "react-router typegen && tsc --noEmit",
+    "test:mailing-list": "node --test worker/mailing-list.test.js",
     "build": "npm run typecheck && react-router build && npm run seo:generate && npm run seo:check",
     "seo:generate": "node scripts/generate-seo-assets.mjs",
     "seo:check": "node scripts/check-seo.mjs",
