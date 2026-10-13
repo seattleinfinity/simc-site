@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { Link } from 'react-router';
 import { DISCORD_URL, INSTAGRAM_URL, SPONSORS } from '../data/site';
+import { MailingListForm } from './mailing-list-form';
 
 type ButtonTone = 'primary' | 'light' | 'outline';
 
@@ -75,8 +76,6 @@ function Header() {
 }
 
 export function SignupBanner() {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   return (
     <section className="signup-banner" aria-label="Join the SIMC community">
       <div className="signup-copy">
@@ -84,11 +83,7 @@ export function SignupBanner() {
         <p>Sign up for our mailing list so you don't miss out!</p>
       </div>
       <div className="signup-spacer" aria-hidden="true" />
-      <form id="banner-email-form" className="signup-form" onSubmit={(event) => { event.preventDefault(); if (email.trim()) setSubmitted(true); }}>
-        <label className="sr-only" htmlFor="banner-email">Email address</label>
-        <input id="banner-email" type="email" value={email} onChange={(event) => { setEmail(event.target.value); setSubmitted(false); }} placeholder="your@email.com" required />
-      </form>
-      <button className="button button-primary" type="submit" form="banner-email-form">{submitted ? 'You\'ve been added!' : 'Join mailing list'}</button>
+      <MailingListForm />
       <Button href={DISCORD_URL} external tone="outline">Join our Discord</Button>
     </section>
   );

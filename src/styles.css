@@ -199,12 +199,16 @@ h3 { font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-si
 .results-year-rule span { flex: 0 0 auto; color: var(--award-gold); font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-size: 20px; font-weight: 600; line-height: 26px; white-space: nowrap; }
 .results-awards-grid { display: flex; width: 100%; height: calc(var(--results-rows) * 49px); flex-wrap: wrap; align-content: center; align-items: center; justify-content: center; column-gap: 40px; overflow: hidden; padding: 0 20px; }
 
-.signup-banner { display: flex; width: 100%; height: 132px; align-items: center; gap: 20px; padding: 24px 80px; background: var(--accent-soft); }
+.signup-banner { display: flex; width: 100%; min-height: 132px; height: auto; align-items: center; gap: 20px; padding: 24px 80px; background: var(--accent-soft); }
 .signup-copy { display: flex; height: 84px; flex-direction: column; justify-content: center; gap: 6px; color: var(--text); }
 .signup-copy h2 { font-family: 'Source Serif 4', Georgia, serif; font-size: 36px; font-weight: 600; line-height: normal; white-space: nowrap; }
 .signup-copy p { line-height: 21px; white-space: nowrap; }
 .signup-spacer { width: auto; min-width: 1px; flex: 1 1 0; }
-.signup-form { width: 424px; flex: 0 0 424px; }
+.signup-banner > .mailing-list-form { width: 640px; flex: 0 1 640px; }
+.mailing-list-form { display: flex; min-width: 0; flex-direction: column; gap: 8px; }
+.mailing-list-form .mailing-list-notice { font-size: 13px; line-height: 1.4; }
+.mailing-list-status:empty { display: none; }
+.mailing-list-form button:disabled { opacity: .6; cursor: not-allowed; }
 .signup-banner > .button { width: 205px; min-width: 205px; }
 
 .page-intro { display: flex; width: 100%; height: 243px; flex-direction: column; gap: 20px; padding: 60px 80px; background: var(--accent); color: var(--on-accent); }
@@ -286,18 +290,18 @@ h3 { font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-si
 .potm-year { display: flex; flex-direction: column; gap: 24px; }
 .potm-year h2 { color: var(--text); }
 
-.contact-layout { display: flex; width: 100%; height: 503px; flex-direction: column; gap: 40px; padding: 60px 80px; background: var(--bg); }
+.contact-layout { display: flex; width: 100%; min-height: 503px; height: auto; flex-direction: column; gap: 40px; padding: 60px 80px; background: var(--bg); }
 .contact-email { display: flex; width: 100%; height: 138px; flex-direction: column; gap: 10px; padding: 28px 30px; background: var(--accent); color: var(--on-accent); }
 .contact-email h2 { color: var(--on-accent); font-family: 'Source Serif 4', Georgia, serif; font-size: 36px; line-height: 46px; }
 .contact-email p, .contact-email a { color: var(--on-accent); font-size: 16px; line-height: 21px; overflow-wrap: anywhere; }
 .contact-email a { text-decoration: none; }
 .contact-email a:hover { text-decoration: underline; text-underline-offset: 6px; }
-.contact-options-row { display: grid; width: 100%; height: 205px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
-.contact-option { display: flex; width: 100%; height: 205px; flex-direction: column; gap: 15px; padding: 28px 30px; background: var(--accent-soft); }
+.contact-options-row { display: grid; width: 100%; height: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+.contact-option { display: flex; width: 100%; min-height: 205px; height: auto; flex-direction: column; gap: 15px; padding: 28px 30px; background: var(--accent-soft); }
 .contact-option h2 { font-family: 'Source Serif 4', Georgia, serif; font-size: 36px; line-height: 46px; }
 .contact-option p { font-size: 16px; line-height: 21px; }
 .contact-option > .button { width: 205px; min-width: 205px; align-self: flex-start; margin-top: auto; }
-.contact-form-row { display: grid; width: 100%; grid-template-columns: 340px 205px; gap: 15px; margin-top: auto; }
+.contact-form-row { display: grid; width: 100%; grid-template-columns: minmax(0, 1fr) 205px; gap: 15px; margin-top: auto; }
 .contact-form-row .button { width: 100%; min-width: 0; }
 
 input { width: 100%; height: 48px; padding: 11px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--input-bg); color: var(--input-text); outline: none; }
@@ -344,7 +348,7 @@ input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in sr
   .home-title, .hero-panel, .about-panel { width: 100%; }
   .hero-panel p, .about-panel p { width: 100%; }
   .signup-copy { flex-shrink: 0; }
-  .signup-form { width: min(424px, calc(34vw - 64px)); min-width: 0; flex-basis: min(424px, calc(34vw - 64px)); flex-shrink: 1; }
+  .signup-banner > .mailing-list-form { min-width: 0; flex-basis: 560px; flex-shrink: 1; }
   .signup-banner > .button { min-width: 0; flex-shrink: 1; }
   .section-title-row { height: auto; min-height: 52px; }
   .section-title-row h2 { min-width: 0; flex: 1 1 auto; white-space: normal; }
@@ -373,7 +377,7 @@ input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in sr
   .signup-copy { height: auto; }
   .signup-copy h2, .signup-copy p { white-space: normal; }
   .signup-spacer { display: none; }
-  .signup-form, .signup-banner > .button { width: 100%; min-width: 0; flex: 0 0 auto; }
+  .signup-banner > .mailing-list-form, .signup-banner > .button { width: 100%; min-width: 0; flex: 0 0 auto; }
   .home-latest { grid-template-columns: 1fr; gap: 56px; }
   .section-title-row { height: auto; min-height: 52px; }
   .section-title-row h2 { min-width: 0; white-space: normal; }
@@ -404,12 +408,12 @@ input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in sr
   .results-header { gap: 16px; }
   .results-label { min-width: 0; flex: 1 1 auto; font-size: clamp(32px, 3.75vw, 36px); line-height: 1.2; white-space: nowrap; }
   .results-toggle-controls { flex: 0 0 auto; }
-  .signup-banner { display: grid; height: auto; grid-template-columns: minmax(220px, 1fr) repeat(2, minmax(160px, 205px)); align-items: center; gap: 12px; padding-top: 24px; padding-bottom: 24px; }
+  .signup-banner { display: grid; height: auto; grid-template-columns: minmax(0, 1fr) minmax(160px, 205px); align-items: center; gap: 12px; padding-top: 24px; padding-bottom: 24px; }
   .signup-copy { height: auto; min-width: 0; grid-column: 1 / -1; gap: 4px; }
   .signup-copy h2 { font-size: 36px; }
   .signup-copy p { white-space: normal; }
   .signup-spacer { display: none; }
-  .signup-form, .signup-banner > .button { width: 100%; min-width: 0; }
+  .signup-banner > .mailing-list-form, .signup-banner > .button { width: 100%; min-width: 0; }
   .home-hero-image { height: 0; min-height: 100%; align-self: stretch; }
 }
 
@@ -461,7 +465,7 @@ input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in sr
   .signup-copy { height: auto; gap: 6px; }
   .signup-copy p { white-space: normal; }
   .signup-spacer { display: none; }
-  .signup-form, .signup-banner > .button { width: 100%; min-width: 0; flex-basis: auto; }
+  .signup-banner > .mailing-list-form, .signup-banner > .button { width: 100%; min-width: 0; flex-basis: auto; }
   .press-page-list, .events-page-list, .resources-tests, .resources-external, .source-page-content, .embedded-page, .past-test-article, .potm-page, .contact-layout, .slg-page-list, .home-latest { height: auto; padding: 56px 20px; }
   .home-latest { grid-template-columns: 1fr; }
   .section-title-row { height: auto; min-height: 0; flex-wrap: wrap; align-items: flex-start; gap: 12px; }

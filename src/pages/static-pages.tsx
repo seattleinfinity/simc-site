@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { MailingListForm } from '../components/mailing-list-form';
 import { PersonCard } from '../components/content-card';
 import { MarkdownBody } from '../components/markdown-content';
 import { MasonryGrid } from '../components/masonry-grid';
 import { Intro } from '../components/page-primitives';
 import { Button, SignupBanner } from '../components/site-shell';
 import { PAGE_CONTENT_BY_SLUG, type ContentRecord } from '../content';
-import { CALENDAR_EMBED_URL, DISCORD_URL, EMAIL, MAILING_LIST_URL, PEOPLE } from '../data/site';
+import { CALENDAR_EMBED_URL, DISCORD_URL, EMAIL, PEOPLE } from '../data/site';
 
 interface MarkdownPageProps {
   record?: ContentRecord;
@@ -46,18 +46,12 @@ export function PotmPage() {
 }
 
 function ContactMailingForm() {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   return (
-    <form className="contact-option" onSubmit={(event) => { event.preventDefault(); if (email.trim()) setSubmitted(true); }}>
+    <div className="contact-option">
       <h2>Join our mailing list</h2>
-      <p><a href={MAILING_LIST_URL} target="_blank" rel="noreferrer">Sign up for our mailing list</a> so you don't miss out on any of our fun events!</p>
-      <div className="contact-form-row">
-        <label className="sr-only" htmlFor="contact-email">Email address</label>
-        <input id="contact-email" type="email" placeholder="your@email.com" value={email} onChange={(event) => { setEmail(event.target.value); setSubmitted(false); }} required />
-        <Button type="submit">{submitted ? 'You are in' : 'Join mailing list'}</Button>
-      </div>
-    </form>
+      <p>Sign up for our mailing list so you don't miss out on any of our fun events!</p>
+      <MailingListForm />
+    </div>
   );
 }
 
