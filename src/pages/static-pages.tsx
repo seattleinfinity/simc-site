@@ -30,6 +30,10 @@ export function NewslettersPage() {
   return <MarkdownPage record={PAGE_CONTENT_BY_SLUG.newsletters} />;
 }
 
+export function PrivacyPage() {
+  return <MarkdownPage record={PAGE_CONTENT_BY_SLUG.privacy} />;
+}
+
 export function CalendarPage() {
   return (
     <main>

@@ -209,7 +209,7 @@ h3 { font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-si
 .mailing-list-form .mailing-list-notice { font-size: 13px; line-height: 1.4; }
 .mailing-list-status:empty { display: none; }
 .mailing-list-form button:disabled { opacity: .6; cursor: not-allowed; }
-.signup-banner > .button { width: 205px; min-width: 205px; }
+.signup-banner > .button { width: 205px; min-width: 205px; align-self: flex-start; }
 
 .page-intro { display: flex; width: 100%; height: 243px; flex-direction: column; gap: 20px; padding: 60px 80px; background: var(--accent); color: var(--on-accent); }
 .page-intro h1 { color: var(--on-accent); }

@@ -62,12 +62,13 @@ export function MailingListForm() {
           sitekey: config.siteKey,
           action: 'mailing_list',
           appearance: 'interaction-only',
-          size: 'compact',
+          size: window.matchMedia('(max-width: 339px)').matches ? 'compact' : 'normal',
           callback: (value: string) => { setToken(value); setSecurityMessage(''); },
           'expired-callback': () => { setToken(''); setSecurityMessage('Security check expired. Please wait for it to refresh.'); },
           'error-callback': () => { setToken(''); setSecurityMessage('Security check failed. Please refresh and try again.'); },
           'timeout-callback': () => { setToken(''); setSecurityMessage('Please complete the security check.'); },
         });
+        setSecurityMessage('');
       } catch (error) {
         if (!disposed) setSecurityMessage(error instanceof Error ? error.message : 'Signup is temporarily unavailable.');
       }

@@ -41,7 +41,7 @@ Cloudflare Workers Builds watches the production `main` branch and runs `npm run
 
 Both signup forms save addresses in a private D1 table. They do not send email or verify mailbox ownership. No email service, public subscriber API, or admin UI is required. Existing Google Form responses are not imported.
 
-1. In Cloudflare **Turnstile**, create a **Managed** widget for `seattleinfinity.org` (include any other hostname where you serve the site). Keep its site key and secret key.
+1. In Cloudflare **Turnstile**, create an **Invisible** widget for `seattleinfinity.org` (include any other hostname where you serve the site). The site's `/privacy` notice references Cloudflare's [Turnstile Privacy Addendum](https://www.cloudflare.com/turnstile-privacy-policy/). Keep the widget's site key and secret key.
 2. From this repository, create the database and table. The first command writes the binding into `wrangler.jsonc` automatically; keep that config change:
 
    ```sh

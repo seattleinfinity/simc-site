@@ -97,6 +97,7 @@ function Footer() {
          <p className="eyebrow">501(c)(3) nonprofit organization</p>
         <div className="footer-links">
           <Link to="/contact">Mailing list</Link>
+          <Link to="/privacy">Privacy</Link>
           <a href={DISCORD_URL} target="_blank" rel="noreferrer">Discord</a>
           <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">Instagram</a>
         </div>
