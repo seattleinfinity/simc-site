@@ -3,6 +3,12 @@
   "name": "simc-site",
   "main": "./worker/index.js",
   "compatibility_date": "2026-08-26",
+  "d1_databases": [
+    {
+      "binding": "MAILING_LIST_DB",
+      "database_id": "068e25af-bc17-475f-a6d0-333fd7cf0702"
+    }
+  ],
   "ratelimits": [
     {
       "name": "SIGNUP_LIMITER",
