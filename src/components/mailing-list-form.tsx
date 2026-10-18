@@ -42,6 +42,7 @@ export function MailingListForm() {
   const [email, setEmail] = useState('');
   const [token, setToken] = useState('');
   const [pending, setPending] = useState(false);
+  const [joined, setJoined] = useState(false);
   const [message, setMessage] = useState('');
   const [securityMessage, setSecurityMessage] = useState('Loading security check…');
 
@@ -98,8 +99,10 @@ export function MailingListForm() {
       const result = await response.json();
       if (!response.ok || result.ok !== true) throw new Error(result.error || 'Signup failed. Please try again.');
       setEmail('');
-      setMessage('Thank you! Your address is on our mailing list.');
+      setJoined(true);
+      setMessage('');
     } catch (error) {
+      setJoined(false);
       setMessage(error instanceof Error && error.name !== 'TimeoutError'
         ? error.message : 'Could not confirm signup. Please try again.');
     } finally {
@@ -114,8 +117,8 @@ export function MailingListForm() {
     <form className="mailing-list-form" onSubmit={submit} aria-busy={pending}>
       <div className="contact-form-row">
         <label className="sr-only" htmlFor={`${id}-email`}>Email address</label>
-        <input id={`${id}-email`} name="email" type="email" autoComplete="email" maxLength={254} placeholder="your@email.com" value={email} onChange={(event) => { setEmail(event.target.value); setMessage(''); }} disabled={pending} required aria-describedby={`${id}-notice ${id}-status`} />
-        <button className="button button-primary" type="submit" disabled={pending || !token}>{pending ? 'Joining…' : 'Join mailing list'}</button>
+        <input id={`${id}-email`} name="email" type="email" autoComplete="email" maxLength={254} placeholder="your@email.com" value={email} onChange={(event) => { setEmail(event.target.value); setJoined(false); setMessage(''); }} disabled={pending} required aria-describedby={`${id}-notice ${id}-status`} />
+        <button className="button button-primary" type="submit" disabled={pending || !token}>{pending ? 'Joining…' : joined ? "You're on the list" : 'Join mailing list'}</button>
       </div>
       <div ref={container} />
       <p id={`${id}-status`} className="mailing-list-status" role="status" aria-live="polite" aria-atomic="true">{message || securityMessage}</p>
