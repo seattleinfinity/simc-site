@@ -1,4 +1,5 @@
 import redirectTargets from '../redirects.json' with { type: 'json' };
+import { mailingList } from './mailing-list.js';
 
 const SITE_ORIGIN = 'https://seattleinfinity.org';
 
@@ -9,6 +10,7 @@ export const PERMANENT_REDIRECTS = new Map(Object.entries(redirectTargets));
 export default {
   async fetch(request, env) {
     const requestUrl = new URL(request.url);
+    if (requestUrl.pathname.startsWith('/api/')) return mailingList(request, env);
     const redirectPath = PERMANENT_REDIRECTS.get(requestUrl.pathname);
     if (redirectPath && (request.method === 'GET' || request.method === 'HEAD')) {
       const destination = new URL(redirectPath, SITE_ORIGIN);

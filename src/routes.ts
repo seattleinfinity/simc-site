@@ -11,6 +11,7 @@ export default [
   route('press-releases', './routes/press-releases.tsx'),
   route('press-releases/:slug', './routes/press-detail.tsx'),
   route('contact', './routes/contact.tsx'),
+  route('privacy', './routes/privacy.tsx'),
   route('about-us', './routes/about.tsx'),
   route('newsletters', './routes/newsletters.tsx'),
   route('calendar', './routes/calendar.tsx'),

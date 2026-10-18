@@ -86,6 +86,11 @@ const STATIC_PAGES: Record<string, StaticPageDefinition> = {
     title: 'Contact Us',
     description: 'For questions, comments, or general inquiries, reach out to Seattle Infinity Math Circle through Discord or email.',
   },
+  '/privacy': {
+    kind: 'page',
+    title: 'Privacy Notice',
+    description: 'How Seattle Infinity Math Circle handles mailing-list signups and Cloudflare Turnstile.',
+  },
   '/about-us': {
     kind: 'page',
     title: 'Student Leadership Group',
