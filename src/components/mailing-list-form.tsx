@@ -43,8 +43,8 @@ export function MailingListForm() {
   const [token, setToken] = useState('');
   const [pending, setPending] = useState(false);
   const [joined, setJoined] = useState(false);
+  const [signupUnavailable, setSignupUnavailable] = useState(false);
   const [message, setMessage] = useState('');
-  const [securityMessage, setSecurityMessage] = useState('Loading security check…');
 
   useEffect(() => {
     const controller = new AbortController();
@@ -54,9 +54,15 @@ export function MailingListForm() {
         const response = await fetch('/api/mailing-list/config', {
           signal: AbortSignal.any([controller.signal, AbortSignal.timeout(15000)]),
         });
-        if (!response.ok) throw new Error('Signup is temporarily unavailable. Please try again later.');
+        if (!response.ok) {
+          if (!disposed) setSignupUnavailable(true);
+          return;
+        }
         const config = await response.json();
-        if (typeof config.siteKey !== 'string' || !config.siteKey) throw new Error('Signup is temporarily unavailable.');
+        if (typeof config.siteKey !== 'string' || !config.siteKey) {
+          if (!disposed) setSignupUnavailable(true);
+          return;
+        }
         const turnstile = await loadTurnstile();
         if (disposed || !container.current) return;
         widget.current = turnstile.render(container.current, {
@@ -64,14 +70,13 @@ export function MailingListForm() {
           action: 'mailing_list',
           appearance: 'interaction-only',
           size: window.matchMedia('(max-width: 339px)').matches ? 'compact' : 'normal',
-          callback: (value: string) => { setToken(value); setSecurityMessage(''); },
-          'expired-callback': () => { setToken(''); setSecurityMessage('Security check expired. Please wait for it to refresh.'); },
-          'error-callback': () => { setToken(''); setSecurityMessage('Security check failed. Please refresh and try again.'); },
-          'timeout-callback': () => { setToken(''); setSecurityMessage('Please complete the security check.'); },
+          callback: (value: string) => { setToken(value); },
+          'expired-callback': () => { setToken(''); },
+          'error-callback': () => { setToken(''); },
+          'timeout-callback': () => { setToken(''); },
         });
-        setSecurityMessage('');
-      } catch (error) {
-        if (!disposed) setSecurityMessage(error instanceof Error ? error.message : 'Signup is temporarily unavailable.');
+      } catch {
+        if (!disposed) setSignupUnavailable(true);
       }
     }
     void initialize();
@@ -97,6 +102,11 @@ export function MailingListForm() {
         signal: AbortSignal.timeout(20000),
       });
       const result = await response.json();
+      if (response.status === 503) {
+        setSignupUnavailable(true);
+        setMessage('');
+        return;
+      }
       if (!response.ok || result.ok !== true) throw new Error(result.error || 'Signup failed. Please try again.');
       setEmail('');
       setJoined(true);
@@ -117,11 +127,11 @@ export function MailingListForm() {
     <form className="mailing-list-form" onSubmit={submit} aria-busy={pending}>
       <div className="contact-form-row">
         <label className="sr-only" htmlFor={`${id}-email`}>Email address</label>
-        <input id={`${id}-email`} name="email" type="email" autoComplete="email" maxLength={254} placeholder="your@email.com" value={email} onChange={(event) => { setEmail(event.target.value); setJoined(false); setMessage(''); }} disabled={pending} required aria-describedby={`${id}-notice ${id}-status`} />
-        <button className="button button-primary" type="submit" disabled={pending || !token}>{pending ? 'Joining…' : joined ? "You're on the list" : 'Join mailing list'}</button>
+        <input id={`${id}-email`} name="email" type="email" autoComplete="email" maxLength={254} placeholder="your@email.com" value={email} onChange={(event) => { setEmail(event.target.value); setJoined(false); setMessage(''); }} disabled={pending || signupUnavailable} required aria-describedby={`${id}-notice ${id}-status`} />
+        <button className="button button-primary" type="submit" disabled={pending || !token || signupUnavailable}>{pending ? 'Joining…' : joined ? "You're on the list" : 'Join mailing list'}</button>
       </div>
       <div ref={container} />
-      <p id={`${id}-status`} className="mailing-list-status" role="status" aria-live="polite" aria-atomic="true">{message || securityMessage}</p>
+      <p id={`${id}-status`} className="mailing-list-status sr-only" role="status" aria-live="polite" aria-atomic="true">{message}</p>
       <p id={`${id}-notice`} className="mailing-list-notice">By joining, you agree to receive SIMC emails. To leave, <a href={`mailto:${EMAIL}?subject=Unsubscribe`}>email us</a>.</p>
       <noscript>Please enable JavaScript to join the mailing list.</noscript>
     </form>

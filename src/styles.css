@@ -205,7 +205,7 @@ h3 { font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; font-si
 .signup-copy p { line-height: 21px; white-space: nowrap; }
 .signup-spacer { width: auto; min-width: 1px; flex: 1 1 0; }
 .signup-banner > .mailing-list-form { width: 640px; flex: 0 1 640px; }
-.mailing-list-form { display: flex; min-width: 0; flex-direction: column; gap: 8px; }
+.mailing-list-form { display: flex; min-width: 0; flex-direction: column; gap: 4px; }
 .mailing-list-form .mailing-list-notice { font-size: 13px; line-height: 1.4; }
 .mailing-list-status:empty { display: none; }
 .mailing-list-form button:disabled { opacity: .6; cursor: not-allowed; }
