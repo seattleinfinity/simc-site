@@ -127,7 +127,7 @@ export function MailingListForm() {
     <form className="mailing-list-form" onSubmit={submit} aria-busy={pending}>
       <div className="contact-form-row">
         <label className="sr-only" htmlFor={`${id}-email`}>Email address</label>
-        <input id={`${id}-email`} name="email" type="email" autoComplete="email" maxLength={254} placeholder="your@email.com" value={email} onChange={(event) => { setEmail(event.target.value); setJoined(false); setMessage(''); }} disabled={pending} required aria-describedby={`${id}-notice ${id}-status`} />
+        <input id={`${id}-email`} name="email" type="email" autoComplete="email" maxLength={254} placeholder="your@email.com" value={email} onChange={(event) => { setEmail(event.target.value); setJoined(false); setMessage(''); }} disabled={pending || signupUnavailable} required aria-describedby={`${id}-notice ${id}-status`} />
         <button className="button button-primary" type="submit" disabled={pending || !token || signupUnavailable}>{pending ? 'Joining…' : joined ? "You're on the list" : 'Join mailing list'}</button>
       </div>
       <div ref={container} />
