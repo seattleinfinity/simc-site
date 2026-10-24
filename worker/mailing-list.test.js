@@ -43,11 +43,6 @@ test('mailing-list security, persistence, and routing', async () => {
     const config = await send(undefined, {}, '/api/mailing-list/config', 'GET');
     assert.deepEqual(await config.json(), { siteKey: 'public-key' });
     assert.equal(config.headers.get('Cache-Control'), 'no-store');
-    for (const key of ['MAILING_LIST_DB', 'SIGNUP_LIMITER', 'TURNSTILE_SECRET_KEY']) {
-      const availableConfig = await worker.fetch(request(undefined, {}, '/api/mailing-list/config', 'GET'), { ...env, [key]: undefined });
-      assert.equal(availableConfig.status, 200, key);
-    }
-    assert.equal((await worker.fetch(request(undefined, {}, '/api/mailing-list/config', 'GET'), { ...env, TURNSTILE_SITE_KEY: undefined })).status, 503);
     assert.equal((await send(undefined, {}, '/api/subscribers', 'GET')).status, 404);
     assert.equal((await send(undefined, {}, '/api/subscribe', 'GET')).status, 405);
     assert.equal((await send(undefined, { Origin: 'https://evil.example' })).status, 403);

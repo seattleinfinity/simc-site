@@ -63,7 +63,7 @@ Both signup forms save addresses in a private D1 table. They do not send email o
    npx wrangler@4.94.0 deploy
    ```
 
-Wrangler prompts for Cloudflare login if needed. No build-time environment variables are needed. Both Turnstile secret names are required in `wrangler.jsonc`, so deploys fail if either is missing. The public site key is served by `/api/mailing-list/config`; missing runtime bindings disable signup instead of showing a false success.
+Wrangler prompts for Cloudflare login if needed. No build-time environment variables are needed. The public site key is served by `/api/mailing-list/config`; the secret stays in the Worker. Missing bindings or keys disable signup instead of showing a false success.
 
 After deployment, submit your own address and confirm its row in **D1 → simc-mailing-list → Console**. Addresses and signup timestamps are visible only to authorized Cloudflare account members. Handle removal requests sent through the form's “email us” link there, and use your mailing provider's confirmation/unsubscribe flow before sending campaigns. This feature only collects addresses; Turnstile does not prove ownership of an email address.
 

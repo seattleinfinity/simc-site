@@ -17,13 +17,10 @@ export async function mailingList(request, env) {
   if (request.method !== (config ? 'GET' : 'POST')) {
     return json({ error: 'Method not allowed.' }, 405, { Allow: config ? 'GET' : 'POST' });
   }
-  if (config) {
-    if (!env.TURNSTILE_SITE_KEY) return json({ error: 'Signup is temporarily unavailable. Please try again later.' }, 503);
-    return json({ siteKey: env.TURNSTILE_SITE_KEY });
-  }
   if (!env.MAILING_LIST_DB || !env.SIGNUP_LIMITER || !env.TURNSTILE_SITE_KEY || !env.TURNSTILE_SECRET_KEY) {
     return json({ error: 'Signup is temporarily unavailable. Please try again later.' }, 503);
   }
+  if (config) return json({ siteKey: env.TURNSTILE_SITE_KEY });
   if (request.headers.get('Origin') !== url.origin || request.headers.get('Sec-Fetch-Site') === 'cross-site') {
     return json({ error: 'Please sign up from our website.' }, 403);
   }
